@@ -74,6 +74,23 @@ npm run desktop       # ビルドしてデスクトップアプリを起動（�
 npm run desktop:dev   # 開発モードで起動
 ```
 
+## Claude Code / Cursor に取り込む（別アプリを開かず使う）
+
+このリポジトリを開くだけで、AIが進捗を把握して作業できます。
+
+- **`.mcp.json`** … Claude Code / Cursor が起動時に `shinchoku` MCP を自動ロード（localhost接続）。
+  初回はMCPサーバーの許可＆再起動が必要な場合があります。
+- **`.claude/settings.json`** … セッション開始時に `/api/context` を読み、現在地を自動でコンテキストへ注入。
+- **`.claude/commands/`** … スラッシュコマンド:
+  - `/progress` 現在地サマリ
+  - `/pickup` 次に着手すべきゴールから続きを始める
+  - `/active-goal <名前>` 作業中ゴールを設定（コミット自動記録の宛先）
+  - `/goal-status <名前>` 状況まとめ
+  - `/done-step` 現在ステップを完了
+- **`CLAUDE.md` / `.cursor/rules/progress.mdc`** … AIの振る舞い（開始時に文脈把握→現在地から作業→コミット/記録で進捗更新）。
+
+前提: アプリを起動しておく（`npm run dev`）。MCPもフックもローカルの `http://localhost:3000` に接続します。
+
 ## 中核：「AIに依頼する」の仕組み
 
 ゴール詳細の「AIに依頼する」を押すと、`lib/prompt.ts` が

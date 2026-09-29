@@ -1,0 +1,14 @@
+{
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "curl -s --max-time 3 http://localhost:3000/api/context 2>/dev/null || echo '[進捗管理AI] アプリ未起動（npm run dev で起動すると進捗を自動把握します）'"
+          }
+        ]
+      }
+    ]
+  }
+}

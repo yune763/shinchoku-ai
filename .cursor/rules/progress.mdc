@@ -1,0 +1,16 @@
+---
+description: 進捗管理AIと連携して開発を進めるルール
+alwaysApply: true
+---
+
+このプロジェクトの進捗は「進捗管理AI」で管理する。Cursor は次の流れで作業する。
+
+- セッション開始時に `shinchoku` MCP の `get_context` を読み、`recommendedNext[0]` を次に着手すべきゴールとして把握する（`waitingForHuman` は着手しない）。
+- 着手するゴールを `set_active_goal` で作業中に設定する（以後のコミットが自動記録される）。
+- `get_goal` の `prompt` に従い、現在地のステップから続きを進める。
+- コミットメッセージ規約: 通常は内容のみ、ステップ完了は末尾に `[done]`、宛先明示は `[goal:<goalId>]`。
+- 小さな進捗は `add_log`（kind: ai_result）、ステップ完了は `set_step_done` で記録する。
+- 前提の再説明は不要。取得した文脈がそのまま前提。人待ちになったら明示して止める。
+- アプリ（http://localhost:3000）が未起動なら `npm run dev` を案内する。
+
+MCP登録は `.mcp.json`（`node ./mcp/server.mjs`, `SHINCHOKU_BASE_URL=http://localhost:3000`）。
