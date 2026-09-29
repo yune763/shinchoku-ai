@@ -1,0 +1,13 @@
+{
+  "//": "自分のPCのアプリ(localhost)にだけ連携する例。プロジェクト直下に .mcp.json として置く。",
+  "//args": "args の最後は server.mjs の絶対パス（または ./mcp/server.mjs）。",
+  "mcpServers": {
+    "shinchoku": {
+      "command": "node",
+      "args": ["./mcp/server.mjs"],
+      "env": {
+        "SHINCHOKU_BASE_URL": "http://localhost:3000"
+      }
+    }
+  }
+}
