@@ -122,3 +122,5 @@ cp .env.example .env
 - 認証・組織/権限（複数人・アクセス制御）
 - 実DB（Prisma + PostgreSQL）への移行
 - KPIツリー / ルーティン自動生成 / 議事録取り込み
+
+# progress note 1790662098
