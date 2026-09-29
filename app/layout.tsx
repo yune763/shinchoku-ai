@@ -16,7 +16,7 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <TopNav />
-        <main className="min-h-screen pt-14">{children}</main>
+        <main className="min-h-screen pt-16">{children}</main>
       </body>
     </html>
   );
