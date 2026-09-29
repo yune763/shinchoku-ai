@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Sidebar } from "@/components/Sidebar";
+import { TopNav } from "@/components/TopNav";
 
 export const metadata: Metadata = {
   title: "進捗管理AI",
@@ -15,10 +15,8 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body>
-        <div className="flex min-h-screen">
-          <Sidebar />
-          <main className="flex-1 min-w-0 md:ml-40">{children}</main>
-        </div>
+        <TopNav />
+        <main className="min-h-screen pt-14">{children}</main>
       </body>
     </html>
   );

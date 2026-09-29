@@ -1,4 +1,6 @@
 {
+  "enableAllProjectMcpServers": true,
+  "enabledMcpjsonServers": ["shinchoku"],
   "hooks": {
     "SessionStart": [
       {
