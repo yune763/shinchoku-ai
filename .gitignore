@@ -6,5 +6,6 @@ node_modules
 out
 next-env.d.ts
 data/store.json
+data/settings.json
 *.log
 .DS_Store

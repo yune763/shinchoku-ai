@@ -20,6 +20,7 @@ const LOG_KIND_LABEL: Record<string, string> = {
   [LOG_KIND.aiResult]: "AI結果",
   [LOG_KIND.statusChange]: "状態変更",
   [LOG_KIND.stepDone]: "ステップ",
+  [LOG_KIND.commit]: "コミット",
 };
 
 // 人が一目で「いまどういう状況か」を把握するためのまとめページ。

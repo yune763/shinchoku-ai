@@ -143,6 +143,20 @@ server.tool(
   },
 );
 
+// 作業中ゴールを設定する（以後このゴールにコミットが自動記録される）。
+server.tool(
+  "set_active_goal",
+  "作業中ゴールを設定/解除する。設定すると、以後のgitコミットがこのゴールへ自動記録される。",
+  { goalId: z.string().nullable().describe("対象ゴールのID。null で解除") },
+  async ({ goalId }) =>
+    jsonContent(
+      await api(`/api/active`, {
+        method: "PUT",
+        body: JSON.stringify({ activeGoalId: goalId }),
+      }),
+    ),
+);
+
 const transport = new StdioServerTransport();
 await server.connect(transport);
 console.error(`[shinchoku-ai mcp] connected to ${BASE_URL}${TOKEN ? " (token set)" : ""}`);

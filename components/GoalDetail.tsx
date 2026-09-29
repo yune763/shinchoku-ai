@@ -15,6 +15,7 @@ import { NewGoalForm } from "@/components/NewGoalForm";
 import { AiRequestModal } from "@/components/AiRequestModal";
 import { PlanModal } from "@/components/PlanModal";
 import { Roadmap } from "@/components/Roadmap";
+import { ActiveToggle } from "@/components/ActiveToggle";
 
 const LOG_KIND_LABEL: Record<string, string> = {
   [LOG_KIND.comment]: "コメント",
@@ -23,6 +24,7 @@ const LOG_KIND_LABEL: Record<string, string> = {
   [LOG_KIND.aiResult]: "AI結果",
   [LOG_KIND.statusChange]: "状態変更",
   [LOG_KIND.stepDone]: "ステップ",
+  [LOG_KIND.commit]: "コミット",
 };
 
 export function GoalDetail({
@@ -73,13 +75,14 @@ export function GoalDetail({
             </span>
           </div>
         </div>
-        <div className="flex flex-col gap-2 shrink-0">
+        <div className="flex flex-col gap-2 shrink-0 items-stretch">
           <button
             onClick={() => setShowAi(true)}
             className="rounded-lg bg-ink text-white px-4 py-2 text-sm font-medium hover:opacity-90"
           >
             AIに依頼する
           </button>
+          <ActiveToggle goalId={goal.id} />
         </div>
       </div>
 

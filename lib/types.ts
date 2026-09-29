@@ -36,6 +36,7 @@ export const LOG_KIND = {
   aiResult: "ai_result", // AIが残した結果
   statusChange: "status_change", // 状態変更
   stepDone: "step_done", // ステップ完了
+  commit: "commit", // gitコミットの自動記録
 } as const;
 
 export type LogKind = (typeof LOG_KIND)[keyof typeof LOG_KIND];
@@ -127,6 +128,7 @@ export const logInputSchema = z.object({
       LOG_KIND.aiResult,
       LOG_KIND.statusChange,
       LOG_KIND.stepDone,
+      LOG_KIND.commit,
     ])
     .default(LOG_KIND.comment),
   author: z.string().default("人"),
