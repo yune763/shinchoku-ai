@@ -86,6 +86,12 @@ export interface Goal {
   status: GoalStatus;
   assignee: string;
   dueDate: string | null;
+  kpi: string; // KPI（達成を測る指標。例: 「照合精度95%以上」）
+  forecast: string; // 完了見込み（作業ログからAIが算出。例: 「残り約2時間 / 10/4完了見込み」）
+  repoPath: string; // Claude Code を起動する作業フォルダ（空なら未設定）
+  previewCommand: string; // 実装物の起動コマンド（空なら npm run dev）
+  previewUrl: string; // 起動後に開くURL（例 http://localhost:5173）
+  estimatedHours: number; // 見積所要時間（0=未設定, 0.5, 1, 2 …）
   progress: number; // 0-100（ステップがあれば自動、なければ手動）
   steps: Step[]; // ロードマップ
   logs: LogEntry[];
@@ -112,6 +118,19 @@ export const goalInputSchema = z.object({
     .default(GOAL_STATUS.notStarted),
   assignee: z.string().default(""),
   dueDate: z.string().nullable().default(null),
+  kpi: z.string().default(""),
+  forecast: z.string().default(""),
+  repoPath: z
+    .string()
+    .default("")
+    // Windowsの「パスのコピー」の引用符・空白を除去して保存する。
+    .transform((v) => v.trim().replace(/^["']+|["']+$/g, "").trim()),
+  previewCommand: z.string().default(""),
+  previewUrl: z
+    .string()
+    .default("")
+    .transform((v) => v.trim().replace(/^["']+|["']+$/g, "").trim()),
+  estimatedHours: z.number().min(0).default(0),
   progress: z.number().min(0).max(100).default(0),
 });
 

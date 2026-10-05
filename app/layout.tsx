@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { TopNav } from "@/components/TopNav";
+import { ChatPanel } from "@/components/ChatPanel";
 
 export const metadata: Metadata = {
   title: "進捗管理AI",
@@ -16,7 +17,9 @@ export default function RootLayout({
     <html lang="ja">
       <body>
         <TopNav />
-        <main className="min-h-screen pt-16">{children}</main>
+        {/* 右下に常駐するチャットボタンと重ならないよう、下部に余白を確保 */}
+        <main className="min-h-screen pl-24 pb-24">{children}</main>
+        <ChatPanel />
       </body>
     </html>
   );

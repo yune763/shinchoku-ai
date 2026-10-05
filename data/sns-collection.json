@@ -1,0 +1,802 @@
+[
+  {
+    "date": "2026-10-02",
+    "title": "SNS情報収集レポート 2026-10-02(金)",
+    "summary": "収集 40件 → 関連 40件 → **30トピック**",
+    "topicCount": 30,
+    "topics": [
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "【続報】Welcome Aboard: Meet Your New Work Copilot | Microsoft 365 Copilot like you&#39;ve never seen!",
+        "stars": 5,
+        "reason": "公式発表",
+        "summary": "Discover how Microsoft 365 Copilot brings AI into the flow of everyday work. In this session, we'll explore the Copilot Chat ...",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "Welcome Aboard: Meet Your New Work Copilot | Microsoft 365 Copilot like you&#39;ve never seen!",
+            "url": "https://www.youtube.com/watch?v=XdaQWHbsG6g"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "【続報】🎛️ Air Traffic Control for Agents | Govern your agents with Agent 365",
+        "stars": 5,
+        "reason": "公式発表",
+        "summary": "As AI agents become part of everyday work, organisations need a consistent way to observe, govern, and secure them at scale.",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "🎛️ Air Traffic Control for Agents | Govern your agents with Agent 365",
+            "url": "https://www.youtube.com/watch?v=HpzVZHC_WXw"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "【続報】Keep Your AI Accurate with Microsoft Learn MCP Server",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Microsoft Learn MCP Server gives AI coding assistants a way to check their answers against current, official Microsoft ...",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "Keep Your AI Accurate with Microsoft Learn MCP Server",
+            "url": "https://www.youtube.com/watch?v=KH5fQCLhXrg"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "【続報】Skill up on Copilot Studio Oct 8th!",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Save your spot: https://aka.ms/CopilotStudio/Skilling October 8, 2026 8:00 AM - 9:00 AM (UTC-07:00) Pacific Time (US ...",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "Skill up on Copilot Studio Oct 8th!",
+            "url": "https://www.youtube.com/watch?v=VyowNv9wodk"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "【続報】🎙️Voices from the Skies: Build Your Own Personal Assistant with GitHub Copilot App",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Turn ideas into working solutions faster with GitHub Copilot. Discover how vibe coding and agentic development let you describe ...",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "🎙️Voices from the Skies: Build Your Own Personal Assistant with GitHub Copilot App",
+            "url": "https://www.youtube.com/watch?v=sLKnkZTLI1M"
+          }
+        ]
+      },
+      {
+        "section": "■ AI開発ツール・コーディング",
+        "title": "【続報】🎖️ Captain&#39;s Training: Master Copilot Studio | Use the New Harness, MCPs and More",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Get started with Microsoft Copilot Studio and learn the fundamentals of building custom agents for your organisation. We'll explore ...",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "🎖️ Captain&#39;s Training: Master Copilot Studio | Use the New Harness, MCPs and More",
+            "url": "https://www.youtube.com/watch?v=v58Mvvm3H5Q"
+          }
+        ]
+      },
+      {
+        "section": "■ AIエージェント・自動化",
+        "title": "【続報】🚀 Cleared for Takeoff: Build Your First Agent | Build Your First Agent and Skills in Agent Builder",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Build and customise your own AI experiences directly in Microsoft 365 Copilot. In this session, discover how Agent/Skills Builder ...",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "🚀 Cleared for Takeoff: Build Your First Agent | Build Your First Agent and Skills in Agent Builder",
+            "url": "https://www.youtube.com/watch?v=BcGOkJkgXYY"
+          }
+        ]
+      },
+      {
+        "section": "■ その他主要AI企業",
+        "title": "【続報】🎙️Voices from the Skies: Real world lessons to help drive Copilot adoption and ROI",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "What does Copilot success look like in the real world? Explore how organisations are adopting Microsoft 365 Copilot at scale, the ...",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "🎙️Voices from the Skies: Real world lessons to help drive Copilot adoption and ROI",
+            "url": "https://www.youtube.com/watch?v=CkkL7RejIr8"
+          }
+        ]
+      },
+      {
+        "section": "■ その他主要AI企業",
+        "title": "【続報】🛬 The Home Airport for Copilot and Agents | Why your Agents and Copilot love SharePoint",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Discover how AI is transforming SharePoint Online from a place to store and manage content into an intelligent workspace.",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "🛬 The Home Airport for Copilot and Agents | Why your Agents and Copilot love SharePoint",
+            "url": "https://www.youtube.com/watch?v=aWIz5oQiEfg"
+          }
+        ]
+      },
+      {
+        "section": "■ その他主要AI企業",
+        "title": "【続報】Save your spot! Copilot Studio Oct 8th",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Save your spot: https://aka.ms/CopilotStudio/Skilling October 8, 2026 8:00 AM - 9:00 AM (UTC-07:00) Pacific Time (US ...",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "Save your spot! Copilot Studio Oct 8th",
+            "url": "https://www.youtube.com/watch?v=GHUQaisG1AE"
+          }
+        ]
+      },
+      {
+        "section": "■ その他主要AI企業",
+        "title": "🛫Wheels Up: Closing keynote and HOMEWORK!",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Let's wrap up the Fly with Copilot Redmond event by bringing together the key ideas, innovations, and takeaways. Let's reflect on ...",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "🛫Wheels Up: Closing keynote and HOMEWORK!",
+            "url": "https://www.youtube.com/watch?v=h0YmWeMxfPw"
+          }
+        ]
+      },
+      {
+        "section": "■ その他主要AI企業",
+        "title": "🧭 Flight Intelligence: The Power of Work IQ | Discover how Work IQ is your business&#39;s secret sauce",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "What if your agents could understand not just your data, but how work actually happens across your organisation? Explore Work ...",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "🧭 Flight Intelligence: The Power of Work IQ | Discover how Work IQ is your business&#39;s secret sauce",
+            "url": "https://www.youtube.com/watch?v=VpSCu7s4wD4"
+          }
+        ]
+      },
+      {
+        "section": "■ その他主要AI企業",
+        "title": "KEYNOTE: From Copilot to Flight Captain",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Microsoft 365 Copilot is becoming much more than a chat experience. Copilot Chat, Copilot Cowork, Work IQ, Autopilots, Agent ...",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "KEYNOTE: From Copilot to Flight Captain",
+            "url": "https://www.youtube.com/watch?v=qvcqTa01WhU"
+          }
+        ]
+      },
+      {
+        "section": "■ その他主要AI企業",
+        "title": "✈️ Powering the Cockpit: Boost Your M365 Flight Crew | Boost Microsoft 365 with Cowork, Scout &amp; More",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "What happens when Copilot goes beyond answering questions and starts doing the work with you and for you? Discover the ...",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "✈️ Powering the Cockpit: Boost Your M365 Flight Crew | Boost Microsoft 365 with Cowork, Scout &amp; More",
+            "url": "https://www.youtube.com/watch?v=4Pz6bNYZfrI"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【続報】",
+        "stars": 4,
+        "reason": "",
+        "summary": "A federal appeals court just killed the fair use defense for AI training. Universal and Sony are weaponizing 61k tracks against Suno, and a Munich court already ruled the model actually memorizes existing songs. The upcoming Massachusetts summary judgment is all that matters now. # GenerativeAI # CopyrightLaw https:// zubiqo.com/news/first-federal- appeals-court-rejects-ai-fair-use-data-defense-cw0mvt",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@zubiqo/117362690128361841"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 4,
+        "reason": "",
+        "summary": "Joshua Xu (@joshua_xu_) HeyGen Video가 정식 공개됐다. MiniMax H3 기반의 첫 포스트트레이닝 모델로 소개됐으며, 영상 생성 가격은 초당 0.01달러부터다. 저비용 AI 영상 생성·편집 워크플로에 활용 가능한 상용 모델 출시 소식이다. https:// x.com/joshua_xu_/status/210535 6091777495079 # heygen # minimax # videogeneration # generativeai # aivideo",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.sayzard.org/@sayzard/117363173321281575"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【続報】",
+        "stars": 3,
+        "reason": "新モデル",
+        "summary": "🏆 An open-weight model leads video generation. Wan 3.0 tops the human-preference ranking — ahead of every closed model. You can download it and run it yourself → https:// olud.ai/media-leaderboard.html # OpenSource # GenerativeAI # StableDiffusion # AI",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@opensourceaitech/117360821857090298"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【続報】",
+        "stars": 3,
+        "reason": "新モデル",
+        "summary": "Joshua Xu (@joshua_xu_) 한 범용 영상 생성 모델이 초당 1센트의 생성 비용과 10초 영상 생성에 5~7초의 지연시간을 내세웠다. 게시물은 이를 프런티어급 품질의 모델이라고 주장하며, 영상 생성 추론 비용과 속도 경쟁이 핵심 차별점임을 강조한다. https:// x.com/joshua_xu_/status/210542 1858908827655 # videogeneration # generativeai # inference # aivideo",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.sayzard.org/@sayzard/117363173227590392"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【続報】",
+        "stars": 3,
+        "reason": "新モデル",
+        "summary": "⚖️ Open vs proprietary, today Open-weight: Qwen3.8 Max (0902) - 45.4 Proprietary: Claude Sonnet 5.5 - 56 Gap: 10.6 points · and 2x cheaper per 1M output tokens https:// olud.ai/leaderboard.html # OpenSource # AI # LLM",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@opensourceaitech/117363422238027940"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【続報】",
+        "stars": 3,
+        "reason": "",
+        "summary": "🧠 Un paper con Hinton, Bengio e ricercatori di # Anthropic e # OpenAI propone di misurare quanta ricerca AI i laboratori delegano già ai modelli: forse il segnale più utile sull'intelligence explosion. 👉 I dettagli: https:// lnkd.in/p/eueAehwn ___ ✉️ Se vuoi rimanere aggiornato/a su queste tematiche, iscriviti alla mia newsletter: https:// bit.ly/newsletter-alessiopomaro # AI # GenAI # GenerativeAI # IntelligenzaArtificiale # LLM",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.uno/@alessiopomaro/117359670547985729"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【続報】",
+        "stars": 3,
+        "reason": "",
+        "summary": "Krea (@krea_ai) Ideogram 4.5가 Krea에서 제공되기 시작했다. 반복 이미지 편집 시 발생하는 아티팩트, 픽셀 위치 변화, 색상 드리프트를 줄여 일관된 반복 편집을 지원하는 모델이라는 소개다. 이미지 생성·편집 워크플로에서 결과 안정성이 필요한 개발자와 크리에이터에게 관련 있는 업데이트다. https:// x.com/krea_ai/status/210533417 5939395641 # imagegeneration # imageediting # ideogram # krea # generativeai",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.sayzard.org/@sayzard/117361036634269759"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【続報】AI Made a Game I’d ACTUALLY Play",
+        "stars": 2,
+        "reason": "",
+        "summary": "Opus 5.5 might be the best coding model you can use right now. I let it run my Megabonk game test for almost 20 HOURS... and ...",
+        "sources": [
+          {
+            "label": "Matt Wolfe (YouTube)",
+            "title": "AI Made a Game I’d ACTUALLY Play",
+            "url": "https://www.youtube.com/watch?v=c7twMUavy5Q"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【続報】",
+        "stars": 2,
+        "reason": "",
+        "summary": "Named Entity Recognition und -‍Linking, Extraktion von historischen Informationen, XAI in der Kunstgeschichte - generative KI ist in den Digital Humanities angekommen. Der Sonderband \"(Generative) KI für Kultur- und Textdaten\" ist den offenen Fragen und dem Austausch über aktuelle Entwicklungen gewidmet: https:// doi.org/10.17175/sb009 Die Beiträge erscheinen im Rolling Release. @ hab_wf @ MWWForschung @ klassikstiftung @ ids_mannheim # generativeAI # kulturerbe # wissensextraktion",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://fedihum.org/@ZfdG/117359361368523529"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【続報】",
+        "stars": 2,
+        "reason": "",
+        "summary": "Exploring the evolution of translation —from early rule-based systems to modern generative models— and why human post-editing (MTPE) and critical judgment remain indispensable. 👇 Read the full article on my web Palabras Prohibidas # MachineTranslation # ArtificialIntelligence # MTPE # Linguistics # HumanInTheLoop # AIEthics # TranslationQuality # GenerativeAI http:// palabrasprohibidas.com/2026/09 /30/ai-translation-vs-human-translation/",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@blutbadc/117360120752911691"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【続報】",
+        "stars": 2,
+        "reason": "",
+        "summary": "Re: https://mastodon.social/users/tzimmer_history/statuses/117360217969296466 While the linked post's/article's warning is specifically about the upcoming US midterm elections, I think its reasoning is more broadly applicable. Observing that current AI dovetails perfectly with the MAGA political project, it applies also to the rhetoric about the inevitability of AI. That, too, stems from a limitless authoritarian impulse and represents an attempt to impose a particular will on all of us. The various forms of defeatism accompanying such rhetoric, which includes the different flavors of AI doomerism, serve only to help such authoritarians achieve their goals. This view also highlights that there is no middle ground, no compromise, with LLM proponents. Like MAGA, they have no limits themselves, which they repeatedly express openly. How could they possibly compromise? #AI #GenAI #GenerativeAI #LLMs #Agents #Anthropic #OpenAI #MAGA #doom #tech #dev",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://buc.ci/abucci/p/1790775706.216802"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "The death of web development education – Rescuing a field from disappearing https:// molily.de/web-dev-education/ > Rescuing a field from disappearing # AI # GenerativeAI # WebDevelopment",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mas.to/@Aubreader/117360871350715716"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "I rent GPUs by the hour. For a long time I couldn't tell you what a single token cost me. I knew the... # llm # selfhosted # startup # software # coding # development # engineering # inclusive # community What does one token actually cost you?",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://www.urbanmind.net/display/f7dd981d-03f18843-52a0c21a9ca2fb0f"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "This is loop engineering in practice: six feedback loops that turn an AI coding agent's corrections... # ai # softwareengineering # devops # testing # software # coding # development # engineering # inclusive # community Loop Engineering in Practice: Six Feedback Loops for AI Coding Agents",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://www.urbanmind.net/display/f7dd981d-703d024a-b733ca0c4de38e02"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "*Engr. Hamza | AI & MLOps Engineer | Building autonomous systems at the edge of possibility* # ai # software # coding # development # engineering # inclusive # community How We Built Magnitude: The Self-Optimizing Inference Engine for Autonomous Agents",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://www.urbanmind.net/display/f7dd981d-a3f5a3af-9e4208c248ad8a43"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "I rented an A100 for under an hour to answer one question. Does a single vLLM flag really change... # infrastructure # llm # performance # software # coding # development # engineering # inclusive # community I rented an A100 to test one vLLM flag",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://www.urbanmind.net/display/f7dd981d-7cd737d7-2dcdad4696acdf16"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-10-01",
+    "title": "SNS情報収集レポート 2026-10-01(木)",
+    "summary": "収集 40件 → 関連 37件 → **26トピック**",
+    "topicCount": 26,
+    "topics": [
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "Welcome Aboard: Meet Your New Work Copilot | Microsoft 365 Copilot like you&#39;ve never seen!",
+        "stars": 5,
+        "reason": "公式発表",
+        "summary": "Microsoft 365 Copilotが日常業務にAIを取り入れる仕組みや、Copilot Chatをはじめとする各種機能を解説するセッション。",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "Welcome Aboard: Meet Your New Work Copilot | Microsoft 365 Copilot like you&#39;ve never seen!",
+            "url": "https://www.youtube.com/watch?v=XdaQWHbsG6g"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "Introducing dots, always-on agents built to handle everything.",
+        "stars": 5,
+        "reason": "公式発表",
+        "summary": "GPT-6 Astraを搭載し、専用のクラウド環境と学習機能を備えた常時稼働型AIエージェント「Dots」の紹介。",
+        "sources": [
+          {
+            "label": "OpenAI (YouTube)",
+            "title": "Introducing dots, always-on agents built to handle everything.",
+            "url": "https://www.youtube.com/watch?v=uXspbC2srEQ"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "OpenAI DevDay 2026 Keynote (FULL)",
+        "stars": 5,
+        "reason": "公式発表",
+        "summary": "OpenAI DevDay 2026にて、サム・アルトマンらが20以上の新発表やデモを行った基調講演の映像。",
+        "sources": [
+          {
+            "label": "OpenAI (YouTube)",
+            "title": "OpenAI DevDay 2026 Keynote (FULL)",
+            "url": "https://www.youtube.com/watch?v=Fls_onRviPM"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "🎛️ Air Traffic Control for Agents | Govern your agents with Agent 365",
+        "stars": 5,
+        "reason": "公式発表",
+        "summary": "業務でのAIエージェント活用拡大に伴い、組織規模で監視やセキュリティ管理を行う「Agent 365」の解説。",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "🎛️ Air Traffic Control for Agents | Govern your agents with Agent 365",
+            "url": "https://www.youtube.com/watch?v=HpzVZHC_WXw"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "Azure Cost Estimation: Price AI Workloads Confidently",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "拡張性とコスト効率に優れたAI導入を実現するために不可欠な、Azure上のAIワークロードの価格見積もり方法の解説。",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "Azure Cost Estimation: Price AI Workloads Confidently",
+            "url": "https://www.youtube.com/watch?v=28Y_O2g-zMM"
+          }
+        ]
+      },
+      {
+        "section": "■ ChatGPT / OpenAI",
+        "title": "GPT-6 Astra in practice: Turning ideas into projects",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "OpenAI開発者体験チームがGPT-6 Astraを活用し、画像生成ツールなどのプロジェクトを構築する実践例の紹介。",
+        "sources": [
+          {
+            "label": "OpenAI (YouTube)",
+            "title": "GPT-6 Astra in practice: Turning ideas into projects",
+            "url": "https://www.youtube.com/watch?v=6wNqpZdHE_s"
+          }
+        ]
+      },
+      {
+        "section": "■ AI開発ツール・コーディング",
+        "title": "Keep Your AI Accurate with Microsoft Learn MCP Server",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "AIコーディングアシスタントが公式ドキュメントを参照して正確な回答を提供可能にする「Microsoft Learn MCP Server」の解説。",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "Keep Your AI Accurate with Microsoft Learn MCP Server",
+            "url": "https://www.youtube.com/watch?v=KH5fQCLhXrg"
+          }
+        ]
+      },
+      {
+        "section": "■ AI開発ツール・コーディング",
+        "title": "Skill up on Copilot Studio Oct 8th!",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "2026年10月8日に開催される、Microsoft Copilot Studioの活用スキル向上に関するオンライン学習セッションの案内。",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "Skill up on Copilot Studio Oct 8th!",
+            "url": "https://www.youtube.com/watch?v=VyowNv9wodk"
+          }
+        ]
+      },
+      {
+        "section": "■ AI開発ツール・コーディング",
+        "title": "🎙️Voices from the Skies: Build Your Own Personal Assistant with GitHub Copilot App",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "GitHub Copilotを活用し、自作のパーソナルアシスタントを迅速に構築するエージェント型開発手法の解説。",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "🎙️Voices from the Skies: Build Your Own Personal Assistant with GitHub Copilot App",
+            "url": "https://www.youtube.com/watch?v=sLKnkZTLI1M"
+          }
+        ]
+      },
+      {
+        "section": "■ AI開発ツール・コーディング",
+        "title": "🎖️ Captain&#39;s Training: Master Copilot Studio | Use the New Harness, MCPs and More",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Microsoft Copilot Studioを用いたカスタムエージェント構築の基本や、新しい開発ツールの活用法を学ぶトレーニング。",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "🎖️ Captain&#39;s Training: Master Copilot Studio | Use the New Harness, MCPs and More",
+            "url": "https://www.youtube.com/watch?v=v58Mvvm3H5Q"
+          }
+        ]
+      },
+      {
+        "section": "■ AIエージェント・自動化",
+        "title": "Tools your agent can actually trust",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "AIエージェントが安全かつ信頼して操作・実行できるツールや環境についてのMicrosoft Foundry情報。",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "Tools your agent can actually trust",
+            "url": "https://www.youtube.com/watch?v=hW6feo19LXo"
+          }
+        ]
+      },
+      {
+        "section": "■ AIエージェント・自動化",
+        "title": "🚀 Cleared for Takeoff: Build Your First Agent | Build Your First Agent and Skills in Agent Builder",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Microsoft 365 CopilotのAgent Builderを使って、独自のAIエージェントやスキルを作成・カスタマイズする方法の解説。",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "🚀 Cleared for Takeoff: Build Your First Agent | Build Your First Agent and Skills in Agent Builder",
+            "url": "https://www.youtube.com/watch?v=BcGOkJkgXYY"
+          }
+        ]
+      },
+      {
+        "section": "■ AIエージェント・自動化",
+        "title": ".NET Memory Dumps, Database Time Migration &amp; AI Agent Memory",
+        "stars": 3,
+        "reason": "公式発表",
+        "summary": ".NETアプリのメモリダンプ取得やDB時間移行、AIエージェントのメモリ課題等を取り上げた解説コンテンツです。",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": ".NET Memory Dumps, Database Time Migration &amp; AI Agent Memory",
+            "url": "https://www.youtube.com/watch?v=PS-IRAWuFOM"
+          }
+        ]
+      },
+      {
+        "section": "■ その他主要AI企業",
+        "title": "🎙️Voices from the Skies: Real world lessons to help drive Copilot adoption and ROI",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Microsoft 365 Copilotの大規模導入に関する実社会での事例や、投資対効果（ROI）を高めるノウハウを紹介します。",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "🎙️Voices from the Skies: Real world lessons to help drive Copilot adoption and ROI",
+            "url": "https://www.youtube.com/watch?v=CkkL7RejIr8"
+          }
+        ]
+      },
+      {
+        "section": "■ その他主要AI企業",
+        "title": "🛬 The Home Airport for Copilot and Agents | Why your Agents and Copilot love SharePoint",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "AIによってSharePoint Onlineが単なるデータ保管場所からインテリジェントな作業環境へ変化する解説です。",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "🛬 The Home Airport for Copilot and Agents | Why your Agents and Copilot love SharePoint",
+            "url": "https://www.youtube.com/watch?v=aWIz5oQiEfg"
+          }
+        ]
+      },
+      {
+        "section": "■ その他主要AI企業",
+        "title": "Save your spot! Copilot Studio Oct 8th",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "2026年10月8日に開催される、Copilot Studioに関するスキリングイベントの開催案内です。",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "Save your spot! Copilot Studio Oct 8th",
+            "url": "https://www.youtube.com/watch?v=GHUQaisG1AE"
+          }
+        ]
+      },
+      {
+        "section": "■ その他主要AI企業",
+        "title": "AI Isn&#39;t Accountable. You Are.",
+        "stars": 3,
+        "reason": "公式発表",
+        "summary": "AIの真の課題は能力ではなく信頼性であり、最終的な責任は人間に帰属するというAzure CTOの見解です。",
+        "sources": [
+          {
+            "label": "Microsoft Developer (YouTube)",
+            "title": "AI Isn&#39;t Accountable. You Are.",
+            "url": "https://www.youtube.com/watch?v=ahVnui1X3Lk"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 3,
+        "reason": "新モデル",
+        "summary": "オープンウェイトの動画生成AI「Wan 3.0」が人間の評価で首位となったことと、その一般公開を伝えています。",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@opensourceaitech/117360821857090298"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AI News: Opus 5.5, GPT-6 Sol, Jev, Muse and More!",
+        "stars": 3,
+        "reason": "新モデル",
+        "summary": "Opus 5.5やGPT-6 Sol、Jev、Agent APIなど、主要な最新AI関連ニュースをまとめています。",
+        "sources": [
+          {
+            "label": "Matt Wolfe (YouTube)",
+            "title": "AI News: Opus 5.5, GPT-6 Sol, Jev, Muse and More!",
+            "url": "https://www.youtube.com/watch?v=aDpIra7NFuE"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Jev - The New AI model that has people talking",
+        "stars": 3,
+        "reason": "新モデル",
+        "summary": "Typesafe AIが開発した、文章やコードテキストの生成を行わない新しいAIモデル「Jev」の概要です。",
+        "sources": [
+          {
+            "label": "Matt Wolfe (YouTube)",
+            "title": "Jev - The New AI model that has people talking",
+            "url": "https://www.youtube.com/watch?v=hx42whM7NsY"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 3,
+        "reason": "",
+        "summary": "研究機関がAIモデルにどれほど研究を委任しているかを測定する、著名研究者らによる提案論文を紹介しています。",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.uno/@alessiopomaro/117359670547985729"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 3,
+        "reason": "",
+        "summary": "KreaでIdeogram 4.5が利用可能となり、画像の反復編集時の変化を抑えた安定的な生成を実現したニュースです。",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.sayzard.org/@sayzard/117361036634269759"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "文化遺産やテキストデータに対する生成AIの活用と課題を扱う特集号論文についての発表情報です。",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://fedihum.org/@ZfdG/117359361368523529"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "機械翻訳の歴史的進化と、生成AI時代においても人間のポストエディット（MTPE）が必要不可欠な理由の解説です。",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@blutbadc/117360120752911691"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "AIの不可避性を謳う言説や敗北主義が権威主義的意図と符合しているとし、妥協の不可能性を指摘する主張です。",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://buc.ci/abucci/p/1790775706.216802"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AI Made a Game I’d ACTUALLY Play",
+        "stars": 2,
+        "reason": "",
+        "summary": "Opus 5.5は現在利用可能な非常に優れたコーディングAIモデルの可能性があり、Megabonkゲームのテストを約20時間実行した結果が紹介されています。",
+        "sources": [
+          {
+            "label": "Matt Wolfe (YouTube)",
+            "title": "AI Made a Game I’d ACTUALLY Play",
+            "url": "https://www.youtube.com/watch?v=c7twMUavy5Q"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getGoal, listGoals, addLog } from "@/lib/store";
-import { buildAiPrompt } from "@/lib/prompt";
+import { buildImplementPrompt } from "@/lib/prompt";
 import { LOG_KIND } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -13,7 +13,7 @@ export async function GET(_req: NextRequest, { params }: Params) {
   const goal = await getGoal(id);
   if (!goal) return NextResponse.json({ error: "見つかりません" }, { status: 404 });
   const all = await listGoals();
-  const prompt = buildAiPrompt(goal, all);
+  const prompt = buildImplementPrompt(goal, all);
   return NextResponse.json({ prompt });
 }
 

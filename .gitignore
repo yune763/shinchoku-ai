@@ -7,5 +7,7 @@ out
 next-env.d.ts
 data/store.json
 data/settings.json
+data/tools.json
 *.log
 .DS_Store
+tsconfig.tsbuildinfo

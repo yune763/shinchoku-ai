@@ -13,6 +13,9 @@ import {
 import { StatusBadge, ProgressBar } from "@/components/ui";
 import { NewGoalForm } from "@/components/NewGoalForm";
 import { AiRequestModal } from "@/components/AiRequestModal";
+import { ClaudeRunModal } from "@/components/ClaudeRunModal";
+import { TreeAutoRefresh } from "@/components/TreeAutoRefresh";
+import { PreviewButton } from "@/components/PreviewButton";
 import { PlanModal } from "@/components/PlanModal";
 import { Roadmap } from "@/components/Roadmap";
 import { ActiveToggle } from "@/components/ActiveToggle";
@@ -32,18 +35,49 @@ export function GoalDetail({
   all,
   children,
   computedProgress,
+  estimatedHours,
 }: {
   goal: Goal;
   all: Goal[];
   children: Goal[];
   computedProgress: number;
+  estimatedHours: number;
 }) {
   const router = useRouter();
   const [editing, setEditing] = useState(false);
   const [showAi, setShowAi] = useState(false);
   const [showPlan, setShowPlan] = useState(false);
+  const [showRun, setShowRun] = useState(false);
+  const [openingClaude, setOpeningClaude] = useState(false);
   const isLeaf = children.length === 0;
-  const displayProgress = isLeaf ? goal.progress : computedProgress;
+
+  // 作業フォルダで開発ツール（Claude Code CLI / Cursor）を開く。
+  async function openTool(tool: "claude" | "cursor") {
+    if (openingClaude) return;
+    setOpeningClaude(true);
+    try {
+      const res = await fetch(`/api/goals/${goal.id}/open-claude?tool=${tool}`, {
+        method: "POST",
+      });
+      const d = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        alert(d.error ?? "起動に失敗しました");
+      } else if (tool === "claude") {
+        alert(
+          d.launched
+            ? "Claude（デスクトップ）を開き、指示文を入力枠に入力しました。内容を確認して送信してください。"
+            : "指示文をコピーしました。Claudeアプリが見つからないため手動で開いて貼り付けてください。",
+        );
+      }
+    } catch {
+      alert("起動に失敗しました（サーバーに接続できません）");
+    } finally {
+      setOpeningClaude(false);
+    }
+  }
+  // computeProgress は葉＝自身の進捗、親＝子の平均を返すので、数値もバーもこれに統一する
+  // （ラベルが goal.progress、バーが computedProgress でズレていた不具合の修正）。
+  const displayProgress = computedProgress;
 
   async function patch(body: Partial<Goal>) {
     await fetch(`/api/goals/${goal.id}`, {
@@ -62,6 +96,8 @@ export function GoalDetail({
 
   return (
     <div className="space-y-6">
+      {/* 実行中はこの詳細ページも自動更新して、完了・進捗をリアルタイム反映 */}
+      <TreeAutoRefresh />
       {/* ヘッダ */}
       <div className="flex items-start justify-between gap-4">
         <div className="min-w-0">
@@ -71,17 +107,55 @@ export function GoalDetail({
           <div className="flex items-center gap-3 mt-2">
             <StatusBadge status={goal.status} />
             <span className="text-sm text-ink-muted dark:text-slate-400">
-              担当 {goal.assignee || "—"} ・ 期日 {goal.dueDate || "—"}
+              担当 {goal.assignee || "—"} ・ 期日 {goal.dueDate || "—"} ・ 推定実装時間 {estimatedHours}h
             </span>
+          </div>
+          {goal.forecast && (
+            <div className="mt-2 text-sm">
+              <span className="text-xs text-ink-muted dark:text-slate-400">完了見込み：</span>
+              <span className="font-medium text-brand">{goal.forecast}</span>
+            </div>
+          )}
+          <div className="mt-2 text-sm text-ink-muted dark:text-slate-400 break-all">
+            <span className="text-xs">作業フォルダ：</span>
+            {goal.repoPath ? (
+              <span className="font-mono dark:text-slate-300">{goal.repoPath}</span>
+            ) : (
+              <span className="text-ink-muted/70">未設定（「文脈を編集」で設定）</span>
+            )}
           </div>
         </div>
         <div className="flex flex-col gap-2 shrink-0 items-stretch">
           <button
+            onClick={() => setShowRun(true)}
+            className="rounded-lg bg-brand text-white px-4 py-2 text-sm font-medium hover:opacity-90"
+            title={goal.repoPath ? `作業フォルダ: ${goal.repoPath}` : "作業フォルダ未設定（文脈を編集で設定）"}
+          >
+            Claude Codeで実装
+          </button>
+          <button
+            onClick={() => openTool("claude")}
+            disabled={openingClaude}
+            className="rounded-lg border border-brand text-brand px-4 py-2 text-sm font-medium hover:bg-brand/10 disabled:opacity-50"
+            title="Claude デスクトップアプリを開き、ゴールを明確にする相談を始める（指示文は自動でコピー）"
+          >
+            {openingClaude ? "起動中…" : "Claude Code を開く"}
+          </button>
+          <button
+            onClick={() => openTool("cursor")}
+            disabled={openingClaude}
+            className="rounded-lg border border-slate-300 dark:border-slate-700 text-ink dark:text-slate-200 px-4 py-2 text-sm font-medium hover:border-brand disabled:opacity-50"
+            title="このタスクの作業フォルダを Cursor で開く（指示文は『指示文をコピー』で貼り付け）"
+          >
+            Cursor で開く
+          </button>
+          <button
             onClick={() => setShowAi(true)}
             className="rounded-lg bg-ink text-white px-4 py-2 text-sm font-medium hover:opacity-90"
           >
-            AIに依頼する
+            指示文をコピー
           </button>
+          <PreviewButton goalId={goal.id} />
           <ActiveToggle goalId={goal.id} />
         </div>
       </div>
@@ -107,11 +181,11 @@ export function GoalDetail({
         <div className="flex items-center gap-3 mb-2">
           <span className="text-sm font-medium dark:text-slate-300">進捗</span>
           <span className="text-sm tabular-nums text-ink-muted dark:text-slate-400">
-            {goal.steps.length > 0
-              ? `${goal.progress}%（ステップ ${goal.steps.filter((s) => s.done).length}/${goal.steps.length}）`
-              : isLeaf
-                ? `${goal.progress}%`
-                : `${computedProgress}%（子から算出）`}
+            {!isLeaf
+              ? `${computedProgress}%（子から算出）`
+              : goal.steps.length > 0
+                ? `${computedProgress}%（ステップ ${goal.steps.filter((s) => s.done).length}/${goal.steps.length}）`
+                : `${computedProgress}%`}
           </span>
         </div>
         <ProgressBar value={displayProgress} />
@@ -214,6 +288,9 @@ export function GoalDetail({
       )}
       {showPlan && (
         <PlanModal goalId={goal.id} onClose={() => setShowPlan(false)} />
+      )}
+      {showRun && (
+        <ClaudeRunModal goalId={goal.id} onClose={() => setShowRun(false)} />
       )}
     </div>
   );
@@ -321,9 +398,33 @@ function EditForm({ goal, onSaved }: { goal: Goal; onSaved: () => void }) {
   const [completionCriteria, setCompletionCriteria] = useState(goal.completionCriteria);
   const [assignee, setAssignee] = useState(goal.assignee);
   const [dueDate, setDueDate] = useState(goal.dueDate ?? "");
-  const [progress, setProgress] = useState(goal.progress);
+  const [repoPath, setRepoPath] = useState(goal.repoPath ?? "");
+  const [previewCommand, setPreviewCommand] = useState(goal.previewCommand ?? "");
+  const [previewUrl, setPreviewUrl] = useState(goal.previewUrl ?? "");
+  const [pickingFolder, setPickingFolder] = useState(false);
   const [saving, setSaving] = useState(false);
-  const hasSteps = goal.steps.length > 0;
+  const [genningCriteria, setGenningCriteria] = useState(false);
+
+  // ゴール内容から完了の基準を自動生成し、欄に反映する（保存は「保存」ボタンで）。
+  async function genCriteria() {
+    if (genningCriteria) return;
+    setGenningCriteria(true);
+    try {
+      const res = await fetch(`/api/goals/${goal.id}/criteria`, {
+        method: "POST",
+      });
+      const d = await res.json().catch(() => ({}));
+      if (res.ok && d.completionCriteria) {
+        setCompletionCriteria(d.completionCriteria);
+      } else {
+        alert(d.error ?? "完了基準の自動生成に失敗しました");
+      }
+    } catch {
+      alert("完了基準の自動生成に失敗しました（サーバーに接続できません）");
+    } finally {
+      setGenningCriteria(false);
+    }
+  }
 
   async function save() {
     setSaving(true);
@@ -337,12 +438,27 @@ function EditForm({ goal, onSaved }: { goal: Goal; onSaved: () => void }) {
         completionCriteria,
         assignee,
         dueDate: dueDate || null,
-        ...(hasSteps ? {} : { progress: Number(progress) }),
+        repoPath,
+        previewCommand,
+        previewUrl,
       }),
     });
     setSaving(false);
     onSaved();
     router.refresh();
+  }
+
+  // Windows ネイティブの「フォルダーの参照」ダイアログ（エクスプローラー）で作業フォルダを選ぶ。
+  async function pickFolderNative() {
+    setPickingFolder(true);
+    try {
+      const res = await fetch("/api/fs/pick", { method: "POST" });
+      const d = await res.json().catch(() => ({}));
+      if (res.ok && d.path) setRepoPath(d.path);
+    } catch {
+      // 失敗時は何もしない（手入力でも設定できる）。
+    }
+    setPickingFolder(false);
   }
 
   const input =
@@ -357,7 +473,17 @@ function EditForm({ goal, onSaved }: { goal: Goal; onSaved: () => void }) {
       <textarea value={purpose} onChange={(e) => setPurpose(e.target.value)} rows={2} className={input} />
       <label className="block text-xs text-ink-muted">現状</label>
       <textarea value={currentStatus} onChange={(e) => setCurrentStatus(e.target.value)} rows={2} className={input} />
-      <label className="block text-xs text-ink-muted">完了の基準</label>
+      <div className="flex items-center justify-between">
+        <label className="block text-xs text-ink-muted">完了の基準</label>
+        <button
+          type="button"
+          onClick={genCriteria}
+          disabled={genningCriteria}
+          className="text-xs text-brand underline hover:opacity-80 disabled:opacity-50"
+        >
+          {genningCriteria ? "生成中…" : "ゴール内容から自動生成"}
+        </button>
+      </div>
       <textarea value={completionCriteria} onChange={(e) => setCompletionCriteria(e.target.value)} rows={3} className={input} />
       <div className="grid grid-cols-2 gap-3">
         <div>
@@ -369,17 +495,29 @@ function EditForm({ goal, onSaved }: { goal: Goal; onSaved: () => void }) {
           <input type="date" value={dueDate} onChange={(e) => setDueDate(e.target.value)} className={input} />
         </div>
       </div>
-      {!hasSteps && (
-        <div>
-          <label className="block text-xs text-ink-muted">進捗（%）: {progress}</label>
-          <input type="range" min={0} max={100} value={progress} onChange={(e) => setProgress(Number(e.target.value))} className="w-full" />
+      <div>
+        <label className="block text-xs text-ink-muted">作業フォルダ（Claude Code 実行先・実装物の格納先）</label>
+        <div className="flex gap-2">
+          <input value={repoPath} onChange={(e) => setRepoPath(e.target.value)} placeholder="例: C:\\Users\\me\\projects\\my-app" className={input} />
+          <button type="button" onClick={pickFolderNative} disabled={pickingFolder} className="shrink-0 rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm dark:text-slate-200 hover:border-brand disabled:opacity-50">
+            {pickingFolder ? "選択中…" : "エクスプローラーで選ぶ"}
+          </button>
         </div>
-      )}
-      {hasSteps && (
-        <p className="text-xs text-ink-muted">
-          ※ ロードマップがあるため、進捗はステップの完了状況から自動計算されます。
-        </p>
-      )}
+        <p className="text-[11px] text-ink-muted mt-1">「Claude Codeで実装」はこのフォルダで headless 実行します。</p>
+      </div>
+      <div className="grid grid-cols-2 gap-3">
+        <div>
+          <label className="block text-xs text-ink-muted">プレビュー起動コマンド</label>
+          <input value={previewCommand} onChange={(e) => setPreviewCommand(e.target.value)} placeholder="npm run dev" className={input} />
+        </div>
+        <div>
+          <label className="block text-xs text-ink-muted">プレビューURL</label>
+          <input value={previewUrl} onChange={(e) => setPreviewUrl(e.target.value)} placeholder="http://localhost:5173" className={input} />
+        </div>
+      </div>
+      <p className="text-xs text-ink-muted">
+        ※ 見積時間と進捗は自動で算出されます（手動設定は不要です）。
+      </p>
       <div className="flex gap-2">
         <button onClick={save} disabled={saving} className="rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white disabled:opacity-50">
           {saving ? "保存中…" : "保存"}

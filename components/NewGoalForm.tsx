@@ -3,6 +3,10 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Goal } from "@/lib/types";
+import { FolderPicker } from "@/components/FolderPicker";
+
+// 見積時間の選択肢（0.5時間刻み〜1日）。
+const HOUR_OPTIONS = [0.5, 1, 2, 3, 4, 6, 8] as const;
 
 export function NewGoalForm({
   goals,
@@ -16,14 +20,18 @@ export function NewGoalForm({
   onCreated?: () => void;
 }) {
   const router = useRouter();
-  const [open, setOpen] = useState(compact ? false : true);
+  const [open, setOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [parentId, setParentId] = useState<string | null>(defaultParentId);
   const [desire, setDesire] = useState("");
   const [purpose, setPurpose] = useState("");
-  const [completionCriteria, setCompletionCriteria] = useState("");
   const [assignee, setAssignee] = useState("");
+  const [estimatedHours, setEstimatedHours] = useState(0);
+  const [repoPath, setRepoPath] = useState("");
+  const [showPicker, setShowPicker] = useState(false);
+  const [autoBreakdown, setAutoBreakdown] = useState(true);
   const [saving, setSaving] = useState(false);
+  const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   async function submit(e: React.FormEvent) {
@@ -34,6 +42,7 @@ export function NewGoalForm({
     }
     setSaving(true);
     setError(null);
+    setStatus(null);
     const res = await fetch("/api/goals", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -42,33 +51,58 @@ export function NewGoalForm({
         parentId,
         desire,
         purpose,
-        completionCriteria,
         assignee,
+        estimatedHours,
+        repoPath,
       }),
     });
-    setSaving(false);
     if (!res.ok) {
+      setSaving(false);
       setError("保存に失敗しました");
       return;
     }
+    const { goal } = await res.json();
+
+    // AIで子タスクを自動生成（任意）。少し時間がかかるので状態表示する。
+    if (autoBreakdown && goal?.id) {
+      setStatus("AIが子タスクを生成中…（数秒〜十数秒）");
+      await fetch(`/api/goals/${goal.id}/breakdown`, { method: "POST" }).catch(
+        () => {},
+      );
+    }
+
+    setSaving(false);
+    setStatus(null);
     setTitle("");
     setDesire("");
     setPurpose("");
-    setCompletionCriteria("");
     setAssignee("");
-    if (compact) setOpen(false);
+    setEstimatedHours(0);
+    setRepoPath("");
+    setOpen(false); // 追加完了したらフォームを閉じる
     onCreated?.();
     router.refresh();
   }
 
-  if (compact && !open) {
+  if (!open) {
+    if (compact) {
+      return (
+        <button
+          type="button"
+          onClick={() => setOpen(true)}
+          className="text-sm text-brand font-medium hover:underline"
+        >
+          ＋ 子ゴール/ToDoを追加
+        </button>
+      );
+    }
     return (
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="text-sm text-brand font-medium hover:underline"
+        className="inline-flex items-center gap-2 rounded-lg bg-brand px-4 py-2.5 text-sm font-medium text-white hover:opacity-90"
       >
-        ＋ 子ゴール/ToDoを追加
+        ＋ 新しいゴールを置く
       </button>
     );
   }
@@ -114,17 +148,54 @@ export function NewGoalForm({
         className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2 text-sm dark:text-white"
       />
       <input
-        value={completionCriteria}
-        onChange={(e) => setCompletionCriteria(e.target.value)}
-        placeholder="完了の基準（どうなったら終わりか）"
-        className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2 text-sm dark:text-white"
-      />
-      <input
         value={assignee}
         onChange={(e) => setAssignee(e.target.value)}
         placeholder="担当"
         className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2 text-sm dark:text-white"
       />
+      <div>
+        <label className="block text-xs text-ink-muted mb-1">
+          実装プログラムの格納フォルダ（作業フォルダ）
+          {defaultParentId && "（未指定なら親を使用）"}
+        </label>
+        <div className="flex gap-2">
+          <input
+            value={repoPath}
+            onChange={(e) => setRepoPath(e.target.value)}
+            placeholder="例: C:\Users\me\projects\my-app"
+            className="flex-1 rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2 text-sm dark:text-white"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPicker(true)}
+            className="shrink-0 rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm dark:text-slate-200 hover:border-brand"
+          >
+            参照…
+          </button>
+        </div>
+      </div>
+      <select
+        value={estimatedHours}
+        onChange={(e) => setEstimatedHours(Number(e.target.value))}
+        className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2 text-sm dark:text-white"
+      >
+        <option value={0}>見積時間: 未設定</option>
+        {HOUR_OPTIONS.map((h) => (
+          <option key={h} value={h}>
+            見積時間: {h}時間
+          </option>
+        ))}
+      </select>
+      <label className="flex items-center gap-2 text-sm text-ink-soft dark:text-slate-300">
+        <input
+          type="checkbox"
+          checked={autoBreakdown}
+          onChange={(e) => setAutoBreakdown(e.target.checked)}
+          className="h-4 w-4"
+        />
+        AIでこのゴールに向かう子タスクを自動生成する
+      </label>
+      {status && <p className="text-sm text-brand">{status}</p>}
       {error && <p className="text-sm text-red-600">{error}</p>}
       <div className="flex gap-2">
         <button
@@ -132,18 +203,27 @@ export function NewGoalForm({
           disabled={saving}
           className="rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
         >
-          {saving ? "保存中…" : "追加する"}
+          {saving ? (autoBreakdown ? "生成中…" : "保存中…") : "追加する"}
         </button>
-        {compact && (
-          <button
-            type="button"
-            onClick={() => setOpen(false)}
-            className="rounded-lg px-4 py-2 text-sm text-ink-muted"
-          >
-            キャンセル
-          </button>
-        )}
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          className="rounded-lg px-4 py-2 text-sm text-ink-muted"
+        >
+          キャンセル
+        </button>
       </div>
+
+      {showPicker && (
+        <FolderPicker
+          initialPath={repoPath || undefined}
+          onSelect={(p) => {
+            setRepoPath(p);
+            setShowPicker(false);
+          }}
+          onClose={() => setShowPicker(false)}
+        />
+      )}
     </form>
   );
 }

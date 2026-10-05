@@ -1,5 +1,3 @@
-import { promises as fs } from "node:fs";
-import path from "node:path";
 import { randomUUID } from "node:crypto";
 import {
   Goal,
@@ -15,40 +13,34 @@ import {
 } from "./types";
 import { seedGoals } from "./seed";
 import { exportSnapshot } from "./team";
+import { readJson, writeJson, ensureJson } from "./blob";
 
-// データはローカルJSONに保存（DBサーバ不要でそのまま動く）。
-const DATA_DIR = path.join(process.cwd(), "data");
-const DATA_FILE = path.join(DATA_DIR, "store.json");
+// データは blob 層に保存（ローカル=ファイル / クラウド=Upstash Redis）。
+const STORE_KEY = "store.json";
 
 interface DbShape {
   goals: Goal[];
 }
 
-async function ensureFile(): Promise<void> {
-  try {
-    await fs.access(DATA_FILE);
-  } catch {
-    await fs.mkdir(DATA_DIR, { recursive: true });
-    const initial: DbShape = { goals: seedGoals() };
-    await fs.writeFile(DATA_FILE, JSON.stringify(initial, null, 2), "utf8");
-  }
-}
-
 async function read(): Promise<DbShape> {
-  await ensureFile();
-  const raw = await fs.readFile(DATA_FILE, "utf8");
-  const db = JSON.parse(raw) as DbShape;
+  await ensureJson<DbShape>(STORE_KEY, () => ({ goals: seedGoals() }));
+  const db = await readJson<DbShape>(STORE_KEY, { goals: seedGoals() });
+  if (!Array.isArray(db.goals)) db.goals = [];
   // 旧データとの後方互換（新フィールドを補完）。
   db.goals.forEach((g) => {
     if (g.steps === undefined) g.steps = [];
     if (g.review === undefined) g.review = null;
     if (g.desire === undefined) g.desire = "";
+    if (g.repoPath === undefined) g.repoPath = "";
+    if (g.previewCommand === undefined) g.previewCommand = "";
+    if (g.previewUrl === undefined) g.previewUrl = "";
+    if (g.estimatedHours === undefined) g.estimatedHours = 0;
   });
   return db;
 }
 
 async function write(db: DbShape): Promise<void> {
-  await fs.writeFile(DATA_FILE, JSON.stringify(db, null, 2), "utf8");
+  await writeJson(STORE_KEY, db);
   // 書き込みのたびに自分の進捗を共有フォルダへ反映（設定時のみ）。
   await exportSnapshot(db.goals);
 }
@@ -80,6 +72,12 @@ export async function createGoal(input: GoalInput): Promise<Goal> {
     status: input.status,
     assignee: input.assignee,
     dueDate: input.dueDate,
+    kpi: input.kpi ?? "",
+    forecast: input.forecast ?? "",
+    repoPath: input.repoPath,
+    previewCommand: input.previewCommand,
+    previewUrl: input.previewUrl,
+    estimatedHours: input.estimatedHours,
     progress: input.progress,
     steps: [],
     logs: [],
@@ -116,8 +114,33 @@ export async function updateGoal(
     goal.progress = 100;
   }
 
+  // 完了（他状態→done）になったら、作成〜完了のリードタイムをメモとして記録する。
+  if (patch.status === GOAL_STATUS.done && prevStatus !== GOAL_STATUS.done) {
+    const ms = Date.parse(goal.updatedAt) - Date.parse(goal.createdAt);
+    goal.logs.push(
+      buildLog({
+        kind: LOG_KIND.comment,
+        author: "システム",
+        body: `リードタイム（作成〜完了）: ${formatDuration(ms)}（作成 ${goal.createdAt.slice(0, 10)} → 完了 ${goal.updatedAt.slice(0, 10)}）`,
+      }),
+    );
+  }
+
   await write(db);
   return goal;
+}
+
+// ミリ秒を「X日Yh」「Zh」「W分」等の読みやすい表記にする。
+function formatDuration(ms: number): string {
+  if (!Number.isFinite(ms) || ms < 0) return "不明";
+  const min = Math.round(ms / 60000);
+  if (min < 60) return `${min}分`;
+  const h = Math.floor(min / 60);
+  const m = min % 60;
+  if (h < 24) return m > 0 ? `${h}時間${m}分` : `${h}時間`;
+  const d = Math.floor(h / 24);
+  const hr = h % 24;
+  return hr > 0 ? `${d}日${hr}時間` : `${d}日`;
 }
 
 export async function deleteGoal(id: string): Promise<boolean> {
@@ -137,6 +160,41 @@ export async function deleteGoal(id: string): Promise<boolean> {
   db.goals = db.goals.filter((g) => !toDelete.has(g.id));
   await write(db);
   return db.goals.length < before;
+}
+
+// 子ゴールの状況から祖先の状態を再計算する（子が進行中なら親も進行中、
+// 子が全部完了したときだけ親を完了に）。直近の親→上位の順で伝播させる。
+export async function syncAncestorStatus(goalId: string): Promise<void> {
+  const db = await read();
+  const chain = ancestorsOf(goalId, db.goals); // 上位 → 直近の親
+  for (let i = chain.length - 1; i >= 0; i--) {
+    const parent = db.goals.find((g) => g.id === chain[i].id);
+    if (!parent) continue;
+    const kids = db.goals.filter((g) => g.parentId === parent.id);
+    if (kids.length === 0) continue;
+
+    const allDone = kids.every((k) => k.status === GOAL_STATUS.done);
+    const anyActive = kids.some((k) => k.status !== GOAL_STATUS.notStarted);
+    const next = allDone
+      ? GOAL_STATUS.done
+      : anyActive
+        ? GOAL_STATUS.inProgress
+        : GOAL_STATUS.notStarted;
+
+    if (parent.status !== next) {
+      const prev = parent.status;
+      parent.status = next;
+      parent.updatedAt = now();
+      parent.logs.push(
+        buildLog({
+          kind: LOG_KIND.statusChange,
+          author: "システム",
+          body: `子ゴールの状況から状態を「${prev}」→「${next}」に自動更新`,
+        }),
+      );
+    }
+  }
+  await write(db);
 }
 
 function buildLog(input: LogInput): LogEntry {
@@ -288,6 +346,34 @@ function syncProgressFromSteps(goal: Goal): void {
 // いま着手すべきステップ（最初の未完了）。
 export function currentStep(goal: Goal): Step | null {
   return goal.steps.find((s) => !s.done) ?? null;
+}
+
+// 実装にかかりそうな時間(h)を自動で概算する（人手の見積りは不要）。
+// 親は子孫（葉）の合計、葉はステップ数と記述量（やりたいこと/目的/完了基準/現状）から概算。
+const EST_BASE_H = 1; // 葉1件の基礎時間
+const EST_PER_STEP_H = 0.5; // ロードマップ1ステップあたり
+const EST_PER_CHARS = 200; // この文字数ごとに
+const EST_PER_CHARS_H = 1; // 1時間加算
+const EST_MAX_LEAF_H = 40; // 葉1件の上限
+export function estimateHours(goalId: string, all: Goal[]): number {
+  const children = all.filter((g) => g.parentId === goalId);
+  if (children.length > 0) {
+    const sum = children.reduce((acc, c) => acc + estimateHours(c.id, all), 0);
+    return Math.round(sum * 2) / 2;
+  }
+  const self = all.find((g) => g.id === goalId);
+  if (!self) return 0;
+  const textLen =
+    (self.desire?.length ?? 0) +
+    (self.purpose?.length ?? 0) +
+    (self.completionCriteria?.length ?? 0) +
+    (self.currentStatus?.length ?? 0);
+  const raw =
+    EST_BASE_H +
+    self.steps.length * EST_PER_STEP_H +
+    Math.floor(textLen / EST_PER_CHARS) * EST_PER_CHARS_H;
+  const clamped = Math.min(EST_MAX_LEAF_H, Math.max(0.5, raw));
+  return Math.round(clamped * 2) / 2;
 }
 
 // 子ゴールから親の進捗を再帰的に算出（葉は自身のprogress）。

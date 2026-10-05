@@ -1,0 +1,23 @@
+# Render Blueprint — 進捗管理AI を無料Webサービスとしてデプロイする。
+# データは Upstash Redis(REST) に保存するので、再起動・再デプロイでも消えない。
+# 使い方: Render ダッシュボード → New → Blueprint → このリポジトリを選択。
+#   その後、UPSTASH_REDIS_REST_URL / _TOKEN を実際の値に設定する（sync:false のため手入力）。
+services:
+  - type: web
+    name: shinchoku-ai
+    runtime: node
+    plan: free
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:render
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "20.18.0"
+      # Upstash Redis(REST)。永続データの保存先。ダッシュボードで値を入れる。
+      - key: UPSTASH_REDIS_REST_URL
+        sync: false
+      - key: UPSTASH_REDIS_REST_TOKEN
+        sync: false
+      # 任意: APIを閉じたい場合のトークン（設定すると外部アクセスに Bearer 必須）。
+      - key: API_TOKEN
+        sync: false

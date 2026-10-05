@@ -2,14 +2,35 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { MembersFlyout } from "@/components/MembersFlyout";
 
-type IconName = "goals" | "today" | "members" | "ai";
+type IconName =
+  | "goals"
+  | "today"
+  | "members"
+  | "ai"
+  | "more"
+  | "analytics"
+  | "idea"
+  | "news"
+  | "sns"
+  | "tools";
 
 const MENU: { href: string; label: string; icon: IconName }[] = [
   { href: "/goals", label: "ゴール一覧", icon: "goals" },
+  { href: "/proposals", label: "開発提案", icon: "idea" },
+  { href: "/collection", label: "情報収集", icon: "news" },
+  { href: "/sns-collection", label: "SNS情報収集", icon: "sns" },
   { href: "/today", label: "今日のToDo", icon: "today" },
   { href: "/team", label: "メンバー", icon: "members" },
   { href: "/ai-context", label: "AIコンテキスト", icon: "ai" },
+];
+
+// 「その他」に畳み込むサブメニュー。
+const MORE_MENU: { href: string; label: string; icon: IconName }[] = [
+  { href: "/analytics", label: "アナリティクス", icon: "analytics" },
+  { href: "/tools", label: "ツール管理", icon: "tools" },
 ];
 
 // シンプルな線アイコン一式（塗りは currentColor）。
@@ -54,44 +75,174 @@ function Icon({ name }: { name: IconName }) {
           <path d="M18.5 15l.7 1.8 1.8.7-1.8.7-.7 1.8-.7-1.8-1.8-.7 1.8-.7z" />
         </svg>
       );
+    case "more": // 三点（その他）
+      return (
+        <svg {...common}>
+          <circle cx="5" cy="12" r="1.4" />
+          <circle cx="12" cy="12" r="1.4" />
+          <circle cx="19" cy="12" r="1.4" />
+        </svg>
+      );
+    case "analytics": // 棒グラフ（アナリティクス）
+      return (
+        <svg {...common}>
+          <path d="M4 20V10M10 20V4M16 20v-7M22 20H2" />
+        </svg>
+      );
+    case "idea": // 電球（開発提案）
+      return (
+        <svg {...common}>
+          <path d="M9 18h6M10 21h4" />
+          <path d="M12 3a6 6 0 0 0-4 10.5c.8.8 1.3 1.5 1.5 2.5h5c.2-1 .7-1.7 1.5-2.5A6 6 0 0 0 12 3z" />
+        </svg>
+      );
+    case "news": // 新聞（情報収集）
+      return (
+        <svg {...common}>
+          <path d="M4 5h13v14H5a1 1 0 0 1-1-1V5z" />
+          <path d="M17 8h3v9a2 2 0 0 1-2 2M7 9h7M7 13h7M7 17h4" />
+        </svg>
+      );
+    case "tools": // クレジットカード（課金ツール管理）
+      return (
+        <svg {...common}>
+          <rect x="3" y="5" width="18" height="14" rx="2" />
+          <path d="M3 10h18M7 15h4" />
+        </svg>
+      );
+    case "sns": // 吹き出し＋共有（SNS情報収集）
+      return (
+        <svg {...common}>
+          <path d="M4 5h11a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H9l-4 3v-3H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" />
+          <circle cx="8" cy="9.5" r="1" />
+          <circle cx="11.5" cy="9.5" r="1" />
+          <circle cx="15" cy="9.5" r="1" />
+        </svg>
+      );
   }
 }
 
 export function TopNav() {
   const pathname = usePathname();
+  const [openMore, setOpenMore] = useState(false);
+  const [openMembers, setOpenMembers] = useState(false);
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + "/");
+  const moreActive = MORE_MENU.some((m) => isActive(m.href));
 
   return (
-    <header className="fixed top-0 inset-x-0 z-30 h-16 bg-ink text-slate-200 border-b border-white/10">
-      <div className="h-full max-w-6xl mx-auto px-5 flex items-center justify-between">
-        <Link href="/goals" className="font-bold text-white text-lg whitespace-nowrap">
-          進捗管理AI
-        </Link>
+    <aside className="fixed top-0 left-0 z-30 h-screen w-24 bg-ink text-slate-200 border-r border-white/10 flex flex-col">
+      <Link
+        href="/goals"
+        className="h-16 flex items-center justify-center text-center font-bold text-white text-xs leading-tight px-2 border-b border-white/10"
+      >
+        進捗
+        <br />
+        管理AI
+      </Link>
 
-        {/* アイコンのみ・横1列 */}
-        <nav className="flex items-center gap-2">
-          {MENU.map((m) => {
-            const active = isActive(m.href);
+      {/* アイコン＋ページ名・縦1列 */}
+      <nav className="flex-1 flex flex-col items-stretch gap-1 p-2">
+        {MENU.map((m) => {
+          const active = isActive(m.href);
+          // メンバーはページ遷移せず、フライアウト（名前一覧＋タスク詳細）を開く。
+          if (m.icon === "members") {
             return (
-              <Link
-                key={m.href}
-                href={m.href}
-                aria-label={m.label}
-                title={m.label}
-                className={[
-                  "flex items-center justify-center h-11 w-11 rounded-xl transition-colors",
-                  active
-                    ? "bg-brand text-white"
-                    : "text-slate-300 hover:bg-white/10 hover:text-white",
-                ].join(" ")}
-              >
-                <Icon name={m.icon} />
-              </Link>
+              <div key={m.href} className="relative">
+                <button
+                  type="button"
+                  onClick={() => setOpenMembers((v) => !v)}
+                  aria-label={m.label}
+                  title={m.label}
+                  className={[
+                    "w-full flex flex-col items-center justify-center gap-1 py-3 rounded-xl transition-colors",
+                    active || openMembers
+                      ? "bg-brand text-white"
+                      : "text-slate-300 hover:bg-white/10 hover:text-white",
+                  ].join(" ")}
+                >
+                  <Icon name={m.icon} />
+                  <span className="text-[10px] leading-tight text-center">
+                    {m.label}
+                  </span>
+                </button>
+                {openMembers && (
+                  <MembersFlyout onClose={() => setOpenMembers(false)} />
+                )}
+              </div>
             );
-          })}
-        </nav>
-      </div>
-    </header>
+          }
+          return (
+            <Link
+              key={m.href}
+              href={m.href}
+              aria-label={m.label}
+              title={m.label}
+              className={[
+                "flex flex-col items-center justify-center gap-1 py-3 rounded-xl transition-colors",
+                active
+                  ? "bg-brand text-white"
+                  : "text-slate-300 hover:bg-white/10 hover:text-white",
+              ].join(" ")}
+            >
+              <Icon name={m.icon} />
+              <span className="text-[10px] leading-tight text-center">
+                {m.label}
+              </span>
+            </Link>
+          );
+        })}
+
+        {/* その他（展開でサブメニュー） */}
+        <div className="relative mt-auto">
+          <button
+            type="button"
+            onClick={() => setOpenMore((v) => !v)}
+            aria-label="その他"
+            title="その他"
+            className={[
+              "w-full flex flex-col items-center justify-center gap-1 py-3 rounded-xl transition-colors",
+              moreActive || openMore
+                ? "bg-brand text-white"
+                : "text-slate-300 hover:bg-white/10 hover:text-white",
+            ].join(" ")}
+          >
+            <Icon name="more" />
+            <span className="text-[10px] leading-tight text-center">その他</span>
+          </button>
+
+          {openMore && (
+            <>
+              {/* 外側クリックで閉じる */}
+              <div
+                className="fixed inset-0 z-30"
+                onClick={() => setOpenMore(false)}
+              />
+              <div className="absolute left-full bottom-0 ml-2 z-40 w-44 rounded-xl bg-ink text-slate-200 border border-white/10 shadow-xl p-1">
+                {MORE_MENU.map((m) => {
+                  const active = isActive(m.href);
+                  return (
+                    <Link
+                      key={m.href}
+                      href={m.href}
+                      onClick={() => setOpenMore(false)}
+                      className={[
+                        "flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-colors",
+                        active
+                          ? "bg-brand text-white"
+                          : "hover:bg-white/10 hover:text-white",
+                      ].join(" ")}
+                    >
+                      <Icon name={m.icon} />
+                      <span>{m.label}</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </>
+          )}
+        </div>
+      </nav>
+    </aside>
   );
 }

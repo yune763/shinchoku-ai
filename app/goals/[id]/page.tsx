@@ -6,8 +6,11 @@ import {
   ancestorsOf,
   childrenOf,
   computeProgress,
+  estimateHours,
 } from "@/lib/store";
 import { GoalDetail } from "@/components/GoalDetail";
+import { overlayLiveProgress } from "@/lib/claude-runner";
+import { TreeAutoRefresh } from "@/components/TreeAutoRefresh";
 
 export const dynamic = "force-dynamic";
 
@@ -17,13 +20,16 @@ export default async function GoalPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const goal = await getGoal(id);
-  if (!goal) notFound();
+  const goal0 = await getGoal(id);
+  if (!goal0) notFound();
 
-  const all = await listGoals();
+  // 実行中はライブ進捗を重ねて表示する（TreeAutoRefreshが数秒ごとに再描画）。
+  const all = overlayLiveProgress(await listGoals());
+  const goal = all.find((g) => g.id === id) ?? goal0;
   const ancestors = ancestorsOf(id, all);
   const children = childrenOf(id, all);
   const computedProgress = computeProgress(id, all);
+  const estimatedHours = estimateHours(id, all);
 
   return (
     <div className="p-6 md:p-10 max-w-4xl mx-auto">
@@ -42,11 +48,14 @@ export default async function GoalPage({
         ))}
       </nav>
 
+      <TreeAutoRefresh />
+
       <GoalDetail
         goal={goal}
         all={all}
         children={children}
         computedProgress={computedProgress}
+        estimatedHours={estimatedHours}
       />
     </div>
   );
