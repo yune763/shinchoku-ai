@@ -149,11 +149,11 @@ export function TopNav() {
     <aside className="fixed top-0 left-0 z-30 h-screen w-24 bg-ink text-slate-200 border-r border-white/10 flex flex-col">
       <Link
         href="/goals"
-        className="h-16 flex items-center justify-center text-center font-bold text-white text-xs leading-tight px-2 border-b border-white/10"
+        className="min-h-16 flex items-center justify-center text-center font-bold text-white text-[11px] leading-tight px-2 py-2 border-b border-white/10"
       >
-        進捗
+        AX事業部
         <br />
-        管理AI
+        進捗・ツール管理
       </Link>
 
       {/* アイコン＋ページ名・縦1列 */}
