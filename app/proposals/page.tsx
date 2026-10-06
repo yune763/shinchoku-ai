@@ -86,7 +86,7 @@ export default async function ProposalsPage() {
   const titleToGoal = new Map(goals.map((g) => [g.title, g.id]));
 
   return (
-    <div className="mx-auto max-w-3xl px-6 py-10">
+    <div className="mx-auto max-w-[1600px] px-6 py-10">
       <header className="border-b border-slate-200 pb-5">
         <h1 className="text-2xl font-bold text-ink">開発提案</h1>
         <p className="mt-2 text-sm text-ink-muted">
@@ -101,13 +101,13 @@ export default async function ProposalsPage() {
           まだ提案がありません。情報収集ルーチンが提案を追加するとここに並びます。
         </p>
       ) : (
-        <ul className="mt-6 space-y-5">
+        <ul className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
           {proposals.map((p) => {
             const existingGoalId = titleToGoal.get(p.title) ?? null;
             return (
               <li
                 key={p.id}
-                className="rounded-card border border-slate-200 bg-white p-5 shadow-sm"
+                className="flex flex-col rounded-card border border-slate-200 bg-white p-5 shadow-sm"
               >
                 <div className="flex items-center gap-3 text-xs">
                   <span
