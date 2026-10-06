@@ -61,13 +61,22 @@ async function verifyToken(token: string): Promise<string | null> {
 }
 
 // Server Component / Route Handler から現在のログインユーザーを取得する。
+// 承認済み(approved)のユーザーのみ有効。却下/承認待ちは未ログイン扱い。
 export async function getCurrentUser(): Promise<PublicUser | null> {
   const store = await cookies();
   const token = store.get(COOKIE_NAME)?.value;
   if (!token) return null;
   const uid = await verifyToken(token);
   if (!uid) return null;
-  return getUserById(uid);
+  const user = await getUserById(uid);
+  if (!user || user.status !== "approved") return null;
+  return user;
+}
+
+// 管理者のみ取得（承認操作のガードに使う）。
+export async function getCurrentAdmin(): Promise<PublicUser | null> {
+  const user = await getCurrentUser();
+  return user && user.role === "admin" ? user : null;
 }
 
 export async function setSessionCookie(userId: string): Promise<void> {

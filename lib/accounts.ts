@@ -6,13 +6,20 @@ import { readJson, writeJson } from "./blob";
 // 保存先は blob 層（ローカル=ファイル / クラウド=Firestore）。
 const USERS_KEY = "chat/users.json";
 
+export type UserRole = "admin" | "member";
+export type UserStatus = "pending" | "approved" | "rejected";
+
 export interface Account {
   id: string;
   email: string; // 小文字で正規化して保存
   displayName: string;
   salt: string; // hex
   hash: string; // hex（scrypt）
+  role: UserRole; // admin=承認できる / member=一般
+  status: UserStatus; // pending=承認待ち / approved=利用可 / rejected=却下
   createdAt: string;
+  decidedAt?: string; // 承認/却下された日時
+  decidedBy?: string; // 承認/却下した管理者のID
 }
 
 // 画面・API で返す安全な形（ハッシュ等は除外）。
@@ -20,10 +27,20 @@ export interface PublicUser {
   id: string;
   email: string;
   displayName: string;
+  role: UserRole;
+  status: UserStatus;
+  createdAt?: string;
 }
 
 export function toPublic(a: Account): PublicUser {
-  return { id: a.id, email: a.email, displayName: a.displayName };
+  return {
+    id: a.id,
+    email: a.email,
+    displayName: a.displayName,
+    role: a.role,
+    status: a.status,
+    createdAt: a.createdAt,
+  };
 }
 
 async function readAll(): Promise<Account[]> {
@@ -66,9 +83,14 @@ export interface RegisterInput {
   displayName: string;
 }
 
+// 新規登録＝申請。最初の1人だけ管理者として自動承認（ブートストラップ）。
+// 2人目以降は status=pending（承認待ち）で作られ、管理者の承認までログイン不可。
 export async function registerUser(
   input: RegisterInput,
-): Promise<{ ok: true; user: PublicUser } | { ok: false; error: string }> {
+): Promise<
+  | { ok: true; user: PublicUser; autoApproved: boolean }
+  | { ok: false; error: string }
+> {
   const email = normalizeEmail(input.email);
   const displayName = input.displayName.trim();
   if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
@@ -82,6 +104,7 @@ export async function registerUser(
   if (all.some((u) => u.email === email)) {
     return { ok: false, error: "このメールアドレスは既に登録されています" };
   }
+  const isFirst = all.length === 0;
   const salt = randomBytes(16).toString("hex");
   const account: Account = {
     id: randomUUID(),
@@ -89,20 +112,61 @@ export async function registerUser(
     displayName,
     salt,
     hash: hashPassword(input.password, salt),
+    role: isFirst ? "admin" : "member",
+    status: isFirst ? "approved" : "pending",
     createdAt: new Date().toISOString(),
   };
   all.push(account);
   await writeAll(all);
-  return { ok: true, user: toPublic(account) };
+  return { ok: true, user: toPublic(account), autoApproved: isFirst };
 }
+
+export type AuthResult =
+  | { ok: true; user: PublicUser }
+  | { ok: false; reason: "invalid" | "pending" | "rejected" };
 
 export async function authenticate(
   email: string,
   password: string,
-): Promise<PublicUser | null> {
+): Promise<AuthResult> {
   const norm = normalizeEmail(email);
   const a = (await readAll()).find((u) => u.email === norm);
+  if (!a || !verifyPassword(password, a.salt, a.hash)) {
+    return { ok: false, reason: "invalid" };
+  }
+  if (a.status === "pending") return { ok: false, reason: "pending" };
+  if (a.status === "rejected") return { ok: false, reason: "rejected" };
+  return { ok: true, user: toPublic(a) };
+}
+
+// ── 管理（承認・却下・役割変更）。呼び出し側で管理者かを確認すること ──
+export async function listPendingUsers(): Promise<PublicUser[]> {
+  return (await readAll()).filter((u) => u.status === "pending").map(toPublic);
+}
+
+export async function decideUser(
+  userId: string,
+  decision: "approved" | "rejected",
+  adminId: string,
+): Promise<PublicUser | null> {
+  const all = await readAll();
+  const a = all.find((u) => u.id === userId);
   if (!a) return null;
-  if (!verifyPassword(password, a.salt, a.hash)) return null;
+  a.status = decision;
+  a.decidedAt = new Date().toISOString();
+  a.decidedBy = adminId;
+  await writeAll(all);
+  return toPublic(a);
+}
+
+export async function setRole(
+  userId: string,
+  role: UserRole,
+): Promise<PublicUser | null> {
+  const all = await readAll();
+  const a = all.find((u) => u.id === userId);
+  if (!a) return null;
+  a.role = role;
+  await writeAll(all);
   return toPublic(a);
 }

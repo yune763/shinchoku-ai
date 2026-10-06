@@ -9,13 +9,25 @@ export async function POST(req: NextRequest) {
   const email = typeof body?.email === "string" ? body.email : "";
   const password = typeof body?.password === "string" ? body.password : "";
 
-  const user = await authenticate(email, password);
-  if (!user) {
+  const result = await authenticate(email, password);
+  if (!result.ok) {
+    if (result.reason === "pending") {
+      return NextResponse.json(
+        { error: "承認待ちです。管理者の承認後にログインできます。" },
+        { status: 403 },
+      );
+    }
+    if (result.reason === "rejected") {
+      return NextResponse.json(
+        { error: "このアカウントは承認されませんでした。管理者にお問い合わせください。" },
+        { status: 403 },
+      );
+    }
     return NextResponse.json(
       { error: "メールアドレスまたはパスワードが違います" },
       { status: 401 },
     );
   }
-  await setSessionCookie(user.id);
-  return NextResponse.json({ user });
+  await setSessionCookie(result.user.id);
+  return NextResponse.json({ user: result.user });
 }

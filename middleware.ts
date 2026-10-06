@@ -1,17 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
-import { isAuthorized } from "@/lib/auth";
 
-// /api/* を認証で保護する（API_TOKEN 設定時のみ有効）。
+// 現在のパスをヘッダに載せて、RootLayout（サーバ）が認証ガードの判定に使えるようにする。
+// 認証の本判定は layout 側（getCurrentユーザー）で行う（ここでは軽量にパスを渡すだけ）。
 export function middleware(req: NextRequest) {
-  if (!isAuthorized(req)) {
-    return NextResponse.json(
-      { error: "認証が必要です（Authorization: Bearer <API_TOKEN>）" },
-      { status: 401 },
-    );
-  }
-  return NextResponse.next();
+  const headers = new Headers(req.headers);
+  headers.set("x-pathname", req.nextUrl.pathname);
+  return NextResponse.next({ request: { headers } });
 }
 
 export const config = {
-  matcher: ["/api/:path*"],
+  // 静的アセット・画像・API 以外のページ遷移に適用。
+  // API はそれぞれ独自に認証（セッション or APIトークン）するため除外。
+  matcher: ["/((?!api|_next/static|_next/image|favicon.ico).*)"],
 };

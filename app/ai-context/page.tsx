@@ -1,158 +1,323 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import { useCallback, useEffect, useState } from "react";
 
-interface GoalCtx {
+interface Me {
   id: string;
-  title: string;
-  purpose: string;
-  progress: number;
-  completionCriteria: string;
-  currentStep: { title: string; actor: string } | null;
-  waitingForHuman: boolean;
-  url: string;
+  displayName: string;
+  email: string;
+  role: "admin" | "member";
+  status: string;
+}
+interface User {
+  id: string;
+  displayName: string;
+  email: string;
+  role: "admin" | "member";
+  status: string;
+  createdAt?: string;
+}
+interface MemberRequest {
+  id: string;
+  userId: string;
+  userName: string;
+  kind: string;
+  note: string;
+  status: "open" | "done";
+  createdAt: string;
 }
 
-interface ContextResponse {
-  readme: string;
-  summary: { totalGoals: number; todo: number; done: number };
-  recommendedNext: GoalCtx[];
-  waitingForHuman: GoalCtx[];
+async function api(url: string, init?: RequestInit) {
+  const res = await fetch(url, {
+    ...init,
+    headers: { "Content-Type": "application/json", ...(init?.headers || {}) },
+  });
+  const data = await res.json().catch(() => ({}));
+  return { ok: res.ok, data };
 }
 
-export default function AiContextPage() {
-  const [data, setData] = useState<ContextResponse | null>(null);
-  const [copied, setCopied] = useState(false);
+export default function ApprovalPage() {
+  const [me, setMe] = useState<Me | null>(null);
+  const [pending, setPending] = useState<User[]>([]);
+  const [members, setMembers] = useState<User[]>([]);
+  const [requests, setRequests] = useState<MemberRequest[]>([]);
+  const [myRequests, setMyRequests] = useState<MemberRequest[]>([]);
+  const [note, setNote] = useState("");
+  const [kind, setKind] = useState("要望");
+  const [msg, setMsg] = useState("");
 
-  useEffect(() => {
-    fetch("/api/context")
-      .then((r) => r.json())
-      .then(setData);
+  const loadAdmin = useCallback(async () => {
+    const { ok, data } = await api("/api/admin/applications");
+    if (ok) {
+      setPending(data.pending ?? []);
+      setMembers(data.members ?? []);
+      setRequests(data.requests ?? []);
+    }
   }, []);
 
-  const origin = typeof window !== "undefined" ? window.location.origin : "";
-  const instruction = `# 進捗管理AIから、続きを進めてください
+  const loadMine = useCallback(async () => {
+    const { ok, data } = await api("/api/requests");
+    if (ok) setMyRequests(data.requests ?? []);
+  }, []);
 
-以下のAPIで、このプロジェクトの進捗・ゴール・現在地を取得できます。
+  useEffect(() => {
+    (async () => {
+      const { data } = await api("/api/auth/me");
+      setMe(data.user);
+      if (data.user?.role === "admin") await loadAdmin();
+      await loadMine();
+    })();
+  }, [loadAdmin, loadMine]);
 
-1. まず全体を把握: GET ${origin}/api/context
-   → recommendedNext[0] を対象ゴールに決める
-2. 対象ゴールの指示文を取得: GET ${origin}/api/goals/{id}/prompt
-   → その内容に従って「現在地のステップ」から作業する
-3. 進めたら記録:
-   - 結果を残す: POST ${origin}/api/goals/{id}/logs  body: {"kind":"ai_result","author":"Claude Code","body":"..."}
-   - ステップ完了: PATCH ${origin}/api/goals/{id}/steps/{stepId}  body: {"done":true}
-4. waitingForHuman のゴールは人の作業待ち。着手しない。
+  async function decide(userId: string, decision: "approved" | "rejected") {
+    await api("/api/admin/applications", {
+      method: "POST",
+      body: JSON.stringify({ action: "decide", userId, decision }),
+    });
+    await loadAdmin();
+  }
+  async function changeRole(userId: string, role: "admin" | "member") {
+    const { ok, data } = await api("/api/admin/applications", {
+      method: "POST",
+      body: JSON.stringify({ action: "role", userId, role }),
+    });
+    if (!ok) setMsg(data.error || "変更できません");
+    await loadAdmin();
+  }
+  async function resolveReq(requestId: string) {
+    await api("/api/admin/applications", {
+      method: "POST",
+      body: JSON.stringify({ action: "resolveRequest", requestId }),
+    });
+    await loadAdmin();
+  }
+  async function submitRequest(e: React.FormEvent) {
+    e.preventDefault();
+    setMsg("");
+    const { ok, data } = await api("/api/requests", {
+      method: "POST",
+      body: JSON.stringify({ kind, note }),
+    });
+    if (!ok) {
+      setMsg(data.error || "送信に失敗しました");
+      return;
+    }
+    setNote("");
+    setMsg("申請を送信しました。");
+    await loadMine();
+    if (me?.role === "admin") await loadAdmin();
+  }
 
-前提の再説明は不要です。取得した文脈がそのまま前提です。`;
-
-  async function copy() {
-    await navigator.clipboard.writeText(instruction);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  if (!me) {
+    return <div className="p-10 text-ink-muted">読み込み中…</div>;
   }
 
   return (
-    <div className="p-6 md:p-10 max-w-3xl mx-auto space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold dark:text-white">AIコンテキスト</h1>
-        <p className="text-sm text-ink-muted dark:text-slate-400 mt-1">
-          開発中のClaude Codeが、このプロジェクトの目的地と現在地を自分で把握して、続きから動くための入口。
+    <div className="mx-auto max-w-3xl space-y-8 p-6 md:p-10">
+      <header>
+        <h1 className="text-2xl font-bold text-ink">申請・承認</h1>
+        <p className="mt-1 text-sm text-ink-muted">
+          新規登録の承認や、管理者への申請・要望をここで扱います。
+          あなたの役割：
+          <span className="font-semibold">
+            {me.role === "admin" ? "管理者" : "メンバー"}
+          </span>
         </p>
-      </div>
+      </header>
 
-      {/* Claude Codeに渡す一文 */}
-      <div className="rounded-card border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 space-y-3">
-        <div className="flex justify-between items-center">
-          <h2 className="font-semibold dark:text-white">
-            Claude Code にこれを渡すだけ
+      {msg && (
+        <p className="rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
+          {msg}
+        </p>
+      )}
+
+      {/* 管理者：登録申請の承認 */}
+      {me.role === "admin" && (
+        <section className="rounded-card border border-slate-200 bg-white p-5">
+          <h2 className="text-sm font-bold text-ink">
+            登録申請（承認待ち {pending.length} 件）
           </h2>
-          <button
-            onClick={copy}
-            className="rounded-lg bg-brand px-3 py-1.5 text-sm text-white"
-          >
-            {copied ? "コピーしました" : "コピー"}
-          </button>
-        </div>
-        <pre className="text-xs whitespace-pre-wrap font-mono bg-slate-50 dark:bg-slate-950 rounded-lg p-4 dark:text-slate-200 border border-slate-200 dark:border-slate-800">
-          {instruction}
-        </pre>
-      </div>
-
-      {/* サマリ */}
-      {data && (
-        <>
-          <div className="grid grid-cols-3 gap-3">
-            <Stat label="全ゴール" value={data.summary.totalGoals} />
-            <Stat label="未完了" value={data.summary.todo} />
-            <Stat label="完了" value={data.summary.done} />
-          </div>
-
-          <Section title="▶ AIが次に着手すべきゴール" goals={data.recommendedNext} empty="AIがすぐ着手できるゴールはありません。" />
-          <Section title="⏳ 人の作業待ち" goals={data.waitingForHuman} empty="人待ちのゴールはありません。" />
-        </>
-      )}
-
-      <p className="text-xs text-ink-muted dark:text-slate-500">
-        機械可読な生データ:{" "}
-        <a href="/api/context" target="_blank" rel="noreferrer" className="text-brand hover:underline">
-          /api/context
-        </a>
-      </p>
-    </div>
-  );
-}
-
-function Stat({ label, value }: { label: string; value: number }) {
-  return (
-    <div className="rounded-card border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 text-center">
-      <div className="text-xs text-ink-muted dark:text-slate-400">{label}</div>
-      <div className="text-2xl font-bold dark:text-white">{value}</div>
-    </div>
-  );
-}
-
-function Section({
-  title,
-  goals,
-  empty,
-}: {
-  title: string;
-  goals: GoalCtx[];
-  empty: string;
-}) {
-  return (
-    <div className="rounded-card border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5">
-      <h2 className="font-semibold dark:text-white mb-3">{title}</h2>
-      {goals.length === 0 ? (
-        <p className="text-sm text-ink-muted dark:text-slate-400">{empty}</p>
-      ) : (
-        <ul className="space-y-2">
-          {goals.map((g) => (
-            <li key={g.id}>
-              <Link
-                href={g.url}
-                className="block rounded-lg border border-slate-100 dark:border-slate-800 p-3 hover:border-brand"
-              >
-                <div className="flex items-center justify-between gap-2">
-                  <span className="font-medium dark:text-slate-200 truncate">
-                    {g.title}
-                  </span>
-                  <span className="text-xs tabular-nums text-ink-muted dark:text-slate-500">
-                    {g.progress}%
-                  </span>
-                </div>
-                {g.currentStep && (
-                  <div className="text-xs text-ink-muted dark:text-slate-500 mt-1">
-                    現在地: {g.currentStep.title}（{g.currentStep.actor === "human" ? "人" : "AI"}）
+          {pending.length === 0 ? (
+            <p className="mt-2 text-sm text-ink-muted">承認待ちはありません。</p>
+          ) : (
+            <ul className="mt-3 space-y-2">
+              {pending.map((u) => (
+                <li
+                  key={u.id}
+                  className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 p-3"
+                >
+                  <div className="min-w-0">
+                    <div className="font-medium text-ink">{u.displayName}</div>
+                    <div className="text-xs text-ink-muted">{u.email}</div>
                   </div>
-                )}
-              </Link>
-            </li>
-          ))}
-        </ul>
+                  <div className="flex shrink-0 gap-2">
+                    <button
+                      onClick={() => decide(u.id, "approved")}
+                      className="rounded-lg bg-brand px-3 py-1.5 text-xs font-semibold text-white"
+                    >
+                      承認
+                    </button>
+                    <button
+                      onClick={() => decide(u.id, "rejected")}
+                      className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs text-ink-soft hover:border-red-400 hover:text-red-600"
+                    >
+                      却下
+                    </button>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
+        </section>
       )}
+
+      {/* 管理者：メンバーからの申請・要望 */}
+      {me.role === "admin" && (
+        <section className="rounded-card border border-slate-200 bg-white p-5">
+          <h2 className="text-sm font-bold text-ink">メンバーからの申請・要望</h2>
+          {requests.filter((r) => r.status === "open").length === 0 ? (
+            <p className="mt-2 text-sm text-ink-muted">未対応の申請はありません。</p>
+          ) : (
+            <ul className="mt-3 space-y-2">
+              {requests
+                .filter((r) => r.status === "open")
+                .map((r) => (
+                  <li key={r.id} className="rounded-lg border border-slate-200 p-3">
+                    <div className="flex items-center justify-between gap-3">
+                      <span className="text-xs font-semibold text-amber-700">
+                        {r.kind}
+                      </span>
+                      <button
+                        onClick={() => resolveReq(r.id)}
+                        className="rounded border border-slate-300 px-2 py-1 text-xs text-ink-soft hover:border-brand hover:text-brand"
+                      >
+                        対応済みにする
+                      </button>
+                    </div>
+                    <p className="mt-1 whitespace-pre-wrap text-sm text-ink">
+                      {r.note}
+                    </p>
+                    <p className="mt-1 text-xs text-ink-muted">
+                      {r.userName}・{new Date(r.createdAt).toLocaleString("ja-JP")}
+                    </p>
+                  </li>
+                ))}
+            </ul>
+          )}
+        </section>
+      )}
+
+      {/* 管理者：メンバー一覧と役割 */}
+      {me.role === "admin" && (
+        <section className="rounded-card border border-slate-200 bg-white p-5">
+          <h2 className="text-sm font-bold text-ink">メンバー（役割の変更）</h2>
+          <ul className="mt-3 space-y-2">
+            {members
+              .filter((u) => u.status === "approved")
+              .map((u) => (
+                <li
+                  key={u.id}
+                  className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 p-3"
+                >
+                  <div className="min-w-0">
+                    <div className="font-medium text-ink">
+                      {u.displayName}
+                      {u.id === me.id && (
+                        <span className="ml-1 text-xs text-ink-muted">（あなた）</span>
+                      )}
+                    </div>
+                    <div className="text-xs text-ink-muted">{u.email}</div>
+                  </div>
+                  <div className="flex shrink-0 items-center gap-2">
+                    <span
+                      className={[
+                        "rounded-full px-2 py-0.5 text-xs font-semibold",
+                        u.role === "admin"
+                          ? "bg-brand/10 text-brand"
+                          : "bg-slate-100 text-ink-muted",
+                      ].join(" ")}
+                    >
+                      {u.role === "admin" ? "管理者" : "メンバー"}
+                    </span>
+                    {u.role === "member" ? (
+                      <button
+                        onClick={() => changeRole(u.id, "admin")}
+                        className="rounded border border-slate-300 px-2 py-1 text-xs hover:border-brand hover:text-brand"
+                      >
+                        管理者にする
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => changeRole(u.id, "member")}
+                        className="rounded border border-slate-300 px-2 py-1 text-xs hover:border-red-400 hover:text-red-600"
+                      >
+                        管理者を外す
+                      </button>
+                    )}
+                  </div>
+                </li>
+              ))}
+          </ul>
+        </section>
+      )}
+
+      {/* 全員：管理者への申請・要望を送る */}
+      <section className="rounded-card border border-slate-200 bg-white p-5">
+        <h2 className="text-sm font-bold text-ink">管理者へ申請・要望を送る</h2>
+        <form onSubmit={submitRequest} className="mt-3 space-y-2">
+          <select
+            value={kind}
+            onChange={(e) => setKind(e.target.value)}
+            className="rounded-lg border border-slate-300 px-3 py-2 text-sm"
+          >
+            <option value="要望">要望</option>
+            <option value="権限申請">権限申請（管理者になりたい等）</option>
+            <option value="不具合">不具合報告</option>
+            <option value="その他">その他</option>
+          </select>
+          <textarea
+            value={note}
+            onChange={(e) => setNote(e.target.value)}
+            rows={3}
+            required
+            placeholder="申請内容を入力"
+            className="w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+          />
+          <button
+            type="submit"
+            className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white"
+          >
+            申請を送る
+          </button>
+        </form>
+
+        {myRequests.length > 0 && (
+          <div className="mt-4">
+            <h3 className="text-xs font-semibold text-ink-muted">あなたの申請履歴</h3>
+            <ul className="mt-2 space-y-1.5">
+              {myRequests.map((r) => (
+                <li
+                  key={r.id}
+                  className="flex items-center justify-between gap-2 text-sm"
+                >
+                  <span className="truncate text-ink-soft">
+                    [{r.kind}] {r.note}
+                  </span>
+                  <span
+                    className={
+                      r.status === "done"
+                        ? "shrink-0 text-xs text-emerald-600"
+                        : "shrink-0 text-xs text-amber-600"
+                    }
+                  >
+                    {r.status === "done" ? "対応済み" : "未対応"}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+      </section>
     </div>
   );
 }

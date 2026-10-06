@@ -10,11 +10,13 @@ export default function LoginPage() {
   const [password, setPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
   const [error, setError] = useState("");
+  const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
     setError("");
+    setNotice("");
     setBusy(true);
     try {
       const url = mode === "login" ? "/api/auth/login" : "/api/auth/register";
@@ -32,7 +34,18 @@ export default function LoginPage() {
         setError(data.error || "失敗しました");
         return;
       }
-      router.push("/chat");
+      // 新規登録で承認待ちの場合はログインさせず、案内を出す。
+      if (mode === "register" && data.status === "pending") {
+        setNotice(
+          data.message ||
+            "申請を受け付けました。管理者の承認後にログインできます。",
+        );
+        setMode("login");
+        setPassword("");
+        return;
+      }
+      // 承認済み（管理者初回）またはログイン成功 → アプリへ。
+      router.push("/goals");
       router.refresh();
     } catch {
       setError("通信に失敗しました");
@@ -48,7 +61,9 @@ export default function LoginPage() {
           {mode === "login" ? "ログイン" : "新規登録"}
         </h1>
         <p className="mt-1 text-sm text-ink-muted">
-          社内チャットを使うにはアカウントが必要です。
+          {mode === "register"
+            ? "新規登録は管理者への申請です。承認後にログインできます。"
+            : "進捗管理AIを使うにはログインが必要です。"}
         </p>
 
         <form onSubmit={submit} className="mt-6 space-y-3">
@@ -88,6 +103,11 @@ export default function LoginPage() {
             />
           </div>
 
+          {notice && (
+            <p className="rounded-lg bg-emerald-50 px-3 py-2 text-sm text-emerald-700">
+              {notice}
+            </p>
+          )}
           {error && <p className="text-sm text-red-600">{error}</p>}
 
           <button

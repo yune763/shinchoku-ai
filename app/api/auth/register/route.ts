@@ -16,6 +16,20 @@ export async function POST(req: NextRequest) {
   if (!result.ok) {
     return NextResponse.json({ error: result.error }, { status: 400 });
   }
-  await setSessionCookie(result.user.id);
-  return NextResponse.json({ user: result.user }, { status: 201 });
+  // 最初の1人（管理者）は即ログイン。それ以外は承認待ちでログインさせない。
+  if (result.autoApproved) {
+    await setSessionCookie(result.user.id);
+    return NextResponse.json(
+      { user: result.user, status: "approved" },
+      { status: 201 },
+    );
+  }
+  return NextResponse.json(
+    {
+      status: "pending",
+      message:
+        "申請を受け付けました。管理者の承認後にログインできます。",
+    },
+    { status: 202 },
+  );
 }
