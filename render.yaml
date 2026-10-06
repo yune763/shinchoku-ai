@@ -1,7 +1,7 @@
 # Render Blueprint — 進捗管理AI を無料Webサービスとしてデプロイする。
-# データは Upstash Redis(REST) に保存するので、再起動・再デプロイでも消えない。
+# データは Firestore（または Upstash Redis）に保存するので、再起動・再デプロイでも消えない。
 # 使い方: Render ダッシュボード → New → Blueprint → このリポジトリを選択。
-#   その後、UPSTASH_REDIS_REST_URL / _TOKEN を実際の値に設定する（sync:false のため手入力）。
+#   その後、FIREBASE_SERVICE_ACCOUNT を実際の値に設定する（sync:false のため手入力）。
 services:
   - type: web
     name: shinchoku-ai
@@ -13,7 +13,12 @@ services:
     envVars:
       - key: NODE_VERSION
         value: "20.18.0"
-      # Upstash Redis(REST)。永続データの保存先。ダッシュボードで値を入れる。
+      # Firestore サービスアカウント鍵JSON（文字列）。永続データの保存先。ダッシュボードで値を入れる。
+      - key: FIREBASE_SERVICE_ACCOUNT
+        sync: false
+      - key: FIRESTORE_COLLECTION
+        value: "shinchoku"
+      # 代替: Upstash Redis を使う場合はこちらに入れる（Firestoreを使うなら空でよい）。
       - key: UPSTASH_REDIS_REST_URL
         sync: false
       - key: UPSTASH_REDIS_REST_TOKEN

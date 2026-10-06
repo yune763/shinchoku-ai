@@ -1,22 +1,20 @@
 # 進捗管理AI を Render に無料デプロイ（固定URL・データ永続）
 
 ゴール: **固定URL**（例 `https://shinchoku-ai.onrender.com`）で常時アクセスでき、
-再起動してもデータが消えない状態にする。費用は **無料**（Render無料プラン + Upstash Redis無料プラン、どちらもカード不要）。
+再起動してもデータが消えない状態にする。費用は **無料**（Render無料プラン + Firestore無料枠）。
 
-> 仕組み: Render の無料ディスクは揮発性だが、本アプリは `UPSTASH_REDIS_REST_URL/_TOKEN` が
-> 設定されていれば保存先を Upstash Redis に切り替える（`lib/blob.ts`）。これでデータが永続化する。
+> 仕組み: Render の無料ディスクは揮発性だが、本アプリは `FIREBASE_SERVICE_ACCOUNT` が
+> 設定されていれば保存先を Firestore に切り替える（`lib/blob.ts`）。これでデータが永続化する。
 
 ---
 
-## 手順1. Upstash（データ保存先）を作る — 無料・カード不要
-1. https://upstash.com にサインアップ（GitHub/Googleログイン可）。
-2. **Redis** → **Create Database**。
-   - Name: 任意（例 `shinchoku`）
-   - Type: Regional / Region: Japan（近い所）
-   - 無料プランのまま作成。
-3. データベース画面の **REST API** セクションから次の2つをコピーして控える:
-   - `UPSTASH_REDIS_REST_URL`（`https://xxxx.upstash.io`）
-   - `UPSTASH_REDIS_REST_TOKEN`（長い文字列）
+## 手順1. Firestore（データ保存先）の鍵を取得する — 無料枠
+1. https://console.firebase.google.com で対象プロジェクトを開く（無ければ作成）。
+2. **Firestore Database** を開き、まだなら **データベースを作成**（本番 or テストモードどちらでも可。
+   サーバーからはサービスアカウントで接続するためセキュリティルールの影響は受けない）。
+3. ⚙️ **プロジェクトの設定** → **サービス アカウント** タブ → **新しい秘密鍵を生成** → JSON をダウンロード。
+4. そのJSONの中身を**丸ごと1つの文字列**として控える（後で環境変数 `FIREBASE_SERVICE_ACCOUNT` に貼る）。
+   - Renderの環境変数欄にはJSONをそのまま（改行含む）貼り付けてOK。
 
 ## 手順2. GitHub にこのリポジトリを上げる
 Render は GitHub 連携でデプロイする。まだ remote が無いので、自分のGitHubにリポジトリを作って push する。
@@ -40,8 +38,8 @@ Render は GitHub 連携でデプロイする。まだ remote が無いので、
 3. **Environment**（環境変数）に手順1の値を設定:
    | Key | Value |
    |---|---|
-   | `UPSTASH_REDIS_REST_URL` | 手順1でコピーしたURL |
-   | `UPSTASH_REDIS_REST_TOKEN` | 手順1でコピーしたトークン |
+   | `FIREBASE_SERVICE_ACCOUNT` | 手順1のサービスアカウントJSONの中身を丸ごと貼る |
+   | （任意）`FIRESTORE_COLLECTION` | 保存先コレクション名（既定 `shinchoku`） |
    | （任意）`API_TOKEN` | 外部アクセスを閉じたい場合のみ設定 |
 4. **Create / Deploy**。数分でビルド＆公開される。
 5. 発行された **固定URL**（例 `https://shinchoku-ai.onrender.com`）をメモ。これが**社内に配る恒久URL**。
@@ -61,6 +59,7 @@ node scripts/connect.mjs https://shinchoku-ai.onrender.com "名前"
 
 ## 注意・既知の制約（無料プラン）
 - **スリープ**: 無料Webサービスは約15分アクセスが無いとスリープし、次の初回アクセスで**起動に最大1分**ほどかかる（コールドスタート）。データは消えない。常に即応させたいなら有料($7/月)。
-- **Upstash無料枠**: 256MB / 50万コマンド/月。本用途（小さいJSON）では十分。
+- **Firestore無料枠(Sparkプラン)**: 1GB保存 / 読み5万・書き2万 per日。本用途では十分。
+  なお1ドキュメント上限は約1MiB（各JSON塊を1ドキュメントに保存。巨大化したら分割/DB移行を検討）。
 - これ以降 **あなたのPCの `npm run dev` / cloudflared は不要**（Renderが常時ホストする）。Cloudflare Tunnel は停止してよい。
 - URLを閉じたい場合は Render に `API_TOKEN` を設定 → メンバーは接続時に `SHINCHOKU_TOKEN` を渡す。
