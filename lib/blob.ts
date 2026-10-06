@@ -151,10 +151,10 @@ export async function diagnose(): Promise<{
         };
       }
       // 実際にFirestoreへ読みに行く（認証・権限の確認）。
-      await readBlobRaw("__healthcheck__");
+      await readBlobRaw("healthcheck");
       return { backend, ok: true, detail: "firestore read OK", projectId };
     }
-    await readBlobRaw("__healthcheck__");
+    await readBlobRaw("healthcheck");
     return { backend, ok: true, detail: `${backend} read OK` };
   } catch (e) {
     return { backend, ok: false, detail: (e as Error).message };
