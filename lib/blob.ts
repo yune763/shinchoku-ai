@@ -127,3 +127,36 @@ export async function ensureJson<T>(name: string, initial: () => T): Promise<voi
     await writeJson(name, initial());
   }
 }
+
+// 秘密情報を出さずに保存バックエンドの健全性を返す（/api/health 用）。
+export async function diagnose(): Promise<{
+  backend: string;
+  ok: boolean;
+  detail: string;
+  projectId?: string;
+}> {
+  const backend = blobBackend();
+  try {
+    if (USE_FIRESTORE) {
+      // JSONとして解釈できるか（最頻出の失敗点）を先に確認。
+      let projectId: string | undefined;
+      try {
+        const parsed = JSON.parse(FIREBASE_SA) as { project_id?: string };
+        projectId = parsed.project_id;
+      } catch (e) {
+        return {
+          backend,
+          ok: false,
+          detail: `FIREBASE_SERVICE_ACCOUNT がJSONとして解釈できません（改行/引用符の混入が疑われます）: ${(e as Error).message}`,
+        };
+      }
+      // 実際にFirestoreへ読みに行く（認証・権限の確認）。
+      await readBlobRaw("__healthcheck__");
+      return { backend, ok: true, detail: "firestore read OK", projectId };
+    }
+    await readBlobRaw("__healthcheck__");
+    return { backend, ok: true, detail: `${backend} read OK` };
+  } catch (e) {
+    return { backend, ok: false, detail: (e as Error).message };
+  }
+}
