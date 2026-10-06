@@ -5,6 +5,7 @@ import {
   listUsers,
   decideUser,
   setRole,
+  setClaudeLinked,
 } from "@/lib/accounts";
 import { listRequests, resolveRequest } from "@/lib/requests";
 
@@ -54,6 +55,14 @@ export async function POST(req: NextRequest) {
         }
       }
       const user = await setRole(String(body?.userId ?? ""), role);
+      if (!user) return NextResponse.json({ error: "対象が見つかりません" }, { status: 404 });
+      return NextResponse.json({ user });
+    }
+    if (action === "claude") {
+      const user = await setClaudeLinked(
+        String(body?.userId ?? ""),
+        !!body?.linked,
+      );
       if (!user) return NextResponse.json({ error: "対象が見つかりません" }, { status: 404 });
       return NextResponse.json({ user });
     }

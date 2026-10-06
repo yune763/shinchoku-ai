@@ -9,14 +9,20 @@ const USERS_KEY = "chat/users.json";
 export type UserRole = "admin" | "member";
 export type UserStatus = "pending" | "approved" | "rejected";
 
+// Claude Code 連携を行うべきアカウント（初期連携済み）。
+const CLAUDE_LINKED_BOOTSTRAP_EMAIL = "nejigane.y@gmail.com";
+
 export interface Account {
   id: string;
   email: string; // 小文字で正規化して保存
-  displayName: string;
+  lastName: string; // 氏
+  firstName: string; // 名
+  displayName: string; // 「氏 名」。表示用（氏名から合成）
   salt: string; // hex
   hash: string; // hex（scrypt）
   role: UserRole; // admin=承認できる / member=一般
   status: UserStatus; // pending=承認待ち / approved=利用可 / rejected=却下
+  claudeLinked: boolean; // Claude Code CLI 連携済みか（直接実装の可否）
   createdAt: string;
   decidedAt?: string; // 承認/却下された日時
   decidedBy?: string; // 承認/却下した管理者のID
@@ -26,19 +32,30 @@ export interface Account {
 export interface PublicUser {
   id: string;
   email: string;
+  lastName: string;
+  firstName: string;
   displayName: string;
   role: UserRole;
   status: UserStatus;
+  claudeLinked: boolean;
   createdAt?: string;
+}
+
+// 「氏 名」で表示名を合成する。
+export function composeDisplayName(lastName: string, firstName: string): string {
+  return [lastName.trim(), firstName.trim()].filter(Boolean).join(" ");
 }
 
 export function toPublic(a: Account): PublicUser {
   return {
     id: a.id,
     email: a.email,
-    displayName: a.displayName,
+    lastName: a.lastName ?? "",
+    firstName: a.firstName ?? "",
+    displayName: a.displayName || composeDisplayName(a.lastName ?? "", a.firstName ?? ""),
     role: a.role,
     status: a.status,
+    claudeLinked: !!a.claudeLinked,
     createdAt: a.createdAt,
   };
 }
@@ -80,7 +97,8 @@ export async function getUserById(id: string): Promise<PublicUser | null> {
 export interface RegisterInput {
   email: string;
   password: string;
-  displayName: string;
+  lastName: string;
+  firstName: string;
 }
 
 // 新規登録＝申請。最初の1人だけ管理者として自動承認（ブートストラップ）。
@@ -92,11 +110,15 @@ export async function registerUser(
   | { ok: false; error: string }
 > {
   const email = normalizeEmail(input.email);
-  const displayName = input.displayName.trim();
+  const lastName = input.lastName.trim();
+  const firstName = input.firstName.trim();
+  const displayName = composeDisplayName(lastName, firstName);
   if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
     return { ok: false, error: "メールアドレスの形式が不正です" };
   }
-  if (!displayName) return { ok: false, error: "表示名は必須です" };
+  if (!lastName || !firstName) {
+    return { ok: false, error: "氏・名の両方を入力してください" };
+  }
   if (input.password.length < 6) {
     return { ok: false, error: "パスワードは6文字以上にしてください" };
   }
@@ -109,11 +131,15 @@ export async function registerUser(
   const account: Account = {
     id: randomUUID(),
     email,
+    lastName,
+    firstName,
     displayName,
     salt,
     hash: hashPassword(input.password, salt),
     role: isFirst ? "admin" : "member",
     status: isFirst ? "approved" : "pending",
+    // nejigane のアカウントは初期から連携済み。他は未連携（管理者が後で連携）。
+    claudeLinked: email === CLAUDE_LINKED_BOOTSTRAP_EMAIL,
     createdAt: new Date().toISOString(),
   };
   all.push(account);
@@ -167,6 +193,19 @@ export async function setRole(
   const a = all.find((u) => u.id === userId);
   if (!a) return null;
   a.role = role;
+  await writeAll(all);
+  return toPublic(a);
+}
+
+// Claude Code 連携フラグを切り替える（直接実装の可否）。
+export async function setClaudeLinked(
+  userId: string,
+  linked: boolean,
+): Promise<PublicUser | null> {
+  const all = await readAll();
+  const a = all.find((u) => u.id === userId);
+  if (!a) return null;
+  a.claudeLinked = linked;
   await writeAll(all);
   return toPublic(a);
 }

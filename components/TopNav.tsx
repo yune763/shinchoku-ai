@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { MembersFlyout } from "@/components/MembersFlyout";
 
 type IconName =
   | "goals"
@@ -21,12 +20,12 @@ type IconName =
 
 const MENU: { href: string; label: string; icon: IconName }[] = [
   { href: "/goals", label: "ゴール一覧", icon: "goals" },
+  { href: "/team", label: "メンバー進捗", icon: "members" },
   { href: "/chat", label: "チャット", icon: "chat" },
+  { href: "/today", label: "今日のToDo", icon: "today" },
   { href: "/proposals", label: "開発提案", icon: "idea" },
   { href: "/collection", label: "情報収集", icon: "news" },
   { href: "/sns-collection", label: "SNS情報収集", icon: "sns" },
-  { href: "/today", label: "今日のToDo", icon: "today" },
-  { href: "/team", label: "メンバー", icon: "members" },
   { href: "/ai-context", label: "申請・承認", icon: "approve" },
 ];
 
@@ -142,7 +141,6 @@ function Icon({ name }: { name: IconName }) {
 export function TopNav() {
   const pathname = usePathname();
   const [openMore, setOpenMore] = useState(false);
-  const [openMembers, setOpenMembers] = useState(false);
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + "/");
   const moreActive = MORE_MENU.some((m) => isActive(m.href));
@@ -162,33 +160,6 @@ export function TopNav() {
       <nav className="flex-1 flex flex-col items-stretch gap-1 p-2">
         {MENU.map((m) => {
           const active = isActive(m.href);
-          // メンバーはページ遷移せず、フライアウト（名前一覧＋タスク詳細）を開く。
-          if (m.icon === "members") {
-            return (
-              <div key={m.href} className="relative">
-                <button
-                  type="button"
-                  onClick={() => setOpenMembers((v) => !v)}
-                  aria-label={m.label}
-                  title={m.label}
-                  className={[
-                    "w-full flex flex-col items-center justify-center gap-1 py-3 rounded-xl transition-colors",
-                    active || openMembers
-                      ? "bg-brand text-white"
-                      : "text-slate-300 hover:bg-white/10 hover:text-white",
-                  ].join(" ")}
-                >
-                  <Icon name={m.icon} />
-                  <span className="text-[10px] leading-tight text-center">
-                    {m.label}
-                  </span>
-                </button>
-                {openMembers && (
-                  <MembersFlyout onClose={() => setOpenMembers(false)} />
-                )}
-              </div>
-            );
-          }
           return (
             <Link
               key={m.href}

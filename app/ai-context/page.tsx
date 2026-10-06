@@ -15,6 +15,7 @@ interface User {
   email: string;
   role: "admin" | "member";
   status: string;
+  claudeLinked: boolean;
   createdAt?: string;
 }
 interface MemberRequest {
@@ -82,6 +83,13 @@ export default function ApprovalPage() {
       body: JSON.stringify({ action: "role", userId, role }),
     });
     if (!ok) setMsg(data.error || "変更できません");
+    await loadAdmin();
+  }
+  async function changeClaude(userId: string, linked: boolean) {
+    await api("/api/admin/applications", {
+      method: "POST",
+      body: JSON.stringify({ action: "claude", userId, linked }),
+    });
     await loadAdmin();
   }
   async function resolveReq(requestId: string) {
@@ -228,7 +236,7 @@ export default function ApprovalPage() {
                     </div>
                     <div className="text-xs text-ink-muted">{u.email}</div>
                   </div>
-                  <div className="flex shrink-0 items-center gap-2">
+                  <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
                     <span
                       className={[
                         "rounded-full px-2 py-0.5 text-xs font-semibold",
@@ -238,6 +246,17 @@ export default function ApprovalPage() {
                       ].join(" ")}
                     >
                       {u.role === "admin" ? "管理者" : "メンバー"}
+                    </span>
+                    <span
+                      className={[
+                        "rounded-full px-2 py-0.5 text-xs font-semibold",
+                        u.claudeLinked
+                          ? "bg-emerald-50 text-emerald-700"
+                          : "bg-slate-100 text-ink-muted",
+                      ].join(" ")}
+                      title="Claude Code 連携（直接実装の可否）"
+                    >
+                      {u.claudeLinked ? "Claude連携済" : "Claude未連携"}
                     </span>
                     {u.role === "member" ? (
                       <button
@@ -254,6 +273,12 @@ export default function ApprovalPage() {
                         管理者を外す
                       </button>
                     )}
+                    <button
+                      onClick={() => changeClaude(u.id, !u.claudeLinked)}
+                      className="rounded border border-slate-300 px-2 py-1 text-xs hover:border-brand hover:text-brand"
+                    >
+                      {u.claudeLinked ? "連携を外す" : "Claude連携にする"}
+                    </button>
                   </div>
                 </li>
               ))}

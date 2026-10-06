@@ -8,7 +8,8 @@ export default function LoginPage() {
   const [mode, setMode] = useState<"login" | "register">("login");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [error, setError] = useState("");
   const [notice, setNotice] = useState("");
   const [busy, setBusy] = useState(false);
@@ -23,7 +24,7 @@ export default function LoginPage() {
       const payload =
         mode === "login"
           ? { email, password }
-          : { email, password, displayName };
+          : { email, password, lastName, firstName };
       const res = await fetch(url, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -68,15 +69,27 @@ export default function LoginPage() {
 
         <form onSubmit={submit} className="mt-6 space-y-3">
           {mode === "register" && (
-            <div>
-              <label className="text-xs font-semibold text-ink-soft">表示名</label>
-              <input
-                value={displayName}
-                onChange={(e) => setDisplayName(e.target.value)}
-                required
-                className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
-                placeholder="山田太郎"
-              />
+            <div className="flex gap-2">
+              <div className="flex-1">
+                <label className="text-xs font-semibold text-ink-soft">氏</label>
+                <input
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  required
+                  className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                  placeholder="山田"
+                />
+              </div>
+              <div className="flex-1">
+                <label className="text-xs font-semibold text-ink-soft">名</label>
+                <input
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  required
+                  className="mt-1 w-full rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+                  placeholder="太郎"
+                />
+              </div>
             </div>
           )}
           <div>

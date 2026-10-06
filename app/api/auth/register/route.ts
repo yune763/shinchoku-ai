@@ -9,10 +9,10 @@ export async function POST(req: NextRequest) {
   const body = await req.json().catch(() => null);
   const email = typeof body?.email === "string" ? body.email : "";
   const password = typeof body?.password === "string" ? body.password : "";
-  const displayName =
-    typeof body?.displayName === "string" ? body.displayName : "";
+  const lastName = typeof body?.lastName === "string" ? body.lastName : "";
+  const firstName = typeof body?.firstName === "string" ? body.firstName : "";
 
-  const result = await registerUser({ email, password, displayName });
+  const result = await registerUser({ email, password, lastName, firstName });
   if (!result.ok) {
     return NextResponse.json({ error: result.error }, { status: 400 });
   }

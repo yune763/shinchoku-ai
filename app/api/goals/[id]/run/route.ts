@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { startRun, getRun, RepoPathMissingError } from "@/lib/claude-runner";
 import { getGoal } from "@/lib/store";
 import { GOAL_STATUS } from "@/lib/types";
+import { getCurrentUser } from "@/lib/session";
 
 export const dynamic = "force-dynamic";
 
@@ -18,6 +19,17 @@ export async function GET(_req: NextRequest, { params }: Params) {
 // Claude Code(headless)を起動する。実行中なら 409。
 export async function POST(req: NextRequest, { params }: Params) {
   const { id } = await params;
+  // Claude Code 連携済みアカウントのみ、システムからの直接実装を許可する。
+  const user = await getCurrentUser();
+  if (!user?.claudeLinked) {
+    return NextResponse.json(
+      {
+        error:
+          "このアカウントはClaude Code未連携のため、システムからの直接実装はできません。管理者に連携を依頼してください。",
+      },
+      { status: 403 },
+    );
+  }
   const rerun = new URL(req.url).searchParams.get("rerun") === "1";
   try {
     const run = await startRun(id, { rerun });
