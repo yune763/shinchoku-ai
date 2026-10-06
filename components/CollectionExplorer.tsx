@@ -318,15 +318,32 @@ export function CollectionExplorer({
       {/* 右：検索・フィルタ・記事 */}
       <div className="min-w-0 flex-1">
         <div className="mx-auto max-w-3xl px-6 py-8">
-          <header className="border-b border-slate-200 pb-4">
-            <h1 className="text-xl font-bold text-ink">
-              {selMeta
-                ? stripSymbols(selMeta.title) || selMeta.title
-                : "情報収集"}
-            </h1>
-            {selMeta?.summary && (
-              <p className="mt-1 text-sm text-ink-muted">{selMeta.summary}</p>
-            )}
+          <header className="flex flex-col gap-4 border-b border-slate-200 pb-4 sm:flex-row sm:items-start sm:justify-between">
+            <div className="min-w-0">
+              <h1 className="text-xl font-bold text-ink">
+                {selMeta
+                  ? stripSymbols(selMeta.title) || selMeta.title
+                  : "情報収集"}
+              </h1>
+              {selMeta?.summary && (
+                <p className="mt-1 text-sm text-ink-muted">{selMeta.summary}</p>
+              )}
+            </div>
+
+            {/* 右上：注目度（★）の見かた */}
+            <aside className="shrink-0 rounded-card border border-amber-200 bg-amber-50/70 p-3 sm:w-72">
+              <div className="flex items-center gap-1.5 text-xs font-bold text-amber-700">
+                <span aria-hidden>★</span>
+                注目度（★）の見かた
+              </div>
+              <p className="mt-1 text-[11px] leading-relaxed text-amber-900/90">
+                <strong>①出来事の重大さ</strong>（新モデル・破壊的変更・料金改定など）、
+                <strong>②公式発表かどうか</strong>、
+                <strong>③どれだけ多くの媒体が報じたか</strong>
+                を総合して、AIが<strong>1〜5</strong>で付けています。
+                ★が多いほど「業務・開発インパクトが大きい／一次情報に近い」出来事です。
+              </p>
+            </aside>
           </header>
 
           {/* 検索＋プルダウン */}
@@ -379,9 +396,7 @@ export function CollectionExplorer({
             {loading
               ? "読み込み中…"
               : `該当 ${filtered.length} 件 / ${genreGroups.length} ジャンル`}
-            <span className="ml-2">
-              「注目度」＝情報収集システムのスコア（最大4。高いほど公式・主要ソース）
-            </span>
+            <span className="ml-2">注目度（★）の基準は右上を参照</span>
           </p>
 
           {/* 記事（ジャンル別） */}
