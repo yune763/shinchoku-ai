@@ -209,3 +209,24 @@ export async function setClaudeLinked(
   await writeAll(all);
   return toPublic(a);
 }
+
+// 本人がパスワードを変更する（現在のパスワード確認つき）。
+export async function changePassword(
+  userId: string,
+  currentPassword: string,
+  newPassword: string,
+): Promise<{ ok: true } | { ok: false; error: string }> {
+  if (newPassword.length < 6) {
+    return { ok: false, error: "新しいパスワードは6文字以上にしてください" };
+  }
+  const all = await readAll();
+  const a = all.find((u) => u.id === userId);
+  if (!a) return { ok: false, error: "アカウントが見つかりません" };
+  if (!verifyPassword(currentPassword, a.salt, a.hash)) {
+    return { ok: false, error: "現在のパスワードが違います" };
+  }
+  a.salt = randomBytes(16).toString("hex");
+  a.hash = hashPassword(newPassword, a.salt);
+  await writeAll(all);
+  return { ok: true };
+}

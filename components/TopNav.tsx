@@ -16,6 +16,7 @@ type IconName =
   | "sns"
   | "chat"
   | "approve"
+  | "account"
   | "tools";
 
 const MENU: { href: string; label: string; icon: IconName }[] = [
@@ -31,6 +32,7 @@ const MENU: { href: string; label: string; icon: IconName }[] = [
 
 // 「その他」に畳み込むサブメニュー。
 const MORE_MENU: { href: string; label: string; icon: IconName }[] = [
+  { href: "/account", label: "アカウント情報", icon: "account" },
   { href: "/analytics", label: "アナリティクス", icon: "analytics" },
   { href: "/tools", label: "ツール管理", icon: "tools" },
 ];
@@ -110,6 +112,13 @@ function Icon({ name }: { name: IconName }) {
         <svg {...common}>
           <rect x="3" y="5" width="18" height="14" rx="2" />
           <path d="M3 10h18M7 15h4" />
+        </svg>
+      );
+    case "account": // 人＋歯車（アカウント情報）
+      return (
+        <svg {...common}>
+          <circle cx="12" cy="8" r="3.2" />
+          <path d="M5.5 20c0-3.3 2.9-6 6.5-6s6.5 2.7 6.5 6" />
         </svg>
       );
     case "approve": // チェックバッジ（申請・承認）
