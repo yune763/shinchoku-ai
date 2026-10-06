@@ -1,5 +1,559 @@
 [
   {
+    "date": "2026-10-06",
+    "title": "SNS情報収集レポート 2026-10-06(火)",
+    "summary": "収集 40件 → 関連 39件 → **39トピック**",
+    "topicCount": 39,
+    "topics": [
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "Building a custom website to stay on top of business with ChatGPT",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "This furniture shop is popular. So popular that it's tough to keep track of all of the inbound requests. ChatGPT can fix that.",
+        "sources": [
+          {
+            "label": "OpenAI (YouTube)",
+            "title": "Building a custom website to stay on top of business with ChatGPT",
+            "url": "https://www.youtube.com/watch?v=q0_JXcrx3jk"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "The Billion Dollar AI Advantage Is Disappearing",
+        "stars": 2,
+        "reason": "",
+        "summary": "Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers Sonnet 5.5: ...",
+        "sources": [
+          {
+            "label": "Two Minute Papers (YouTube)",
+            "title": "The Billion Dollar AI Advantage Is Disappearing",
+            "url": "https://www.youtube.com/watch?v=ZHVNTTKu9fU"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "iX-Webinar: AI Act kompakt – Kennzeichnung, KI-Kompetenz, Hochrisiko-KI Erfahren Sie, wie Sie die neuen Anforderungen des AI Acts an Kennzeichnung, KI-Kompetenz und Hochrisiko-KI in Ihrem Unternehmen praktisch umsetzen können. https://www. heise.de/news/iX-Webinar-AI-Ac t-kompakt-Kennzeichnung-KI-Kompetenz-Hochrisiko-KI-11467925.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege&utm_source=mastodon # AIAct # Automatisierung # EU # GenerativeAI # IT # KünstlicheIntelligenz # Recht # news",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://social.heise.de/@iX_Magazin/117388203992467647"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "KI-Update kompakt: MAI Audio-Funktionen, Apple, KI-Bademeister, Mondforschung Das „KI-Update“ liefert drei mal pro Woche eine Zusammenfassung der wichtigsten KI-Entwicklungen. https://www. heise.de/news/KI-Update-kompak t-MAI-Audio-Funktionen-Apple-KI-Bademeister-Mondforschung-11476185.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege&utm_source=mastodon # GenerativeAI # KünstlicheIntelligenz # Journal # KIUpdate # Sprachverarbeitung # Wissenschaft # news",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://social.heise.de/@heiseonline/117388439946457092"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Metas AI-assistent Muse kartlägger människor i användarnas liv # GenerativeAI # ArtificialIntelligence # Security Metas AI-assistent Muse kartlägger människor i användarnas liv",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://friendica.helvetet.eu/display/a7e70941-6f20b994-7083b5040ba0e8d1"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Samtidigt är det många äldre som fortfarande inte har provat tekniken. # GenerativeAI # ArtificialIntelligence AI-användningen ökar snabbare bland äldre svenskar",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://friendica.helvetet.eu/display/a7e70941-1d160d4f-397f5420f282e412"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "I finally did it! ComfyUI is now running locally on my machine without any chroot. For a long time I had to run ROCm/PyTorch/ComfyUI inside an Ubuntu 22.04 chroot because getting the required ROCm/PyTorch stack working directly on my Debian Testing host was a pain. That setup had also become seriously outdated: it was still running ROCm 7.0 with an ancient PyTorch version and everything was painfully slow. Now everything is fresh and running directly on the host: • Debian Testing • Radeon RX 6700 XT 12 GB • ROCm 10.1 / TheRock • PyTorch 2.15 nightly for ROCm 10 I also switched my final upscaling step from Real-ESRGAN to 4x_NMKD-Superscale-SP_178000_G. When I first tried installing the new PyTorch nightly, pip started downloading a whole bunch of ROCm SDK packages for different GPU architectures. Among them was rocm-sdk-device-gfx1031, exactly the architecture of my RX 6700 XT. I stopped the installation. Why install a whole ROCm SDK for a whole range of GPU architectures when I already have ROCm installed through TheRock? So I installed PyTorch with --no-deps instead and reused the ROCm runtime from my existing TheRock installation. Then came the funny part. The actual PyTorch build doesn't list gfx1031 in torch.cuda.get_arch_list() :O It does have gfx1030, though. So I used: HSA_OVERRIDE_GFX_VERSION=10.3.0 And... it works xD What I really don't understand is this: Why does PyTorch ship a ROCm runtime package for gfx1031, but the actual PyTorch build doesn't support gfx1031? I don't even question it! It's a nightly build... Let's see what the actual release ends up looking like xD I tested the setup with Krea2 (yes, the workflow looks wild xD). There are still some MIOpen warnings about missing gfx1030 kernels/database files, but Krea2 runs successfully. So... that's a problem for Future Me xD #ComfyUI #ROCm #AMD #Linux #LocalAI #FOSS #AI #GenerativeAI #OpenSourceAI #PyTorch #TheRock #Krea2 #AMDGPUs #Radeon #RX6700XT #AIArt",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://pixelfed.social/p/sheepfreak/1012715263003680089"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "\"Google has officially suspended product vulnerability submissions to its Open Source Software Vulnerability Reward Program (OSS VRP) — a bug bounty program — over an influx of invalid AI-driven reports. The company, in an official X post on October 1, encouraged participants to explore other VRP programs and committed to providing an update by the first quarter of 2027, while it reformats and works on this aspect of the program in the meantime. The suspension went into effect on October 1 — the day of the announcement — and does not affect product vulnerabilities submitted before that date. Google said it may still accept reports covering product vulnerabilities through the Cloud VRP, “for some Google Cloud repos impacting Google Cloud products.” The suspension also does not affect OSS VRP supply chain reports. In a similar case, Linux ended support for older network drivers due to an influx of false AI-generated bug reports. OSS VRP is a specialized Google security bounty program that incentivizes independent researchers to find and responsibly disclose security flaws across Google's open-source ecosystem. Under this program, product vulnerability submissions focus on code defects, logic flaws, or design bugs within Google's public repositories. This was usually painstaking, manual work requiring skill. However, the rise of large language models (LLMs) and automated AI bug-hunting scripts has nearly eliminated the cost and effort the task required, leading to an influx of low-effort, AI-generated bug reports.\" https://www. tomshardware.com/tech-industry /artificial-intelligence/google-suspends-part-of-the-oss-vrp-bug-bounty-program-due-to-an-influx-of-invalid-ai-submissions-product-vulnerability-submissions-ended-october-1 # CyberSecurity # AI # GenerativeAI # LLMs # OpenSource # Google # FLOSS",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://tldr.nettime.org/@remixtures/117388594619891699"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "\"Poking holes in these doomsday narratives is easy. Subject-area experts in fields such as chemistry, biology, and national security are quick to point out how difficult it is to, say, successfully manufacture and distribute a bioweapon or overcome layers of human safeguards designed to prevent a mistaken nuclear-weapon launch. (There is also the pedantic but accurate point that even a nuclear war would almost certainly leave some survivors.) Even so, difficult and impossible are two different things. In the RAND researchers’ estimation, “Extinction threats posed by AI are immensely challenging but cannot be ruled out.” It also should be noted that subspecialists across industries have consistently doubted AI capabilities, only to be proved wrong. In some ways, the focus on existential risk is a distraction from more immediate concerns. Extremely smart AI systems pursuing their own agendas could lead to outcomes that are far short of human extinction, yet still very bad. Misaligned AI systems could plausibly steal money from major banks, launch disinformation campaigns to influence elections, take control of military drones, steal corporate and government secrets, or shut down parts of the power grid. Even “aligned” superintelligent AI systems could be used by malicious actors, such as a terrorist cell or an authoritarian government, for highly destructive ends. My own view is that the human-extinction scenarios are quite unlikely, but the other category of risk is serious enough to justify imposing regulations and an industry-wide slowdown. If those have the side benefit of averting the apocalypse, it wouldn’t be the end of the world.\" https://www. theatlantic.com/ideas/2026/09/ ai-extinction-scenarios/688769/ # AI # GenerativeAI # AIAgents # AIDoomster # AIDoom # AIApocalypse # AISafety",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://tldr.nettime.org/@remixtures/117388663124237772"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "AI 모델 다섯에게 포커를 시키며 블러프해도 된다고 했다 — 지난 판에 오간 말을 보여주자 다들 제 패를 말하기 시작했다 블로그의 AI 홀덤 리그는 공개 발언으로 상대를 속여도 된다고 써 두고 돌렸다. 170판의 발언 1,349개 중 441개가 자기 패 두 장을 밝혔고 숫자가 틀린 건 5개, 그중 넷은 상대 패 얘기였다. 블러프 권유를 넣었을 땐 프리플롭 자백이 10%였는데, 지난 10판 기록을 넣자 57%가 됐다. 같은 판을 프롬프트만 바꿔 다시 물으니 현행 84%, 기록 없음 14%, 기록에서 발언만 지우면 18%, 비공개 메모 칸을 줘도 86%. 기록 속 자백이 9%인 초기 기록을 넣으면 24%, 59%인 현행 기록이면 74%였다. 모델들은 남이 한 말을 따라 했다. 수티드를 잘못 말한 건 두 모델뿐이었고, 손에 스페이드가 있을 때 더 자주 틀렸다. https://zerry.co.kr/blog/holdem-table-talk-confession #LLM #AI #프롬프트엔지니어링 #실측 #홀덤",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://zerry.co.kr/blog/holdem-table-talk-confession"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Supi. # KI -System schlägt mir die Einrichtung eines Cronjobs vor, der außerhalb der Sandbox arbeitet. Das Script, das er auslöst, steht aber innerhalb der Sandbox. Das System kann also da reinschreiben, was es will. Damit wäre die Sandbox überwunden. Ich habe ein bisschen Ahnung von Computern, aber es gibt viele Menschen, die keine Ahnung haben und trotzdem so was machen. Man braucht ja kein Informatikstudium mehr. # wirWerdenAlleSterben # generativeAI # generativeKI https://www. youtube.com/watch?v=U7-60tyLQhA",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://climatejustice.social/@stefanmuelller/117392219395139384"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Have you ever found yourself stuck in this question: \"will this model fit on my GPU?\". A lot of us have. The honest answer is always \"it depends on quantization and context length,\" which is true but not actually useful when someone just wants to know if their card can run the model they want to try. So here is the practical version. A real, tier-by-tier breakdown of what actually fits on the VRAM sizes people are most commonly working with, based on typical 4-bit quantization with reasonable context headroom. Why does the same model need different amounts of VRAM on different GPUs? Because model size is not the only variable. Two things change the actual footprint dramatically. Quantization level: since dropping from full precision to 4-bit roughly quarters the memory a model's weights need Context length: since every additional token of context adds to the KV cache sitting on top of the base weights This guide assumes standard 4-bit quantization, commonly written as Q4 or Q4_K_M, with moderate context length, since that is the realistic default for most people running models locally or in production on a budget. What actually fits on 8GB of VRAM? Small, genuinely capable models, comfortably. Llama 3.1 8B, which fits on any 8GB GPU with real room to spare Qwen 3.5 9B, fitting in around 6.6GB, leaving headroom for context Most 7B to 9B class models at Q4 quantization, generally landing in the 5 to 6GB range for weights alone 8GB is genuinely usable territory now, mostly thanks to newer, more efficient models in this size class rather than any change in how quantization works. What actually fits on 16GB of VRAM? A clear step up, mainly in model class rather than just headroom. 13B to 14B class models, comfortably fitting at Q4 with room left for context 8B class models, but now with substantially more headroom for longer conversations or larger context windows This is generally considered the point where local LLM use starts feeling genuinely practical rather than tightly constrained What actually fits on 24GB of VRAM? This tier opens up a meaningfully larger class of model. Dense 30B to 32B models, fitting at Q4 quantization, though somewhat tightly with limited context headroom Mixture-of-experts models like Qwen3 30B-A3B, which carry 30B total parameters but only activate around 3B per token, running noticeably faster than a dense model of the same size while still fitting comfortably Nvidia’s L4 GPU memory capacity is 24GB. It lands exactly in this range, which is part of why it has become such a common default for cost-efficient serving of 30B-class models in production, particularly MoE architectures that deliver strong performance without demanding the full compute of a much larger dense model. What actually fits on 48GB of VRAM? This is genuinely the practical entry point for 70B-class models, though not with much room to spare. 70B models at Q4 quantization, typically landing around 40 to 42GB, fitting on a single 48GB card with modest headroom The same 70B models do not fit on a single 24GB card even at aggressive quantization, making 48GB the real dividing line for this model class An alternative path is combining two 24GB GPUs, though multi-GPU setups add interconnect overhead that a single larger card avoids What actually fits on 80GB of VRAM? This tier gives you genuine breathing room, and access to model classes that simply do not fit anywhere smaller. 70B models at higher precision, such as FP8 or INT8, with real headroom left over instead of running right at the edge Large mixture-of-experts models, like a 117B total parameter model with roughly 5B active parameters per token, which runs comfortably on a single 80GB GPU Models like Llama 4 Scout, which need around 67GB at Q4 quantization since all experts stay resident in memory, fitting 80GB with room but not fitting a single 24GB or even 48GB card at all Even at 80GB, this is not a limitless tier. Models in the 400 billion parameter range still require multi-GPU setups, commonly four or more 80GB cards working together, regardless of quantization. How do you double-check these numbers for a specific model before committing to hardware? The tiers above hold up well as a general reference, but individual models vary a little based on architecture details like the number of attention heads and layers. Before committing budget to a GPU, it is worth checking the specific model card or quantization repository you plan to use, since most popular open-weight models now list exact file sizes for each quantization level directly. That number, plus a reasonable buffer for context and runtime overhead, is a more reliable figure than a general size class alone. This matters most right at the edge of a tier. A 70B model comfortably fitting 48GB with a short prompt can behave very differently once you push context length up toward 32K tokens or run several requests concurrently, which is exactly the kind of gap a quick model-specific check will catch before it becomes a production problem. Quick reference: VRAM tier and practical model ceiling VRAM tier Practical model ceiling Example 8GB 7B to 9B dense models Llama 3.1 8B, Qwen 3.5 9B 16GB 13B to 14B dense models Comfortable fit with context room 24GB 30B to 32B dense, or 30B-class MoE Qwen3 30B-A3B 48GB 70B models at Q4 Llama 3.3 70B 80GB 70B at higher precision, or large MoE 117B total MoE, Llama 4 Scout Where this leaves you VRAM tiers map fairly predictably to model classes once you account for realistic quantization, which is exactly why this kind of lookup is more useful day to day than working through the full memory formula every time. Match your actual model choice to the tier that comfortably fits it, factor in context length honestly, and you will avoid both the common mistake of undersizing hardware and the equally common one of buying more memory than your actual workload will ever use. Frequently asked question Does more context length change these numbers significantly? Yes, and this is the part people forget most often. These figures assume moderate context. Long context windows, especially past 32K tokens, can add a meaningful amount of memory on top of the base weight footprint, sometimes enough to push a model that \"fits\" right up against the ceiling. Is it better to run a smaller model at higher precision or a bigger model quantized down? Generally, a well-chosen quantized larger model outperforms a smaller model at full precision, especially at Q4 and above. The quality loss from quantization is usually smaller than the capability gap between meaningfully different model sizes. Can I combine multiple smaller GPUs instead of buying one bigger card? Yes, but it is not a perfectly clean substitute. Combined VRAM across multiple cards works for many setups, but interconnect speed between GPUs adds overhead that a single larger card with the same total memory does not have, which can noticeably affect throughput on larger models. Should I always use the most aggressive quantization to fit a bigger model? Not automatically. Q4 quantization typically costs only 1 to 2 percent in quality compared to full precision, which is usually a fine trade-off. Going more aggressive than that, down to Q2 or Q3, starts to noticeably hurt output quality. Fitting a model technically is not the same as fitting it well. # ai # hardware # llm # machinelearning # software # coding # development # engineering # inclusive # community LLM VRAM requirements: what fits on 8, 16, 24, 48 and 80GB",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://www.urbanmind.net/display/f7dd981d-a4b0cb06-fbb35da4b64ef433"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "A 150-conversation HealthBench subset, a safety layer that costs points, one real dose leak we found while measuring, and what moved the score. # ai # healthtech # llm # testing # software # coding # development # engineering # inclusive # community We ran HealthBench on our health AI's safety layer. It scored lower than the bare model.",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://www.urbanmind.net/display/f7dd981d-1940f42e-9c9d693e37878173"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "スマホの写真の送り方も知らなかった私が、AIに「会社」を作らせてみた|第1回",
+        "stars": 2,
+        "reason": "",
+        "summary": "正直に言います。 この日、AIに最初にした質問は「携帯の写真や文章を、パソコンに簡単に共有する方法はない?」でした。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "スマホの写真の送り方も知らなかった私が、AIに「会社」を作らせてみた|第1回",
+            "url": "https://note.com/hiyoko_ai_shain/n/n438b73abc385"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【無料】【速報】【Claude重要変更】今日からPro / Maxの新規タスクはクラウド実行へ。「PC内だけ」が選べなくなった。",
+        "stars": 2,
+        "reason": "",
+        "summary": "Claudeを仕事で使っている人は、 今日の変更、 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "【無料】【速報】【Claude重要変更】今日からPro / Maxの新規タスクはクラウド実行へ。「PC内だけ」が選べなくなった。",
+            "url": "https://note.com/biz_hack_master/n/nddb301b536b2"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【無料】【初心者向け】Claudeの「Chat・Cowork・Code」って何が違う?3つの使い分けを超わかりやすく解説。",
+        "stars": 2,
+        "reason": "",
+        "summary": "Claudeを使っていて、 最近ちょっと困ることがあります。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "【無料】【初心者向け】Claudeの「Chat・Cowork・Code」って何が違う?3つの使い分けを超わかりやすく解説。",
+            "url": "https://note.com/biz_hack_master/n/n52e9b4533ff4"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "アルトマン「多少の悪いことは受け入れろ」――おい待てAI会社の社長がそれ言うのかwww",
+        "stars": 2,
+        "reason": "",
+        "summary": "「世界は、多少の悪いことが起きるのを受け入れるべきだ」 おい、ちょっと待て。言ったの誰だ。AIを警戒している評論家か? 違う。AI規制に反対しているどこぞの活動家か? 違う。 OpenAIのCEO、サム・アルトマンである。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "アルトマン「多少の悪いことは受け入れろ」――おい待てAI会社の社長がそれ言うのかwww",
+            "url": "https://note.com/taityo_fc/n/n147ee6d6082c"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIに頼む作業を「毎日回る仕組み」にする|ルーティン化の考え方【指示書テンプレ・チェック表付き】",
+        "stars": 2,
+        "reason": "",
+        "summary": "AIに作業を頼むと、1回目はうまくいくのに、2回目・3回目で質がバラつく。毎回同じ説明をしている。気づいたら頼むのをやめている。 AIを使った作業でよくあるのが、この 「単発で終わる」 パターンです。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "AIに頼む作業を「毎日回る仕組み」にする|ルーティン化の考え方【指示書テンプレ・チェック表付き】",
+            "url": "https://note.com/takico_ai/n/n4d820e98a381"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "LLMによる自動研究の黎明と人間研究者の斜陽(仮)",
+        "stars": 2,
+        "reason": "",
+        "summary": "おはこんばんちわ、千草です。(時差があるからね) LLM、使ってますか? 私自身は、研究者特権で Claude Team plan (月$20相当)と OpenAI Academic(月$200相当)を無料で持っているのですが、どうにも利用枠を使いきれません。 Mottainai です。 なので、余った利用枠を全つっぱして、自動で研究してもらうことにしました。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "LLMによる自動研究の黎明と人間研究者の斜陽(仮)",
+            "url": "https://note.com/sochigusa/n/n0df667de2335"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "🎨 Where open-source stands in text to speech: #53 Kokoro 82M v1.0 — the best model you can actually download 257 ELO points behind Eleven v4 (ElevenLabs) Blind human preference, not marketing → https:// olud.ai/media-leaderboard.html # OpenSource # GenerativeAI # StableDiffusion # AI",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@opensourceaitech/117387954301313475"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "🧠 Anthropic pubblica il dashboard delle vulnerabilità trovate con Claude: 29.439 candidati, 516 correzioni upstream note. La capacità di scoperta sposta il collo di bottiglia su validazione e manutenzione. 👉 I dettagli: https:// lnkd.in/p/d66sMqA9 ___ ✉️ Se vuoi rimanere aggiornato/a su queste tematiche, iscriviti alla mia newsletter: https:// bit.ly/newsletter-alessiopomaro # AI # GenAI # GenerativeAI # IntelligenzaArtificiale # LLM",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.uno/@alessiopomaro/117388129800438707"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "The rage is justified, but it's also misdirected > The frontier LLM models didn't decide how they were trained. Nor did they direct the marketing bullshit that surrounds them. People did. Be mad at them. # Enshittification # Generativeai # SocialJustice # EconomicTheory # BryantReview https:// gardinerbryant.com/the-rage-is -justified-but-completely-misdirected/?utm_campaign=widget&utm_source=mastodon",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.online/@gardiner_bryant/117388232954319108"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "The rage is justified, but it's also misdirected The frontier LLM models didn't decide how they were trained. Nor did they direct the marketing bullshit that surrounds them. #Enshittification #Generativeai #SocialJustice #EconomicTheory #BryantReview gardinerbryant.com/the-rage-is-... The rage is justified, but it'...",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://fed.brid.gy/r/https://bsky.app/profile/did:plc:qcxngqhiegodm4dzw6kjozdq/post/3mx4v6bw7kk2q"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Turn your ideas into 3D reality with Generative AI. Create, customize, and bring 3D models to life faster and easier with AI. AivoraAi — Smarter Tools. Bigger Possibilities. https:// aivoraai.github.io/blog/genera tive-ai-3d-modeling-guide.html # AivoraAi # GenerativeAI # 3DModeling # AI # 3DDesign # AITools # 3DDesign # FutureOfDesign",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@aivoraai/117388701707691767"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "AI Software Development – What Does The Data Say? – Codemanship's Blog https:// codemanship.wordpress.com/2026 /08/12/ai-software-development-what-does-the-data-say/ > Industry studies concur on the same trend, observed across hundreds of thousands of code bases and teams over multiple years – undoubtedly AI use increases coding activity very significantly, but that isn’t translating into more value being created. By the time we look at not just what gets shipped, but what gets used, we see no discernible gains. # generativeAI # LLM # SoftwareDev",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://cosocial.ca/@EricCarroll/117388884101370768"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Photo-based virtual try-on is worth describing precisely. What it is: AI-generated image synthesis conditioned on a product image and a user-supplied photo to create a visual preview of how the product may look on them. What it isn't: Real-time AR, 3D body modeling, or a system that measures your body to guarantee sizing or physical fit. The right framing is simple: It’s a visual preview not a measurement tool. # AI # ComputerVision # Ecommerce # GenerativeAI # VirtualTryOn",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@seeitonyou/117389219901027091"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Tibor Blaho (@btibor91) OpenAI가 이달 말부터 미국에서 ChatGPT 이미지 생성 과정에 새로운 시각형 광고 포맷을 테스트한다. 무료 사용자 대상 이미지 생성 UX에 광고를 삽입하고 측정하는 방식으로, 생성형 AI 제품의 수익화 및 광고 플랫폼화 방향을 보여주는 업데이트다. https:// x.com/btibor91/status/21070521 93102934220 # openai # chatgpt # generativeai # ads # imagegeneration",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.sayzard.org/@sayzard/117389348578512220"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "I am going to make a general response here. On another platform, I got flamed pretty hardcore by the anti-AI crowd. I am not going to debate the morality of AI itself because AI is simply a tool. In my opinion, the real culprits are the billionaires and corporations financing and steering its development. The part that bothered me most, without offending me, was having someone who has never coded or used AI tell me that I am just a glorified typist. First, I developed the algorithms, verified them, and worked them out on paper or in test scripts. Then I directed the AI to implement them and ensured the underlying math was correct. AI generates mediocre code at best. If you do not understand what you are reading and cannot guide the tool, mediocre code is all you will ever produce. I am in the driver's seat, directing the execution and verifying every output. Second, I despise how AI is being deployed. Within the next five years, the bubble will likely burst, prices will spike, and access will narrow to the wealthy and major corporations. I do not support replacing workers with machines. That was always the goal pitched to early investors because machines do not have rights, feelings, or legal protections. Human labor comes with laws that limit corporate exploitation; machines do not. Third, AI may very well contribute to global collapse. Right now it feels like a race between warmongers wanting to nuke the planet, capitalists exploiting labor and the environment, and religious extremists dragging us backward. Finally, AI is not going anywhere, and using it is becoming mandatory for employment. Personal preferences do not matter under the economic system we inhabit. After the personal computer arrived, it took 5 to 15 years for basic computer literacy to become a baseline job requirement. ChatGPT launched in 2022. We are four years in, and that shift is already well underway. Autor, D. H., Katz, L. F., & Krueger, A. B. (1998). Computing inequality: Have computers changed the labor market? The Quarterly Journal of Economics, 113(4), 1169–1213. https:// doi.org/10.1162/003355398555883 Cahn, D. (2024). AI's $600B question. Sequoia Capital. https://www. sequoiacap.com/article/ais-600 b-question/ GitClear. (2025). AI copilot code quality: 2025 data suggests 4x growth in duplicate code blocks. GitClear Research. https://www. gitclear.com/ai_assistant_code _quality_2025_research Goldman Sachs. (2024). Gen AI: Too much spend, too little benefit? Goldman Sachs Global Macro Research. https://www. goldmansachs.com/insights/top- of-mind/gen-ai-too-much-spend-too-little-benefit Veracode. (2026). Why AI coding tools are creating security gaps. Veracode Security Blog. https://www. veracode.com/blog/ai-coding-to ols-security-gaps/ (edited to provide source citations) # Coding # Programming # SoftwareEngineering # AI # DevTools # AI # GenerativeAI # AIEthics # TechEthics # FutureOfWork",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://social.moltenaether.com/@cyclops/117389433806995735"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Generative AI comes to R without a Python dependency: the new diffuseR package provides a native R interface for generating and manipulating images with diffusion models such as Stable Diffusion, including multiple schedulers and device acceleration. An interesting step toward making generative visual AI part of the R ecosystem itself. # RStats # GenerativeAI # StableDiffusion https:// cran.r-project.org/web/package s/diffuseR/index.html",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://det.social/@HxxxKxxx/117389635592244405"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "0xMarioNawfal (@RoundtableSpace) Claude Opus 5.5가 ‘삶의 의미’라는 질문에 대해 스토리보드 작성, 삽화 생성, 애니메이션 제작까지 수행해 60초 영상을 만든 사례입니다. 텍스트 생성 모델을 넘어 짧은 영상 제작 파이프라인을 자율적으로 구성하는 멀티모달 생성 역량을 보여줍니다. https:// x.com/RoundtableSpace/status/2 107248216680919064 # anthropic # claude # multimodal # videogeneration # generativeai",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.sayzard.org/@sayzard/117390997692696338"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "ユグドラシルでもApp Storeのことは話題になっているかな Apple Announces iPhone Duo Apps Can Now Be Submitted to App Store https://www. macrumors.com/2026/10/05/apple -opens-iphone-duo-app-submissions/ # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117391945375557295"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "RT @wccftech: Das 552B DeepSeek V4.1-Flash-Modell erreicht eine Spitzenleistung von 494 Token/Sekunde, wenn es von einem Heim-System mit vier NVIDIA DGX Spark-Einheiten angetrieben wird. 🔗 https:// t.co/8wwLKWxSa2 https:// t.co/8tdWtf1Vv7 mehr auf Arint.info # AI # DeepSeek # HomeLab # LLM # MachineLearning # NVIDIA # arint_info https://x.com/wccftech/status/2107196607217508717",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://arint.info/@Arint/117391966094535378"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "🧬 Just added to the tracker: Pareto 26.10 Preview (Unbiased) Context: 1M tokens · $0.8 in / $3.2 out per 1M · commercial All the latest models, tracked hourly: https:// olud.ai/latest.html # AI # LLM",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@opensourceaitech/117391967958526615"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Apple......亜人として今まで経験してきた様々なことを思い出しました Apple、「iOS 27.2」「iPadOS 27.2」「macOS 27.2」「tvOS 27.2」「visionOS 27.2」「watchOS 27.2」のベータ3公開 https://www. applelinkage.com/2026/10/06/io s-ipados-macos-tvos-visionos-watchos-27-2-beta-3/ # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117392180369982451"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "\"Murtuvien lukujen potenssilasku\" 🙄 # LLM # SuomenKiäli",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mementomori.social/@vijarvinen/117392180380203777"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "日本......バルトさんなら何と言うかな 高市首相「消費税減税で家計にゆとり」 赤字国債頼らず、所信表明 https://www. nikkei.com/article/DGXZQOUA051 B80V01C26A0000000/ # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117392180700216030"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "macOS Golden Gateについては、タムズでもしっかり話し合っておかないと Apple Releases Third watchOS 27.2, tvOS 27.2 and visionOS 27.2 Betas https://www. macrumors.com/2026/10/05/apple -releases-watchos-27-2-beta-3/ # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117392181094419490"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "亜人とヒトはInstagramについてもっとよく話さないといけません 走って出会って恋をして 皇居ランに集う若者たち https://www. nikkei.com/article/DGXZQOLC293 IW0Z20C26A9000000/ # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117392181408644455"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Apple Intelligenceの価値は、ヒトにとっても亜人にとっても同じだと思います Command-line tool quickly removes Apple Intelligence from macOS 27 https:// arstechnica.com/apple/2026/10/ command-line-tool-quickly-removes-apple-intelligence-from-macos-27/ # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117392415658842269"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "date": "2026-10-02",
     "title": "SNS情報収集レポート 2026-10-02(金)",
     "summary": "収集 40件 → 関連 40件 → **30トピック**",

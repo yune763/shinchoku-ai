@@ -15,10 +15,12 @@ type IconName =
   | "idea"
   | "news"
   | "sns"
+  | "chat"
   | "tools";
 
 const MENU: { href: string; label: string; icon: IconName }[] = [
   { href: "/goals", label: "ゴール一覧", icon: "goals" },
+  { href: "/chat", label: "チャット", icon: "chat" },
   { href: "/proposals", label: "開発提案", icon: "idea" },
   { href: "/collection", label: "情報収集", icon: "news" },
   { href: "/sns-collection", label: "SNS情報収集", icon: "sns" },
@@ -108,6 +110,13 @@ function Icon({ name }: { name: IconName }) {
         <svg {...common}>
           <rect x="3" y="5" width="18" height="14" rx="2" />
           <path d="M3 10h18M7 15h4" />
+        </svg>
+      );
+    case "chat": // 吹き出し（チャット）
+      return (
+        <svg {...common}>
+          <path d="M4 5h16a1 1 0 0 1 1 1v9a1 1 0 0 1-1 1H9l-4 3v-3H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z" />
+          <path d="M7 9h10M7 12h7" />
         </svg>
       );
     case "sns": // 吹き出し＋共有（SNS情報収集）

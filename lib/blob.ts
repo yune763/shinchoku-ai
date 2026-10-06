@@ -101,8 +101,9 @@ export async function writeBlobRaw(name: string, raw: string): Promise<void> {
     if (!res.ok) throw new Error(`blob write ${name}: redis ${res.status}`);
     return;
   }
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  await fs.writeFile(path.join(DATA_DIR, name), raw, "utf8");
+  const target = path.join(DATA_DIR, name);
+  await fs.mkdir(path.dirname(target), { recursive: true });
+  await fs.writeFile(target, raw, "utf8");
 }
 
 // JSONとして読み書きする薄いヘルパ。存在しなければ fallback を返す。

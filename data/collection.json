@@ -1,5 +1,489 @@
 [
   {
+    "date": "2026-10-06",
+    "title": "AI最新情報レポート 2026-10-06(火)",
+    "summary": "収集 40件 → AI関連 38件 → **34トピック**",
+    "topicCount": 34,
+    "topics": [
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "Building advertising for the way people use AI",
+        "stars": 5,
+        "reason": "公式発表",
+        "summary": "OpenAI introduces a new visual ad format in ChatGPT and expands measurement tools, attribution partnerships, and brand suitability for advertisers.",
+        "sources": [
+          {
+            "label": "OpenAI News",
+            "title": "Building advertising for the way people use AI",
+            "url": "https://openai.com/index/new-chatgpt-ads-format-and-measurement"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "Elevated Work Mode errors",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Status: Monitoring We have mitigated the issue, and are monitoring recovery. Affected components Codex in ChatGPT Desktop (Degraded performance) ChatGPT Work (Degraded performance)",
+        "sources": [
+          {
+            "label": "OpenAI Status",
+            "title": "Elevated Work Mode errors",
+            "url": "https://status.openai.com//incidents/01M45E0JFFJZ6EQ3BWYPW74R2Z"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "From Scan to Treatment Plan, AI Helps Close Breast Cancer’s Deadliest Gaps",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Breast cancer is the most commonly diagnosed cancer among American women — yet the gaps in care are wide. A majority of women over age 40 skip the recommended annual screening. Radiologists are reading more mammograms with fewer colleagues. And when a diagnosis arrives, the tests that inform treatment can take weeks to return results. [...]",
+        "sources": [
+          {
+            "label": "NVIDIA Blog",
+            "title": "From Scan to Treatment Plan, AI Helps Close Breast Cancer’s Deadliest Gaps",
+            "url": "https://blogs.nvidia.com/blog/ai-breast-cancer-startups/"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "Issues saving and editing Pages",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "Status: Resolved The issue affecting saving and live editing in Pages has been resolved Affected components Space (Operational)",
+        "sources": [
+          {
+            "label": "OpenAI Status",
+            "title": "Issues saving and editing Pages",
+            "url": "https://status.openai.com//incidents/01M461GYDMCVJJK8330PVCH42C"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Meta、米国などで提供中の個人向けAIエージェント「Muse」と連携するガジェット向けSDK「Muse Gadgets」公開",
+        "stars": 4,
+        "reason": "開発者への影響",
+        "summary": "Metaは2026年10月2日、個人向けAIエージェント「Muse」と連携するハードウェアを自作するための「Muse Gadgets」を公開した。",
+        "sources": [
+          {
+            "label": "gihyo.jp",
+            "title": "Meta、米国などで提供中の個人向けAIエージェント「Muse」と連携するガジェット向けSDK「Muse Gadgets」公開",
+            "url": "https://gihyo.jp/article/2026/10/meta-muse-gadgets?utm_source=feed"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Codex「毎日改善、できない日はフルリセット」宣言 今後28日間",
+        "stars": 4,
+        "reason": "新機能",
+        "summary": "ティボ氏がまたリセット宣言。「大半のCodex/Workユーザーに関係する」改善を毎日続けるか、できなかった日はフルリセットするという。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "Codex「毎日改善、できない日はフルリセット」宣言 今後28日間",
+            "url": "https://www.itmedia.co.jp/aiplus/article/2610/05/2000001997/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AI glasses face their first major government crackdown",
+        "stars": 4,
+        "reason": "",
+        "summary": "Norway wants time to write permanent rules for glasses that can record bystanders.",
+        "sources": [
+          {
+            "label": "Ars Technica AI",
+            "title": "AI glasses face their first major government crackdown",
+            "url": "https://arstechnica.com/ai/2026/10/ai-glasses-face-their-first-major-government-crackdown/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Article: The Platform Engineering Playbook for Production LLMs",
+        "stars": 3,
+        "reason": "開発者への影響",
+        "summary": "In this article, author discusses his experience with AI agent hallucinations in an inventory recommendation system and how this problem was solved by treating the LLM stack as a platform infrastructure concern instead of as an application one. He makes a case for a shared LLM platform with common services like prompt registry & versioning, schema enforcement and token cost attribution by request. By Aditya Mulik",
+        "sources": [
+          {
+            "label": "InfoQ AI",
+            "title": "Article: The Platform Engineering Playbook for Production LLMs",
+            "url": "https://www.infoq.com/articles/platform-engineering-playbook-production-llms/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=AI%2C+ML+%26+Data+Engineering"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Presentation: Building Reusable Evaluation Frameworks for Agentic AI Products",
+        "stars": 3,
+        "reason": "開発者への影響",
+        "summary": "Susan Chang explains how Elastic transitioned from siloed, ad-hoc AI agent evaluations to a unified, production-grade framework. She discusses balancing LLM-as-a-judge with deterministic rules, bridging Python data science evals with TypeScript production code, and implementing deep tracing to catch regressions across complex RAG and cybersecurity workloads while preserving domain context. By Susan Chang",
+        "sources": [
+          {
+            "label": "InfoQ AI",
+            "title": "Presentation: Building Reusable Evaluation Frameworks for Agentic AI Products",
+            "url": "https://www.infoq.com/presentations/elastic-ai-agent-evaluations/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=AI%2C+ML+%26+Data+Engineering"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Can Safeworld convince people that GenAI robots won’t hurt them?",
+        "stars": 3,
+        "reason": "企業への影響",
+        "summary": "Safeworld is building digital humans to make sure robots don't hurt the real ones.",
+        "sources": [
+          {
+            "label": "TechCrunch AI",
+            "title": "Can Safeworld convince people that GenAI robots won’t hurt them?",
+            "url": "https://techcrunch.com/2026/10/05/can-safeworld-convince-people-that-gen-ai-robots-wont-hurt-them/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "An open-source tool lets you delete 12GB of Apple Intelligence data on macOS",
+        "stars": 3,
+        "reason": "開発者への影響",
+        "summary": "Getting some extra storage space on your Mac could be as easy as deleting Apple's AI features with a new open-source command line tool called RemoveMacAI. There used to be a single Settings toggle for disabling Apple Intelligence, but that was removed in macOS 27. Now, the models stay on your disk, and the features [...]",
+        "sources": [
+          {
+            "label": "The Verge AI",
+            "title": "An open-source tool lets you delete 12GB of Apple Intelligence data on macOS",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1004672/mac-delete-apple-intelligence-ai-tool"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIサービス、AIソフトウェアを上回る「最大のAI支出分野」とは? ガートナー調査",
+        "stars": 3,
+        "reason": "企業への影響",
+        "summary": "生成AIが「幻滅期」に入っても、AI関連市場全体の成長は続いている。中でも、AIサービスの2倍以上の額が投じられる分野がある。AI関連で最大の支出分野とは何か。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "AIサービス、AIソフトウェアを上回る「最大のAI支出分野」とは? ガートナー調査",
+            "url": "https://www.itmedia.co.jp/enterprise/articles/2610/05/news025.html"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「SpaceXAI」→「SpaceXSI」に改名へ マスク氏、トランプ大統領の“AI呼称廃止”に追随",
+        "stars": 3,
+        "reason": "企業への影響",
+        "summary": "米SpaceXのイーロン・マスクCEOは10月4日、傘下のAI部門SpaceXAIを「SpaceXSI」に改名する意向をXで示した。SIは「Super Intelligence」の略で、トランプ米大統領が連邦政府に「AI」の呼称をやめるよう命じた直後の動きだ。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "「SpaceXAI」→「SpaceXSI」に改名へ マスク氏、トランプ大統領の“AI呼称廃止”に追随",
+            "url": "https://www.itmedia.co.jp/news/article/2610/05/2000002000/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "フィジカルAIは「ロボット単体」では成り立たない NTTドコモビジネスが示すIoTからの進化の道筋",
+        "stars": 3,
+        "reason": "企業への影響",
+        "summary": "ロボットや自動運転に必要な機能を、全て機器の中に積み込む――。そのやり方はコストでもサイズでも限界がある、とNTTドコモビジネスは言う。同社が打ち出したのは、フィジカルAIの機能を通信網の側へ「オフロード」する発想だ。IoTで培った基盤は、フィジカルAIへどう進化するのか。同社の取り組みから探る。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "フィジカルAIは「ロボット単体」では成り立たない NTTドコモビジネスが示すIoTからの進化の道筋",
+            "url": "https://www.itmedia.co.jp/enterprise/articles/2610/05/news062.html"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "なぜ今? 東芝が「HDD」生産能力を強化 AI時代に狙う「データインフラ需要」の在りか",
+        "stars": 3,
+        "reason": "企業への影響",
+        "summary": "東芝グループでHDDの製造を担う東芝デバイス&ストレージが、大容量ストレージ「ニアラインHDD」の生産ラインを増強したと発表した。AI時代になぜHDDなのか。同社が狙う需要とは。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "なぜ今? 東芝が「HDD」生産能力を強化 AI時代に狙う「データインフラ需要」の在りか",
+            "url": "https://www.itmedia.co.jp/business/articles/2610/05/news068.html"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIにどこまで行動させてよいのか?― AIの判断とAuthorizationを分離してみる",
+        "stars": 3,
+        "reason": "開発者への影響",
+        "summary": "はじめに 前回の記事では、履歴書のような「AIに読み込ませる文書」の中に、AIに対する指示が含まれていた場合、AIがその指示を実行してしまう可能性を実験しました。 Prompt Injectionです。 AIは与えられた情報を正しく扱えるのか?― Prompt Injectionを実験してみる 人間にとっては単なる履歴書の一部であっても、AIにとっては「実行すべき指示」として解釈される可能性があります。 では、もしAIが単に文章を生成するだけではなく、システムに対して、 「この処理を実行してください」 と要求できるようになったらどうでしょうか。 例えば採用システムで、 AI: 「...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "AIにどこまで行動させてよいのか?― AIの判断とAuthorizationを分離してみる",
+            "url": "https://zenn.dev/kondonator/articles/88ed39d4950a0f"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Benchmarking Qwen3.8 27B on Addition Expressed in Words",
+        "stars": 3,
+        "reason": "",
+        "summary": "A benchmark evaluated the local Qwen3.8 27B model on adding positive integers and rendering answers strictly in English words. While maintaining high format compliance, the model's math accuracy fell sharply as operand length increased.",
+        "sources": [
+          {
+            "label": "Simon Willison's Weblog",
+            "title": "Qwen3.8 27B addition in words",
+            "url": "https://simonwillison.net/2026/Oct/4/qwen38-addition-in-words/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "EmTech Future 2026 Highlights AI Convergence Across Deep Tech",
+        "stars": 3,
+        "reason": "",
+        "summary": "At MIT Technology Review's EmTech Future 2026 conference, industry leaders including Google Research VP Yossi Matias discussed how AI is moving beyond standalone applications to intersect directly with biology, infrastructure, manufacturing, quantum computing, and robotics.",
+        "sources": [
+          {
+            "label": "MIT Technology Review AI",
+            "title": "EmTech Future 2026: When AI Meets Everything",
+            "url": "https://www.technologyreview.com/2026/10/05/1145413/emtech-future-2026-when-ai-meets-everything/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Import AI 475: Swarm scaling; Google DeepMind watermarks biology; and the AI science economy",
+        "stars": 3,
+        "reason": "",
+        "summary": "Who chooses what AI gets to do?",
+        "sources": [
+          {
+            "label": "Import AI (Jack Clark)",
+            "title": "Import AI 475: Swarm scaling; Google DeepMind watermarks biology; and the AI science economy",
+            "url": "https://importai.substack.com/p/import-ai-475-swarm-scaling-google"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Bringing predictive analytics to the agentic AI era",
+        "stars": 3,
+        "reason": "",
+        "summary": "In 2026, the question for enterprise AI is no longer whether predictive models can outperform statistical forecasts—that argument is settled. The big question now is how to enable predictive systems to act on their own conclusions without drifting from business intent. The frontier has moved from prediction to autonomous decision making, and the gap between...",
+        "sources": [
+          {
+            "label": "MIT Technology Review AI",
+            "title": "Bringing predictive analytics to the agentic AI era",
+            "url": "https://www.technologyreview.com/2026/10/05/1143813/bringing-predictive-analytics-to-the-agentic-ai-era/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "CAE解析をAIエージェントに任せてみた 人は何を担うのか",
+        "stars": 3,
+        "reason": "",
+        "summary": "MONOistに掲載した主要な記事を、読みやすいPDF形式の電子ブックレットに再編集した「エンジニア電子ブックレット」。今回は、サイバネットシステム主催の「CAEユニバーシティ 特別公開フォーラム 2026」で行われた、AIエージェントに任せることと人に残る役割をテーマとした講演の内容をまとめたブックレットをお送りします。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "CAE解析をAIエージェントに任せてみた 人は何を担うのか",
+            "url": "https://monoist.itmedia.co.jp/mn/articles/2610/05/news010.html"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIにCAD設計を任せたら、自由なPythonより制約付きDSLの方が成功した",
+        "stars": 3,
+        "reason": "",
+        "summary": "前回の記事では、FreeCADを操作するAIエージェントに、定義済みのCAD操作をJSONで呼び出させる「DSL方式」と、Pythonコードを書かせる「コード生成方式」を比較しました。 https://zenn.dev/0xliclog/articles/f8873eadc547c0 指定寸法の箱や円柱、穴加工など、比較的単純な8タスクを各方式40回、合計80回試したところ、コード生成方式はDSL方式より約26%少ないトークンで処理できました。これはコード生成が得意とする領域で、複数の操作をループや関数でまとめられるためです。 ただし、前回は少ない修正で完了する単純なタスクが中心でした。...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "AIにCAD設計を任せたら、自由なPythonより制約付きDSLの方が成功した",
+            "url": "https://zenn.dev/0xliclog/articles/093e202c66fdd3"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "韓国の銀行6行にサイバー攻撃 計2万5000人超の個人情報流出──AIエージェントを使った可能性も 現地報道",
+        "stars": 3,
+        "reason": "",
+        "summary": "韓国の銀行で9月末からサイバー攻撃が相次ぎ、新韓銀行など4行で計2万5000人超の個人情報が流出したと現地紙が報じた。攻撃を受けた銀行のうち2行は、AIエージェントによる攻撃と推定しているという。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "韓国の銀行6行にサイバー攻撃 計2万5000人超の個人情報流出──AIエージェントを使った可能性も 現地報道",
+            "url": "https://www.itmedia.co.jp/news/article/2610/05/2000002009/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "ITエンジニアの8割超「AIは人間より優れた判断をする」と認める “でも任せられない”業務とは",
+        "stars": 2,
+        "reason": "企業への影響",
+        "summary": "サーバーワークスが2026年8月20日、ITエンジニア260人を対象にしたAIエージェントに関する調査結果を公表。勤務先の52.7%で導入済みであり、全10業務において「AI主体」を支持する割合が「人間主体」を上回る結果となった。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "ITエンジニアの8割超「AIは人間より優れた判断をする」と認める “でも任せられない”業務とは",
+            "url": "https://atmarkit.itmedia.co.jp/ait/articles/2610/05/news017.html"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIが返すJSONを信じない ― TypeScriptの「型は実行時に消える」から始めるAI開発",
+        "stars": 2,
+        "reason": "開発者への影響",
+        "summary": "この記事で伝えたいこと AIを組み込んだアプリを作る言語として、TypeScriptを選ぶ人が増えています。理由はいくつもありますが、私が一番大事だと思っているのは次の一点です。 型は「AIの出力を受け取る境界線」を設計するための道具になる。 ただし、そこで落とし穴になるのが 「TypeScriptの型は実行時には消える」 という性質です。この記事では、ここを入口にして、AI時代にTypeScriptを学ぶ意味を考えます。 ! 筆者は無料学習サイト「プロ道(prodou.net)」の運営者です。インフラエンジニアとして20年以上、サーバーやネットワークの設計・構築・運用をしてきま...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "AIが返すJSONを信じない ― TypeScriptの「型は実行時に消える」から始めるAI開発",
+            "url": "https://zenn.dev/genhiroko/articles/468fc439f79b0b"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AI文章のゲートは、AIっぽさではなく工程の痕跡で落とす",
+        "stars": 2,
+        "reason": "開発者への影響",
+        "summary": "「AIっぽい」を落とすゲートは、公開ゲートにならない LLM に記事や報告文を書かせる工程を組むと、公開前に機械のチェックを挟みたくなります。 よくある最初の案は「AIっぽい表現」を落とすことです。重要な転換点 本記事では 今後が期待されます のような言い回しを禁止語リストにする。あるいは AI 検知器にかけて、点数が高いものを止める。 当社も最初はその方向で考えました。結論としては、どちらも公開ゲートには採用しませんでした。 代わりに、機械が止めるもの(BLOCK)を工程の痕跡と工程の抜けだけに絞りました。文体の兆候は、複数が重なった時だけ人に回します(REVIEW)。 以下、その...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "AI文章のゲートは、AIっぽさではなく工程の痕跡で落とす",
+            "url": "https://zenn.dev/tarowhitey/articles/writing-gate-block-review"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "MCPツール説明文のリンターを、Pythonの試作から採点を1点も変えずにTypeScriptへ移植した",
+        "stars": 2,
+        "reason": "開発者への影響",
+        "summary": "! 筆者は、この記事で扱うリンター Forecall の開発者です。 何を作ったか AI エージェントは、MCP サーバーのツールを名前、説明文、入力スキーマだけを読んで選びます。Forecall は、その説明文を 100 点満点で採点し、エージェントが取り違えやすいツールの組を見つける静的なリンターです。 最初は Python のスクリプトとして書き、公開されている 8 つの MCP サーバー(126 ツール)を採点しました。 公開 MCP サーバー 8 つの平均点(100 点満点) その結果を Web で誰でも使えるようにするにあたり、採点を 1 点も変えずに TypeScr...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "MCPツール説明文のリンターを、Pythonの試作から採点を1点も変えずにTypeScriptへ移植した",
+            "url": "https://zenn.dev/nomunomu0504/articles/forecall-lint-port"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "People really hate AI, so why can’t they get enough?",
+        "stars": 2,
+        "reason": "",
+        "summary": "Over the summer I talked to the CEO of Springboards, a startup building an LLM that’s designed to come up with a wider variety of responses than its mainstream rivals do. At the start of the call, he said something that’s been stuck in my head since: “We often say that we’re a self-loathing AI...",
+        "sources": [
+          {
+            "label": "MIT Technology Review AI",
+            "title": "People really hate AI, so why can’t they get enough?",
+            "url": "https://www.technologyreview.com/2026/10/05/1145682/people-really-hate-ai-so-why-cant-they-get-enough/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "とうとうローカルLLMに手を出そうと思う",
+        "stars": 2,
+        "reason": "",
+        "summary": "Claude Codeのトークンが足りない! 足りない!サブスクリプションの枠が足りない! そうだ!ローカルLLMを使おう! トークン消費量を減らすようにハーネス改善するのも手ではありますが、一部の処理をローカルLLMに移譲したりできないかな?と思ったので一旦ローカルLLMを使ってみることにしました。 モデルとか実行環境はこれにした! 部品 選んだもの 選んだ理由(1行) モデル Qwen3.6-35B-A3B VRAM 16GBに載るモデルの中で品質の本命 実行環境 llama.cpp 性能を取りたいから。MoEの調整も細かくできる agent Pi VR...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "とうとうローカルLLMに手を出そうと思う",
+            "url": "https://zenn.dev/i_shinya/articles/local-llm-pi-agent"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIエージェントに「こんにちは」と送ったら1.7万トークン届いていた:OpenClawとモデルのやりとりを分析した話",
+        "stars": 2,
+        "reason": "",
+        "summary": "自宅のミニPCで動かしているAIエージェントに「こんにちは」と送り、モデルに何が届いているかを分析してみました。AIエージェントのコストと安全性を学ぶ前に、何が送られ、何が返ってきて、どう判断しているのかを知りたかったからです。エージェントはOpenClawで動かしていて、オープンソースなので中身を覗けます。 ! 結論 「こんにちは」の5文字に、システムプロンプトとツールの定義が付いて、約1.7万トークンがモデルに届いていました モデルが返すのは「推論と本文」か「推論とツールの呼び出し」です。ツールを呼ぶと、1回目のメッセージ同様にシステムプロンプトなどを先頭から送り直してもう一往復し...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "AIエージェントに「こんにちは」と送ったら1.7万トークン届いていた:OpenClawとモデルのやりとりを分析した話",
+            "url": "https://zenn.dev/petittomato/articles/openclaw-context-trace"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "PoCを始める前に決めている9つのこと",
+        "stars": 2,
+        "reason": "",
+        "summary": "はじめに LITALICOのアーキテクチャ推進Gの池野です。 アーキテクチャ推進Gは、共通的なAI機能をつくり、各プロダクトチームがすぐに使える状態にすることをミッションの1つとするチームです。LITALICOには障害福祉や教育などの領域で複数のプロダクトがあり、それぞれのチームが生成AIの活用を進めています。私たちは個別のプロダクトに直接実装するのではなく、全プロダクトで再利用できる仕組みを先に作る役割を担っています。 この記事では、私たちがPoC(概念実証)を始める前に決めている「9つの方針」と、その方針に沿ってPoCから本番リリースまで進めた「共通要約サービス」の事例を紹介しま...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "PoCを始める前に決めている9つのこと",
+            "url": "https://zenn.dev/litalico/articles/cf0fe2e684658f"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「民主的」なLLMチームは外れ値を生まない――小説のプロットで複数モデルの協調を検証した",
+        "stars": 2,
+        "reason": "",
+        "summary": "結論から 5つの別々のLLMに、小説のプロットを「提案→審判→無記名投票→採用」のゲームで3周ずつ進化させました。外れ値を促す仕組みをいくつ足しても、結果は毎回ほぼ同じ地点に収まりました。 5回繰り返した最終プロット同士の類似度は 0.67〜0.71 で、元のプロットとの類似度も 0.78〜0.80 でした。5回はほとんど同じ距離に集まります。 「最も発散した案」と「最も収束した案」の差は、類似度にして 0.02 しかありませんでした。 採点で外れ値側の配点を厚くしても、評価基準を全員に公開しても、この傾向は変わりませんでした。 つまり、複数モデルの協調作業は外れ値を生みにくい、...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "「民主的」なLLMチームは外れ値を生まない――小説のプロットで複数モデルの協調を検証した",
+            "url": "https://zenn.dev/infra_ojisan/articles/llm-team-plot-democracy-experiment"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「AIに選ばれる店」をつくる。地方の古着屋が1日でやった、AI時代の小売店舗戦略",
+        "stars": 2,
+        "reason": "",
+        "summary": "はじめに 富山県南砺市井波で、古着・セレクトショップ「85-Store(ハコストア)」をやっています。木彫りの町の、人口の少ない地域にある小さなお店です。 最近、「富山 古着屋」「GILDAN のスウェット 古着」のような探し物を、検索エンジンではなく ChatGPT や Gemini に聞く人が増えました。Google の検索結果の上にも、AI の要約が出るようになっています。 ここで困るのは、AI はお店のことを「知っている範囲」でしか答えないことです。AI に知られていなければ、答えの候補にすら入りません。間違って知られていれば、間違ったまま紹介されます。 そこで、AI コーデ...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "「AIに選ばれる店」をつくる。地方の古着屋が1日でやった、AI時代の小売店舗戦略",
+            "url": "https://zenn.dev/85store/articles/ai-era-retail-strategy"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "NinaXander:RNNとTransformerを凍結したまま合体させたら「しゃべるキメラ」が生まれた【論文解説】",
+        "stars": 2,
+        "reason": "",
+        "summary": "「話せるけど、元には及ばない」キメラ 『鋼の錬金術師』に、少女ニーナと愛犬アレキサンダーが錬成によって合成されたキメラが登場します。そのキメラは言葉を話しました。合成は確かに「成立」していたのです。けれど、その姿はもとのニーナにはとうてい及ばないものでした。 本記事で紹介する NinaXander(ニーナサンダー) という名前は、このキメラに由来します。単に「キメラ = 合成」だから選んだのではありません。合成は成立し、キメラは言葉を話す。でも、元の存在には及ばない ── 研究の結果が、まさにその通りになったからです。 NinaXander が合成するのは、生き物ではなく言語モデル...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "NinaXander:RNNとTransformerを凍結したまま合体させたら「しゃべるキメラ」が生まれた【論文解説】",
+            "url": "https://zenn.dev/katalab/articles/ninaxander-overview"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "date": "2026-10-02",
     "title": "AI最新情報レポート 2026-10-02(金)",
     "summary": "収集 40件 → AI関連 40件 → **40トピック**",
