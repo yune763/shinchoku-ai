@@ -7,6 +7,11 @@ const INSTALL_CMD =
   "irm https://raw.githubusercontent.com/yune763/shinchoku-ai/main/setup.ps1 | iex";
 const SETUP_URL =
   "https://raw.githubusercontent.com/yune763/shinchoku-ai/main/setup.ps1";
+// macOS 用（ターミナルに貼って実行）
+const MAC_INSTALL_CMD =
+  "curl -fsSL https://raw.githubusercontent.com/yune763/shinchoku-ai/main/setup.sh | bash";
+const SETUP_SH_URL =
+  "https://raw.githubusercontent.com/yune763/shinchoku-ai/main/setup.sh";
 
 function CopyBox({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
@@ -74,8 +79,11 @@ export default function InstallPage() {
       {/* インストール */}
       <section className="rounded-card border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 space-y-3">
         <h2 className="text-sm font-bold text-ink dark:text-white">
-          1. インストール（Windows）
+          1. インストール
         </h2>
+        <div className="text-xs font-semibold text-ink-muted dark:text-slate-400">
+          Windows の方
+        </div>
 
         {/* かんたん：インストーラをダウンロードしてダブルクリック */}
         <div className="rounded-lg border border-brand/30 bg-brand/5 dark:bg-brand/10 p-4 space-y-2">
@@ -130,6 +138,48 @@ export default function InstallPage() {
             </p>
           </div>
         </details>
+
+        {/* macOS */}
+        <div className="border-t border-slate-200 dark:border-slate-800 pt-4 space-y-2">
+          <div className="text-xs font-semibold text-ink-muted dark:text-slate-400">
+            Mac の方
+          </div>
+          <ol className="list-decimal space-y-2 pl-5 text-sm text-ink-soft dark:text-slate-300">
+            <li>
+              「ターミナル」を開く（Launchpad →「その他」→ ターミナル、または
+              Spotlight で「terminal」）
+            </li>
+            <li>
+              次の1行を貼り付けて Enter（Homebrew・Node.js・Git・Claude
+              CLI・本体を自動で用意します）:
+              <div className="mt-2">
+                <CopyBox text={MAC_INSTALL_CMD} />
+              </div>
+            </li>
+            <li>
+              途中で <code className="text-xs">FIREBASE_SERVICE_ACCOUNT</code>{" "}
+              を聞かれたら管理者から受け取った値を貼り付け（Homebrew導入時はMacのパスワード入力を求められることがあります）
+            </li>
+            <li>
+              完了後、デスクトップの「進捗管理AIを起動.command」をダブルクリック
+              <br />
+              <span className="text-xs text-ink-muted dark:text-slate-400">
+                ※初回は「開発元を確認できません」と出ることがあります。その場合は右クリック →「開く」で実行してください。
+              </span>
+            </li>
+          </ol>
+          <p className="text-xs text-ink-muted dark:text-slate-400">
+            スクリプトの中身：{" "}
+            <a
+              href={SETUP_SH_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="text-brand hover:underline"
+            >
+              setup.sh を開く
+            </a>
+          </p>
+        </div>
       </section>
 
       {/* 共有キーの注意 */}
