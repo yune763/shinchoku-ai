@@ -1,0 +1,28 @@
+name: deploy-render
+
+# main への push のたびに Render を再デプロイ（ブラウザ版へ確実に反映）する。
+#
+# 事前設定（GitHubリポジトリ → Settings → Secrets and variables → Actions）:
+#   RENDER_DEPLOY_HOOK_URL … Render のサービス設定にある「Deploy Hook」のURL
+#   （Render: 対象サービス → Settings → Deploy Hook → URLをコピー）
+#
+# 手動実行(Run workflow)も可能。
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Render deploy
+        env:
+          HOOK: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -z "$HOOK" ]; then
+            echo "RENDER_DEPLOY_HOOK_URL が未設定のためスキップします。"
+            echo "Render の Deploy Hook URL を GitHub Secrets に登録してください。"
+            exit 0
+          fi
+          curl -fsS -X POST "$HOOK" && echo "Render の再デプロイをトリガーしました"

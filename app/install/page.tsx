@@ -54,10 +54,16 @@ export default function InstallPage() {
         setUpdateMsg(d.error ?? "更新に失敗しました");
       } else if (d.alreadyLatest) {
         setUpdateMsg("すでに最新です。");
-      } else {
+      } else if (d.needInstall && d.installError) {
         setUpdateMsg(
-          `最新に更新しました。${d.needInstall ? "依存の変更があるため、デスクトップの『進捗管理AIを更新』を実行してから再起動してください。" : "起動し直すと反映されます。"}`,
+          "コードは更新しましたが、依存の再インストールに失敗しました。デスクトップの『進捗管理AIを更新』を実行してください。",
         );
+      } else if (d.needInstall) {
+        setUpdateMsg(
+          "最新に更新しました（依存も再インストール済み）。アプリを起動し直すと反映されます。",
+        );
+      } else {
+        setUpdateMsg("最新に更新しました。起動し直すと反映されます。");
       }
     } catch {
       setUpdateMsg("通信に失敗しました（この機能はローカル起動版でのみ使えます）");

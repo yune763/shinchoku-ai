@@ -36,15 +36,33 @@ export async function POST() {
   // package.json / lock が変わったなら依存の再インストールが必要。
   const needInstall = /package(-lock)?\.json|pnpm-lock|yarn\.lock/i.test(text);
 
-  return NextResponse.json({ ok: true, alreadyLatest, needInstall });
+  // 依存変更があれば npm install まで自動で行う（1ボタンで完全更新）。
+  let installed = false;
+  let installError: string | undefined;
+  if (needInstall) {
+    const r = await run("npm install", cwd, 300_000).catch((e) => ({
+      error: e instanceof Error ? e.message : "npm install に失敗しました",
+    }));
+    if ("error" in r) installError = r.error;
+    else installed = true;
+  }
+
+  return NextResponse.json({
+    ok: true,
+    alreadyLatest,
+    needInstall,
+    installed,
+    installError,
+  });
 }
 
 function run(
   cmd: string,
   cwd: string,
+  timeout = 120_000,
 ): Promise<{ stdout: string; stderr: string }> {
   return new Promise((resolve, reject) => {
-    exec(cmd, { cwd, timeout: 120_000, windowsHide: true }, (err, stdout, stderr) => {
+    exec(cmd, { cwd, timeout, windowsHide: true, maxBuffer: 10 * 1024 * 1024 }, (err, stdout, stderr) => {
       if (err) {
         reject(new Error(stderr || err.message));
         return;
