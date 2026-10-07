@@ -1,9 +1,15 @@
 import Link from "next/link";
-import { listGoals, childrenOf, computeProgress } from "@/lib/store";
+import {
+  listGoals,
+  childrenOf,
+  computeProgress,
+  estimateHours,
+} from "@/lib/store";
 import { listUsers } from "@/lib/accounts";
 import { getCurrentUser } from "@/lib/session";
 import { GOAL_STATUS, type Goal } from "@/lib/types";
 import { StatusBadge, ProgressBar, PageHeader } from "@/components/ui";
+import { GoalTree, type TreeNode } from "@/components/GoalTree";
 
 export const dynamic = "force-dynamic";
 
@@ -26,6 +32,33 @@ export default async function TeamPage() {
   function goalsOf(displayName: string): Goal[] {
     return goals.filter((g) => g.assignee && g.assignee === displayName);
   }
+
+  // 「すべてのゴール」セクション用に、担当に関係なく全ゴールをツリー化する。
+  function countDescendants(goalId: string): number {
+    const kids = childrenOf(goalId, goals);
+    return kids.reduce((acc, k) => acc + 1 + countDescendants(k.id), 0);
+  }
+  const buildNode = (g: Goal): TreeNode => {
+    const comments = (g.logs ?? []).filter((l) => l.kind === "comment");
+    const lastCommentAt =
+      comments.reduce((max, l) => (l.createdAt > max ? l.createdAt : max), "") ||
+      null;
+    return {
+      id: g.id,
+      title: g.title,
+      status: g.status,
+      dueDate: g.dueDate,
+      assignee: g.assignee,
+      progress: computeProgress(g.id, goals),
+      descCount: countDescendants(g.id),
+      estimatedHours: estimateHours(g.id, goals),
+      isActive: false,
+      commentCount: comments.length,
+      lastCommentAt,
+      children: childrenOf(g.id, goals).map(buildNode),
+    };
+  };
+  const allTree: TreeNode[] = childrenOf(null, goals).map(buildNode);
 
   return (
     <div className="mx-auto max-w-4xl p-6 md:p-10">
@@ -138,6 +171,20 @@ export default async function TeamPage() {
           })}
         </div>
       )}
+
+      {/* すべてのゴール（担当に関係なく全件） */}
+      <div className="mt-8">
+        <h2 className="mb-3 font-semibold text-ink">すべてのゴール</h2>
+        <div className="rounded-card border border-slate-200 bg-white divide-y divide-slate-100">
+          {allTree.length === 0 ? (
+            <div className="p-8 text-center text-ink-muted">
+              まだゴールがありません。
+            </div>
+          ) : (
+            <GoalTree nodes={allTree} />
+          )}
+        </div>
+      </div>
     </div>
   );
 }

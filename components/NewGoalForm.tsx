@@ -129,13 +129,28 @@ export function NewGoalForm({
   }
 
   return (
-    <form
-      onSubmit={submit}
-      className="rounded-card border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-4 space-y-3"
+    <div
+      className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/50 p-4 py-10"
+      onClick={() => setOpen(false)}
     >
-      <div className="text-sm font-semibold dark:text-white">
-        {defaultParentId ? "子ゴール / ToDo を追加" : "新しいゴールを置く"}
-      </div>
+      <form
+        onSubmit={submit}
+        onClick={(e) => e.stopPropagation()}
+        className="w-full max-w-lg rounded-card border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 space-y-3 shadow-xl"
+      >
+        <div className="flex items-center justify-between">
+          <div className="text-sm font-semibold dark:text-white">
+            {defaultParentId ? "子ゴール / ToDo を追加" : "新しいゴールを置く"}
+          </div>
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="閉じる"
+            className="text-xl leading-none text-ink-muted hover:text-ink"
+          >
+            ×
+          </button>
+        </div>
       <input
         value={title}
         onChange={(e) => setTitle(e.target.value)}
@@ -274,6 +289,7 @@ export function NewGoalForm({
           onClose={() => setShowPicker(false)}
         />
       )}
-    </form>
+      </form>
+    </div>
   );
 }

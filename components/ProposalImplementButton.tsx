@@ -21,9 +21,11 @@ export function ProposalImplementButton({
     return (
       <Link
         href={`/goals/${existingGoalId}`}
-        className="inline-flex items-center gap-2 rounded-lg border border-emerald-300 bg-emerald-50 px-4 py-2 text-sm font-semibold text-emerald-700 transition-colors hover:bg-emerald-100"
+        className="grid h-20 w-20 place-items-center rounded-card border border-emerald-300 bg-emerald-50 p-2 text-center text-[11px] font-semibold leading-tight text-emerald-700 transition-colors hover:bg-emerald-100"
       >
-        ✓ 起票済み — ゴールを開く
+        ✓ 起票済み
+        <br />
+        ゴールを開く
       </Link>
     );
   }
@@ -47,16 +49,25 @@ export function ProposalImplementButton({
   };
 
   return (
-    <div className="flex flex-wrap items-center gap-3">
+    <div className="flex flex-col items-end gap-1">
       <button
         type="button"
         onClick={onClick}
         disabled={loading}
-        className="inline-flex items-center gap-2 rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white shadow-sm transition-colors hover:bg-brand-fg disabled:opacity-60"
+        title="この提案をゴールに起票する"
+        className="grid h-20 w-20 place-items-center rounded-card bg-brand p-2 text-center text-[11px] font-semibold leading-tight text-white shadow-sm transition-colors hover:bg-brand-fg disabled:opacity-60"
       >
-        {loading ? "起票中…" : "▶ この提案を実装する（ゴールに起票）"}
+        {loading ? (
+          "起票中…"
+        ) : (
+          <>
+            ▶ この提案を
+            <br />
+            実装する
+          </>
+        )}
       </button>
-      {error && <span className="text-sm text-red-600">{error}</span>}
+      {error && <span className="text-[10px] text-red-600">{error}</span>}
     </div>
   );
 }

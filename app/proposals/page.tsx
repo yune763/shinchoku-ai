@@ -107,7 +107,7 @@ export default async function ProposalsPage() {
             return (
               <li
                 key={p.id}
-                className="flex flex-col rounded-card border border-slate-200 bg-white p-5 shadow-sm"
+                className="relative flex flex-col rounded-card border border-slate-200 bg-white p-5 pb-24 shadow-sm"
               >
                 <div className="flex items-center gap-3 text-xs">
                   <span
@@ -132,7 +132,7 @@ export default async function ProposalsPage() {
                   </div>
                 )}
 
-                <div className="mt-4">
+                <div className="absolute bottom-4 right-4">
                   <ProposalImplementButton
                     proposalId={p.id}
                     existingGoalId={existingGoalId}
@@ -140,7 +140,7 @@ export default async function ProposalsPage() {
                 </div>
 
                 {(p.sections ?? []).length > 0 && (
-                  <details className="mt-3">
+                  <details className="mt-3 pr-24">
                     <summary className="cursor-pointer text-sm font-medium text-brand">
                       提案の詳細を見る
                     </summary>
