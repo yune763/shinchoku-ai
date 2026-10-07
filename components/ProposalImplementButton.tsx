@@ -23,9 +23,8 @@ export function ProposalImplementButton({
         href={`/goals/${existingGoalId}`}
         className="grid h-20 w-20 place-items-center rounded-card border border-emerald-300 bg-emerald-50 p-2 text-center text-[11px] font-semibold leading-tight text-emerald-700 transition-colors hover:bg-emerald-100"
       >
-        ✓ 起票済み
-        <br />
-        ゴールを開く
+        <span className="block whitespace-nowrap">✓ 起票済み</span>
+        <span className="block whitespace-nowrap">ゴールを開く</span>
       </Link>
     );
   }
@@ -60,11 +59,10 @@ export function ProposalImplementButton({
         {loading ? (
           "起票中…"
         ) : (
-          <>
-            ▶ この提案を
-            <br />
-            実装する
-          </>
+          <span>
+            <span className="block whitespace-nowrap">▶この提案を</span>
+            <span className="block whitespace-nowrap">実装する</span>
+          </span>
         )}
       </button>
       {error && <span className="text-[10px] text-red-600">{error}</span>}

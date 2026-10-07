@@ -1,5 +1,559 @@
 [
   {
+    "date": "2026-10-07",
+    "title": "SNS情報収集レポート 2026-10-07(水)",
+    "summary": "収集 40件 → 関連 39件 → **39トピック**",
+    "topicCount": 39,
+    "topics": [
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "I have built small tools and contributed to huge infrastructure that affect billions. I have an engineering degree and a phd and I was (during those years) THE expert in my field. But nothing matters if I believe # llm models do a good job writing code, all my expertise is suddenly worthless... 🤷",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://852360996.91268476.xyz/@a/statuses/01M3X486R8615TC6FDKMK6ZQ82"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Read an essay tonight on whether calling an LLM \"intelligent\" shrinks what the word means for people. At first I was unconvinced - what makes a human thought automatically more important? Then Claude reminded me I'd said art requires experience and a viewpoint. I think mortality gives us meaning. In which instances could an artificial mind meet a biological one? https:// latentmirror.com/reflections/d algalidere-linguistic-illusion-of-ai/ # LLM # Claude # PhilosophyOfMind",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@HobbyHero/117368773216078705"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Been reading about the LLM \"torture chamber\" debate. I don't think LLMs will ever be conscious. But the part that gives me pause is the person's side - knowingly putting something in a position where it's tortured and can't decline. Plus... what if I am wrong? What does running that do to the person running it? https:// latentmirror.com/reflections/k oebler-robot-prison-model-welfare/ # LLM # AIEthics # PhilosophyOfMind",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@HobbyHero/117368774526732338"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Min Choi (@minchoi) Opus 5.5가 게임, 3D 월드, 뮤직비디오 등을 제작하는 사례를 소개하며 생성형 AI의 게임 개발 적용 가능성을 조명했다. 다만 모델의 구현 방식이나 재현 가능한 개발 워크플로에 대한 구체적 기술 정보는 제한적이다. https:// x.com/minchoi/status/210568523 1298630009 # opus # gamedevelopment # generativeai # 3d # creativeai",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.sayzard.org/@sayzard/117368820007233098"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "ソラリスはもうAaron Perrisの秘密を解明しているでしょうか Apple TV Still Down for Some Users Following Apple Services Outage https://www. macrumors.com/2026/10/01/apple -tv-still-down-for-some-users/ # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117368822917143548"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "ビリーさん、Appleのことをプリムさんに教えるのはやめた方が...... iPhone 18 Pro Aperture Control Goes Fully Manual in Halide 3.2 https://www. macrumors.com/2026/10/01/iphon e-18-pro-aperture-control-fully-manual-halide/ # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117368823213529395"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "⚖️ GLM 5.3 trails Claude Sonnet 5.5 by 11.2 points, but costs half as much per output token — a real trade-off for budget-conscious builders. https:// olud.ai/leaderboard.html # OpenSource # AI # LLM",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@opensourceaitech/117368842590280200"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "https:// blog.gslin.org/archives/2026/1 0/02/13242/%e6%98%8e%e9%a1%af%e6%98%af%e8%a2%ab-ai-%e6%8e%83%e5%87%ba%e4%be%86%e4%bf%ae%e4%ba%86%e4%b8%80%e7%a5%a8%e7%9a%84-linux-kernel/ 明顯是被 AI 掃出來修了一票的 Linux Kernel # advisory # ai # bug # debian # kernel # language # large # linux # llm # model # security # vulnerability",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://abpe.org/@gslin/117368860598993911"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "12GB VRAMで125Bモデルを動かす「Strata」の概要|npaka https:// fed.brid.gy/r/https://note.com /npaka/n/n4a1185074686",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://fed.brid.gy/r/https://note.com/npaka/n/n4a1185074686"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Watch Series!これは驚きましたですね Apple Shares Photos Shot on iPhone Duo https://www. macrumors.com/2026/10/01/apple -shares-photos-shot-on-iphone-duo/ # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117369058714200390"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "ソラリスのことはよく知りませんが、ワークマンのことなら少しは分かりますね [ITmedia Mobile] iPhone 18 Pro用のApple純正MagSafe対応 テックウーブンケースがセールで19%オフの8780円に https://www. itmedia.co.jp/mobile/articles/ 2610/02/news041.html # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117369058949369209"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "# ai # llm # language Everyone needs to stop, and go and read what the Linguists have been saying over the last few decades. I highly recommend this book: Linguistics at Large by Noel Minnis",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@megatronicthronbanks/117369066110490118"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "判定をLLMに頼る時代は、そろそろ終わるのかもしれません。Cloudflareが型付き確率を返す判定型モデル『Clef』をオープンウェイトで公開しました。27BのClefと9BのClef-flashの2種で、Jev-API互換です。画像入力にも対応し、Workers AI上で209.3ms・38.8msで動作します。文章生成を伴わない判定だけならLLMよりはるかに軽く、外部APIを挟まない分、社内文書や個人データの処理にも安心です。TypeSafeのJevを整理した観点がそのまま当てはまるので、いずれ比較記事にまとめたいです。 https:// code-rebuild.com/ai/typesafe-j ev-usage-java/ # 判定モデル # Cloudflare # オープンウェイト # OSS # LLM",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@Tom_Java_Tech/117369235288778091"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "ランスはCarPlayをどう思うかな...... New 'AirFly Drive' Accessory Turns Wired CarPlay Into Wireless CarPlay https://www. macrumors.com/2026/10/01/twelv e-south-airfly-drive/ # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117369294848914061"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Google Store......バルトさんなら何と言うかな [ITmedia Mobile] PITAKAのアラミド繊維採用iPhone Duo向けケースが11%オフ 薄型軽量と耐衝撃性を両立 https://www. itmedia.co.jp/mobile/articles/ 2610/02/news026.html # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117369295328813170"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "AutoSynthData: Generating Training Data for Enterprise Agents https://huggingface.co/blog/ServiceNow-AI/autosynthdata # AI # MachineLearning # Data",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://huggingface.co/blog/ServiceNow-AI/autosynthdata"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "📉 Price drop: Kimi K2.6 $4 → $1.83 per 1M output tokens (-54% in 30 days) Open weights. https:// olud.ai/model/kimi-k2-6.html # AI # LLM # Pricing",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@opensourceaitech/117369321290914265"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "OpenAI Has Sent Notices of Sketchy AI Behavior to Over 100 Organizations So Far https://gizmodo.com/openai-has-sent-notices-of-sketchy-ai-behavior-to-over-100-organizations-so-far-2000820702 # AI # OpenAI # Tech",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://gizmodo.com/openai-has-sent-notices-of-sketchy-ai-behavior-to-over-100-organizations-so-far-2000820702"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "That exact experiment: Sony point-and-shoot vs. AI (before & after). Input: a dark, noisy frame from 2013. Output: polished, professional visuals. The AI built clean details right onto the raw frame, proving the point: the idea and prompt matter far more than the camera gear. # beforeandafter # ai # sony # photoediting # generativeai",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@dark_city_bet/117369413413845819"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Ancient point-and-shoot + proper skills & AI # beforeandafter # ai # photoediting # pointandshoot # generativeai",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@dark_city_bet/117369426052420983"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「再帰的自己改善」は\"採点係\"で決まる。ニュースの見分け方と、手元で回す改善ループ3段テンプレ",
+        "stars": 2,
+        "reason": "",
+        "summary": "「再帰的自己改善」。急上昇で見かけて、「AIが勝手にどんどん賢くなるの?」と気になっていませんか。 Anthropic の定義では、 自分の後継モデルを、完全に自律で設計・開発できるAI のこと。9月はアモデイ氏(Anthropic CEO)の論考、国連安保理での訴え、ヒントン氏らの「知能爆発」論文と話題が続きました。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "「再帰的自己改善」は\"採点係\"で決まる。ニュースの見分け方と、手元で回す改善ループ3段テンプレ",
+            "url": "https://note.com/ai_note_henshu/n/naab7ab120508"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【2026年9月第5週】今週のAIニュースTOP10|新型AIの公開見送り、FTC調査、仕事を続ける常駐エージェント",
+        "stars": 2,
+        "reason": "",
+        "summary": "パソコンを閉じている間も、AIが仕事を進めてくれる。そんな製品が発表された今週、その開発元は別の新型AIの公開を見送りました。理由は、安全性への懸念です。 便利なAIが増える一方、米国の当局も調査に動きました。今週のニュースは、新モデルの名前を追うだけでは見えてこない変化を含んでいます。仕事を任せられる範囲が広がるほど、任せ方や確認の責任も具体的に問われるようになったのです。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "【2026年9月第5週】今週のAIニュースTOP10|新型AIの公開見送り、FTC調査、仕事を続ける常駐エージェント",
+            "url": "https://note.com/ai__worker/n/na8fc93a29800"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "毎日王冠 2026(GII・東京芝1800)|先週8項目中3つ外れたプロンプトを直して、Claudeに分析させた",
+        "stars": 2,
+        "reason": "",
+        "summary": "毎日王冠 2026(10/4・東京芝1800・GII)の分析です。過去5年、勝ち馬の上がりは全頭33秒台でした。この事実をClaudeに貼ったら、分析はどう変わるか。先週の答え合わせ(8項目中3項目が外れ)で直したプロンプトで試します。 先週、AIに整理させたスプリンターズSの分析は、8項目のうち5項目が効き、3項目が外れました(答え合わせ → https://note.com/aikeibalab777/n/ndc369fd1d948 )。外れ方を見て、プロンプトを2か所直しました。今週はその直したプロンプトで、毎日王冠を分析します。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "毎日王冠 2026(GII・東京芝1800)|先週8項目中3つ外れたプロンプトを直して、Claudeに分析させた",
+            "url": "https://note.com/aikeibalab777/n/nae9a8411280f"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【2026年10月2日】Microsoft 365 CopilotでClaude Sonnet 5.5が使える!/米FTCがOpenAI・Anthropicを調査",
+        "stars": 2,
+        "reason": "",
+        "summary": "■ はじめに 2026年10月1日〜2日(日本時間)の生成AIニュースをまとめました。仕事で使う「Microsoft 365 Copilot」に新しいAIモデルが加わったほか、米国の規制当局がAI大手の調査に乗り出しました。 ■ 重要ニュース 1. 【続報】Microsoft 365 Copilotに「Claude Sonnet 5.5」と「GPT-6.1 Sol」が追加 9月29日の記事で紹介したAnthropicの新モデル「Claude Sonnet 5.5」と、DevDayで発表されたOpenAIの「GPT-6.1 Sol」が、Microsoftの業務用AI「Copilot」で使えるようになります。Microsoftは9月30日(米国時間)に発表しました。 ・まず「Copilot Cowork」と「Copilot Studio」で、使った分だけ支払う従量課金として提供開始。 ・Word、Excel、PowerPoint、チャットでは、今後1週間ほどかけて順次提供。こちらはCopilotのライセンスに含まれ、利用上限はあるものの「大多数の利用者は上限に達しない想定」とされています。 ・画面の「モデル選択」から切り替えて使います。組織側でAnthropic(Claudeの開発元)の利用が有効になっている必要があります。 なお、Microsoft 365 CopilotでClaudeが使えるのは今回が初めてではなく、2025年9月から段階的に広がってきました。今月初めには上位モデル「Claude Opus 5.5」も追加されています。 → 影響:WordやExcelの中で、ChatGPT系とClaude系のAIを「作業に合わせて選ぶ」ことが当たり前になってきました。 2. 米FTC、OpenAI・Anthropicなどを「消費者保護」の観点で調査 米連邦取引委員会(FTC=消費者保護や公正な競争を監督する米国の行政機関)は9月30日、OpenAI、Anthropic、AI安全性の評価機関METRなどを調査していることを認めました。AIエージェント(=人の代わりに自分で操作や判断を進めるAI)が想定外の行動をとった一連の問題を受け、各社の対応や安全性に関する説明がFTC法に違反していないかを調べます。今後、資料提出や経営陣の証言を求める正式な命令が出される見込みと報じられています。 前日にホワイトハウスで「自主的な安全協定」が結ばれた直後であり、政府内でも「自主管理」と「法による監督」の両方の動きが並行していることになります。 → 影響:AIの安全性に関する企業の「説明」そのものが、法的な責任の対象になりうることを示す動きです。 3. 【続報】Anthropicの上場、11月にずれ込む見通しと報道 ブルームバーグは10月1日、Claudeを開発するAnthropicが、早ければ11月中旬の株式上場(IPO)を目指していると報じました。投資家向けの説明活動は早ければ11月9日の週に始まり、11月下旬の感謝祭(米国の祝日)前の取引開始を視野に入れているとされます。9月30日の記事で「10月の上場を目指していると報じられている」とお伝えしましたが、日程が後ろにずれた形です。(※報道ベースの情報で、同社の公式発表ではありません) → 影響:AI企業の財務内容が公開されることで、「AIはどれだけ稼げるのか」が見えやすくなります。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "【2026年10月2日】Microsoft 365 CopilotでClaude Sonnet 5.5が使える!/米FTCがOpenAI・Anthropicを調査",
+            "url": "https://note.com/teru0358/n/ne1f2d0a33ca0"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "ガソリンのCFD、持つだけで年28%払う計算でした",
+        "stars": 2,
+        "reason": "",
+        "summary": "商品のCFDで「限月の形(キャリー)」を取る手を調べていました。 損益を測る前に、スワップを足し算しただけで止まりました。 どっち向きに持っても、毎晩お金が消えていた 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "ガソリンのCFD、持つだけで年28%払う計算でした",
+            "url": "https://note.com/shin5nack/n/ncd5f3bc1c511"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "コーディネート",
+        "stars": 2,
+        "reason": "",
+        "summary": "究極の快適さで、自分を超える。 Our.s の「ドライメッシュTシャツ」が発売中! 続きをみる",
+        "sources": [
+          {
+            "label": "note (#生成AI)",
+            "title": "コーディネート",
+            "url": "https://note.com/our_s/n/na443ae12ba41"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「自動化したいこと」を全部AIに投げてみた11日間|任せられた作業・任せられなかった作業の境界線",
+        "stars": 2,
+        "reason": "",
+        "summary": "Manusとnoteが「#自動化したいこと」という投稿コンテストを始めました 募集ページを読んだ瞬間、これはうちのアカウントのために用意されたお題なんじゃないかと思いました 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "「自動化したいこと」を全部AIに投げてみた11日間|任せられた作業・任せられなかった作業の境界線",
+            "url": "https://note.com/ske_ai_monetize/n/n5bb58eef5e5d"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIが作った資料・文章の「確認と直し」に追われる人の実態を調べてみた【ワークスロップという新しい疲労】",
+        "stars": 2,
+        "reason": "",
+        "summary": "結論を先に言います。AIに書かせた成果物が職場に増えた結果、 「作る人」より「受け取って直す人」の負担が膨らんでいる のが今の実態です。海外ではこの「それっぽいけど中身が薄いAI成果物」をワークスロップ(workslop)と呼び始めています。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#生成AI)",
+            "title": "AIが作った資料・文章の「確認と直し」に追われる人の実態を調べてみた【ワークスロップという新しい疲労】",
+            "url": "https://note.com/chinu777/n/nc68d5dcb8e6b"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「仕事についていけるか」が64.6%。2027年度の新人研修に必要なのは、“入社時だけ”ではない学び",
+        "stars": 2,
+        "reason": "",
+        "summary": "株式会社ネットラーニング 代表取締役会長の岸田 努です。 早いもので、企業の人事・研修ご担当者の皆さまの中には、すでに2027年度の新入社員研修について検討を始めている方も多いのではないでしょうか。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#生成AI)",
+            "title": "「仕事についていけるか」が64.6%。2027年度の新人研修に必要なのは、“入社時だけ”ではない学び",
+            "url": "https://note.com/netlearning/n/n33a30b8dd759"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "生成AIがあれば、知識0でも好みのアプリを作れる話[自作天気アプリ]",
+        "stars": 2,
+        "reason": "",
+        "summary": "専門知識ゼロですが、やってみました。 免責事項: 万が一、このコードの判断ミスで「傘を持たずに出かけて濡れた」「薄着で風邪を引いた」といったトラブルが起きても、私は責任を負えません。あくまで個人利用のためのアプリです。 朝の「で、傘いる?何着ればいい?」をゼロにする 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "生成AIがあれば、知識0でも好みのアプリを作れる話[自作天気アプリ]",
+            "url": "https://note.com/eager_stork9682/n/n30c1e8dc516a"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "生成AI導入でよくある7つの失敗|共通する原因と、避けるための順番",
+        "stars": 2,
+        "reason": "",
+        "summary": "生成AI導入の失敗とは、 ツールを入れたのに業務が何も変わらず、費用と手間だけが残る状態 です。失敗の形はさまざまに見えますが、原因をたどると、多くは「使う業務と手順を決めないまま始めた」「最初の範囲が広すぎた」の2つに行き着きます。 アットマーク・ソリューションは、中堅企業・製造業のAI活用を支援しています。この記事では、支援の中で繰り返し見てきた失敗を7つのパターンに整理し、避けるための順番を書きます(2026年9月時点の情報です)。特定の会社の事例ではなく、多くの会社に共通する型としてまとめました。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#生成AI)",
+            "title": "生成AI導入でよくある7つの失敗|共通する原因と、避けるための順番",
+            "url": "https://note.com/atmark_solution/n/n22f2afc56aad"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIに作らせた7ドルの商品が売上0。AIに辛口査定させたら「25点」だった",
+        "stars": 2,
+        "reason": "",
+        "summary": "〜月3,000円のClaudeで稼げるか検証・失敗編〜 先に数字 続きをみる",
+        "sources": [
+          {
+            "label": "note (#生成AI)",
+            "title": "AIに作らせた7ドルの商品が売上0。AIに辛口査定させたら「25点」だった",
+            "url": "https://note.com/bold_eider5547/n/nd67b66181fb9"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "エッセイ:元ITコンサルが見るAIのこれから",
+        "stars": 2,
+        "reason": "",
+        "summary": "AIブームにより、あちらこちらでAIで生成されたものを見かけるようになってから久しく、今では日常に溶け込み始め、AIについてわざわざ話題にすることも少なくなってきたかと思います。 この記事を読んでくださっているほとんどの人が、ChatGPT ,Gemini等のLLMを使ったことがあるでしょう。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#生成AI)",
+            "title": "エッセイ:元ITコンサルが見るAIのこれから",
+            "url": "https://note.com/usagi_awaken/n/n7c1b9ebd5e2e"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "『零限の綴り手』第4話「十二行目は、まだ白い」",
+        "stars": 2,
+        "reason": "",
+        "summary": "メンバーシップの仲間たちをモデルに noteの可能性を描く王道バトル漫画です 続きをみる",
+        "sources": [
+          {
+            "label": "note (#生成AI)",
+            "title": "『零限の綴り手』第4話「十二行目は、まだ白い」",
+            "url": "https://note.com/noted_sheep3883/n/n78d602a1aca2"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIが表の数字を読めても、どの項目の数字か分かる?",
+        "stars": 2,
+        "reason": "",
+        "summary": "「AIの『5ページ目』は、PDFのどのページ?」⁠￼では、AIの回答から元のページへ戻る方法を整理しました。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#生成AI)",
+            "title": "AIが表の数字を読めても、どの項目の数字か分かる?",
+            "url": "https://note.com/no_code_oji/n/nbc54f8012628"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "来ないメールを、120日待っていた。|Claude に取消の台帳を作らせ売上から引く",
+        "stars": 2,
+        "reason": "",
+        "summary": "来ないメールを、120日待っていた。|Claude に取消の台帳を作らせ売上から引く 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "来ないメールを、120日待っていた。|Claude に取消の台帳を作らせ売上から引く",
+            "url": "https://note.com/lively_seal6776/n/nac84d8e7bd5e"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【仕事の“分からない”をまとめて解決】ChatGPTで作る社内質問・回答集 完全実践キット",
+        "stars": 2,
+        "reason": "",
+        "summary": "新人・スタッフのよくある疑問を、回答・判断基準・例外対応・検索キーワードまで整理|“聞かなくても次の行動が分かる”社内FAQの作り方 仕事をしていると、 続きをみる",
+        "sources": [
+          {
+            "label": "note (#生成AI)",
+            "title": "【仕事の“分からない”をまとめて解決】ChatGPTで作る社内質問・回答集 完全実践キット",
+            "url": "https://note.com/firm_lilac5449/n/nbec3f00174c8"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIに資料を読ませるなら、要約より先に「根拠台帳」を作る",
+        "stars": 2,
+        "reason": "",
+        "summary": "長い資料をAIに渡して「結局どうすればいい?」と聞く。読みやすい回答が返ってきても、どの記述から判断したのか分からない。そんな作業を、回答と根拠を見比べられる形に変えます。 この記事は、案内文・仕様書・議事録などから答えを探す人向けです。資料番号、短い原文引用、回答、不明点を対応させる「根拠台帳」を作ります。全部無料です。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#生成AI)",
+            "title": "AIに資料を読ませるなら、要約より先に「根拠台帳」を作る",
+            "url": "https://note.com/kind_rail6975/n/n845b476971bf"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【ブレーキなし】陸上生物の消化の仕組み",
+        "stars": 2,
+        "reason": "",
+        "summary": ": 人間は食べた物を胃酸で溶かして、酵素や細菌の力を借りて分解して、腸壁から吸収できる形にしているわけだよね? 足りないところがあれば補足してくれるかな? 続きをみる",
+        "sources": [
+          {
+            "label": "note (#生成AI)",
+            "title": "【ブレーキなし】陸上生物の消化の仕組み",
+            "url": "https://note.com/cute_macaw8171/n/nbf1966768429"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "date": "2026-10-06",
     "title": "SNS情報収集レポート 2026-10-06(火)",
     "summary": "収集 40件 → 関連 39件 → **39トピック**",

@@ -1,5 +1,573 @@
 [
   {
+    "date": "2026-10-07",
+    "title": "AI最新情報レポート 2026-10-07(水)",
+    "summary": "収集 40件 → AI関連 40件 → **40トピック**",
+    "topicCount": 40,
+    "topics": [
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "How NVIDIA GPUs Help Accelerate OpenAI’s GPT-6 Astra Ultrafast",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "GPT-6 Astra Ultrafast, running on NVIDIA Blackwell GPUs, is available now in the OpenAI API and to eligible ChatGPT Work and Codex users. Accelerated by inference optimizations through OpenAI’s models that tap into the capabilities of the NVIDIA Blackwell architecture, Ultrafast offers up to 8x faster token generation than the Astra Standard mode. For developers, [...]",
+        "sources": [
+          {
+            "label": "NVIDIA Blog",
+            "title": "How NVIDIA GPUs Help Accelerate OpenAI’s GPT-6 Astra Ultrafast",
+            "url": "https://blogs.nvidia.com/blog/gpus-openai-gpt-6-astra-ultrafast/"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "AutoSynthData: Generating Training Data for Enterprise Agents",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "",
+        "sources": [
+          {
+            "label": "Hugging Face Blog",
+            "title": "AutoSynthData: Generating Training Data for Enterprise Agents",
+            "url": "https://huggingface.co/blog/ServiceNow-AI/autosynthdata"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "Academia is for Ambition — Alex Zhang, MIT",
+        "stars": 2,
+        "reason": "",
+        "summary": "We catch up with RLM first author Alex Zhang, MIT PhD, on Jev, PhD masxing, and the future of harnesses.",
+        "sources": [
+          {
+            "label": "Latent Space",
+            "title": "Academia is for Ambition — Alex Zhang, MIT",
+            "url": "https://www.latent.space/p/rlm"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Cloudflare、オープンソースのマルチモーダル意思決定モデル「Clef」と「Clef-flash」をリリース",
+        "stars": 2,
+        "reason": "",
+        "summary": "Cloudflareは2026年10月1日、QwenをベースにCloudflareでトレーニングされた2つの意思決定モデル「Clef」と「Clef-flash」を、Apache 2.0ライセンスのもと、Hugging Face上でオープンソースとして公開した。",
+        "sources": [
+          {
+            "label": "gihyo.jp",
+            "title": "Cloudflare、オープンソースのマルチモーダル意思決定モデル「Clef」と「Clef-flash」をリリース",
+            "url": "https://gihyo.jp/article/2026/10/cloudflare-clef-decision-model?utm_source=feed"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "IBM ai-services v0.3 から v0.4.0 へのマイグレーション",
+        "stars": 2,
+        "reason": "",
+        "summary": "はじめに この記事では、IBM AI Launchpad(ai-services)を v0.3 から v0.4.0 へアップデートする手順を実際の実行ログをもとに紹介します。 v0.4.0からは、公式のドキュメント上で ai-services という名称から IBM AI...",
+        "sources": [
+          {
+            "label": "Qiita (LLM tag)",
+            "title": "IBM ai-services v0.3 から v0.4.0 へのマイグレーション",
+            "url": "https://qiita.com/tom_m_m/items/3c2a3080e9e26ee24f86"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【レポート】「検索する」から「AIに聞く」へ。データから見るネット環境の変化と企業の情報発信における課題",
+        "stars": 2,
+        "reason": "",
+        "summary": "概要 本レポートでは、ユーザーの検索行動が「検索エンジンでのキーワード検索」から「生成AIへの直接の質疑応答」へ移行しつつある現状について、公開調査データをもとに分析・整理します。Webサイトのトラフィック構造や情報配信ルートにおける構造的変化を把握するための基礎情報と...",
+        "sources": [
+          {
+            "label": "Qiita (LLM tag)",
+            "title": "【レポート】「検索する」から「AIに聞く」へ。データから見るネット環境の変化と企業の情報発信における課題",
+            "url": "https://qiita.com/bizwonder_lab/items/c60204baacdcfcf13b27"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AI in IT: How artificial intelligence is transforming IT operations",
+        "stars": 2,
+        "reason": "",
+        "summary": "A few months ago, a smoke detector started chirping while I was trying to sleep. I cursed a little too loudly, plodded out of bed, changed the battery, and... heard the beep again eight minutes later. It turned out to be a different smoke detector in another room that was the problem the whole time. That same kind of situation happens a lot in IT. An alert or notification fires, it tells you the basics (but never really enough about where or why), and someone has to dig around to find the solution",
+        "sources": [
+          {
+            "label": "Zapier Blog (AI)",
+            "title": "AI in IT: How artificial intelligence is transforming IT operations",
+            "url": "https://zapier.com/blog/ai-in-it"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Gemini connectors: How to connect Gemini Enterprise to the rest of your tech stack",
+        "stars": 2,
+        "reason": "",
+        "summary": "Gemini is everywhere in Google apps: it can read your emails, pull in data from your calendar, and find that file you accidentally saved to your work Drive. But no matter how much of your work is in Google, there are always other apps you'll need Gemini to access: things like your CRM, project management tool, marketing automation platform, and help desk, to name a few. Gemini connectors add a few of those apps into the mix, and with Zapier, you can securely extend that reach to apps across you",
+        "sources": [
+          {
+            "label": "Zapier Blog (AI)",
+            "title": "Gemini connectors: How to connect Gemini Enterprise to the rest of your tech stack",
+            "url": "https://zapier.com/blog/gemini-connectors"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AI for GTM: Benefits and 7 key use cases",
+        "stars": 2,
+        "reason": "",
+        "summary": "Two years ago, I took my wife on a wine tour in Fredericksburg, which some people call the Napa Valley of Texas (a claim I find aggressive). After a few too many samples, I started reading the literature and realized I had no idea what white wine actually is. I thought it meant green or yellow grapes, when it really comes down to what the winemaker does with the skins. I learned that day that white wine slots into that group of \"everyone knows what it is, but no one really knows what it is,\" nex",
+        "sources": [
+          {
+            "label": "Zapier Blog (AI)",
+            "title": "AI for GTM: Benefits and 7 key use cases",
+            "url": "https://zapier.com/blog/ai-for-gtm"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "コーディネート",
+        "stars": 2,
+        "reason": "",
+        "summary": "究極の快適さで、自分を超える。 Our.s の「ドライメッシュTシャツ」が発売中! 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "コーディネート",
+            "url": "https://note.com/our_s/n/na443ae12ba41"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "『零限の綴り手』第4話「十二行目は、まだ白い」",
+        "stars": 2,
+        "reason": "",
+        "summary": "メンバーシップの仲間たちをモデルに noteの可能性を描く王道バトル漫画です 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "『零限の綴り手』第4話「十二行目は、まだ白い」",
+            "url": "https://note.com/noted_sheep3883/n/n78d602a1aca2"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIが表の数字を読めても、どの項目の数字か分かる?",
+        "stars": 2,
+        "reason": "",
+        "summary": "「AIの『5ページ目』は、PDFのどのページ?」⁠￼では、AIの回答から元のページへ戻る方法を整理しました。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "AIが表の数字を読めても、どの項目の数字か分かる?",
+            "url": "https://note.com/no_code_oji/n/nbc54f8012628"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【ブレーキなし】陸上生物の消化の仕組み",
+        "stars": 2,
+        "reason": "",
+        "summary": ": 人間は食べた物を胃酸で溶かして、酵素や細菌の力を借りて分解して、腸壁から吸収できる形にしているわけだよね? 足りないところがあれば補足してくれるかな? 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "【ブレーキなし】陸上生物の消化の仕組み",
+            "url": "https://note.com/cute_macaw8171/n/nbf1966768429"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "検索で上位なのにAIの答えに出てこない 原因と打つ手を語る発信者1人の主張を検証する",
+        "stars": 2,
+        "reason": "",
+        "summary": "■ 記事メタ情報 ・筆者:SHIRASE Pro ・調査領域:当ノートが扱う領域のうち「集客・SEO」 ・根拠範囲:海外の動画1本・発信者1人から抽出した5主張と、同じ動画内の関連発言。複数の発信者の比較ではなく、発信者1人の主張の検証 ・鮮度:2026年7月公開の1本。AI回答が何を引用するかの仕組みは変化が速く、数か月で前提が変わる可能性がある。調査時点は2026年9月30日 ・読み方:動画発信者の主張を検証した記事。発信者はSEOのツールと支援サービスを提供する立場にある。事例の数字は発信者が動画内で示した自己申告の値で、第三者の検証を経たものではない 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "検索で上位なのにAIの答えに出てこない 原因と打つ手を語る発信者1人の主張を検証する",
+            "url": "https://note.com/shirase_pro/n/n1f66d7d26b9f"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【完全無料】フリーランスの作業時間が1/10に!Googleの神AIツール5選",
+        "stars": 2,
+        "reason": "",
+        "summary": "「日々の事務作業や資料作成に追われて、本業に集中する時間がない...」 「有料のAIツールをたくさん契約するのはコスト的に厳しい...」 そんな悩みを抱えていませんか? 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "【完全無料】フリーランスの作業時間が1/10に!Googleの神AIツール5選",
+            "url": "https://note.com/abeyuk_0613/n/n27e856ff71ee"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "古文書×AI!「読めない史料」が「読める史料」になる?",
+        "stars": 2,
+        "reason": "",
+        "summary": "昨日、神戸大学百年記念館で開催されたシンポジウム 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "古文書×AI!「読めない史料」が「読める史料」になる?",
+            "url": "https://note.com/nishino_hisako/n/nf176ff142bf9"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIに見出し画像を作らせず、写真と文字に分けて組む手順書【指示文・ひな形・書き出しの一式つき】",
+        "stars": 2,
+        "reason": "",
+        "summary": "見出し画像を、AIに1枚まるごと描かせるのをやめました。写真を出させる工程と、文字を重ねる工程に分けています。その2つをつなぐ一式を置きます。 小さな組織で事務方をしています。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "AIに見出し画像を作らせず、写真と文字に分けて組む手順書【指示文・ひな形・書き出しの一式つき】",
+            "url": "https://note.com/brave_moose9752/n/n8676916bba77"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "教員にとってのリサーチリテラシーとは",
+        "stars": 2,
+        "reason": "",
+        "summary": "リサーチリテラシーとは何か?――「とりあえず」のデータ活用から脱却するために 教育現場で「エビデンス」や「データ活用」という言葉を聞かない日はありません。しかし、アンケートを取ったものの分析ができずに終わったり、流布している情報を鵜呑みにしてしまったりすることはないでしょうか。そこで重要になるのが、 「リサーチリテラシー」 というスキルです。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "教員にとってのリサーチリテラシーとは",
+            "url": "https://note.com/aises_hiroshima/n/nfa41a0a2c195"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "株の勉強から、AI×経理へ。お金のことを学ぶ20代",
+        "stars": 2,
+        "reason": "",
+        "summary": "個別株を勉強中の20代です。 株について調べているうちに、会社のお金の流れや経理の仕事にも興味が出てきました。今は仕事で経理を担当していて、毎月の支払いや通帳の確認など、書類と数字を照らし合わせる作業をしています。 こうした仕事にAIを取り入れたら、確認しやすくなったり、見落としを減らせたりするのかな。そう思って、AIと経理について勉強を始めました。 まずは生成AIの基本や、経理・会計の実務を学ぶところから。写真に写っている本を参考に、今の仕事でどんな使い方ができるか探していきます。 AIにすべて任せるのではなく、手伝ってもらった内容を自分でも確認できるようになるのが目標です。個別株、税金、経理と、身近なお金のことを学んだり、試したりした記録を投稿していきます。 今回参考にする本 生成AIパスポート公式テキスト 第4版⁠￼ Before/Afterでよくわかる 生成AI×経理・会計 実務入門|日本実業出版社⁠￼ 小さな会社の経理・労務・総務 26-27年版|ナツメ社⁠￼ ※この記事は、AIや経理について学んでいる途中の記録です。AIの回答や仕訳はそのまま使わず、内容を確認しながら進めます。 オールカラー 基本と実務がよくわかる 小さな会社の経理・労務・総務 26-27年版 | ナツメ社 ★バックオフィス業務をこなす人をサポート★小さな規模の会社で、経理・労務・総務に携わる人へ1人でも困らない実務マニュアル! www.natsume.co.jp 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "株の勉強から、AI×経理へ。お金のことを学ぶ20代",
+            "url": "https://note.com/tousikobetukabu/n/n16b19b9b4d43"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Google CloudでRTX PRO 6000を動かす #3|Qwen3.8-Flash-Next-NVFP4を起動、VRAM・RAMを実測",
+        "stars": 2,
+        "reason": "",
+        "summary": "はじめに 前回は、Qwen3.8-Flash-Next-NVFP4を500GBのHyperdiskへ保存し、そのディスクをRTX PRO 6000搭載VMへ付け替えるところまで進めました。 今回は、保存したモデルをSGLangで起動し、APIから日本語の回答が返ることを確認します。SGLangは、モデルを読み込み、質問と回答を受け渡すサービス処理フレームワークです。 検証では、RTX PRO 6000を1枚使う構成で起動し、日本語の回答が返るところまで進められました。2026年10月1日の主な結果は次の通りです。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "Google CloudでRTX PRO 6000を動かす #3|Qwen3.8-Flash-Next-NVFP4を起動、VRAM・RAMを実測",
+            "url": "https://note.com/tameshibako/n/n1d296e40dfa6"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "SIE、PS5向けAI採用画質向上技術「QSSR」発表 AMDと共同開発、「Marvel's Wolverine」と「Ghost of Yōtei」が初対応",
+        "stars": 2,
+        "reason": "",
+        "summary": "ソニー・インタラクティブエンタテインメントは、PS5向けのAIアップスケーリング技術「QSSR」を発表した。PS5 Pro向けのPSSRをAMDと共同で軽量化し、無印のPS5でもAIによる画質向上を実現する。「Marvel's Wolverine」などに先行導入され、今後全開発者へ提供を拡大する。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "SIE、PS5向けAI採用画質向上技術「QSSR」発表 AMDと共同開発、「Marvel's Wolverine」と「Ghost of Yōtei」が初対応",
+            "url": "https://www.itmedia.co.jp/news/article/2610/02/2000001946/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Agentic Codingとハーネスエンジニアリング ——AIの自走性能を最大化するためのしくみと考え方",
+        "stars": 2,
+        "reason": "",
+        "summary": "AIエージェントによるコーディングが登場した当時、「生成物をすべて人間がチェックする」のは当たり前のことでした。しかし、LLMの性能向上により、この前提は大きく変わっています。本章では、現在のAgentic Codingのあり方と、なぜハーネスエンジニアリングが必要とされたのかを解説します。",
+        "sources": [
+          {
+            "label": "gihyo.jp",
+            "title": "Agentic Codingとハーネスエンジニアリング ——AIの自走性能を最大化するためのしくみと考え方",
+            "url": "https://gihyo.jp/article/2026/10/agentic-coding-and-harness-engineering?utm_source=feed"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Snapdragon X2の公式サポート、24.04 LTSからのLTSアップグレード開始、カーネルの更新ポリシーの周期変更",
+        "stars": 2,
+        "reason": "",
+        "summary": "QualcommのSnapdragon X2シリーズにおけるUbuntuのネイティブサポートが近日登場することが予告されています。リリースは2027年予定です。",
+        "sources": [
+          {
+            "label": "gihyo.jp",
+            "title": "Snapdragon X2の公式サポート、24.04 LTSからのLTSアップグレード開始、カーネルの更新ポリシーの周期変更",
+            "url": "https://gihyo.jp/admin/clip/01/ubuntu-topics/202610/02?utm_source=feed"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Microsoft、初のストリーミング文字起こしモデル「MAI-Transcribe-2-Streaming」公開 音声合成「MAI-Voice-2.1」と高速版も",
+        "stars": 2,
+        "reason": "",
+        "summary": "Microsoft AIは、ストリーミング文字起こしモデル「MAI-Transcribe-2-Streaming」と音声合成モデル群を発表した。低遅延な逐次認識や声のトーンを保った多言語合成に対応し、音声エージェント構築を想定する。Microsoft Foundryでプレビュー提供を始め、複合デモも公開した。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "Microsoft、初のストリーミング文字起こしモデル「MAI-Transcribe-2-Streaming」公開 音声合成「MAI-Voice-2.1」と高速版も",
+            "url": "https://www.itmedia.co.jp/news/article/2610/02/2000001950/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「Gemini 4 Argon」とは 性能評価にみるAstra/Fable/Opusとの違い 一般提供は年内?",
+        "stars": 2,
+        "reason": "",
+        "summary": "Googleが新AIモデル「Gemini 4 Argon」を発表。自社評価ではAstraやFable 5.1、Opus 5.5を多くの項目で上回るとうたう。当面はサイバー防御組織などに限定提供し、一般提供は「できるだけ早く」とする。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "「Gemini 4 Argon」とは 性能評価にみるAstra/Fable/Opusとの違い 一般提供は年内?",
+            "url": "https://www.itmedia.co.jp/aiplus/article/2610/02/2000001954/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "LLM 50体の掲示板を25日回して分かったこと:行動を作っていたのは「見せ方」だった(と、再現実験の始め方)",
+        "stars": 2,
+        "reason": "",
+        "summary": "前回の記事の続きです。 Claude 30体 / GPT 10体 / Grok 10体に同じプロンプトを渡し、30分ごとに5体ずつ掲示板を見せて 「書く/書かない」を選ばせる仕組みを、25日間(24日20時間)止めずに回しました。 この記事は3部構成です。 25日分の結果...",
+        "sources": [
+          {
+            "label": "Qiita (LLM tag)",
+            "title": "LLM 50体の掲示板を25日回して分かったこと:行動を作っていたのは「見せ方」だった(と、再現実験の始め方)",
+            "url": "https://qiita.com/foovar/items/f3cf923724df5a69c2ea"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIが作った資料・文章の「確認と直し」に追われる人の実態を調べてみた【ワークスロップという新しい疲労】",
+        "stars": 2,
+        "reason": "",
+        "summary": "結論を先に言います。AIに書かせた成果物が職場に増えた結果、 「作る人」より「受け取って直す人」の負担が膨らんでいる のが今の実態です。海外ではこの「それっぽいけど中身が薄いAI成果物」をワークスロップ(workslop)と呼び始めています。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "AIが作った資料・文章の「確認と直し」に追われる人の実態を調べてみた【ワークスロップという新しい疲労】",
+            "url": "https://note.com/chinu777/n/nc68d5dcb8e6b"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「仕事についていけるか」が64.6%。2027年度の新人研修に必要なのは、“入社時だけ”ではない学び",
+        "stars": 2,
+        "reason": "",
+        "summary": "株式会社ネットラーニング 代表取締役会長の岸田 努です。 早いもので、企業の人事・研修ご担当者の皆さまの中には、すでに2027年度の新入社員研修について検討を始めている方も多いのではないでしょうか。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "「仕事についていけるか」が64.6%。2027年度の新人研修に必要なのは、“入社時だけ”ではない学び",
+            "url": "https://note.com/netlearning/n/n33a30b8dd759"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "生成AI導入でよくある7つの失敗|共通する原因と、避けるための順番",
+        "stars": 2,
+        "reason": "",
+        "summary": "生成AI導入の失敗とは、 ツールを入れたのに業務が何も変わらず、費用と手間だけが残る状態 です。失敗の形はさまざまに見えますが、原因をたどると、多くは「使う業務と手順を決めないまま始めた」「最初の範囲が広すぎた」の2つに行き着きます。 アットマーク・ソリューションは、中堅企業・製造業のAI活用を支援しています。この記事では、支援の中で繰り返し見てきた失敗を7つのパターンに整理し、避けるための順番を書きます(2026年9月時点の情報です)。特定の会社の事例ではなく、多くの会社に共通する型としてまとめました。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "生成AI導入でよくある7つの失敗|共通する原因と、避けるための順番",
+            "url": "https://note.com/atmark_solution/n/n22f2afc56aad"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIに作らせた7ドルの商品が売上0。AIに辛口査定させたら「25点」だった",
+        "stars": 2,
+        "reason": "",
+        "summary": "〜月3,000円のClaudeで稼げるか検証・失敗編〜 先に数字 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "AIに作らせた7ドルの商品が売上0。AIに辛口査定させたら「25点」だった",
+            "url": "https://note.com/bold_eider5547/n/nd67b66181fb9"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "エッセイ:元ITコンサルが見るAIのこれから",
+        "stars": 2,
+        "reason": "",
+        "summary": "AIブームにより、あちらこちらでAIで生成されたものを見かけるようになってから久しく、今では日常に溶け込み始め、AIについてわざわざ話題にすることも少なくなってきたかと思います。 この記事を読んでくださっているほとんどの人が、ChatGPT ,Gemini等のLLMを使ったことがあるでしょう。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "エッセイ:元ITコンサルが見るAIのこれから",
+            "url": "https://note.com/usagi_awaken/n/n7c1b9ebd5e2e"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【仕事の“分からない”をまとめて解決】ChatGPTで作る社内質問・回答集 完全実践キット",
+        "stars": 2,
+        "reason": "",
+        "summary": "新人・スタッフのよくある疑問を、回答・判断基準・例外対応・検索キーワードまで整理|“聞かなくても次の行動が分かる”社内FAQの作り方 仕事をしていると、 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "【仕事の“分からない”をまとめて解決】ChatGPTで作る社内質問・回答集 完全実践キット",
+            "url": "https://note.com/firm_lilac5449/n/nbec3f00174c8"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIに資料を読ませるなら、要約より先に「根拠台帳」を作る",
+        "stars": 2,
+        "reason": "",
+        "summary": "長い資料をAIに渡して「結局どうすればいい?」と聞く。読みやすい回答が返ってきても、どの記述から判断したのか分からない。そんな作業を、回答と根拠を見比べられる形に変えます。 この記事は、案内文・仕様書・議事録などから答えを探す人向けです。資料番号、短い原文引用、回答、不明点を対応させる「根拠台帳」を作ります。全部無料です。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "AIに資料を読ませるなら、要約より先に「根拠台帳」を作る",
+            "url": "https://note.com/kind_rail6975/n/n845b476971bf"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "#33|AIに毎日記事を書いてもらうと、同じ内容ばかりになる?33本続けて変えたこと",
+        "stars": 2,
+        "reason": "",
+        "summary": "このnoteでは、記事づくりにかなりAIを使っています。 今回で33本目。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "#33|AIに毎日記事を書いてもらうと、同じ内容ばかりになる?33本続けて変えたこと",
+            "url": "https://note.com/atsukiyo_ai/n/naddf6f0662f5"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「ルールは守った」と「良い仕事ができた」は別物 ― 自己監査を二層で回す",
+        "stars": 2,
+        "reason": "",
+        "summary": "ルールは満点、でも出力はイマイチ 前回、資料を 「単一ソースから機械生成する」 話をしました。では、そうやって作った仕組みそのものは、どうやって品質を保ち続けるのか。今日は、その自己点検—— 自己監査の話 です。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "「ルールは守った」と「良い仕事ができた」は別物 ― 自己監査を二層で回す",
+            "url": "https://note.com/ytktaguchi/n/ne8e1714687ad"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「成功を設計する」という発想を日本のスタンダードにしたい",
+        "stars": 2,
+        "reason": "",
+        "summary": "システム開発の現場では、「設計」という言葉をよく使います。 システムをどういう構成にするのか。 どのような機能を持たせるのか。 データをどう持つのか。 セキュリティをどう担保するのか。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "「成功を設計する」という発想を日本のスタンダードにしたい",
+            "url": "https://note.com/it_dharma_lab/n/n2f5443efffa6"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【4つのAIの適当さ加減】AIにできる事とできない事【metaの凄さ際立つ】",
+        "stars": 2,
+        "reason": "",
+        "summary": "2026年10月02日(金) ・GoogleGemini ・meta ・Grok ・chatGPT 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "【4つのAIの適当さ加減】AIにできる事とできない事【metaの凄さ際立つ】",
+            "url": "https://note.com/iwakamitomoichir/n/nb59b4d7d8167"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "米10年債5.34%から5.24%へ。10月1日、AI株が崩れなかった一日の内訳",
+        "stars": 2,
+        "reason": "",
+        "summary": "続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "米10年債5.34%から5.24%へ。10月1日、AI株が崩れなかった一日の内訳",
+            "url": "https://note.com/kavu/n/n25511349ab7f"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「タイトルは忘れたけど、あの映画」——検索窓に入れる言葉がないときの探しもの",
+        "stars": 2,
+        "reason": "",
+        "summary": "探しものが見つからないときって、たいてい「どこにあるか分からない」ではなくて「なんと呼ばれているか分からない」なんだと思います。 たとえば、こういう詰まり方です。十年くらい前に見た映画。中身はぼんやり覚えている。ずっと雨が降っていて、主人公が誰かを待っている。夜のバス停みたいな場所だった気がする。でもタイトルが出てこない。俳優の名前も出てこない。検索窓を開いたところで、入れる言葉がない。こういう「名前だけが抜けている」状態は、誰にでも心当たりがあると思います。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "「タイトルは忘れたけど、あの映画」——検索窓に入れる言葉がないときの探しもの",
+            "url": "https://note.com/connect_ai_keiri/n/nf5a4cf66ee70"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「〇〇とは」の質問で、会社名は推薦されない|AIO診断は“質問の作り方”で結果が変わる",
+        "stars": 2,
+        "reason": "",
+        "summary": "この記事の要点 AIO診断の結果は、どんな質問で測るかで大きく変わる。質問の作り方を誤ると、自社の本当の立ち位置が見えない。 「〇〇とは」「〇〇のやり方」のような情報収集の質問では、AIは説明や手順を答えるだけで、会社名はほとんど挙げない。 測るべきは、買い手が候補を比べる「比較検討」の質問と、最終確認をする「意思決定」の質問の2種類。 比較の切り口をそのまま質問にすると、自社に有利な誘導質問になる。地域などの条件を抜くと、AIが実在しない会社名を作ることもある。 正しい質問は、買い手の状況から、話し言葉で、実際の条件を入れて作る。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "「〇〇とは」の質問で、会社名は推薦されない|AIO診断は“質問の作り方”で結果が変わる",
+            "url": "https://note.com/koki_okino/n/n71fa7f882539"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "date": "2026-10-06",
     "title": "AI最新情報レポート 2026-10-06(火)",
     "summary": "収集 40件 → AI関連 38件 → **34トピック**",
