@@ -76,31 +76,60 @@ export default function InstallPage() {
         <h2 className="text-sm font-bold text-ink dark:text-white">
           1. インストール（Windows）
         </h2>
-        <ol className="list-decimal space-y-2 pl-5 text-sm text-ink-soft dark:text-slate-300">
-          <li>スタートメニューで「PowerShell」を開く</li>
-          <li>
-            次の1行を貼り付けて Enter（Node.js・Git・Claude CLI・本体を自動で用意します）:
-            <div className="mt-2">
-              <CopyBox text={INSTALL_CMD} />
-            </div>
-          </li>
-          <li>
-            途中で <code className="text-xs">FIREBASE_SERVICE_ACCOUNT</code>{" "}
-            の貼り付けを求められたら、管理者から受け取った値を貼り付けて Enter
-          </li>
-          <li>デスクトップの「進捗管理AIを起動」をダブルクリックして使用開始</li>
-        </ol>
-        <p className="text-xs text-ink-muted dark:text-slate-400">
-          スクリプトの中身を直接確認したい場合：{" "}
+
+        {/* かんたん：インストーラをダウンロードしてダブルクリック */}
+        <div className="rounded-lg border border-brand/30 bg-brand/5 dark:bg-brand/10 p-4 space-y-2">
+          <div className="text-sm font-semibold text-ink dark:text-slate-100">
+            かんたん導入（おすすめ）
+          </div>
           <a
-            href={SETUP_URL}
-            target="_blank"
-            rel="noreferrer"
-            className="text-brand hover:underline"
+            href="/shinchoku-install.cmd"
+            download="進捗管理AI-インストール.cmd"
+            className="inline-flex items-center gap-2 rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90"
           >
-            setup.ps1 を開く
+            ⬇ インストーラをダウンロード
           </a>
-        </p>
+          <ol className="list-decimal space-y-1 pl-5 text-sm text-ink-soft dark:text-slate-300">
+            <li>上のボタンでインストーラを保存</li>
+            <li>
+              ダウンロードした{" "}
+              <code className="text-xs">進捗管理AI-インストール.cmd</code>{" "}
+              を<strong>ダブルクリック</strong>（必要ソフトと本体を自動で用意）
+            </li>
+            <li>
+              「WindowsによってPCが保護されました」と出たら「詳細情報」→「実行」を選択
+            </li>
+            <li>
+              途中で <code className="text-xs">FIREBASE_SERVICE_ACCOUNT</code>{" "}
+              を聞かれたら管理者から受け取った値を貼り付け
+            </li>
+            <li>完了後、デスクトップの「進捗管理AIを起動」をダブルクリック</li>
+          </ol>
+        </div>
+
+        {/* 上級者向け：1行コマンド */}
+        <details className="text-sm">
+          <summary className="cursor-pointer text-ink-muted dark:text-slate-400">
+            うまくいかない場合：PowerShellに1行貼って実行する方法
+          </summary>
+          <div className="mt-2 space-y-2">
+            <p className="text-ink-soft dark:text-slate-300">
+              スタートメニューで「PowerShell」を開き、次の1行を貼り付けて Enter:
+            </p>
+            <CopyBox text={INSTALL_CMD} />
+            <p className="text-xs text-ink-muted dark:text-slate-400">
+              スクリプトの中身：{" "}
+              <a
+                href={SETUP_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="text-brand hover:underline"
+              >
+                setup.ps1 を開く
+              </a>
+            </p>
+          </div>
+        </details>
       </section>
 
       {/* 共有キーの注意 */}
