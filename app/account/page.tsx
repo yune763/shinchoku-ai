@@ -10,6 +10,34 @@ interface Me {
   displayName: string;
   role: "admin" | "member";
   claudeLinked: boolean;
+  avatar?: string;
+}
+
+// 選択画像を正方形 他画面表示用に小さくリサイズして data URL(JPEG) にする。
+function fileToResizedDataUrl(file: File, size = 128): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onerror = () => reject(new Error("読み込みに失敗しました"));
+    reader.onload = () => {
+      const img = new Image();
+      img.onerror = () => reject(new Error("画像を読み込めませんでした"));
+      img.onload = () => {
+        const canvas = document.createElement("canvas");
+        canvas.width = size;
+        canvas.height = size;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) return reject(new Error("変換に失敗しました"));
+        // 中央を正方形にクロップして描画。
+        const min = Math.min(img.width, img.height);
+        const sx = (img.width - min) / 2;
+        const sy = (img.height - min) / 2;
+        ctx.drawImage(img, sx, sy, min, min, 0, 0, size, size);
+        resolve(canvas.toDataURL("image/jpeg", 0.85));
+      };
+      img.src = reader.result as string;
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
 async function api(url: string, init?: RequestInit) {
@@ -31,6 +59,10 @@ export default function AccountPage() {
   const [pwErr, setPwErr] = useState("");
 
   const [claudeMsg, setClaudeMsg] = useState("");
+
+  const [avatarMsg, setAvatarMsg] = useState("");
+  const [avatarErr, setAvatarErr] = useState("");
+  const [avatarBusy, setAvatarBusy] = useState(false);
 
   useEffect(() => {
     setOrigin(window.location.origin);
@@ -73,6 +105,49 @@ export default function AccountPage() {
     }
   }
 
+  async function onPickAvatar(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0];
+    e.target.value = ""; // 同じファイルを選び直せるようにクリア
+    if (!file) return;
+    setAvatarMsg("");
+    setAvatarErr("");
+    setAvatarBusy(true);
+    try {
+      const dataUrl = await fileToResizedDataUrl(file);
+      const { ok, data } = await api("/api/account/avatar", {
+        method: "POST",
+        body: JSON.stringify({ avatar: dataUrl }),
+      });
+      if (!ok) {
+        setAvatarErr(data.error || "設定できませんでした");
+      } else {
+        setMe(data.user);
+        setAvatarMsg("アイコンを設定しました。");
+      }
+    } catch (err) {
+      setAvatarErr(err instanceof Error ? err.message : "設定に失敗しました");
+    } finally {
+      setAvatarBusy(false);
+    }
+  }
+
+  async function removeAvatar() {
+    setAvatarMsg("");
+    setAvatarErr("");
+    setAvatarBusy(true);
+    const { ok, data } = await api("/api/account/avatar", {
+      method: "POST",
+      body: JSON.stringify({ avatar: "" }),
+    });
+    if (ok) {
+      setMe(data.user);
+      setAvatarMsg("アイコンを削除しました。");
+    } else {
+      setAvatarErr(data.error || "削除できませんでした");
+    }
+    setAvatarBusy(false);
+  }
+
   if (!me) return <div className="p-10 text-ink-muted">読み込み中…</div>;
 
   const connectCmd = `node scripts/connect.mjs ${origin} "${me.displayName}"`;
@@ -80,6 +155,54 @@ export default function AccountPage() {
   return (
     <div className="mx-auto max-w-2xl space-y-6 p-6 md:p-10">
       <h1 className="text-2xl font-bold text-ink">アカウント情報</h1>
+
+      {/* アイコン設定 */}
+      <section className="rounded-card border border-slate-200 bg-white p-5">
+        <h2 className="text-sm font-bold text-ink">アイコン</h2>
+        <p className="mt-1 text-xs text-ink-muted">
+          設定したアイコンは「メンバー進捗」などに表示されます。
+        </p>
+        <div className="mt-3 flex items-center gap-4">
+          {me.avatar ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img
+              src={me.avatar}
+              alt="アイコン"
+              className="h-16 w-16 rounded-full object-cover border border-slate-200"
+            />
+          ) : (
+            <span className="grid h-16 w-16 place-items-center rounded-full bg-slate-200 text-xl font-bold text-ink-soft">
+              {me.displayName.slice(0, 1)}
+            </span>
+          )}
+          <div className="space-y-2">
+            <div className="flex gap-2">
+              <label className="cursor-pointer rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white">
+                画像を選ぶ
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={onPickAvatar}
+                  disabled={avatarBusy}
+                  className="hidden"
+                />
+              </label>
+              {me.avatar && (
+                <button
+                  onClick={removeAvatar}
+                  disabled={avatarBusy}
+                  className="rounded-lg border border-slate-300 px-4 py-2 text-sm text-ink-soft hover:border-red-400 hover:text-red-600 disabled:opacity-50"
+                >
+                  削除
+                </button>
+              )}
+            </div>
+            {avatarBusy && <p className="text-xs text-ink-muted">処理中…</p>}
+            {avatarMsg && <p className="text-xs text-emerald-600">{avatarMsg}</p>}
+            {avatarErr && <p className="text-xs text-red-600">{avatarErr}</p>}
+          </div>
+        </div>
+      </section>
 
       {/* ログイン情報 */}
       <section className="rounded-card border border-slate-200 bg-white p-5">

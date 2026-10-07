@@ -23,6 +23,7 @@ export interface Account {
   role: UserRole; // admin=承認できる / member=一般
   status: UserStatus; // pending=承認待ち / approved=利用可 / rejected=却下
   claudeLinked: boolean; // Claude Code CLI 連携済みか（直接実装の可否）
+  avatar?: string; // アイコン画像(data URL / 小さめにリサイズして保存)
   createdAt: string;
   decidedAt?: string; // 承認/却下された日時
   decidedBy?: string; // 承認/却下した管理者のID
@@ -38,6 +39,7 @@ export interface PublicUser {
   role: UserRole;
   status: UserStatus;
   claudeLinked: boolean;
+  avatar?: string;
   createdAt?: string;
 }
 
@@ -56,6 +58,7 @@ export function toPublic(a: Account): PublicUser {
     role: a.role,
     status: a.status,
     claudeLinked: !!a.claudeLinked,
+    avatar: a.avatar || undefined,
     createdAt: a.createdAt,
   };
 }
@@ -208,6 +211,30 @@ export async function setClaudeLinked(
   a.claudeLinked = linked;
   await writeAll(all);
   return toPublic(a);
+}
+
+// 本人がアイコン画像を設定/削除する。dataUrl が空なら削除。
+// 画像はクライアント側で小さくリサイズした data URL を想定（肥大化防止のため上限チェック）。
+const MAX_AVATAR_CHARS = 400_000; // data URL の最大長(約300KB相当)
+export async function setAvatar(
+  userId: string,
+  dataUrl: string,
+): Promise<{ ok: true; user: PublicUser } | { ok: false; error: string }> {
+  const clean = (dataUrl || "").trim();
+  if (clean) {
+    if (!/^data:image\/(png|jpeg|jpg|webp|gif);base64,/.test(clean)) {
+      return { ok: false, error: "画像ファイルを指定してください" };
+    }
+    if (clean.length > MAX_AVATAR_CHARS) {
+      return { ok: false, error: "画像が大きすぎます（小さい画像を選んでください）" };
+    }
+  }
+  const all = await readAll();
+  const a = all.find((u) => u.id === userId);
+  if (!a) return { ok: false, error: "アカウントが見つかりません" };
+  a.avatar = clean || undefined;
+  await writeAll(all);
+  return { ok: true, user: toPublic(a) };
 }
 
 // 本人がパスワードを変更する（現在のパスワード確認つき）。

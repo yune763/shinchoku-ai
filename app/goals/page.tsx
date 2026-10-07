@@ -12,6 +12,7 @@ import { NewGoalForm } from "@/components/NewGoalForm";
 import { CompletionChart, TimeDonut, TimeSlice } from "@/components/GoalsCharts";
 import { TreeAutoRefresh } from "@/components/TreeAutoRefresh";
 import { getSettings } from "@/lib/settings";
+import { getCurrentUser } from "@/lib/session";
 
 export const dynamic = "force-dynamic";
 
@@ -32,8 +33,37 @@ const STATUS_DOT: Record<GoalStatus, string> = {
 export default async function GoalsPage() {
   // 実行中の対象ゴールはライブ進捗を重ねて表示（TreeAutoRefreshが数秒ごとに再描画）。
   const goals = overlayLiveProgress(await listGoals());
-  const roots = childrenOf(null, goals);
   const { activeGoalId } = await getSettings();
+
+  // このページはログイン中アカウント専用。担当(assignee)が自分のゴールのみ表示する。
+  // 他メンバーの進捗確認は「メンバー進捗」ページで行う。
+  const me = await getCurrentUser();
+  const meName = me?.displayName ?? "";
+  const byId = new Map(goals.map((g) => [g.id, g] as const));
+  const isMine = (g: Goal) => !!meName && g.assignee === meName;
+  // 祖先に自分担当のゴールがあるか（＝その配下は表示ルートにしない）。
+  const anyAncestorMine = (g: Goal): boolean => {
+    let pid = g.parentId;
+    while (pid) {
+      const p = byId.get(pid);
+      if (!p) break;
+      if (isMine(p)) return true;
+      pid = p.parentId;
+    }
+    return false;
+  };
+  // 表示ルート＝自分担当で、より上位に自分担当がないゴール。その配下は丸ごと表示する。
+  const displayRoots = goals.filter((g) => isMine(g) && !anyAncestorMine(g));
+  // 表示対象(自分ルート＋その子孫)のIDを集める。集計はこの範囲で行う。
+  const visibleIds = new Set<string>();
+  const collect = (id: string) => {
+    if (visibleIds.has(id)) return;
+    visibleIds.add(id);
+    childrenOf(id, goals).forEach((c) => collect(c.id));
+  };
+  displayRoots.forEach((r) => collect(r.id));
+  const visibleGoals = goals.filter((g) => visibleIds.has(g.id));
+  const roots = displayRoots;
 
   // 折りたたみ可能なツリー用に、各ノードの表示値をサーバー側で算出しておく。
   const buildNode = (g: Goal): TreeNode => {
@@ -58,13 +88,13 @@ export default async function GoalsPage() {
   };
   const tree: TreeNode[] = roots.map(buildNode);
 
-  // ── サマリ集計 ──
+  // ── サマリ集計（自分の担当範囲のみ） ──
   const statusCounts = STATUS_ORDER.map((s) => ({
     status: s,
-    count: goals.filter((g) => g.status === s).length,
+    count: visibleGoals.filter((g) => g.status === s).length,
   }));
   const countOf = (s: GoalStatus) =>
-    goals.filter((g) => g.status === s).length;
+    visibleGoals.filter((g) => g.status === s).length;
 
   // 全体の進捗率（会社ゴール＝ルートの算出進捗の平均）。
   const overall =
@@ -80,7 +110,7 @@ export default async function GoalsPage() {
   const ym = now.getFullYear() * 12 + now.getMonth();
   let dueThisMonth = 0;
   let dueLater = 0;
-  for (const g of goals) {
+  for (const g of visibleGoals) {
     if (!g.dueDate) continue;
     const d = new Date(g.dueDate);
     if (Number.isNaN(d.getTime())) continue;
@@ -90,7 +120,7 @@ export default async function GoalsPage() {
   }
 
   // 完了イベント（面グラフ用）。完了ゴールのレビュー日 or 更新日。
-  const completed = goals.filter((g) => g.status === GOAL_STATUS.done);
+  const completed = visibleGoals.filter((g) => g.status === GOAL_STATUS.done);
   const completions = completed.map((g) => g.review?.reviewedAt ?? g.updatedAt);
 
   // 実績時間（作成〜完了の経過時間）を時間帯で集計（ドーナツ用）。
@@ -119,8 +149,8 @@ export default async function GoalsPage() {
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       <div className="p-6 md:p-8 w-full">
         <PageHeader
-          title="ゴールツリー"
-          desc="会社ゴールから今日のToDoまで、ひとつの階層で。すべてのToDoが『何のために』につながる。"
+          title="マイゴール"
+          desc={`${meName ? meName + " さんが" : "あなたが"}担当するゴールと進捗です。ほかのメンバーの進捗は「メンバー進捗」で確認できます。`}
         />
         <TreeAutoRefresh />
 
@@ -167,13 +197,13 @@ export default async function GoalsPage() {
         {/* 詳しいタスク */}
         <div className="mt-6 flex items-center justify-between">
           <h2 className="font-semibold dark:text-white">タスク一覧</h2>
-          <NewGoalForm goals={goals} />
+          <NewGoalForm goals={visibleGoals} />
         </div>
 
         <div className="mt-3 rounded-card border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 divide-y divide-slate-100 dark:divide-slate-800">
           {tree.length === 0 ? (
             <div className="p-8 text-center text-ink-muted dark:text-slate-400">
-              まだゴールがありません。「＋ 新しいゴールを置く」から最初のゴールを置きましょう。
+              あなたが担当するゴールはまだありません。「＋ 新しいゴールを置く」から作成するか、管理者に担当の割り当てを依頼してください。
             </div>
           ) : (
             <GoalTree nodes={tree} />

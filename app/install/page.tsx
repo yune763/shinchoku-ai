@@ -144,41 +144,63 @@ export default function InstallPage() {
           <div className="text-xs font-semibold text-ink-muted dark:text-slate-400">
             Mac の方
           </div>
-          <ol className="list-decimal space-y-2 pl-5 text-sm text-ink-soft dark:text-slate-300">
-            <li>
-              「ターミナル」を開く（Launchpad →「その他」→ ターミナル、または
-              Spotlight で「terminal」）
-            </li>
-            <li>
-              次の1行を貼り付けて Enter（Homebrew・Node.js・Git・Claude
-              CLI・本体を自動で用意します）:
-              <div className="mt-2">
-                <CopyBox text={MAC_INSTALL_CMD} />
-              </div>
-            </li>
-            <li>
-              途中で <code className="text-xs">FIREBASE_SERVICE_ACCOUNT</code>{" "}
-              を聞かれたら管理者から受け取った値を貼り付け（Homebrew導入時はMacのパスワード入力を求められることがあります）
-            </li>
-            <li>
-              完了後、デスクトップの「進捗管理AIを起動.command」をダブルクリック
-              <br />
-              <span className="text-xs text-ink-muted dark:text-slate-400">
-                ※初回は「開発元を確認できません」と出ることがあります。その場合は右クリック →「開く」で実行してください。
-              </span>
-            </li>
-          </ol>
-          <p className="text-xs text-ink-muted dark:text-slate-400">
-            スクリプトの中身：{" "}
+
+          {/* かんたん：インストーラをダウンロードして実行 */}
+          <div className="rounded-lg border border-brand/30 bg-brand/5 dark:bg-brand/10 p-4 space-y-2">
+            <div className="text-sm font-semibold text-ink dark:text-slate-100">
+              かんたん導入（おすすめ）
+            </div>
             <a
-              href={SETUP_SH_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="text-brand hover:underline"
+              href="/shinchoku-install.command"
+              download="進捗管理AI-インストール.command"
+              className="inline-flex items-center gap-2 rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90"
             >
-              setup.sh を開く
+              ⬇ インストーラをダウンロード
             </a>
-          </p>
+            <ol className="list-decimal space-y-1 pl-5 text-sm text-ink-soft dark:text-slate-300">
+              <li>上のボタンでインストーラを保存</li>
+              <li>
+                ダウンロードした{" "}
+                <code className="text-xs">進捗管理AI-インストール.command</code>{" "}
+                を<strong>右クリック →「開く」</strong>（初回はこの方法で実行許可）
+              </li>
+              <li>
+                「開発元を確認できません」と出たら、もう一度「開く」を選択
+              </li>
+              <li>
+                途中で <code className="text-xs">FIREBASE_SERVICE_ACCOUNT</code>{" "}
+                を聞かれたら貼り付け（Homebrew導入時にMacのパスワードを求められることがあります）
+              </li>
+              <li>完了後、デスクトップの「進捗管理AIを起動.command」をダブルクリック</li>
+            </ol>
+            <p className="text-xs text-ink-muted dark:text-slate-400">
+              ※「開けない／許可されない」と出る場合は、下の「ターミナルで実行する方法」をお使いください。
+            </p>
+          </div>
+
+          {/* 上級者向け：1行コマンド */}
+          <details className="text-sm">
+            <summary className="cursor-pointer text-ink-muted dark:text-slate-400">
+              うまくいかない場合：ターミナルで実行する方法
+            </summary>
+            <div className="mt-2 space-y-2">
+              <p className="text-ink-soft dark:text-slate-300">
+                「ターミナル」を開き（Spotlight で「terminal」）、次の1行を貼り付けて Enter:
+              </p>
+              <CopyBox text={MAC_INSTALL_CMD} />
+              <p className="text-xs text-ink-muted dark:text-slate-400">
+                スクリプトの中身：{" "}
+                <a
+                  href={SETUP_SH_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-brand hover:underline"
+                >
+                  setup.sh を開く
+                </a>
+              </p>
+            </div>
+          </details>
         </div>
       </section>
 

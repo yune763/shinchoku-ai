@@ -7,16 +7,20 @@ import { StatusBadge, ProgressBar, PageHeader } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
 
-// メンバー進捗：登録済みメンバー（自分以外）のゴール進捗をすべて反映する。
+// メンバー進捗：登録済みメンバー全員（自分を含む）のゴール進捗を表示する。
 // ゴールの担当者(assignee)＝アカウントの表示名(氏 名) で紐づける。
 export default async function TeamPage() {
   const me = await getCurrentUser();
   const [users, goals] = await Promise.all([listUsers(), listGoals()]);
 
-  // 承認済み・自分以外のメンバー。
-  const members = users.filter(
-    (u) => u.status === "approved" && u.id !== me?.id,
-  );
+  // 承認済みメンバー全員（自分を先頭に）。
+  const members = users
+    .filter((u) => u.status === "approved")
+    .sort((a, b) => {
+      if (a.id === me?.id) return -1;
+      if (b.id === me?.id) return 1;
+      return a.displayName.localeCompare(b.displayName, "ja");
+    });
 
   // 担当ゴール（末端優先でそのメンバーが担当のもの）。
   function goalsOf(displayName: string): Goal[] {
@@ -27,12 +31,12 @@ export default async function TeamPage() {
     <div className="mx-auto max-w-4xl p-6 md:p-10">
       <PageHeader
         title="メンバー進捗"
-        desc="登録済みメンバー（自分以外）のゴール進捗をすべて表示します。"
+        desc="登録済みメンバー全員（自分を含む）のゴールと進捗率を表示します。"
       />
 
       {members.length === 0 ? (
         <div className="rounded-card border border-dashed border-slate-300 p-10 text-center text-ink-muted">
-          他のメンバーがまだいません（承認後にここへ表示されます）。
+          メンバーがまだいません（承認後にここへ表示されます）。
         </div>
       ) : (
         <div className="space-y-6">
@@ -57,11 +61,27 @@ export default async function TeamPage() {
               >
                 <div className="flex items-center justify-between gap-3">
                   <div className="flex items-center gap-2">
-                    <span className="grid h-8 w-8 place-items-center rounded-full bg-slate-200 text-sm font-bold text-ink-soft">
-                      {u.displayName.slice(0, 1)}
-                    </span>
+                    {u.avatar ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={u.avatar}
+                        alt={u.displayName}
+                        className="h-9 w-9 rounded-full object-cover border border-slate-200"
+                      />
+                    ) : (
+                      <span className="grid h-9 w-9 place-items-center rounded-full bg-slate-200 text-sm font-bold text-ink-soft">
+                        {u.displayName.slice(0, 1)}
+                      </span>
+                    )}
                     <div>
-                      <div className="font-bold text-ink">{u.displayName}</div>
+                      <div className="font-bold text-ink">
+                        {u.displayName}
+                        {u.id === me?.id && (
+                          <span className="ml-1 text-xs font-normal text-ink-muted">
+                            （あなた）
+                          </span>
+                        )}
+                      </div>
                       <div className="text-xs text-ink-muted">
                         担当 {assigned.length} ・ 完了 {done}
                         {u.claudeLinked && (
