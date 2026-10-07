@@ -36,6 +36,33 @@ export default async function TeamPage() {
     );
   }
 
+  const byId = new Map(goals.map((g) => [g.id, g] as const));
+  // child の祖先に ancestorId があるか。
+  function isDescendant(child: Goal, ancestorId: string): boolean {
+    let pid = child.parentId;
+    while (pid) {
+      if (pid === ancestorId) return true;
+      const p = byId.get(pid);
+      if (!p) break;
+      pid = p.parentId;
+    }
+    return false;
+  }
+  // そのメンバーの担当のうち、祖先に同メンバー担当がない＝メイン（最上位）ゴール。
+  function mainGoalsOf(assigned: Goal[]): Goal[] {
+    const ids = new Set(assigned.map((g) => g.id));
+    return assigned.filter((g) => {
+      let pid = g.parentId;
+      while (pid) {
+        if (ids.has(pid)) return false; // 上位に自分担当がある→子ゴール扱い
+        const p = byId.get(pid);
+        if (!p) break;
+        pid = p.parentId;
+      }
+      return true;
+    });
+  }
+
   // 「すべてのゴール」セクション用に、担当に関係なく全ゴールをツリー化する。
   function countDescendants(goalId: string): number {
     const kids = childrenOf(goalId, goals);
@@ -144,28 +171,28 @@ export default async function TeamPage() {
                   </p>
                 ) : (
                   <ul className="mt-3 space-y-1.5">
-                    {assigned.map((g) => {
-                      const leaf = childrenOf(g.id, goals).length === 0;
-                      const prog = computeProgress(g.id, goals);
+                    {mainGoalsOf(assigned).map((g) => {
+                      // このメイン配下の、同メンバー担当の子ゴール（収納対象）。
+                      const kids = assigned.filter(
+                        (c) => c.id !== g.id && isDescendant(c, g.id),
+                      );
                       return (
                         <li key={g.id}>
-                          <Link
-                            href={`/goals/${g.id}`}
-                            className="flex items-center gap-3 rounded-lg border border-slate-200 px-3 py-2 hover:border-brand"
-                          >
-                            <span className="min-w-0 flex-1 truncate text-sm text-ink">
-                              {g.title}
-                              {!leaf && (
-                                <span className="ml-1 text-xs text-ink-muted">
-                                  （まとめ）
-                                </span>
-                              )}
-                            </span>
-                            <span className="w-24 shrink-0">
-                              <ProgressBar value={prog} />
-                            </span>
-                            <StatusBadge status={g.status} />
-                          </Link>
+                          <GoalRow g={g} goals={goals} />
+                          {kids.length > 0 && (
+                            <details className="ml-4 mt-1">
+                              <summary className="cursor-pointer select-none text-xs text-ink-muted hover:text-brand">
+                                子ゴール {kids.length} 件を表示
+                              </summary>
+                              <ul className="mt-1 space-y-1.5">
+                                {kids.map((c) => (
+                                  <li key={c.id}>
+                                    <GoalRow g={c} goals={goals} />
+                                  </li>
+                                ))}
+                              </ul>
+                            </details>
+                          )}
                         </li>
                       );
                     })}
@@ -191,5 +218,26 @@ export default async function TeamPage() {
         </div>
       </div>
     </div>
+  );
+}
+
+// ゴール1行（タイトル・進捗・状態）。メンバーのメイン／子ゴール共通で使う。
+function GoalRow({ g, goals }: { g: Goal; goals: Goal[] }) {
+  const leaf = childrenOf(g.id, goals).length === 0;
+  const prog = computeProgress(g.id, goals);
+  return (
+    <Link
+      href={`/goals/${g.id}`}
+      className="flex items-center gap-3 rounded-lg border border-slate-200 px-3 py-2 hover:border-brand"
+    >
+      <span className="min-w-0 flex-1 truncate text-sm text-ink">
+        {g.title}
+        {!leaf && <span className="ml-1 text-xs text-ink-muted">（まとめ）</span>}
+      </span>
+      <span className="w-24 shrink-0">
+        <ProgressBar value={prog} />
+      </span>
+      <StatusBadge status={g.status} />
+    </Link>
   );
 }
