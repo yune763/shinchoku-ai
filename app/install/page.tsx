@@ -1,0 +1,163 @@
+"use client";
+
+import { useState } from "react";
+
+// 1行インストールコマンドと setup.ps1 の場所（GitHub raw）。
+const INSTALL_CMD =
+  "irm https://raw.githubusercontent.com/yune763/shinchoku-ai/main/setup.ps1 | iex";
+const SETUP_URL =
+  "https://raw.githubusercontent.com/yune763/shinchoku-ai/main/setup.ps1";
+
+function CopyBox({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(text);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch {
+      /* クリップボード不可環境では手動コピー */
+    }
+  }
+  return (
+    <div className="flex items-stretch gap-2">
+      <code className="flex-1 overflow-x-auto rounded-lg bg-slate-900 px-3 py-2 text-xs text-slate-100 dark:bg-slate-950">
+        {text}
+      </code>
+      <button
+        onClick={copy}
+        className="shrink-0 rounded-lg bg-brand px-3 py-2 text-xs font-medium text-white"
+      >
+        {copied ? "コピー済" : "コピー"}
+      </button>
+    </div>
+  );
+}
+
+export default function InstallPage() {
+  const [updating, setUpdating] = useState(false);
+  const [updateMsg, setUpdateMsg] = useState<string | null>(null);
+
+  async function applyUpdate() {
+    if (updating) return;
+    setUpdating(true);
+    setUpdateMsg("更新を確認しています…");
+    try {
+      const res = await fetch("/api/app/update", { method: "POST" });
+      const d = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setUpdateMsg(d.error ?? "更新に失敗しました");
+      } else if (d.alreadyLatest) {
+        setUpdateMsg("すでに最新です。");
+      } else {
+        setUpdateMsg(
+          `最新に更新しました。${d.needInstall ? "依存の変更があるため、デスクトップの『進捗管理AIを更新』を実行してから再起動してください。" : "起動し直すと反映されます。"}`,
+        );
+      }
+    } catch {
+      setUpdateMsg("通信に失敗しました（この機能はローカル起動版でのみ使えます）");
+    } finally {
+      setUpdating(false);
+    }
+  }
+
+  return (
+    <div className="mx-auto max-w-3xl space-y-8 p-6 md:p-10">
+      <header>
+        <h1 className="text-2xl font-bold text-ink dark:text-white">アプリ導入</h1>
+        <p className="mt-1 text-sm text-ink-muted dark:text-slate-400">
+          各自のPCで進捗管理AIを動かすためのインストール／更新を行います。
+          データは共有DBに集約されるので、ローカルで動かしても全員で同じ情報を共有できます。
+        </p>
+      </header>
+
+      {/* インストール */}
+      <section className="rounded-card border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 space-y-3">
+        <h2 className="text-sm font-bold text-ink dark:text-white">
+          1. インストール（Windows）
+        </h2>
+        <ol className="list-decimal space-y-2 pl-5 text-sm text-ink-soft dark:text-slate-300">
+          <li>スタートメニューで「PowerShell」を開く</li>
+          <li>
+            次の1行を貼り付けて Enter（Node.js・Git・Claude CLI・本体を自動で用意します）:
+            <div className="mt-2">
+              <CopyBox text={INSTALL_CMD} />
+            </div>
+          </li>
+          <li>
+            途中で <code className="text-xs">FIREBASE_SERVICE_ACCOUNT</code>{" "}
+            の貼り付けを求められたら、管理者から受け取った値を貼り付けて Enter
+          </li>
+          <li>デスクトップの「進捗管理AIを起動」をダブルクリックして使用開始</li>
+        </ol>
+        <p className="text-xs text-ink-muted dark:text-slate-400">
+          スクリプトの中身を直接確認したい場合：{" "}
+          <a
+            href={SETUP_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="text-brand hover:underline"
+          >
+            setup.ps1 を開く
+          </a>
+        </p>
+      </section>
+
+      {/* 共有キーの注意 */}
+      <section className="rounded-card border border-amber-300 dark:border-amber-900 bg-amber-50 dark:bg-amber-950/30 p-5 space-y-2">
+        <h2 className="text-sm font-bold text-amber-800 dark:text-amber-300">
+          共有DBキー（FIREBASE_SERVICE_ACCOUNT）について
+        </h2>
+        <ul className="list-disc space-y-1 pl-5 text-sm text-amber-800 dark:text-amber-300">
+          <li>
+            全メンバーが<strong>同じ値</strong>を設定すると、ゴール・メンバー・ツール管理などが共有されます。
+          </li>
+          <li>
+            設定値は各PCの <code className="text-xs">.env</code>{" "}
+            に保存され、<strong>更新しても消えません</strong>（再入力は不要）。
+          </li>
+          <li>機密情報です。パスワードマネージャ等で安全に配布してください。</li>
+        </ul>
+      </section>
+
+      {/* 更新 */}
+      <section className="rounded-card border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 space-y-3">
+        <h2 className="text-sm font-bold text-ink dark:text-white">
+          2. 更新（プログラム修正後）
+        </h2>
+        <p className="text-sm text-ink-soft dark:text-slate-300">
+          管理者がプログラムを修正したら、各自が最新版へ更新できます。
+        </p>
+
+        <div className="space-y-2">
+          <div className="text-xs font-semibold text-ink-muted dark:text-slate-400">
+            方法A：このアプリから更新（ローカル起動版のみ）
+          </div>
+          <button
+            onClick={applyUpdate}
+            disabled={updating}
+            className="rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
+          >
+            {updating ? "更新中…" : "最新に更新する"}
+          </button>
+          {updateMsg && (
+            <p className="text-sm text-ink-muted dark:text-slate-400">{updateMsg}</p>
+          )}
+          <p className="text-xs text-ink-muted dark:text-slate-400">
+            ※更新後はアプリを起動し直すと反映されます。依存パッケージの変更があった場合は下記Bを実行してください。
+          </p>
+        </div>
+
+        <div className="space-y-2 border-t border-slate-200 dark:border-slate-800 pt-3">
+          <div className="text-xs font-semibold text-ink-muted dark:text-slate-400">
+            方法B：デスクトップから更新（確実）
+          </div>
+          <p className="text-sm text-ink-soft dark:text-slate-300">
+            デスクトップの「進捗管理AIを更新」をダブルクリック（最新取得＋依存の再インストールまで行います）。
+            ショートカットが無い場合は、再度インストールの1行を実行すれば更新されます。
+          </p>
+        </div>
+      </section>
+    </div>
+  );
+}

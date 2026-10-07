@@ -119,6 +119,16 @@ try {
   $sc.Description = "進捗管理AI を起動してブラウザで開く"
   $sc.Save()
   Ok "デスクトップに『進捗管理AIを起動』を作成しました"
+
+  # 更新用ショートカットも作成。
+  $updateCmd = Join-Path $InstallDir "update.cmd"
+  $lnkUpd = Join-Path $desktop "進捗管理AIを更新.lnk"
+  $sc2 = $ws.CreateShortcut($lnkUpd)
+  $sc2.TargetPath = $updateCmd
+  $sc2.WorkingDirectory = $InstallDir
+  $sc2.Description = "進捗管理AI を最新版に更新する"
+  $sc2.Save()
+  Ok "デスクトップに『進捗管理AIを更新』を作成しました"
 } catch {
   Warn "ショートカット作成に失敗しました。$startCmd を直接ダブルクリックしても起動できます。"
 }

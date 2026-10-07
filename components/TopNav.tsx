@@ -20,7 +20,8 @@ type IconName =
   | "chat"
   | "approve"
   | "account"
-  | "tools";
+  | "tools"
+  | "download";
 
 const MENU: { href: string; label: string; icon: IconName }[] = [
   { href: "/goals", label: "ゴール一覧", icon: "goals" },
@@ -39,6 +40,7 @@ const BOTTOM_MENU: { href: string; label: string; icon: IconName }[] = [
 
 // 「その他」に畳み込むサブメニュー。
 const MORE_MENU: { href: string; label: string; icon: IconName }[] = [
+  { href: "/install", label: "アプリ導入", icon: "download" },
   { href: "/account", label: "アカウント情報", icon: "account" },
   { href: "/analytics", label: "アナリティクス", icon: "analytics" },
   { href: "/tools", label: "ツール管理", icon: "tools" },
@@ -133,6 +135,14 @@ function Icon({ name }: { name: IconName }) {
         <svg {...common}>
           <path d="M12 3l2.1 1.4 2.5-.3 1 2.3 2.3 1-.3 2.5L21 12l-1.4 2.1.3 2.5-2.3 1-1 2.3-2.5-.3L12 21l-2.1-1.4-2.5.3-1-2.3-2.3-1 .3-2.5L3 12l1.4-2.1-.3-2.5 2.3-1 1-2.3 2.5.3z" />
           <path d="M9 12l2 2 4-4" />
+        </svg>
+      );
+    case "download": // ダウンロード（アプリ導入）
+      return (
+        <svg {...common}>
+          <path d="M12 3v12" />
+          <path d="M7 11l5 5 5-5" />
+          <path d="M4 20h16" />
         </svg>
       );
     case "chat": // 吹き出し（チャット）
