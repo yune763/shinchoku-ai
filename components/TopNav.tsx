@@ -30,6 +30,10 @@ const MENU: { href: string; label: string; icon: IconName }[] = [
   { href: "/proposals", label: "開発提案", icon: "idea" },
   { href: "/collection", label: "情報収集", icon: "news" },
   { href: "/sns-collection", label: "SNS情報収集", icon: "sns" },
+];
+
+// 下部（「その他」の直上）に固定で置くメニュー。
+const BOTTOM_MENU: { href: string; label: string; icon: IconName }[] = [
   { href: "/ai-context", label: "申請・承認", icon: "approve" },
 ];
 
@@ -248,8 +252,36 @@ export function TopNav() {
           );
         })}
 
+        {/* 下部固定メニュー（「その他」の直上）。mt-auto で下へ寄せる。 */}
+        {BOTTOM_MENU.map((m, i) => {
+          const active = isActive(m.href);
+          return (
+            <Link
+              key={m.href}
+              href={m.href}
+              aria-label={m.label}
+              title={m.label}
+              className={[
+                "flex flex-col items-center justify-center gap-1 py-3 rounded-xl transition-colors",
+                i === 0 ? "mt-auto" : "",
+                active
+                  ? "bg-brand text-white"
+                  : "text-slate-300 hover:bg-white/10 hover:text-white",
+              ].join(" ")}
+            >
+              <span className="relative">
+                <Icon name={m.icon} />
+                <Badge count={badgeFor(m.icon)} />
+              </span>
+              <span className="text-[10px] leading-tight text-center">
+                {m.label}
+              </span>
+            </Link>
+          );
+        })}
+
         {/* その他（展開でサブメニュー） */}
-        <div className="relative mt-auto">
+        <div className="relative">
           <button
             type="button"
             onClick={() => setOpenMore((v) => !v)}
