@@ -145,49 +145,63 @@ export default function InstallPage() {
             Mac の方
           </div>
 
-          {/* かんたん：インストーラをダウンロードして実行 */}
+          {/* かんたん＆確実：ターミナルに1行貼る */}
           <div className="rounded-lg border border-brand/30 bg-brand/5 dark:bg-brand/10 p-4 space-y-2">
             <div className="text-sm font-semibold text-ink dark:text-slate-100">
-              かんたん導入（おすすめ）
+              かんたん導入（おすすめ・確実）
             </div>
-            <a
-              href="/shinchoku-install.command"
-              download="進捗管理AI-インストール.command"
-              className="inline-flex items-center gap-2 rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90"
-            >
-              ⬇ インストーラをダウンロード
-            </a>
-            <ol className="list-decimal space-y-1 pl-5 text-sm text-ink-soft dark:text-slate-300">
-              <li>上のボタンでインストーラを保存</li>
+            <ol className="list-decimal space-y-2 pl-5 text-sm text-ink-soft dark:text-slate-300">
               <li>
-                ダウンロードした{" "}
-                <code className="text-xs">進捗管理AI-インストール.command</code>{" "}
-                を<strong>右クリック →「開く」</strong>（初回はこの方法で実行許可）
+                「ターミナル」を開く（Spotlight で「terminal」と検索 →
+                ターミナル.app）
               </li>
               <li>
-                「開発元を確認できません」と出たら、もう一度「開く」を選択
+                次の1行をコピーして貼り付け、Enter（Homebrew・Node.js・Git・Claude
+                CLI・本体を自動で用意）:
+                <div className="mt-2">
+                  <CopyBox text={MAC_INSTALL_CMD} />
+                </div>
               </li>
               <li>
                 途中で <code className="text-xs">FIREBASE_SERVICE_ACCOUNT</code>{" "}
-                を聞かれたら貼り付け（Homebrew導入時にMacのパスワードを求められることがあります）
+                を聞かれたら貼り付け（Homebrew導入時にMacのパスワード入力を求められることがあります）
               </li>
-              <li>完了後、デスクトップの「進捗管理AIを起動.command」をダブルクリック</li>
+              <li>
+                完了後、デスクトップの「進捗管理AIを起動.command」をダブルクリック（初回は右クリック →「開く」）
+              </li>
             </ol>
-            <p className="text-xs text-ink-muted dark:text-slate-400">
-              ※「開けない／許可されない」と出る場合は、下の「ターミナルで実行する方法」をお使いください。
-            </p>
           </div>
 
-          {/* 上級者向け：1行コマンド */}
+          {/* 補助：インストーラファイル */}
           <details className="text-sm">
             <summary className="cursor-pointer text-ink-muted dark:text-slate-400">
-              うまくいかない場合：ターミナルで実行する方法
+              ファイルから入れたい方（インストーラをダウンロード）
             </summary>
             <div className="mt-2 space-y-2">
-              <p className="text-ink-soft dark:text-slate-300">
-                「ターミナル」を開き（Spotlight で「terminal」）、次の1行を貼り付けて Enter:
+              <a
+                href="/shinchoku-install.command"
+                download="進捗管理AI-インストール.command"
+                className="inline-flex items-center gap-2 rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:opacity-90"
+              >
+                ⬇ インストーラをダウンロード
+              </a>
+              <p className="text-xs text-ink-muted dark:text-slate-400">
+                ※ダウンロードした <code className="text-[11px]">.command</code>{" "}
+                は、Macの仕様で<strong>ダブルクリックだと「開いていません／開けません」</strong>と出ることがあります。
+                その場合は次の方法で実行してください：
               </p>
-              <CopyBox text={MAC_INSTALL_CMD} />
+              <ol className="list-decimal space-y-1 pl-5 text-xs text-ink-soft dark:text-slate-300">
+                <li>ターミナルを開く</li>
+                <li>
+                  <code className="text-[11px]">bash</code>{" "}
+                  と入力して<strong>半角スペース</strong>を1つ入れる
+                </li>
+                <li>
+                  ダウンロードした{" "}
+                  <code className="text-[11px]">進捗管理AI-インストール.command</code>{" "}
+                  を<strong>ターミナルにドラッグ＆ドロップ</strong>して Enter
+                </li>
+              </ol>
               <p className="text-xs text-ink-muted dark:text-slate-400">
                 スクリプトの中身：{" "}
                 <a
