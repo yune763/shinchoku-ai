@@ -20,12 +20,17 @@ const STORE_KEY = "store.json";
 
 interface DbShape {
   goals: Goal[];
+  migrations?: Record<string, boolean>; // 1回だけ実行する移行の実施フラグ
 }
+
+// 既存ゴールの担当者を一括設定する移行の対象者。
+const ASSIGNEE_BOOTSTRAP = "祢次金 由貴";
 
 async function read(): Promise<DbShape> {
   await ensureJson<DbShape>(STORE_KEY, () => ({ goals: seedGoals() }));
   const db = await readJson<DbShape>(STORE_KEY, { goals: seedGoals() });
   if (!Array.isArray(db.goals)) db.goals = [];
+  if (!db.migrations) db.migrations = {};
   // 旧データとの後方互換（新フィールドを補完）。
   db.goals.forEach((g) => {
     if (g.steps === undefined) g.steps = [];
@@ -35,7 +40,19 @@ async function read(): Promise<DbShape> {
     if (g.previewCommand === undefined) g.previewCommand = "";
     if (g.previewUrl === undefined) g.previewUrl = "";
     if (g.estimatedHours === undefined) g.estimatedHours = 0;
+    if (g.reviewer === undefined) g.reviewer = "";
+    if (g.salesPerson === undefined) g.salesPerson = "";
   });
+
+  // 一度だけ：既存の全ゴールの実装担当(assignee)を指定メンバーに揃える。
+  if (!db.migrations.assigneeBootstrap) {
+    db.goals.forEach((g) => {
+      g.assignee = ASSIGNEE_BOOTSTRAP;
+    });
+    db.migrations.assigneeBootstrap = true;
+    await writeJson(STORE_KEY, db);
+  }
+
   return db;
 }
 
@@ -71,6 +88,8 @@ export async function createGoal(input: GoalInput): Promise<Goal> {
     completionCriteria: input.completionCriteria,
     status: input.status,
     assignee: input.assignee,
+    reviewer: input.reviewer,
+    salesPerson: input.salesPerson,
     dueDate: input.dueDate,
     kpi: input.kpi ?? "",
     forecast: input.forecast ?? "",

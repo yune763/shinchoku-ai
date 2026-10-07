@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Goal } from "@/lib/types";
 import { FolderPicker } from "@/components/FolderPicker";
@@ -25,8 +25,25 @@ export function NewGoalForm({
   const [parentId, setParentId] = useState<string | null>(defaultParentId);
   const [desire, setDesire] = useState("");
   const [purpose, setPurpose] = useState("");
-  const [assignee, setAssignee] = useState("");
+  const [assignee, setAssignee] = useState(""); // 実装担当
+  const [reviewer, setReviewer] = useState(""); // 確認担当
+  const [salesPerson, setSalesPerson] = useState(""); // 営業担当
+  const [members, setMembers] = useState<string[]>([]);
   const [estimatedHours, setEstimatedHours] = useState(0);
+
+  // 実装担当プルダウン用に承認済みメンバー名を取得。
+  useEffect(() => {
+    if (!open) return;
+    (async () => {
+      try {
+        const res = await fetch("/api/members");
+        const d = await res.json();
+        setMembers(Array.isArray(d.members) ? d.members : []);
+      } catch {
+        /* 取得不可でも手入力の担当は空のまま進められる */
+      }
+    })();
+  }, [open]);
   const [repoPath, setRepoPath] = useState("");
   const [showPicker, setShowPicker] = useState(false);
   const [autoBreakdown, setAutoBreakdown] = useState(true);
@@ -52,6 +69,8 @@ export function NewGoalForm({
         desire,
         purpose,
         assignee,
+        reviewer,
+        salesPerson,
         estimatedHours,
         repoPath,
       }),
@@ -77,6 +96,8 @@ export function NewGoalForm({
     setDesire("");
     setPurpose("");
     setAssignee("");
+    setReviewer("");
+    setSalesPerson("");
     setEstimatedHours(0);
     setRepoPath("");
     setOpen(false); // 追加完了したらフォームを閉じる
@@ -147,12 +168,41 @@ export function NewGoalForm({
         placeholder="目的（何のために）"
         className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2 text-sm dark:text-white"
       />
-      <input
-        value={assignee}
-        onChange={(e) => setAssignee(e.target.value)}
-        placeholder="担当"
-        className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2 text-sm dark:text-white"
-      />
+      <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+        <div>
+          <label className="block text-xs text-ink-muted mb-1">実装担当</label>
+          <select
+            value={assignee}
+            onChange={(e) => setAssignee(e.target.value)}
+            className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2 text-sm dark:text-white"
+          >
+            <option value="">未割当</option>
+            {members.map((m) => (
+              <option key={m} value={m}>
+                {m}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="block text-xs text-ink-muted mb-1">確認担当</label>
+          <input
+            value={reviewer}
+            onChange={(e) => setReviewer(e.target.value)}
+            placeholder="名前を入力"
+            className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2 text-sm dark:text-white"
+          />
+        </div>
+        <div>
+          <label className="block text-xs text-ink-muted mb-1">営業担当</label>
+          <input
+            value={salesPerson}
+            onChange={(e) => setSalesPerson(e.target.value)}
+            placeholder="名前を入力"
+            className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2 text-sm dark:text-white"
+          />
+        </div>
+      </div>
       <div>
         <label className="block text-xs text-ink-muted mb-1">
           実装プログラムの格納フォルダ（作業フォルダ）

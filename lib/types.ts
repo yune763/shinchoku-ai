@@ -84,7 +84,9 @@ export interface Goal {
   currentStatus: string; // 現状
   completionCriteria: string; // 完了の基準
   status: GoalStatus;
-  assignee: string;
+  assignee: string; // 実装担当（アカウントの表示名）
+  reviewer: string; // 確認担当（自由入力）
+  salesPerson: string; // 営業担当（自由入力）
   dueDate: string | null;
   kpi: string; // KPI（達成を測る指標。例: 「照合精度95%以上」）
   forecast: string; // 完了見込み（作業ログからAIが算出。例: 「残り約2時間 / 10/4完了見込み」）
@@ -117,6 +119,8 @@ export const goalInputSchema = z.object({
     ])
     .default(GOAL_STATUS.notStarted),
   assignee: z.string().default(""),
+  reviewer: z.string().default(""),
+  salesPerson: z.string().default(""),
   dueDate: z.string().nullable().default(null),
   kpi: z.string().default(""),
   forecast: z.string().default(""),

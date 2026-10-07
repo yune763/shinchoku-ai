@@ -37,6 +37,8 @@ export function seedGoals(): Goal[] {
     completionCriteria: partial.completionCriteria ?? "",
     status: partial.status ?? GOAL_STATUS.notStarted,
     assignee: partial.assignee ?? "",
+    reviewer: partial.reviewer ?? "",
+    salesPerson: partial.salesPerson ?? "",
     dueDate: partial.dueDate ?? null,
     kpi: partial.kpi ?? "",
     forecast: partial.forecast ?? "",

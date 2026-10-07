@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import {
@@ -95,7 +95,7 @@ export function GoalDetail({
           <div className="flex items-center gap-3 mt-2">
             <StatusBadge status={goal.status} />
             <span className="text-sm text-ink-muted dark:text-slate-400">
-              担当 {goal.assignee || "—"} ・ 期日 {goal.dueDate || "—"} ・ 推定実装時間 {estimatedHours}h
+              実装 {goal.assignee || "—"} ・ 確認 {goal.reviewer || "—"} ・ 営業 {goal.salesPerson || "—"} ・ 期日 {goal.dueDate || "—"} ・ 推定実装時間 {estimatedHours}h
             </span>
           </div>
           {goal.forecast && (
@@ -385,7 +385,22 @@ function EditForm({ goal, onSaved }: { goal: Goal; onSaved: () => void }) {
   const [currentStatus, setCurrentStatus] = useState(goal.currentStatus);
   const [completionCriteria, setCompletionCriteria] = useState(goal.completionCriteria);
   const [assignee, setAssignee] = useState(goal.assignee);
+  const [reviewer, setReviewer] = useState(goal.reviewer ?? "");
+  const [salesPerson, setSalesPerson] = useState(goal.salesPerson ?? "");
+  const [members, setMembers] = useState<string[]>([]);
   const [dueDate, setDueDate] = useState(goal.dueDate ?? "");
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const res = await fetch("/api/members");
+        const d = await res.json();
+        setMembers(Array.isArray(d.members) ? d.members : []);
+      } catch {
+        /* 取得不可でも手入力で進められる */
+      }
+    })();
+  }, []);
   const [repoPath, setRepoPath] = useState(goal.repoPath ?? "");
   const [previewCommand, setPreviewCommand] = useState(goal.previewCommand ?? "");
   const [previewUrl, setPreviewUrl] = useState(goal.previewUrl ?? "");
@@ -425,6 +440,8 @@ function EditForm({ goal, onSaved }: { goal: Goal; onSaved: () => void }) {
         currentStatus,
         completionCriteria,
         assignee,
+        reviewer,
+        salesPerson,
         dueDate: dueDate || null,
         repoPath,
         previewCommand,
@@ -473,10 +490,29 @@ function EditForm({ goal, onSaved }: { goal: Goal; onSaved: () => void }) {
         </button>
       </div>
       <textarea value={completionCriteria} onChange={(e) => setCompletionCriteria(e.target.value)} rows={3} className={input} />
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
         <div>
-          <label className="block text-xs text-ink-muted">担当</label>
-          <input value={assignee} onChange={(e) => setAssignee(e.target.value)} className={input} />
+          <label className="block text-xs text-ink-muted">実装担当</label>
+          <select value={assignee} onChange={(e) => setAssignee(e.target.value)} className={input}>
+            <option value="">未割当</option>
+            {/* 既存値がリストに無い場合も選べるよう補う */}
+            {assignee && !members.includes(assignee) && (
+              <option value={assignee}>{assignee}</option>
+            )}
+            {members.map((m) => (
+              <option key={m} value={m}>
+                {m}
+              </option>
+            ))}
+          </select>
+        </div>
+        <div>
+          <label className="block text-xs text-ink-muted">確認担当</label>
+          <input value={reviewer} onChange={(e) => setReviewer(e.target.value)} placeholder="名前を入力" className={input} />
+        </div>
+        <div>
+          <label className="block text-xs text-ink-muted">営業担当</label>
+          <input value={salesPerson} onChange={(e) => setSalesPerson(e.target.value)} placeholder="名前を入力" className={input} />
         </div>
         <div>
           <label className="block text-xs text-ink-muted">期日</label>

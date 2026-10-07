@@ -102,6 +102,8 @@ async function addNewChildGoals(
       completionCriteria: "",
       status: GOAL_STATUS.notStarted,
       assignee: "",
+      reviewer: "",
+      salesPerson: "",
       dueDate: null,
       kpi: "",
       forecast: "",

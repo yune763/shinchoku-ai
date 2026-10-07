@@ -41,6 +41,8 @@ export async function createTaskFromMessage(
     status: GOAL_STATUS.notStarted,
     // 手動タスク化＝押した人が担当。自動＝未割当（誰でも拾える）。
     assignee: auto ? "" : user.displayName,
+    reviewer: "",
+    salesPerson: "",
     dueDate: todayStrJst(),
     kpi: "",
     forecast: "",

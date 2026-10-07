@@ -21,13 +21,15 @@ type IconName =
   | "approve"
   | "account"
   | "tools"
-  | "download";
+  | "download"
+  | "systems";
 
 const MENU: { href: string; label: string; icon: IconName }[] = [
   { href: "/goals", label: "ゴール一覧", icon: "goals" },
   { href: "/team", label: "メンバー進捗", icon: "members" },
   { href: "/chat", label: "チャット", icon: "chat" },
   { href: "/today", label: "今日のToDo", icon: "today" },
+  { href: "/systems", label: "システム一覧", icon: "systems" },
   { href: "/proposals", label: "開発提案", icon: "idea" },
   { href: "/collection", label: "情報収集", icon: "news" },
   { href: "/sns-collection", label: "SNS情報収集", icon: "sns" },
@@ -135,6 +137,15 @@ function Icon({ name }: { name: IconName }) {
         <svg {...common}>
           <path d="M12 3l2.1 1.4 2.5-.3 1 2.3 2.3 1-.3 2.5L21 12l-1.4 2.1.3 2.5-2.3 1-1 2.3-2.5-.3L12 21l-2.1-1.4-2.5.3-1-2.3-2.3-1 .3-2.5L3 12l1.4-2.1-.3-2.5 2.3-1 1-2.3 2.5.3z" />
           <path d="M9 12l2 2 4-4" />
+        </svg>
+      );
+    case "systems": // 四角タイル（システム一覧）
+      return (
+        <svg {...common}>
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
         </svg>
       );
     case "download": // ダウンロード（アプリ導入）

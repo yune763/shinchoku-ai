@@ -72,6 +72,8 @@ export async function createChildTree(
       completionCriteria,
       status: GOAL_STATUS.notStarted,
       assignee: "",
+      reviewer: "",
+      salesPerson: "",
       dueDate: null,
       kpi: "",
       forecast: "",
