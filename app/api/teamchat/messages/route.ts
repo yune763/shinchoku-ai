@@ -8,6 +8,10 @@ import {
   updateMessageTask,
 } from "@/lib/chat-store";
 import { scoreMessage } from "@/lib/task-learn";
+import { createTaskFromMessage } from "@/lib/chat-tasks";
+
+// 自動ゴール化する最低文字数（「あ」など極端に短い誤爆を防ぐ）。
+const MIN_AUTO_LENGTH = 3;
 
 export const dynamic = "force-dynamic";
 
@@ -46,11 +50,24 @@ export async function POST(req: NextRequest) {
   }
 
   // タスク判定（失敗してもメッセージ送信は成功扱い）。
-  // ※自動でのゴール化は行わない。追加は必ず利用者がボタンを押したときだけ。
-  //   タスクらしいメッセージには「候補」の印だけを付ける。
+  // 学習が進み確度が高い（auto）なら自動でゴール化、そうでなければ候補(suggested)に。
   try {
     const { decision, score } = await scoreMessage(msg.text);
-    if (decision === "auto" || decision === "suggest") {
+    // 極端に短い文は誤爆しやすいので自動追加せず候補どまりにする。
+    const canAuto =
+      decision === "auto" && msg.text.trim().length >= MIN_AUTO_LENGTH;
+    if (canAuto) {
+      const goal = await createTaskFromMessage(msg, me, "today", undefined, {
+        auto: true,
+      });
+      await updateMessageTask(convId, msg.id, {
+        state: "added",
+        goalId: goal.id,
+        target: "today",
+        auto: true,
+      });
+      msg.task = { state: "added", goalId: goal.id, target: "today", auto: true };
+    } else if (decision === "auto" || decision === "suggest") {
       await updateMessageTask(convId, msg.id, { state: "suggested" });
       msg.task = { state: "suggested" };
     }

@@ -82,6 +82,7 @@ export function TeamChat() {
   const [users, setUsers] = useState<UserLite[]>([]);
   const [showNewDm, setShowNewDm] = useState(false);
   const [goalPickerFor, setGoalPickerFor] = useState<string>("");
+  const [menuFor, setMenuFor] = useState<string>(""); // 三点メニューを開いているメッセージID
   const bottomRef = useRef<HTMLDivElement>(null);
   // 直近で既読化した (会話ID:最新メッセージID) を覚え、同じ状態での重複書き込みを防ぐ。
   const lastMarkedRef = useRef<string>("");
@@ -366,54 +367,95 @@ export function TeamChat() {
                     <span className="text-[11px] text-ink-muted">候補を却下</span>
                   )}
                   {(!m.task || m.task.state === "suggested") && (
-                    <div className="inline-flex flex-wrap items-center gap-1.5">
+                    <div
+                      className={[
+                        "inline-flex items-center gap-1.5",
+                        mine ? "flex-row-reverse" : "",
+                      ].join(" ")}
+                    >
                       {m.task?.state === "suggested" && (
                         <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-700">
                           タスク候補
                         </span>
                       )}
-                      <button
-                        onClick={() => toTask(m.id, "add", "today")}
-                        className="rounded-full border border-slate-300 px-2 py-0.5 text-[11px] text-ink-soft hover:border-brand hover:text-brand"
-                      >
-                        今日のToDoに追加
-                      </button>
-                      <button
-                        onClick={() =>
-                          setGoalPickerFor(goalPickerFor === m.id ? "" : m.id)
-                        }
-                        className="rounded-full border border-slate-300 px-2 py-0.5 text-[11px] text-ink-soft hover:border-brand hover:text-brand"
-                      >
-                        ゴールに追加 ▾
-                      </button>
-                      {m.task?.state === "suggested" && (
+                      {/* 三点リーダー：中に「今日のToDoに追加 / ゴールに追加」を収納 */}
+                      <div className="relative">
                         <button
-                          onClick={() => toTask(m.id, "dismiss")}
-                          className="rounded-full px-2 py-0.5 text-[11px] text-ink-muted hover:text-red-600"
+                          onClick={() => {
+                            setMenuFor(menuFor === m.id ? "" : m.id);
+                            setGoalPickerFor("");
+                          }}
+                          aria-label="タスク操作"
+                          className="grid h-6 w-6 place-items-center rounded-full text-ink-muted hover:bg-slate-100"
                         >
-                          却下
+                          ⋯
                         </button>
-                      )}
-                      {goalPickerFor === m.id && (
-                        <select
-                          autoFocus
-                          onChange={(e) =>
-                            e.target.value &&
-                            toTask(m.id, "add", "goal", e.target.value)
-                          }
-                          defaultValue=""
-                          className="rounded border border-slate-300 px-1.5 py-0.5 text-[11px]"
-                        >
-                          <option value="" disabled>
-                            追加先ゴールを選択…
-                          </option>
-                          {goals.map((g) => (
-                            <option key={g.id} value={g.id}>
-                              {g.title}
-                            </option>
-                          ))}
-                        </select>
-                      )}
+                        {menuFor === m.id && (
+                          <>
+                            <div
+                              className="fixed inset-0 z-30"
+                              onClick={() => {
+                                setMenuFor("");
+                                setGoalPickerFor("");
+                              }}
+                            />
+                            <div className="absolute z-40 mt-1 w-44 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg right-0">
+                              <button
+                                onClick={() => {
+                                  toTask(m.id, "add", "today");
+                                  setMenuFor("");
+                                }}
+                                className="block w-full rounded px-3 py-2 text-left text-[12px] text-ink-soft hover:bg-slate-100"
+                              >
+                                今日のToDoに追加
+                              </button>
+                              <button
+                                onClick={() =>
+                                  setGoalPickerFor(
+                                    goalPickerFor === m.id ? "" : m.id,
+                                  )
+                                }
+                                className="block w-full rounded px-3 py-2 text-left text-[12px] text-ink-soft hover:bg-slate-100"
+                              >
+                                ゴールに追加 ▾
+                              </button>
+                              {goalPickerFor === m.id && (
+                                <select
+                                  autoFocus
+                                  onChange={(e) => {
+                                    if (e.target.value) {
+                                      toTask(m.id, "add", "goal", e.target.value);
+                                      setMenuFor("");
+                                    }
+                                  }}
+                                  defaultValue=""
+                                  className="mt-1 w-full rounded border border-slate-300 px-1.5 py-1 text-[11px]"
+                                >
+                                  <option value="" disabled>
+                                    追加先ゴールを選択…
+                                  </option>
+                                  {goals.map((g) => (
+                                    <option key={g.id} value={g.id}>
+                                      {g.title}
+                                    </option>
+                                  ))}
+                                </select>
+                              )}
+                              {m.task?.state === "suggested" && (
+                                <button
+                                  onClick={() => {
+                                    toTask(m.id, "dismiss");
+                                    setMenuFor("");
+                                  }}
+                                  className="block w-full rounded px-3 py-2 text-left text-[12px] text-ink-muted hover:bg-slate-100 hover:text-red-600"
+                                >
+                                  候補を却下
+                                </button>
+                              )}
+                            </div>
+                          </>
+                        )}
+                      </div>
                     </div>
                   )}
                 </div>
