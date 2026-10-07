@@ -524,6 +524,10 @@ function LogSection({ goal }: { goal: Goal }) {
   const [kind, setKind] = useState<string>(LOG_KIND.comment);
   const [author, setAuthor] = useState("");
   const [saving, setSaving] = useState(false);
+  // 作業ログ（Cursor等が出力したもの）を貼り付けて進捗・子タスクへ反映する欄。
+  const [worklog, setWorklog] = useState("");
+  const [applyingLog, setApplyingLog] = useState(false);
+  const [worklogNote, setWorklogNote] = useState<string | null>(null);
 
   const logs = [...goal.logs].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
 
@@ -540,9 +544,75 @@ function LogSection({ goal }: { goal: Goal }) {
     router.refresh();
   }
 
+  // 作業ログをAIに読ませ、進捗%・完了見込みの更新＋新しい子タスクの追加を行う。
+  async function applyWorklog() {
+    if (!worklog.trim() || applyingLog) return;
+    setApplyingLog(true);
+    setWorklogNote("AIが作業ログを読み取り中…");
+    try {
+      const res = await fetch(`/api/goals/${goal.id}/worklog`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ log: worklog, source: "作業ログ(貼り付け)" }),
+      });
+      const d = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        setWorklogNote(d.error ?? "反映に失敗しました");
+      } else if (!d.estimated) {
+        setWorklogNote(
+          "ログは記録しましたが、AIによる進捗算出はできませんでした（サーバーにClaude CLIまたはANTHROPIC_API_KEYが必要です）。",
+        );
+        setWorklog("");
+      } else {
+        const parts = [`進捗 ${d.progress ?? "—"}%`];
+        if (d.forecast) parts.push(`完了見込み: ${d.forecast}`);
+        if (d.addedSubtasks > 0) parts.push(`子タスクを${d.addedSubtasks}件追加`);
+        setWorklogNote(`反映しました（${parts.join(" / ")}）`);
+        setWorklog("");
+      }
+      router.refresh();
+    } catch {
+      setWorklogNote("通信に失敗しました");
+    } finally {
+      setApplyingLog(false);
+    }
+  }
+
   return (
     <div className="rounded-card border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 space-y-4">
       <h2 className="font-semibold dark:text-white">経緯・コメント・成果物</h2>
+
+      {/* 作業ログ → 進捗・子タスクへ反映 */}
+      <div className="rounded-lg border border-brand/30 bg-brand/5 dark:bg-brand/10 p-3 space-y-2">
+        <div className="text-sm font-medium dark:text-slate-200">
+          作業ログから進捗・子タスクを更新
+        </div>
+        <p className="text-xs text-ink-muted dark:text-slate-400">
+          Cursor等が出力した作業ログを貼り付けて実行すると、AIが内容を読み取り、進捗%・完了見込みを更新し、新たに判明した小タスクを子ゴールとして追加します。
+        </p>
+        <textarea
+          value={worklog}
+          onChange={(e) => setWorklog(e.target.value)}
+          rows={4}
+          placeholder="ここに作業ログ（やったこと・分かったこと・残タスクなど）を貼り付け"
+          className="w-full rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent px-3 py-2 text-sm dark:text-white"
+        />
+        <div className="flex items-center gap-3">
+          <button
+            onClick={applyWorklog}
+            disabled={applyingLog || !worklog.trim()}
+            className="rounded-lg bg-brand px-4 py-2 text-sm font-medium text-white disabled:opacity-50"
+          >
+            {applyingLog ? "反映中…" : "作業ログを反映"}
+          </button>
+          {worklogNote && (
+            <span className="text-xs text-ink-muted dark:text-slate-400">
+              {worklogNote}
+            </span>
+          )}
+        </div>
+      </div>
+
       <div className="space-y-2">
         <div className="flex gap-2">
           <select value={kind} onChange={(e) => setKind(e.target.value)} className="rounded-lg border border-slate-300 dark:border-slate-700 bg-transparent px-2 py-2 text-sm dark:text-white">
