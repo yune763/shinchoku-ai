@@ -1,0 +1,25 @@
+name: daily-sync
+
+# 情報収集・開発提案の同期を毎日自動実行する。
+# デプロイ版(Render)の /api/collection/sync を叩いて外部データを取り込む。
+#
+# 事前設定（GitHubリポジトリ → Settings → Secrets and variables → Actions）:
+#   SYNC_BASE_URL  … 例: https://shinchoku-ai.onrender.com
+#   CRON_SECRET    … Render に設定したものと同じ秘密の文字列
+#
+# ※平日 10:20 / 15:20 (JST) 実行。手動実行(Run workflow)も可能。
+on:
+  schedule:
+    - cron: "20 1 * * 1-5" # 01:20 UTC = 10:20 JST
+    - cron: "20 6 * * 1-5" # 06:20 UTC = 15:20 JST
+  workflow_dispatch: {}
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call sync endpoint
+        run: |
+          curl -fsS -X POST \
+            "${{ secrets.SYNC_BASE_URL }}/api/collection/sync?key=${{ secrets.CRON_SECRET }}" \
+            && echo "sync done"

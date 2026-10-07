@@ -26,3 +26,12 @@ services:
       # 任意: APIを閉じたい場合のトークン（設定すると外部アクセスに Bearer 必須）。
       - key: API_TOKEN
         sync: false
+      # 情報収集・開発提案の毎日自動同期（/api/collection/sync）用。
+      # COLLECTION_URL/PROPOSALS_URL = 外部公開された JSON のURL。
+      # CRON_SECRET = 同期エンドポイントの合言葉（GitHub Actions 側の Secret と一致させる）。
+      - key: COLLECTION_URL
+        sync: false
+      - key: PROPOSALS_URL
+        sync: false
+      - key: CRON_SECRET
+        sync: false
