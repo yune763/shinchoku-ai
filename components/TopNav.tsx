@@ -2,7 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+
+// サイドバーの未読・承認待ちバッジの更新間隔。
+const BADGE_POLL_MS = 15000;
 
 type IconName =
   | "goals"
@@ -147,12 +150,64 @@ function Icon({ name }: { name: IconName }) {
   }
 }
 
+// アイコン右上に重ねる赤丸バッジ（件数）。0以下なら何も出さない。
+function Badge({ count }: { count: number }) {
+  if (count <= 0) return null;
+  return (
+    <span className="absolute -right-1.5 -top-1.5 grid min-w-[18px] place-items-center rounded-full bg-red-500 px-1 text-[10px] font-bold leading-none text-white ring-2 ring-ink">
+      {count > 99 ? "99+" : count}
+    </span>
+  );
+}
+
 export function TopNav() {
   const pathname = usePathname();
   const [openMore, setOpenMore] = useState(false);
+  const [pendingApplications, setPendingApplications] = useState(0);
+  const [unreadConversations, setUnreadConversations] = useState(0);
   const isActive = (href: string) =>
     pathname === href || pathname.startsWith(href + "/");
   const moreActive = MORE_MENU.some((m) => isActive(m.href));
+
+  // 承認待ち申請数・未読トーク数を取得してバッジに反映する。
+  const loadBadges = useCallback(async () => {
+    try {
+      const res = await fetch("/api/notifications", { cache: "no-store" });
+      if (!res.ok) return;
+      const d = await res.json();
+      setPendingApplications(Number(d.pendingApplications) || 0);
+      setUnreadConversations(Number(d.unreadConversations) || 0);
+    } catch {
+      // 取得失敗時はバッジを更新しない（前回値を維持）。
+    }
+  }, []);
+
+  useEffect(() => {
+    loadBadges();
+    const t = setInterval(loadBadges, BADGE_POLL_MS);
+    const onFocus = () => loadBadges();
+    const onChanged = () => loadBadges();
+    window.addEventListener("focus", onFocus);
+    window.addEventListener("shinchoku:unread-changed", onChanged);
+    return () => {
+      clearInterval(t);
+      window.removeEventListener("focus", onFocus);
+      window.removeEventListener("shinchoku:unread-changed", onChanged);
+    };
+  }, [loadBadges]);
+
+  // ページ遷移のたびに最新化（チャットを開いた直後の既読反映など）。
+  useEffect(() => {
+    loadBadges();
+  }, [pathname, loadBadges]);
+
+  // アイコン種別ごとのバッジ件数。
+  const badgeFor = (icon: IconName): number =>
+    icon === "approve"
+      ? pendingApplications
+      : icon === "chat"
+        ? unreadConversations
+        : 0;
 
   return (
     <aside className="fixed top-0 left-0 z-30 h-screen w-24 bg-ink text-slate-200 border-r border-white/10 flex flex-col">
@@ -182,7 +237,10 @@ export function TopNav() {
                   : "text-slate-300 hover:bg-white/10 hover:text-white",
               ].join(" ")}
             >
-              <Icon name={m.icon} />
+              <span className="relative">
+                <Icon name={m.icon} />
+                <Badge count={badgeFor(m.icon)} />
+              </span>
               <span className="text-[10px] leading-tight text-center">
                 {m.label}
               </span>

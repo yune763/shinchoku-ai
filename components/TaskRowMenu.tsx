@@ -15,6 +15,7 @@ import {
   CommentModal,
   ApplyConsultModal,
 } from "@/components/GoalModals";
+import { launchTool } from "@/lib/launch-client";
 
 // メニューのおおよその高さ（画面下端での開く方向の判定に使う）。
 const MENU_HEIGHT = 470;
@@ -69,25 +70,8 @@ export function TaskRowMenu({
   async function openTool(tool: "claude" | "cursor") {
     setOpen(false);
     setBusy(true);
-    try {
-      const res = await fetch(`/api/goals/${goalId}/open-claude?tool=${tool}`, {
-        method: "POST",
-      });
-      const d = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        setNote(d.error ?? "起動に失敗しました");
-      } else if (tool === "cursor") {
-        setNote("Cursor を開きました");
-      } else {
-        setNote(
-          d.launched
-            ? "Claude を開きました（指示文を入力済み）。送信して相談を始めてください"
-            : "指示文をコピーしました（Claudeアプリが見つかりません）",
-        );
-      }
-    } catch {
-      setNote("サーバーに接続できません");
-    }
+    const message = await launchTool(goalId, tool);
+    setNote(message);
     setBusy(false);
     setTimeout(() => setNote(null), 3000);
   }

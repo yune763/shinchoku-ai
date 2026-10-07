@@ -174,6 +174,42 @@ export async function sendMessage(
   return msg;
 }
 
+// 既読状態：ユーザーごとに「会話ID → 最後に読んだ時刻(ISO)」を1ファイルで保持する。
+const READS_KEY = (userId: string) => `chat/reads/${userId}.json`;
+
+async function readReadState(userId: string): Promise<Record<string, string>> {
+  const obj = await readJson<Record<string, string>>(READS_KEY(userId), {});
+  return obj && typeof obj === "object" ? obj : {};
+}
+
+// 指定会話を「今読んだ」ことにする（既定は現在時刻）。
+export async function markConversationRead(
+  userId: string,
+  convId: string,
+  at?: string,
+): Promise<void> {
+  const state = await readReadState(userId);
+  state[convId] = at ?? new Date().toISOString();
+  await writeJson(READS_KEY(userId), state);
+}
+
+// 未読の「トーク（会話）数」を返す。未読メッセージ件数ではなく、
+// 他人からの未読メッセージが1件以上ある会話の数を数える。
+export async function countUnreadConversations(userId: string): Promise<number> {
+  const convs = await listConversationsFor(userId);
+  const reads = await readReadState(userId);
+  let count = 0;
+  for (const conv of convs) {
+    const lastRead = reads[conv.id];
+    const messages = await readMessages(conv.id);
+    const hasUnread = messages.some(
+      (m) => m.senderId !== userId && (!lastRead || m.createdAt > lastRead),
+    );
+    if (hasUnread) count++;
+  }
+  return count;
+}
+
 export async function updateMessageTask(
   convId: string,
   messageId: string,

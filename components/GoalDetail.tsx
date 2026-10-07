@@ -18,6 +18,7 @@ import { TreeAutoRefresh } from "@/components/TreeAutoRefresh";
 import { PreviewButton } from "@/components/PreviewButton";
 import { PlanModal } from "@/components/PlanModal";
 import { Roadmap } from "@/components/Roadmap";
+import { launchTool } from "@/lib/launch-client";
 import { ActiveToggle } from "@/components/ActiveToggle";
 
 const LOG_KIND_LABEL: Record<string, string> = {
@@ -56,21 +57,8 @@ export function GoalDetail({
     if (openingClaude) return;
     setOpeningClaude(true);
     try {
-      const res = await fetch(`/api/goals/${goal.id}/open-claude?tool=${tool}`, {
-        method: "POST",
-      });
-      const d = await res.json().catch(() => ({}));
-      if (!res.ok) {
-        alert(d.error ?? "起動に失敗しました");
-      } else if (tool === "claude") {
-        alert(
-          d.launched
-            ? "Claude（デスクトップ）を開き、指示文を入力枠に入力しました。内容を確認して送信してください。"
-            : "指示文をコピーしました。Claudeアプリが見つからないため手動で開いて貼り付けてください。",
-        );
-      }
-    } catch {
-      alert("起動に失敗しました（サーバーに接続できません）");
+      const message = await launchTool(goal.id, tool);
+      alert(message);
     } finally {
       setOpeningClaude(false);
     }

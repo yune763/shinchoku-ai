@@ -83,6 +83,18 @@ export function TeamChat() {
   const [showNewDm, setShowNewDm] = useState(false);
   const [goalPickerFor, setGoalPickerFor] = useState<string>("");
   const bottomRef = useRef<HTMLDivElement>(null);
+  // 直近で既読化した (会話ID:最新メッセージID) を覚え、同じ状態での重複書き込みを防ぐ。
+  const lastMarkedRef = useRef<string>("");
+
+  // 会話を既読にし、サイドバーの未読バッジへ更新を通知する。
+  const markRead = useCallback(async (convId: string) => {
+    if (!convId) return;
+    await api("/api/teamchat/read", {
+      method: "POST",
+      body: JSON.stringify({ convId }),
+    });
+    window.dispatchEvent(new Event("shinchoku:unread-changed"));
+  }, []);
 
   // 認証チェック＋初期ロード。
   useEffect(() => {
@@ -137,6 +149,19 @@ export function TeamChat() {
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages.length, activeId]);
+
+  // 表示中の会話は既読にする。最新メッセージが変わったときだけ既読化を実行する。
+  useEffect(() => {
+    if (!activeId || !me) return;
+    const last = messages[messages.length - 1];
+    if (!last) return;
+    const key = `${activeId}:${last.id}`;
+    if (lastMarkedRef.current === key) return;
+    lastMarkedRef.current = key;
+    // 自分の送信が最新なら未読は発生しないのでサーバー書き込みは不要。
+    if (last.senderId === me.id) return;
+    markRead(activeId);
+  }, [messages, activeId, me, markRead]);
 
   async function send() {
     const text = draft.trim();

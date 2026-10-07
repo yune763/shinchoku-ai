@@ -46,6 +46,8 @@ export default function ApprovalPage() {
   const [note, setNote] = useState("");
   const [kind, setKind] = useState("要望");
   const [msg, setMsg] = useState("");
+  // メンバー一覧は既定で収納し、ボタンで開閉する。
+  const [showMembers, setShowMembers] = useState(false);
 
   const loadAdmin = useCallback(async () => {
     const { ok, data } = await api("/api/admin/applications");
@@ -176,6 +178,88 @@ export default function ApprovalPage() {
               ))}
             </ul>
           )}
+
+          {/* メンバー一覧（役割の変更）をボタンで開閉・収納 */}
+          <div className="mt-4 border-t border-slate-200 pt-4">
+            <button
+              onClick={() => setShowMembers((v) => !v)}
+              aria-expanded={showMembers}
+              className="flex w-full items-center justify-between rounded-lg border border-slate-300 px-3 py-2 text-sm font-semibold text-ink-soft hover:border-brand hover:text-brand"
+            >
+              <span>
+                メンバー一覧（役割の変更）・
+                {members.filter((u) => u.status === "approved").length} 名
+              </span>
+              <span className="text-xs">{showMembers ? "▲ 閉じる" : "▼ 開く"}</span>
+            </button>
+
+            {showMembers && (
+              <ul className="mt-3 space-y-2">
+                {members
+                  .filter((u) => u.status === "approved")
+                  .map((u) => (
+                    <li
+                      key={u.id}
+                      className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 p-3"
+                    >
+                      <div className="min-w-0">
+                        <div className="font-medium text-ink">
+                          {u.displayName}
+                          {u.id === me.id && (
+                            <span className="ml-1 text-xs text-ink-muted">（あなた）</span>
+                          )}
+                        </div>
+                        <div className="text-xs text-ink-muted">{u.email}</div>
+                      </div>
+                      <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
+                        <span
+                          className={[
+                            "rounded-full px-2 py-0.5 text-xs font-semibold",
+                            u.role === "admin"
+                              ? "bg-brand/10 text-brand"
+                              : "bg-slate-100 text-ink-muted",
+                          ].join(" ")}
+                        >
+                          {u.role === "admin" ? "管理者" : "メンバー"}
+                        </span>
+                        <span
+                          className={[
+                            "rounded-full px-2 py-0.5 text-xs font-semibold",
+                            u.claudeLinked
+                              ? "bg-emerald-50 text-emerald-700"
+                              : "bg-slate-100 text-ink-muted",
+                          ].join(" ")}
+                          title="Claude Code 連携（直接実装の可否）"
+                        >
+                          {u.claudeLinked ? "Claude連携済" : "Claude未連携"}
+                        </span>
+                        {u.role === "member" ? (
+                          <button
+                            onClick={() => changeRole(u.id, "admin")}
+                            className="rounded border border-slate-300 px-2 py-1 text-xs hover:border-brand hover:text-brand"
+                          >
+                            管理者にする
+                          </button>
+                        ) : (
+                          <button
+                            onClick={() => changeRole(u.id, "member")}
+                            className="rounded border border-slate-300 px-2 py-1 text-xs hover:border-red-400 hover:text-red-600"
+                          >
+                            管理者を外す
+                          </button>
+                        )}
+                        <button
+                          onClick={() => changeClaude(u.id, !u.claudeLinked)}
+                          className="rounded border border-slate-300 px-2 py-1 text-xs hover:border-brand hover:text-brand"
+                        >
+                          {u.claudeLinked ? "連携を外す" : "Claude連携にする"}
+                        </button>
+                      </div>
+                    </li>
+                  ))}
+              </ul>
+            )}
+          </div>
         </section>
       )}
 
@@ -212,77 +296,6 @@ export default function ApprovalPage() {
                 ))}
             </ul>
           )}
-        </section>
-      )}
-
-      {/* 管理者：メンバー一覧と役割 */}
-      {me.role === "admin" && (
-        <section className="rounded-card border border-slate-200 bg-white p-5">
-          <h2 className="text-sm font-bold text-ink">メンバー（役割の変更）</h2>
-          <ul className="mt-3 space-y-2">
-            {members
-              .filter((u) => u.status === "approved")
-              .map((u) => (
-                <li
-                  key={u.id}
-                  className="flex items-center justify-between gap-3 rounded-lg border border-slate-200 p-3"
-                >
-                  <div className="min-w-0">
-                    <div className="font-medium text-ink">
-                      {u.displayName}
-                      {u.id === me.id && (
-                        <span className="ml-1 text-xs text-ink-muted">（あなた）</span>
-                      )}
-                    </div>
-                    <div className="text-xs text-ink-muted">{u.email}</div>
-                  </div>
-                  <div className="flex shrink-0 flex-wrap items-center justify-end gap-2">
-                    <span
-                      className={[
-                        "rounded-full px-2 py-0.5 text-xs font-semibold",
-                        u.role === "admin"
-                          ? "bg-brand/10 text-brand"
-                          : "bg-slate-100 text-ink-muted",
-                      ].join(" ")}
-                    >
-                      {u.role === "admin" ? "管理者" : "メンバー"}
-                    </span>
-                    <span
-                      className={[
-                        "rounded-full px-2 py-0.5 text-xs font-semibold",
-                        u.claudeLinked
-                          ? "bg-emerald-50 text-emerald-700"
-                          : "bg-slate-100 text-ink-muted",
-                      ].join(" ")}
-                      title="Claude Code 連携（直接実装の可否）"
-                    >
-                      {u.claudeLinked ? "Claude連携済" : "Claude未連携"}
-                    </span>
-                    {u.role === "member" ? (
-                      <button
-                        onClick={() => changeRole(u.id, "admin")}
-                        className="rounded border border-slate-300 px-2 py-1 text-xs hover:border-brand hover:text-brand"
-                      >
-                        管理者にする
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() => changeRole(u.id, "member")}
-                        className="rounded border border-slate-300 px-2 py-1 text-xs hover:border-red-400 hover:text-red-600"
-                      >
-                        管理者を外す
-                      </button>
-                    )}
-                    <button
-                      onClick={() => changeClaude(u.id, !u.claudeLinked)}
-                      className="rounded border border-slate-300 px-2 py-1 text-xs hover:border-brand hover:text-brand"
-                    >
-                      {u.claudeLinked ? "連携を外す" : "Claude連携にする"}
-                    </button>
-                  </div>
-                </li>
-              ))}
-          </ul>
         </section>
       )}
 

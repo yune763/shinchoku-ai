@@ -29,12 +29,10 @@ function resolveRepoPath(goal: Goal, all: Goal[]): string {
 // tool=cursor: 作業フォルダを Cursor で開く（指示文はクライアント側でコピー）。
 export async function POST(req: NextRequest, { params }: Params) {
   const { id } = await params;
-  if (process.platform !== "win32") {
-    return NextResponse.json(
-      { error: "この機能はWindowsでのみ利用できます" },
-      { status: 400 },
-    );
-  }
+  // サーバーが利用者のPC上（＝localhost, win32）で動いている場合のみ、サーバーから直接
+  // Claude/Cursor を起動できる。Render などリモート(Linux)では起動できないため、
+  // 起動に必要なデータ(remote:true ＋ prompt / repoPath)を返し、ブラウザ側で起動させる。
+  const isWindows = process.platform === "win32";
 
   const tool = new URL(req.url).searchParams.get("tool") === "cursor" ? "cursor" : "claude";
   const goal = await getGoal(id);
@@ -45,9 +43,20 @@ export async function POST(req: NextRequest, { params }: Params) {
   // Cursor（実装用）は作業フォルダを開く。フォルダ未設定なら案内する。
   if (tool === "cursor") {
     const repoPath = resolveRepoPath(goal, all);
-    if (!repoPath || !existsSync(repoPath)) {
+    if (!repoPath) {
       return NextResponse.json(
         { error: "作業フォルダが未設定です。先に作業フォルダを指定してください。", needRepo: true },
+        { status: 400 },
+      );
+    }
+    // リモート実行：クライアント側で cursor://file/<path> を開かせる。
+    // 作業フォルダは利用者PCのパスなので、サーバー(別マシン)での存在チェックはしない。
+    if (!isWindows) {
+      return NextResponse.json({ ok: true, remote: true, tool: "cursor", repoPath });
+    }
+    if (!existsSync(repoPath)) {
+      return NextResponse.json(
+        { error: "作業フォルダが見つかりません。パスを確認してください。", needRepo: true },
         { status: 400 },
       );
     }
@@ -78,6 +87,10 @@ export async function POST(req: NextRequest, { params }: Params) {
   // ターミナルは開かない。文字化けを避けるため UTF-8 ファイルを Set-Clipboard で読む。
   try {
     const prompt = buildConsultPrompt(goal, all);
+    // リモート実行：クライアント側で指示文をコピーし、Claude を開かせる。
+    if (!isWindows) {
+      return NextResponse.json({ ok: true, remote: true, tool: "claude", prompt });
+    }
     const dir = path.join(os.tmpdir(), "shinchoku-claude");
     await fs.mkdir(dir, { recursive: true });
     const promptPath = path.join(dir, `consult-${id}.md`);
