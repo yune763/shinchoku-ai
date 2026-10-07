@@ -1,22 +1,28 @@
 import Link from "next/link";
 import { listGoals, childrenOf, ancestorsOf } from "@/lib/store";
+import { getCurrentUser } from "@/lib/session";
 import { GOAL_STATUS } from "@/lib/types";
 import { StatusBadge, PageHeader } from "@/components/ui";
 
 export const dynamic = "force-dynamic";
 
 // 末端（子を持たない）ゴール＝実際に手を動かすToDo。未完了のものを一覧。
+// ログイン中アカウント（実装担当）のToDoだけを表示する。
 export default async function TodayPage() {
-  const goals = await listGoals();
+  const [goals, me] = await Promise.all([listGoals(), getCurrentUser()]);
+  const meName = me?.displayName ?? "";
   const leaves = goals.filter(
-    (g) => childrenOf(g.id, goals).length === 0 && g.status !== GOAL_STATUS.done,
+    (g) =>
+      childrenOf(g.id, goals).length === 0 &&
+      g.status !== GOAL_STATUS.done &&
+      g.assignee === meName,
   );
 
   return (
     <div className="p-6 md:p-10 max-w-4xl mx-auto">
       <PageHeader
         title="今日のToDo"
-        desc="各ToDoは会社のゴールから降りてきたもの。何のためにやるかは、親をたどれば分かる。"
+        desc="あなたが実装担当の、未完了のToDoです。何のためにやるかは親をたどれば分かります。"
       />
 
       {leaves.length === 0 ? (

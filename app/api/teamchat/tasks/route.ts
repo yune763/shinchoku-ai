@@ -14,5 +14,12 @@ export async function GET() {
     listGoalTargets(),
     learningStats(),
   ]);
-  return NextResponse.json({ today, upcoming, goals, stats });
+  // ログイン中アカウント（実装担当）のタスクだけに絞る。
+  const mine = (t: { assignee: string }) => t.assignee === me.displayName;
+  return NextResponse.json({
+    today: today.filter(mine),
+    upcoming: upcoming.filter(mine),
+    goals,
+    stats,
+  });
 }
