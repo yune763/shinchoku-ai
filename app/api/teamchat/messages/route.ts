@@ -8,7 +8,6 @@ import {
   updateMessageTask,
 } from "@/lib/chat-store";
 import { scoreMessage } from "@/lib/task-learn";
-import { createTaskFromMessage } from "@/lib/chat-tasks";
 
 export const dynamic = "force-dynamic";
 
@@ -47,20 +46,11 @@ export async function POST(req: NextRequest) {
   }
 
   // タスク判定（失敗してもメッセージ送信は成功扱い）。
+  // ※自動でのゴール化は行わない。追加は必ず利用者がボタンを押したときだけ。
+  //   タスクらしいメッセージには「候補」の印だけを付ける。
   try {
     const { decision, score } = await scoreMessage(msg.text);
-    if (decision === "auto") {
-      const goal = await createTaskFromMessage(msg, me, "today", undefined, {
-        auto: true,
-      });
-      await updateMessageTask(convId, msg.id, {
-        state: "added",
-        goalId: goal.id,
-        target: "today",
-        auto: true,
-      });
-      msg.task = { state: "added", goalId: goal.id, target: "today", auto: true };
-    } else if (decision === "suggest") {
+    if (decision === "auto" || decision === "suggest") {
       await updateMessageTask(convId, msg.id, { state: "suggested" });
       msg.task = { state: "suggested" };
     }
