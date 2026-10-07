@@ -29,8 +29,11 @@ export default async function TeamPage() {
     });
 
   // 担当ゴール（末端優先でそのメンバーが担当のもの）。
+  // 「今日のToDo専用(todoOnly)」はメンバー進捗にも出さない。
   function goalsOf(displayName: string): Goal[] {
-    return goals.filter((g) => g.assignee && g.assignee === displayName);
+    return goals.filter(
+      (g) => g.assignee && g.assignee === displayName && !g.todoOnly,
+    );
   }
 
   // 「すべてのゴール」セクション用に、担当に関係なく全ゴールをツリー化する。
@@ -58,7 +61,9 @@ export default async function TeamPage() {
       children: childrenOf(g.id, goals).map(buildNode),
     };
   };
-  const allTree: TreeNode[] = childrenOf(null, goals).map(buildNode);
+  const allTree: TreeNode[] = childrenOf(null, goals)
+    .filter((g) => !g.todoOnly)
+    .map(buildNode);
 
   return (
     <div className="mx-auto max-w-4xl p-6 md:p-10">

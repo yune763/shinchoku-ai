@@ -244,11 +244,11 @@ export function TeamChat() {
   }
 
   return (
-    <div className="flex h-screen">
+    <div className="flex h-screen bg-[#FBF5EC]">
       {/* 左：チャット一覧 (1/4) */}
-      <aside className="flex w-1/4 min-w-[200px] flex-col border-r border-slate-200 bg-slate-50">
-        <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
-          <span className="text-sm font-bold text-ink">チャット</span>
+      <aside className="flex w-1/4 min-w-[200px] flex-col border-r border-amber-100 bg-[#FDF8F1]">
+        <div className="flex items-center justify-between border-b border-amber-100 px-4 py-3">
+          <span className="text-sm font-bold text-ink">💬 チャット</span>
           <button
             onClick={logout}
             className="text-xs text-ink-muted hover:text-brand"
@@ -269,8 +269,10 @@ export function TeamChat() {
               key={c.id}
               onClick={() => setActiveId(c.id)}
               className={[
-                "mb-0.5 flex w-full items-center gap-1 rounded-lg px-3 py-2 text-left text-sm transition-colors",
-                c.id === activeId ? "bg-brand text-white" : "text-ink-soft hover:bg-white",
+                "mb-0.5 flex w-full items-center gap-1 rounded-xl px-3 py-2 text-left text-sm transition-colors",
+                c.id === activeId
+                  ? "bg-brand text-white shadow-sm"
+                  : "text-ink-soft hover:bg-amber-100/60",
               ].join(" ")}
             >
               <span className="opacity-60">#</span>
@@ -289,11 +291,13 @@ export function TeamChat() {
               key={c.id}
               onClick={() => setActiveId(c.id)}
               className={[
-                "mb-0.5 flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm transition-colors",
-                c.id === activeId ? "bg-brand text-white" : "text-ink-soft hover:bg-white",
+                "mb-0.5 flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-sm transition-colors",
+                c.id === activeId
+                  ? "bg-brand text-white shadow-sm"
+                  : "text-ink-soft hover:bg-amber-100/60",
               ].join(" ")}
             >
-              <span className="grid h-5 w-5 place-items-center rounded-full bg-slate-300 text-[10px] text-white">
+              <span className="grid h-6 w-6 place-items-center rounded-full bg-gradient-to-br from-amber-300 to-rose-300 text-[10px] font-bold text-white">
                 {c.name.slice(0, 1)}
               </span>
               <span className="truncate">{c.name}</span>
@@ -330,17 +334,23 @@ export function TeamChat() {
       </aside>
 
       {/* 中央：チャット詳細 (2/4) */}
-      <section className="flex w-2/4 flex-col">
-        <header className="border-b border-slate-200 px-5 py-3">
+      <section className="flex w-2/4 flex-col bg-[#FBF5EC]">
+        <header className="border-b border-amber-100 bg-[#FDF8F1] px-5 py-3">
           <h1 className="text-sm font-bold text-ink">
-            {active ? (active.kind === "channel" ? "# " : "") + active.name : "—"}
+            {active
+              ? (active.kind === "channel" ? "# " : "💌 ") + active.name
+              : "—"}
           </h1>
         </header>
         <div className="flex-1 space-y-3 overflow-y-auto px-5 py-4">
           {messages.length === 0 && (
-            <p className="py-10 text-center text-sm text-ink-muted">
-              まだメッセージがありません。
-            </p>
+            <div className="py-16 text-center text-sm text-ink-muted">
+              <div className="text-4xl">🌱</div>
+              <p className="mt-2">まだメッセージがありません。</p>
+              <p className="text-xs text-ink-muted/80">
+                さいしょのひとことを送ってみましょう
+              </p>
+            </div>
           )}
           {messages.map((m) => {
             const mine = m.senderId === me.id;
@@ -359,8 +369,10 @@ export function TeamChat() {
                 >
                   <div
                     className={[
-                      "max-w-[80%] whitespace-pre-wrap rounded-2xl px-3.5 py-2 text-left text-sm",
-                      mine ? "bg-brand text-white" : "bg-slate-100 text-ink",
+                      "max-w-[80%] whitespace-pre-wrap px-4 py-2.5 text-left text-sm shadow-sm",
+                      mine
+                        ? "rounded-[20px] rounded-br-md bg-gradient-to-br from-brand to-brand-fg text-white"
+                        : "rounded-[20px] rounded-bl-md border border-amber-100 bg-white text-ink",
                     ].join(" ")}
                   >
                     {m.text}
@@ -371,27 +383,10 @@ export function TeamChat() {
                       setGoalPickerFor("");
                     }}
                     aria-label="タスク操作"
-                    className="mt-1 grid h-7 w-6 shrink-0 place-items-center rounded-full text-base leading-none text-ink-muted hover:bg-slate-100"
+                    className="mt-1 grid h-7 w-6 shrink-0 place-items-center rounded-full text-base leading-none text-ink-muted hover:bg-amber-100/70"
                   >
                     ⋮
                   </button>
-                </div>
-
-                {/* タスク化の状態バッジ */}
-                <div className={mine ? "mt-1 text-right" : "mt-1 text-left"}>
-                  {m.task?.state === "added" && (
-                    <span className="inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-0.5 text-[11px] font-semibold text-emerald-700">
-                      ✓ タスク化{m.task.auto ? "（自動・学習）" : "済み"}
-                    </span>
-                  )}
-                  {m.task?.state === "dismissed" && (
-                    <span className="text-[11px] text-ink-muted">候補を却下</span>
-                  )}
-                  {m.task?.state === "suggested" && (
-                    <span className="rounded-full bg-amber-50 px-2 py-0.5 text-[11px] font-semibold text-amber-700">
-                      タスク候補
-                    </span>
-                  )}
                 </div>
 
                 {/* 三点メニューの中身（通常ブロックで開くので見切れない） */}
@@ -410,10 +405,10 @@ export function TeamChat() {
                         mine ? "relative z-40 mt-1 flex justify-end" : "relative z-40 mt-1"
                       }
                     >
-                      <div className="w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                      <div className="w-52 rounded-2xl border border-amber-100 bg-[#FFFDF9] p-1.5 text-left shadow-[0_10px_30px_rgba(180,140,90,0.18)]">
                         {m.task?.state === "added" && m.task.target === "today" ? (
-                          <div className="block w-full rounded px-3 py-2 text-left text-[12px] text-emerald-700">
-                            今日のToDoに追加済み
+                          <div className="flex w-full items-center gap-2 rounded-xl bg-emerald-50 px-3 py-2 text-left text-[12px] font-medium text-emerald-700">
+                            📅 今日のToDoに追加済み
                           </div>
                         ) : (
                           <button
@@ -421,30 +416,30 @@ export function TeamChat() {
                               toTask(m.id, "add", "today");
                               setMenuFor("");
                             }}
-                            className="block w-full rounded px-3 py-2 text-left text-[12px] text-ink-soft hover:bg-slate-100"
+                            className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-[12px] text-ink-soft transition-colors hover:bg-amber-50"
                           >
-                            今日のToDoに追加
+                            📅 今日のToDoに追加
                           </button>
                         )}
                         <button
                           onClick={() =>
                             setGoalPickerFor(goalPickerFor === m.id ? "" : m.id)
                           }
-                          className="block w-full rounded px-3 py-2 text-left text-[12px] text-ink-soft hover:bg-slate-100"
+                          className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-[12px] text-ink-soft transition-colors hover:bg-amber-50"
                         >
-                          ゴールに追加 ▾
+                          🎯 ゴールに追加 ▾
                         </button>
                         {goalPickerFor === m.id && (
-                          <div className="mt-1 space-y-1">
+                          <div className="mt-1 space-y-1 px-1 pb-1">
                             <button
                               onClick={() => {
                                 setNewGoalTitle(m.text);
                                 setMenuFor("");
                                 setGoalPickerFor("");
                               }}
-                              className="block w-full rounded border border-brand/40 bg-brand/5 px-3 py-1.5 text-left text-[11px] font-medium text-brand hover:bg-brand/10"
+                              className="block w-full rounded-xl border border-brand/30 bg-brand/5 px-3 py-2 text-left text-[11px] font-semibold text-brand transition-colors hover:bg-brand/10"
                             >
-                              ＋ 新規ゴールとして作成
+                              ✨ 新規ゴールとして作成
                             </button>
                             <select
                               autoFocus
@@ -455,7 +450,7 @@ export function TeamChat() {
                                 }
                               }}
                               defaultValue=""
-                              className="w-full rounded border border-slate-300 px-1.5 py-1 text-[11px]"
+                              className="w-full rounded-xl border border-slate-200 px-2 py-1.5 text-[11px]"
                             >
                               <option value="" disabled>
                                 既存ゴールに追加…
@@ -474,9 +469,9 @@ export function TeamChat() {
                               toTask(m.id, "dismiss");
                               setMenuFor("");
                             }}
-                            className="block w-full rounded px-3 py-2 text-left text-[12px] text-ink-muted hover:bg-slate-100 hover:text-red-600"
+                            className="flex w-full items-center gap-2 rounded-xl px-3 py-2 text-left text-[12px] text-ink-muted transition-colors hover:bg-rose-50 hover:text-rose-600"
                           >
-                            候補を却下
+                            🗑 候補を却下
                           </button>
                         )}
                       </div>
@@ -490,7 +485,7 @@ export function TeamChat() {
         </div>
 
         {/* 入力 */}
-        <div className="border-t border-slate-200 p-3">
+        <div className="border-t border-amber-100 bg-[#FDF8F1] p-3">
           <div className="flex items-end gap-2">
             <textarea
               value={draft}
@@ -502,24 +497,24 @@ export function TeamChat() {
                 }
               }}
               rows={2}
-              placeholder="メッセージ（⌘/Ctrl+Enterで送信）"
-              className="flex-1 resize-none rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-brand"
+              placeholder="メッセージを入力…（⌘/Ctrl+Enterで送信）"
+              className="flex-1 resize-none rounded-2xl border border-amber-200 bg-white px-4 py-2.5 text-sm outline-none focus:border-brand"
             />
             <button
               onClick={send}
               disabled={!draft.trim()}
-              className="rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white disabled:opacity-40"
+              className="rounded-full bg-brand px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:opacity-90 disabled:opacity-40"
             >
-              送信
+              送信 ✈
             </button>
           </div>
         </div>
       </section>
 
       {/* 右：タスク一覧 (1/4) */}
-      <aside className="flex w-1/4 min-w-[200px] flex-col border-l border-slate-200 bg-slate-50">
-        <div className="border-b border-slate-200 px-4 py-3">
-          <span className="text-sm font-bold text-ink">タスク</span>
+      <aside className="flex w-1/4 min-w-[200px] flex-col border-l border-amber-100 bg-[#FDF8F1]">
+        <div className="border-b border-amber-100 px-4 py-3">
+          <span className="text-sm font-bold text-ink">🗒 タスク</span>
           {stats && (
             <p className="mt-0.5 text-[11px] text-ink-muted">
               学習: 追加{stats.totalPos}・却下{stats.totalNeg}／

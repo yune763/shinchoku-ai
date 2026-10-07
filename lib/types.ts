@@ -95,6 +95,7 @@ export interface Goal {
   previewUrl: string; // 起動後に開くURL（例 http://localhost:5173）
   estimatedHours: number; // 見積所要時間（0=未設定, 0.5, 1, 2 …）
   progress: number; // 0-100（ステップがあれば自動、なければ手動）
+  todoOnly: boolean; // true=今日のToDo専用（ゴール一覧/メンバー進捗には出さない）
   steps: Step[]; // ロードマップ
   logs: LogEntry[];
   review: Review | null;
@@ -136,6 +137,7 @@ export const goalInputSchema = z.object({
     .transform((v) => v.trim().replace(/^["']+|["']+$/g, "").trim()),
   estimatedHours: z.number().min(0).default(0),
   progress: z.number().min(0).max(100).default(0),
+  todoOnly: z.boolean().optional(),
 });
 
 export type GoalInput = z.infer<typeof goalInputSchema>;

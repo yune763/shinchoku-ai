@@ -42,6 +42,7 @@ async function read(): Promise<DbShape> {
     if (g.estimatedHours === undefined) g.estimatedHours = 0;
     if (g.reviewer === undefined) g.reviewer = "";
     if (g.salesPerson === undefined) g.salesPerson = "";
+    if (g.todoOnly === undefined) g.todoOnly = false;
   });
 
   // 一度だけ：既存の全ゴールの実装担当(assignee)を指定メンバーに揃える。
@@ -98,6 +99,7 @@ export async function createGoal(input: GoalInput): Promise<Goal> {
     previewUrl: input.previewUrl,
     estimatedHours: input.estimatedHours,
     progress: input.progress,
+    todoOnly: input.todoOnly ?? false,
     steps: [],
     logs: [],
     review: null,

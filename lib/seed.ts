@@ -47,6 +47,7 @@ export function seedGoals(): Goal[] {
     previewUrl: partial.previewUrl ?? "",
     estimatedHours: partial.estimatedHours ?? 0,
     progress: partial.progress ?? 0,
+    todoOnly: partial.todoOnly ?? false,
     steps: partial.steps ?? [],
     logs: partial.logs ?? [],
     review: partial.review ?? null,

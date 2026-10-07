@@ -53,7 +53,10 @@ export default async function GoalsPage() {
     return false;
   };
   // 表示ルート＝自分担当で、より上位に自分担当がないゴール。その配下は丸ごと表示する。
-  const displayRoots = goals.filter((g) => isMine(g) && !anyAncestorMine(g));
+  // 「今日のToDo専用(todoOnly)」はゴール一覧には出さない（今日のToDoページにのみ表示）。
+  const displayRoots = goals.filter(
+    (g) => isMine(g) && !anyAncestorMine(g) && !g.todoOnly,
+  );
   // 表示対象(自分ルート＋その子孫)のIDを集める。集計はこの範囲で行う。
   const visibleIds = new Set<string>();
   const collect = (id: string) => {

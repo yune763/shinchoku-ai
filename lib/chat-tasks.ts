@@ -51,6 +51,8 @@ export async function createTaskFromMessage(
     previewUrl: "",
     estimatedHours: 0,
     progress: 0,
+    // 「今日のToDoに追加」はToDo専用（ゴール一覧・メンバー進捗には出さない）。
+    todoOnly: target === "today",
   });
   // 出所をログに残す（どのチャットから来たか）。
   await addLog(goal.id, {
