@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
+import { NewGoalForm } from "@/components/NewGoalForm";
 
 interface Me {
   id: string;
@@ -83,6 +84,7 @@ export function TeamChat() {
   const [showNewDm, setShowNewDm] = useState(false);
   const [goalPickerFor, setGoalPickerFor] = useState<string>("");
   const [menuFor, setMenuFor] = useState<string>(""); // 三点メニューを開いているメッセージID
+  const [newGoalTitle, setNewGoalTitle] = useState<string | null>(null); // 新規ゴールモーダルの初期タイトル
   const bottomRef = useRef<HTMLDivElement>(null);
   // 直近で既読化した (会話ID:最新メッセージID) を覚え、同じ状態での重複書き込みを防ぐ。
   const lastMarkedRef = useRef<string>("");
@@ -363,18 +365,16 @@ export function TeamChat() {
                   >
                     {m.text}
                   </div>
-                  {(!m.task || m.task.state === "suggested") && (
-                    <button
-                      onClick={() => {
-                        setMenuFor(menuFor === m.id ? "" : m.id);
-                        setGoalPickerFor("");
-                      }}
-                      aria-label="タスク操作"
-                      className="mt-1 grid h-7 w-6 shrink-0 place-items-center rounded-full text-base leading-none text-ink-muted hover:bg-slate-100"
-                    >
-                      ⋮
-                    </button>
-                  )}
+                  <button
+                    onClick={() => {
+                      setMenuFor(menuFor === m.id ? "" : m.id);
+                      setGoalPickerFor("");
+                    }}
+                    aria-label="タスク操作"
+                    className="mt-1 grid h-7 w-6 shrink-0 place-items-center rounded-full text-base leading-none text-ink-muted hover:bg-slate-100"
+                  >
+                    ⋮
+                  </button>
                 </div>
 
                 {/* タスク化の状態バッジ */}
@@ -396,60 +396,92 @@ export function TeamChat() {
 
                 {/* 三点メニューの中身（通常ブロックで開くので見切れない） */}
                 {menuFor === m.id && (
-                  <div className={mine ? "mt-1 flex justify-end" : "mt-1"}>
-                    <div className="w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow">
-                      <button
-                        onClick={() => {
-                          toTask(m.id, "add", "today");
-                          setMenuFor("");
-                        }}
-                        className="block w-full rounded px-3 py-2 text-left text-[12px] text-ink-soft hover:bg-slate-100"
-                      >
-                        今日のToDoに追加
-                      </button>
-                      <button
-                        onClick={() =>
-                          setGoalPickerFor(goalPickerFor === m.id ? "" : m.id)
-                        }
-                        className="block w-full rounded px-3 py-2 text-left text-[12px] text-ink-soft hover:bg-slate-100"
-                      >
-                        ゴールに追加 ▾
-                      </button>
-                      {goalPickerFor === m.id && (
-                        <select
-                          autoFocus
-                          onChange={(e) => {
-                            if (e.target.value) {
-                              toTask(m.id, "add", "goal", e.target.value);
+                  <>
+                    {/* メニュー以外をクリックで閉じる透明オーバーレイ */}
+                    <div
+                      className="fixed inset-0 z-30"
+                      onClick={() => {
+                        setMenuFor("");
+                        setGoalPickerFor("");
+                      }}
+                    />
+                    <div
+                      className={
+                        mine ? "relative z-40 mt-1 flex justify-end" : "relative z-40 mt-1"
+                      }
+                    >
+                      <div className="w-48 rounded-lg border border-slate-200 bg-white p-1 text-left shadow-lg">
+                        {m.task?.state === "added" && m.task.target === "today" ? (
+                          <div className="block w-full rounded px-3 py-2 text-left text-[12px] text-emerald-700">
+                            今日のToDoに追加済み
+                          </div>
+                        ) : (
+                          <button
+                            onClick={() => {
+                              toTask(m.id, "add", "today");
                               setMenuFor("");
-                            }
-                          }}
-                          defaultValue=""
-                          className="mt-1 w-full rounded border border-slate-300 px-1.5 py-1 text-[11px]"
-                        >
-                          <option value="" disabled>
-                            追加先ゴールを選択…
-                          </option>
-                          {goals.map((g) => (
-                            <option key={g.id} value={g.id}>
-                              {g.title}
-                            </option>
-                          ))}
-                        </select>
-                      )}
-                      {m.task?.state === "suggested" && (
+                            }}
+                            className="block w-full rounded px-3 py-2 text-left text-[12px] text-ink-soft hover:bg-slate-100"
+                          >
+                            今日のToDoに追加
+                          </button>
+                        )}
                         <button
-                          onClick={() => {
-                            toTask(m.id, "dismiss");
-                            setMenuFor("");
-                          }}
-                          className="block w-full rounded px-3 py-2 text-left text-[12px] text-ink-muted hover:bg-slate-100 hover:text-red-600"
+                          onClick={() =>
+                            setGoalPickerFor(goalPickerFor === m.id ? "" : m.id)
+                          }
+                          className="block w-full rounded px-3 py-2 text-left text-[12px] text-ink-soft hover:bg-slate-100"
                         >
-                          候補を却下
+                          ゴールに追加 ▾
                         </button>
-                      )}
+                        {goalPickerFor === m.id && (
+                          <div className="mt-1 space-y-1">
+                            <button
+                              onClick={() => {
+                                setNewGoalTitle(m.text);
+                                setMenuFor("");
+                                setGoalPickerFor("");
+                              }}
+                              className="block w-full rounded border border-brand/40 bg-brand/5 px-3 py-1.5 text-left text-[11px] font-medium text-brand hover:bg-brand/10"
+                            >
+                              ＋ 新規ゴールとして作成
+                            </button>
+                            <select
+                              autoFocus
+                              onChange={(e) => {
+                                if (e.target.value) {
+                                  toTask(m.id, "add", "goal", e.target.value);
+                                  setMenuFor("");
+                                }
+                              }}
+                              defaultValue=""
+                              className="w-full rounded border border-slate-300 px-1.5 py-1 text-[11px]"
+                            >
+                              <option value="" disabled>
+                                既存ゴールに追加…
+                              </option>
+                              {goals.map((g) => (
+                                <option key={g.id} value={g.id}>
+                                  {g.title}
+                                </option>
+                              ))}
+                            </select>
+                          </div>
+                        )}
+                        {m.task?.state === "suggested" && (
+                          <button
+                            onClick={() => {
+                              toTask(m.id, "dismiss");
+                              setMenuFor("");
+                            }}
+                            className="block w-full rounded px-3 py-2 text-left text-[12px] text-ink-muted hover:bg-slate-100 hover:text-red-600"
+                          >
+                            候補を却下
+                          </button>
+                        )}
+                      </div>
                     </div>
-                  </div>
+                  </>
                 )}
               </div>
             );
@@ -502,6 +534,20 @@ export function TeamChat() {
           </div>
         </div>
       </aside>
+
+      {/* チャットから「新規ゴールとして作成」したときのモーダル（新しいゴールを置くと同機能） */}
+      {newGoalTitle !== null && (
+        <NewGoalForm
+          goals={[]}
+          forceOpen
+          initialTitle={newGoalTitle}
+          onClose={() => setNewGoalTitle(null)}
+          onCreated={() => {
+            setNewGoalTitle(null);
+            loadTasks();
+          }}
+        />
+      )}
     </div>
   );
 }

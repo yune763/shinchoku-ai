@@ -42,10 +42,10 @@ const BOTTOM_MENU: { href: string; label: string; icon: IconName }[] = [
 
 // 「その他」に畳み込むサブメニュー。
 const MORE_MENU: { href: string; label: string; icon: IconName }[] = [
-  { href: "/install", label: "アプリ導入", icon: "download" },
   { href: "/account", label: "アカウント情報", icon: "account" },
   { href: "/analytics", label: "アナリティクス", icon: "analytics" },
   { href: "/tools", label: "ツール管理", icon: "tools" },
+  { href: "/install", label: "アプリ導入", icon: "download" },
 ];
 
 // シンプルな線アイコン一式（塗りは currentColor）。

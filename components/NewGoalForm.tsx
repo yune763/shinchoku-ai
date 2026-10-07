@@ -13,15 +13,27 @@ export function NewGoalForm({
   defaultParentId = null,
   compact = false,
   onCreated,
+  forceOpen = false,
+  initialTitle = "",
+  onClose,
 }: {
   goals: Goal[];
   defaultParentId?: string | null;
   compact?: boolean;
   onCreated?: () => void;
+  // 外部から開いて使う場合（例: チャットの「新規ゴール」）に指定する。
+  forceOpen?: boolean;
+  initialTitle?: string;
+  onClose?: () => void;
 }) {
   const router = useRouter();
-  const [open, setOpen] = useState(false);
-  const [title, setTitle] = useState("");
+  const [open, setOpen] = useState(forceOpen);
+  const [title, setTitle] = useState(initialTitle);
+  // 外部制御で開くとき、閉じたら親へ通知してDOMから外せるようにする。
+  const close = () => {
+    setOpen(false);
+    onClose?.();
+  };
   const [parentId, setParentId] = useState<string | null>(defaultParentId);
   const [desire, setDesire] = useState("");
   const [purpose, setPurpose] = useState("");
@@ -100,12 +112,13 @@ export function NewGoalForm({
     setSalesPerson("");
     setEstimatedHours(0);
     setRepoPath("");
-    setOpen(false); // 追加完了したらフォームを閉じる
+    close(); // 追加完了したらフォームを閉じる
     onCreated?.();
     router.refresh();
   }
 
   if (!open) {
+    if (forceOpen) return null; // 外部制御で閉じたら何も描画しない
     if (compact) {
       return (
         <button
@@ -131,7 +144,7 @@ export function NewGoalForm({
   return (
     <div
       className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-black/50 p-4 py-10"
-      onClick={() => setOpen(false)}
+      onClick={close}
     >
       <form
         onSubmit={submit}
@@ -144,7 +157,7 @@ export function NewGoalForm({
           </div>
           <button
             type="button"
-            onClick={() => setOpen(false)}
+            onClick={close}
             aria-label="閉じる"
             className="text-xl leading-none text-ink-muted hover:text-ink"
           >
@@ -272,7 +285,7 @@ export function NewGoalForm({
         </button>
         <button
           type="button"
-          onClick={() => setOpen(false)}
+          onClick={close}
           className="rounded-lg px-4 py-2 text-sm text-ink-muted"
         >
           キャンセル
