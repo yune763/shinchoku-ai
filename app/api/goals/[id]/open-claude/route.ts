@@ -87,7 +87,12 @@ export async function POST(req: NextRequest, { params }: Params) {
   // ターミナルは開かない。文字化けを避けるため UTF-8 ファイルを Set-Clipboard で読む。
   try {
     const prompt = buildConsultPrompt(goal, all);
-    // リモート実行：クライアント側で指示文をコピーし、Claude を開かせる。
+    // Mac：Claudeデスクトップアプリへ AppleScript で直接貼り付ける。
+    if (process.platform === "darwin") {
+      const launched = await openClaudeMac(prompt);
+      return NextResponse.json({ ok: true, tool: "claude", launched, prompt });
+    }
+    // その他(Linux/デプロイ)：クライアント側でコピー＆表示（モーダル）。
     if (!isWindows) {
       return NextResponse.json({ ok: true, remote: true, tool: "claude", prompt });
     }
@@ -149,6 +154,37 @@ if ($p) {
     let out = "";
     child.stdout.on("data", (b) => (out += b.toString()));
     child.on("close", () => resolve(out.includes("launched")));
+    child.on("error", () => resolve(false));
+  });
+}
+
+// Mac: Claude デスクトップアプリを起動し、相談文をクリップボード経由で入力枠へ貼り付ける。
+// System Events のキーストロークには「アクセシビリティ」許可が必要（未許可なら false）。
+function openClaudeMac(prompt: string): Promise<boolean> {
+  const script = `on run argv
+  set the clipboard to (item 1 of argv)
+  try
+    tell application "Claude" to activate
+  on error
+    return "noapp"
+  end try
+  delay 1.0
+  tell application "System Events"
+    keystroke "n" using command down
+    delay 0.6
+    keystroke "v" using command down
+  end tell
+  return "launched"
+end run`;
+  return new Promise((resolve) => {
+    const child = spawn("osascript", ["-e", script, prompt], {
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+    let out = "";
+    let err = "";
+    child.stdout.on("data", (b) => (out += b.toString()));
+    child.stderr.on("data", (b) => (err += b.toString()));
+    child.on("close", () => resolve(out.includes("launched") && !err.trim()));
     child.on("error", () => resolve(false));
   });
 }

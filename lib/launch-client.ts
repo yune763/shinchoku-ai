@@ -46,17 +46,26 @@ export async function launchTool(
     return { message: "Cursor を開きました" };
   }
 
-  // Claude（相談）：相談文を必ず返す。クリップボードにもコピーしておく（任意）。
+  // Claude（相談）：
+  //  - 自動入力できた(launched) → Claudeアプリの入力欄に直接入っているのでモーダルは出さない。
+  //  - 自動入力できない(Macで未許可/アプリ無し等) → 相談文をモーダル表示してコピーできるようにする。
   const prompt = d.prompt as string | undefined;
+  if (d.launched) {
+    return {
+      message:
+        "Claude（デスクトップ）の入力欄に相談文を入れました。内容を確認して送信してください。",
+    };
+  }
+  // 自動入力できなかった場合はクリップボードにもコピーしておく（モーダルでも手動コピー可）。
   if (prompt) {
     try {
       await navigator.clipboard.writeText(prompt);
     } catch {
-      /* コピー不可でもモーダルから手動コピーできる */
+      /* モーダルから手動コピーできる */
     }
   }
-  const message = d.launched
-    ? "Claude（デスクトップ）に入力しました。下の相談文はコピーにも使えます。"
-    : "相談文を表示しました。コピーして Claude / Claude Code / Cursor に貼り付けてください。";
-  return { message, prompt };
+  return {
+    message: "相談文を表示しました。コピーして貼り付けてください。",
+    prompt,
+  };
 }
