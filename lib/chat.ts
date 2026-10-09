@@ -3,6 +3,8 @@ import {
   getGoal,
   createGoal,
   updateGoal,
+  deleteGoal,
+  childrenOf,
   addLog,
   updateStep,
   computeProgress,
@@ -117,7 +119,13 @@ function buildPrompt(
   lines.push('- set_step_done: {"goalId","stepTitle","done":true/false}');
   lines.push('- add_log: {"goalId","body"}');
   lines.push(
+    '- add_goal: {"title":"タイトル","parentId":"<親ID or 省略>","purpose":"目的(任意)"}  // ゴールを追加（parentId省略=トップレベル）',
+  );
+  lines.push(
     '- add_child: {"goalId":"<親ゴールのID>","title":"子ゴールのタイトル","purpose":"目的(任意)"}  // 子ゴール(ToDo)を1つ追加する。複数作るならこのアクションを複数並べる',
+  );
+  lines.push(
+    '- delete_goal: {"goalId":"<削除するゴールのID>"}  // ゴールを削除（子孫もすべて削除）。ユーザーが明確に削除を依頼したときだけ使う',
   );
   lines.push(
     '- breakdown: {"goalId":"<ゴールのID>"}  // そのゴールをAIが分析して子タスクに自動分解する（子がまだ無いゴール向け）',
@@ -199,6 +207,34 @@ async function executeActions(actions: Action[]): Promise<string[]> {
 }
 
 async function runOne(a: Action): Promise<string | null> {
+  // add_goal は親が無い（トップレベル）場合があるので、goalId ガードの前に処理する。
+  if (a.type === "add_goal") {
+    const title = (a.title ?? "").trim();
+    if (!title) return "ゴールのタイトルが空です";
+    const parentId = a.goalId || null; // parentId を goalId で受けても可
+    const created = await createGoal({
+      parentId,
+      title: title.slice(0, 120),
+      desire: "",
+      purpose: (a.purpose ?? "").slice(0, 200),
+      currentStatus: "",
+      completionCriteria: "",
+      status: GOAL_STATUS.notStarted,
+      assignee: "",
+      reviewer: "",
+      salesPerson: "",
+      dueDate: null,
+      kpi: "",
+      forecast: "",
+      repoPath: "",
+      previewCommand: "",
+      previewUrl: "",
+      estimatedHours: 0,
+      progress: 0,
+    });
+    return `ゴール「${created.title}」を追加`;
+  }
+
   if (!a.goalId) return null;
   const goal = await getGoal(a.goalId);
   if (!goal) return `ゴールが見つかりません(${a.goalId})`;
@@ -256,6 +292,15 @@ async function runOne(a: Action): Promise<string | null> {
       });
       return `「${goal.title}」に子ゴール「${child.title}」を追加`;
     }
+    case "delete_goal": {
+      const all = await listGoals();
+      const descendants = countDescendants(goal.id, all);
+      const ok = await deleteGoal(goal.id);
+      if (!ok) return `「${goal.title}」の削除に失敗しました`;
+      return descendants > 0
+        ? `「${goal.title}」と子孫${descendants}件を削除しました`
+        : `「${goal.title}」を削除しました`;
+    }
     case "breakdown": {
       const n = await ensureBreakdown(goal);
       return n > 0
@@ -299,6 +344,15 @@ function describePatch(patch: Record<string, unknown>): string {
   if (patch.currentStatus !== undefined) parts.push(`現状更新`);
   if (patch.completionCriteria !== undefined) parts.push(`完了基準更新`);
   return parts.join(" / ") || "変更";
+}
+
+// 配下の子孫ゴール総数（削除時の件数表示用）。
+function countDescendants(
+  goalId: string,
+  all: Awaited<ReturnType<typeof listGoals>>,
+): number {
+  const kids = childrenOf(goalId, all);
+  return kids.reduce((acc, k) => acc + 1 + countDescendants(k.id, all), 0);
 }
 
 function normalize(s: string): string {
