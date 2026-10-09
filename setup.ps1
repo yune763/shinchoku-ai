@@ -71,8 +71,29 @@ Write-Host "=============================================" -ForegroundColor Cyan
 
 # 1) 必要ソフト -------------------------------------------------
 Refresh-Path
+$hadNode = Has "node"
+$hadGit  = Has "git"
 Ensure-App "node" "OpenJS.NodeJS.LTS" "Node.js" | Out-Null
 Ensure-App "git"  "Git.Git"           "Git"     | Out-Null
+
+# 必要ソフトを“今回”新しく入れた場合、同じ画面では npm 等がうまく動かないことがある。
+# そのときは、PATHが反映された新しいウィンドウに自動で引き継いで続きを実行する（2段階）。
+if (((-not $hadNode) -or (-not $hadGit)) -and -not $env:SHINCHOKU_PHASE2) {
+  Say "必要ソフトの準備ができました。続きを新しいウィンドウで自動実行します。"
+  Write-Host "    （新しい黒い画面が開きます。この画面は閉じて構いません）" -ForegroundColor Yellow
+  $env:SHINCHOKU_PHASE2 = "1"
+  try {
+    Start-Process powershell -ArgumentList @(
+      "-NoProfile","-ExecutionPolicy","Bypass","-NoExit","-Command",
+      "irm https://raw.githubusercontent.com/yune763/shinchoku-ai/main/setup.ps1 | iex"
+    )
+  } catch {
+    Warn "新しいウィンドウの起動に失敗しました。PowerShellを開き直して、もう一度インストールを実行してください。"
+  }
+  try { Stop-Transcript | Out-Null } catch {}
+  Read-Host "このウィンドウは Enter で閉じられます"
+  return
+}
 
 # npm は .cmd を優先して確実に呼ぶ（新規インストール直後の .ps1 解決で失敗しないように）。
 function Resolve-Npm {
