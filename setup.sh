@@ -73,6 +73,10 @@ say "依存パッケージをインストールします（少し時間がかか
 ( cd "$INSTALL_DIR" && npm install )
 ok "本体の準備ができました"
 
+# 連携（MCP登録＋フック）を自動設定：Claude Code / Cursor から作業ログを自動反映できるようにする。
+say "Claude Code / Cursor 連携を設定します..."
+( cd "$INSTALL_DIR" && node scripts/setup-integration.mjs --base "http://localhost:3000" ) || warn "連携設定でエラー（後で手動実行可）"
+
 # 3) 接続設定(.env) --------------------------------------------
 ENV_FILE="$INSTALL_DIR/.env"
 if [ -f "$ENV_FILE" ]; then

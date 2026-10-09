@@ -174,6 +174,11 @@ if ($npmExe) {
   Pop-Location
   if ($npmCode -eq 0 -and (Test-Path (Join-Path $InstallDir 'node_modules'))) {
     Ok "本体の準備ができました"
+    # 連携（MCP登録＋フック）を自動設定：Claude Code / Cursor から作業ログを自動反映できるようにする。
+    Say "Claude Code / Cursor 連携を設定します..."
+    Push-Location $InstallDir
+    & node "scripts/setup-integration.mjs" --base "http://localhost:3000" 2>&1 | Out-Host
+    Pop-Location
   } else {
     Warn "依存インストールに失敗しました（code=$npmCode）。上の赤い行が原因です。"
     Warn "対処：このウィンドウを閉じ、新しいPowerShellを開いて次を実行してください："
