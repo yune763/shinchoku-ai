@@ -125,6 +125,7 @@ if (-not (Test-Path (Join-Path $InstallDir "package.json"))) {
   Write-Host "`n本体の取得に失敗しました。ネットワーク接続を確認して、もう一度このインストールを実行してください。" -ForegroundColor Red
   Write-Host ("ログ: {0}" -f $LogFile) -ForegroundColor Yellow
   try { Stop-Transcript | Out-Null } catch {}
+  try { Start-Process notepad $LogFile } catch {}
   Read-Host "Enterキーで終了します"
   return
 }
