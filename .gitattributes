@@ -1,7 +1,8 @@
-# Windows バッチは必ず CRLF で保存・配信する（LFだと cmd.exe が誤動作し一瞬で閉じる）。
-*.cmd text eol=crlf
-*.bat text eol=crlf
-# PowerShell / Mac command も改行を固定（.command は LF）。
-*.ps1 text eol=crlf
+# Windows バッチは CRLF のバイト列をそのまま保持（LFだと cmd.exe が誤動作し一瞬で閉じる）。
+# -text にすることで、チェックアウト環境に関係なく保存時のバイト（CRLF）を維持する。
+*.cmd -text
+*.bat -text
+# Mac/Unix スクリプトは LF。
 *.command text eol=lf
 *.sh text eol=lf
+*.ps1 text eol=crlf
