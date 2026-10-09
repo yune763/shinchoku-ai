@@ -245,8 +245,8 @@ export function TopNav() {
         進捗・ツール管理
       </Link>
 
-      {/* アイコン＋ページ名・縦1列 */}
-      <nav className="flex-1 flex flex-col items-stretch gap-1 p-2">
+      {/* アイコン＋ページ名・縦1列。短い画面では縦スクロールで全項目に到達できる。 */}
+      <nav className="flex-1 min-h-0 overflow-y-auto flex flex-col items-stretch gap-1 p-2">
         {MENU.map((m) => {
           const active = isActive(m.href);
           return (
@@ -284,7 +284,6 @@ export function TopNav() {
               title={m.label}
               className={[
                 "flex flex-col items-center justify-center gap-1 py-3 rounded-xl transition-colors",
-                i === 0 ? "mt-auto" : "",
                 active
                   ? "bg-brand text-white"
                   : "text-slate-300 hover:bg-white/10 hover:text-white",
@@ -300,9 +299,10 @@ export function TopNav() {
             </Link>
           );
         })}
+      </nav>
 
-        {/* その他（展開でサブメニュー） */}
-        <div className="relative">
+      {/* その他は常に最下部に固定（スクロール外なのでサブメニューが切れない） */}
+      <div className="relative p-2 border-t border-white/10">
           <button
             type="button"
             onClick={() => setOpenMore((v) => !v)}
@@ -349,8 +349,7 @@ export function TopNav() {
               </div>
             </>
           )}
-        </div>
-      </nav>
+      </div>
     </aside>
   );
 }
