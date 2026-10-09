@@ -197,7 +197,12 @@ export function ChatPanel() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={(e) => {
-                  if (e.key === "Enter" && !e.shiftKey) {
+                  // IME変換確定中のEnterは送信しない（確定した文字が残る不具合を防ぐ）。
+                  if (
+                    e.key === "Enter" &&
+                    !e.shiftKey &&
+                    !e.nativeEvent.isComposing
+                  ) {
                     e.preventDefault();
                     send();
                   }
