@@ -74,7 +74,20 @@ Refresh-Path
 Ensure-App "node" "OpenJS.NodeJS.LTS" "Node.js" | Out-Null
 Ensure-App "git"  "Git.Git"           "Git"     | Out-Null
 
-$npmExe = Resolve-Exe "npm" @((Join-Path $env:ProgramFiles 'nodejs\npm.cmd'))
+# npm は .cmd を優先して確実に呼ぶ（新規インストール直後の .ps1 解決で失敗しないように）。
+function Resolve-Npm {
+  $cands = @(
+    (Join-Path $env:ProgramFiles 'nodejs\npm.cmd'),
+    (Join-Path ${env:ProgramFiles(x86)} 'nodejs\npm.cmd')
+  ) | Where-Object { $_ -and (Test-Path $_) }
+  if ($cands) { return $cands[0] }
+  $c = Get-Command npm.cmd -ErrorAction SilentlyContinue
+  if ($c) { return $c.Source }
+  $c = Get-Command npm -ErrorAction SilentlyContinue
+  if ($c) { return $c.Source }
+  return $null
+}
+$npmExe = Resolve-Npm
 $gitExe = Resolve-Exe "git" @((Join-Path $env:ProgramFiles 'Git\cmd\git.exe'))
 
 # Claude CLI は npm で入れる（Node.js が必要なので後に）。
@@ -82,12 +95,12 @@ Say "Claude CLI を確認します..."
 if (Has "claude") {
   Ok "Claude CLI は既にあります"
 } elseif ($npmExe) {
-  Write-Host "    npm install -g @anthropic-ai/claude-code ..."
-  try { & $npmExe install -g "@anthropic-ai/claude-code" | Out-Host } catch { Warn "Claude CLI の導入に失敗（後で再実行可）。" }
+  Write-Host "    $npmExe install -g @anthropic-ai/claude-code ..."
+  & $npmExe install -g "@anthropic-ai/claude-code" 2>&1 | Out-Host
   Refresh-Path
-  if (Has "claude") { Ok "Claude CLI を入れました" } else { Warn "Claude CLI は後で導入してください（PowerShellを開き直すと認識されることがあります）。" }
+  if (Has "claude") { Ok "Claude CLI を入れました" } else { Warn "Claude CLI は後で導入してください（起動後にターミナルで『npm install -g @anthropic-ai/claude-code』でも可）。" }
 } else {
-  Warn "Node.js が未認識のため、Claude CLI は後で導入してください。"
+  Warn "Node.js(npm) が未認識のため、Claude CLI は後で導入してください。"
 }
 
 # 2) 本体の取得 -------------------------------------------------
@@ -131,16 +144,23 @@ if (-not (Test-Path (Join-Path $InstallDir "package.json"))) {
 }
 
 # 3) 依存パッケージ ---------------------------------------------
-if (-not $npmExe) { $npmExe = Resolve-Exe "npm" @((Join-Path $env:ProgramFiles 'nodejs\npm.cmd')) }
+if (-not $npmExe) { $npmExe = Resolve-Npm }
 if ($npmExe) {
-  Say "依存パッケージをインストールします（少し時間がかかります）..."
+  Say "依存パッケージをインストールします（数分かかります）..."
   Push-Location $InstallDir
-  try { & $npmExe install | Out-Host } catch { Warn "依存インストールでエラー。後で『進捗管理AIを更新』を実行してください。" }
+  & $npmExe install 2>&1 | Out-Host
+  $npmCode = $LASTEXITCODE
   Pop-Location
-  Ok "本体の準備ができました"
+  if ($npmCode -eq 0 -and (Test-Path (Join-Path $InstallDir 'node_modules'))) {
+    Ok "本体の準備ができました"
+  } else {
+    Warn "依存インストールに失敗しました（code=$npmCode）。上の赤い行が原因です。"
+    Warn "対処：このウィンドウを閉じ、新しいPowerShellを開いて次を実行してください："
+    Write-Host ("    cd `"$InstallDir`"; npm install") -ForegroundColor Yellow
+  }
 } else {
-  Warn "Node.js が未認識のため、依存インストールを後回しにします。"
-  Warn "一度PowerShellを閉じて開き直し、デスクトップの『進捗管理AIを更新』を実行してください。"
+  Warn "Node.js(npm) が未認識のため、依存インストールを後回しにします。"
+  Warn "PowerShellを開き直してから、デスクトップの『進捗管理AIを更新』を実行してください。"
 }
 
 # 4) 接続設定(.env) --------------------------------------------
