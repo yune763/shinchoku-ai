@@ -4,6 +4,7 @@
 import { writeFileSync, chmodSync, existsSync, mkdirSync } from "node:fs";
 import path from "node:path";
 import { execSync } from "node:child_process";
+import { installStopHook } from "./worklog-hook.mjs";
 
 let gitDir;
 try {
@@ -34,3 +35,13 @@ try {
 
 console.log(`post-commit フックを導入しました: ${hookPath}`);
 console.log("以後、コミットするたびに作業中ゴールへ自動記録されます。");
+
+// Claude Code の Stop フックも導入（作業終了ごとに作業ログを自動送信）。
+try {
+  const base = process.env.PROGRESS_BASE || "http://localhost:3000";
+  const { settingsPath } = await installStopHook(base);
+  console.log(`Claude Code の Stop フックを導入しました: ${settingsPath}`);
+  console.log("以後、Claude Codeが作業を終えるたびに作業ログが自動送信されます（要: Claude Code再起動）。");
+} catch (e) {
+  console.warn("Stopフックの導入に失敗（手動で `node scripts/worklog-hook.mjs` 実行可）:", e.message);
+}

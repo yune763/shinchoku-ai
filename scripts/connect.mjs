@@ -11,6 +11,7 @@
 import { execSync } from "node:child_process";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { installStopHook } from "./worklog-hook.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -67,6 +68,16 @@ try {
       `  claude mcp add shinchoku --env SHINCHOKU_BASE_URL=${baseUrl} -- node "${serverPath}"\n` +
       `または Cursor の MCP設定に command=node / args=["${serverPath.replace(/\\/g, "/")}"] / env=${envJson} を登録。`,
   );
+}
+
+// 3) Claude Code の Stop フックを導入（作業終了ごとに作業ログを自動送信）
+try {
+  const { settingsPath } = await installStopHook(baseUrl);
+  console.log(`[connect] Stopフックを導入しました: ${settingsPath}`);
+  console.log("  → Claude Codeが作業を終えるたびに、作業中ゴールへ作業ログを自動送信します。");
+} catch (e) {
+  console.warn(`[connect] Stopフックの導入に失敗（${e.message}）。手動で次を実行:`);
+  console.warn(`  node "${path.join(ROOT, "scripts", "worklog-hook.mjs")}" --base ${baseUrl}`);
 }
 
 console.log(`

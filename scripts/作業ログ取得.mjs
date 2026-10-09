@@ -23,7 +23,22 @@ function arg(name, fallback) {
 }
 
 const BASE = (arg("base", process.env.PROGRESS_BASE) || "http://localhost:3000").replace(/\/$/, "");
-const STATE_FILE = path.join(path.dirname(new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1")), ".worklog-state.json");
+const SELF = new URL(import.meta.url).pathname.replace(/^\/([A-Za-z]:)/, "$1");
+const STATE_FILE = path.join(path.dirname(SELF), ".worklog-state.json");
+
+// --detach: 自分自身をバックグラウンドで起動し即終了する。
+// Claude Code の Stop フックから呼んでも、実装終了を待たせない（AI算出は裏で進む）。
+if (process.argv.includes("--detach")) {
+  const { spawn } = await import("node:child_process");
+  const rest = process.argv.slice(2).filter((a) => a !== "--detach");
+  const child = spawn(process.execPath, [SELF, ...rest], {
+    detached: true,
+    stdio: "ignore",
+    windowsHide: true,
+  });
+  child.unref();
+  process.exit(0);
+}
 
 async function getJson(url) {
   const res = await fetch(url, { cache: "no-store" });
