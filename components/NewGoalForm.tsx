@@ -58,6 +58,22 @@ export function NewGoalForm({
   }, [open]);
   const [repoPath, setRepoPath] = useState("");
   const [showPicker, setShowPicker] = useState(false);
+  const [pickingFolder, setPickingFolder] = useState(false);
+
+  // Windowsネイティブの「フォルダーの参照」ダイアログ（エクスプローラー）で選ぶ。
+  // 非Windows/失敗時は、ブラウズ式のFolderPickerにフォールバック。
+  async function pickFolder() {
+    setPickingFolder(true);
+    try {
+      const res = await fetch("/api/fs/pick", { method: "POST" });
+      const d = await res.json().catch(() => ({}));
+      if (res.ok && d.path) setRepoPath(d.path);
+      else setShowPicker(true);
+    } catch {
+      setShowPicker(true);
+    }
+    setPickingFolder(false);
+  }
   const [autoBreakdown, setAutoBreakdown] = useState(true);
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
@@ -245,10 +261,11 @@ export function NewGoalForm({
           />
           <button
             type="button"
-            onClick={() => setShowPicker(true)}
-            className="shrink-0 rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm dark:text-slate-200 hover:border-brand"
+            onClick={pickFolder}
+            disabled={pickingFolder}
+            className="shrink-0 rounded-lg border border-slate-300 dark:border-slate-700 px-3 py-2 text-sm dark:text-slate-200 hover:border-brand disabled:opacity-50"
           >
-            参照…
+            {pickingFolder ? "選択中…" : "参照…"}
           </button>
         </div>
       </div>
