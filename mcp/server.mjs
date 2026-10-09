@@ -143,6 +143,27 @@ server.tool(
   },
 );
 
+// 作業ログを送って、進捗％・完了見込み・新しい子タスクを自動更新する。
+// Cursor 等（Claude Codeのセッション自動取得が効かないツール）から作業終了時に呼ぶ。
+server.tool(
+  "submit_worklog",
+  "作業ログを送信し、AIが進捗％・完了見込みを算出してゴールへ反映し、新たに判明した子タスクも自動追加する。子ゴールの実装を一区切りしたら、やったこと・分かったこと・残タスクを要約して呼ぶ。",
+  {
+    goalId: z.string().describe("対象ゴールのID"),
+    log: z
+      .string()
+      .describe("作業ログ本文（実施内容・完了基準に対する達成度・残タスクなど）"),
+    source: z.string().default("Cursor").describe("作業ツール名など"),
+  },
+  async ({ goalId, log, source }) =>
+    jsonContent(
+      await api(`/api/goals/${goalId}/worklog`, {
+        method: "POST",
+        body: JSON.stringify({ log, source }),
+      }),
+    ),
+);
+
 // 作業中ゴールを設定する（以後このゴールにコミットが自動記録される）。
 server.tool(
   "set_active_goal",
