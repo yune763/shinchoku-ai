@@ -1,14 +1,16 @@
 import {
   listGoals,
   getGoal,
+  createGoal,
   updateGoal,
   addLog,
   updateStep,
   computeProgress,
 } from "./store";
+import { ensureBreakdown } from "./breakdown";
 import { startRun, overlayLiveProgress, anyRunning } from "./claude-runner";
 import { runClaudeText } from "./claude-text";
-import { GOAL_STATUS_LABEL, GoalStatus, LOG_KIND } from "./types";
+import { GOAL_STATUS, GOAL_STATUS_LABEL, GoalStatus, LOG_KIND } from "./types";
 
 // アプリ内AIアシスタント。claude CLI(Max定額)で、進捗の確認＋簡単な修正まで行う。
 
@@ -115,7 +117,16 @@ function buildPrompt(
   lines.push('- set_step_done: {"goalId","stepTitle","done":true/false}');
   lines.push('- add_log: {"goalId","body"}');
   lines.push(
+    '- add_child: {"goalId":"<親ゴールのID>","title":"子ゴールのタイトル","purpose":"目的(任意)"}  // 子ゴール(ToDo)を1つ追加する。複数作るならこのアクションを複数並べる',
+  );
+  lines.push(
+    '- breakdown: {"goalId":"<ゴールのID>"}  // そのゴールをAIが分析して子タスクに自動分解する（子がまだ無いゴール向け）',
+  );
+  lines.push(
     '- run_implement: {"goalId"}  // そのゴールのClaude Code実装を開始する',
+  );
+  lines.push(
+    "子ゴールを作ってほしい依頼には add_child（複数なら並べる）を使う。『分解して』『細かく分けて』等なら breakdown を使う。",
   );
   lines.push(
     "goalId は必ず下の一覧の id を使うこと。主題タスクが設定されていて対象が明示されていない場合は、主題タスクの id を使う。主題タスクが無く、本当に対象を特定できないときだけ聞き返すこと。",
@@ -155,6 +166,8 @@ interface Action {
   stepTitle?: string;
   done?: boolean;
   body?: string;
+  title?: string;
+  purpose?: string;
 }
 
 function splitActions(raw: string): { reply: string; actions: Action[] } {
@@ -217,6 +230,37 @@ async function runOne(a: Action): Promise<string | null> {
     case "run_implement": {
       await startRun(a.goalId);
       return `「${goal.title}」の実装(Claude Code)を開始`;
+    }
+    case "add_child": {
+      const title = (a.title ?? "").trim();
+      if (!title) return "子ゴールのタイトルが空です";
+      const child = await createGoal({
+        parentId: a.goalId,
+        title: title.slice(0, 120),
+        desire: "",
+        purpose: (a.purpose ?? "").slice(0, 200),
+        currentStatus: "",
+        completionCriteria: "",
+        status: GOAL_STATUS.notStarted,
+        assignee: "",
+        reviewer: "",
+        salesPerson: "",
+        dueDate: null,
+        kpi: "",
+        forecast: "",
+        repoPath: "",
+        previewCommand: "",
+        previewUrl: "",
+        estimatedHours: 0,
+        progress: 0,
+      });
+      return `「${goal.title}」に子ゴール「${child.title}」を追加`;
+    }
+    case "breakdown": {
+      const n = await ensureBreakdown(goal);
+      return n > 0
+        ? `「${goal.title}」をAIで分解し、子タスクを${n}件作成`
+        : `「${goal.title}」は既に子ゴールがあるため分解しませんでした（個別に add_child で追加できます）`;
     }
     default:
       return null;
