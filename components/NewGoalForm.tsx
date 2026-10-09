@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Goal } from "@/lib/types";
 import { FolderPicker } from "@/components/FolderPicker";
@@ -78,13 +78,17 @@ export function NewGoalForm({
   const [saving, setSaving] = useState(false);
   const [status, setStatus] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
+  // 二重送信ロック（ダブルクリックやEnter+クリックで2個作られるのを防ぐ・同期的に効く）。
+  const submittingRef = useRef(false);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
+    if (submittingRef.current) return; // 送信中は無視
     if (!title.trim()) {
       setError("タイトルは必須です");
       return;
     }
+    submittingRef.current = true;
     setSaving(true);
     setError(null);
     setStatus(null);
@@ -105,6 +109,7 @@ export function NewGoalForm({
     });
     if (!res.ok) {
       setSaving(false);
+      submittingRef.current = false;
       setError("保存に失敗しました");
       return;
     }
@@ -119,6 +124,7 @@ export function NewGoalForm({
     }
 
     setSaving(false);
+    submittingRef.current = false;
     setStatus(null);
     setTitle("");
     setDesire("");
