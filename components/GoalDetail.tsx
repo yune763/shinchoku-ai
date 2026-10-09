@@ -19,6 +19,7 @@ import { PreviewButton } from "@/components/PreviewButton";
 import { PlanModal } from "@/components/PlanModal";
 import { Roadmap } from "@/components/Roadmap";
 import { launchTool } from "@/lib/launch-client";
+import { PromptModal } from "@/components/PromptModal";
 import { ActiveToggle } from "@/components/ActiveToggle";
 
 const LOG_KIND_LABEL: Record<string, string> = {
@@ -50,6 +51,7 @@ export function GoalDetail({
   const [showPlan, setShowPlan] = useState(false);
   const [showRun, setShowRun] = useState(false);
   const [openingClaude, setOpeningClaude] = useState(false);
+  const [consultPrompt, setConsultPrompt] = useState<string | null>(null);
   const isLeaf = children.length === 0;
 
   // 作業フォルダで開発ツール（Claude Code CLI / Cursor）を開く。
@@ -57,8 +59,10 @@ export function GoalDetail({
     if (openingClaude) return;
     setOpeningClaude(true);
     try {
-      const message = await launchTool(goal.id, tool);
-      alert(message);
+      const { message, prompt } = await launchTool(goal.id, tool);
+      // 相談文があればモーダル表示（環境に関係なく確実にコピーできる）。
+      if (prompt) setConsultPrompt(prompt);
+      else alert(message);
     } finally {
       setOpeningClaude(false);
     }
@@ -279,6 +283,14 @@ export function GoalDetail({
       )}
       {showRun && (
         <ClaudeRunModal goalId={goal.id} onClose={() => setShowRun(false)} />
+      )}
+      {consultPrompt && (
+        <PromptModal
+          title="Claudeへの相談文"
+          note="コピーして Claude / Claude Code / Cursor に貼り付けてください。"
+          prompt={consultPrompt}
+          onClose={() => setConsultPrompt(null)}
+        />
       )}
     </div>
   );

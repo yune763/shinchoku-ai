@@ -16,6 +16,7 @@ import {
   ApplyConsultModal,
 } from "@/components/GoalModals";
 import { launchTool } from "@/lib/launch-client";
+import { PromptModal } from "@/components/PromptModal";
 
 // メニューのおおよその高さ（画面下端での開く方向の判定に使う）。
 const MENU_HEIGHT = 470;
@@ -39,6 +40,7 @@ export function TaskRowMenu({
   const [dropUp, setDropUp] = useState(false);
   const [busy, setBusy] = useState(false);
   const [note, setNote] = useState<string | null>(null);
+  const [consultPrompt, setConsultPrompt] = useState<string | null>(null);
   const btnRef = useRef<HTMLButtonElement>(null);
 
   // 各MSGBOX / 実行の表示状態。
@@ -70,10 +72,14 @@ export function TaskRowMenu({
   async function openTool(tool: "claude" | "cursor") {
     setOpen(false);
     setBusy(true);
-    const message = await launchTool(goalId, tool);
-    setNote(message);
+    const { message, prompt } = await launchTool(goalId, tool);
     setBusy(false);
-    setTimeout(() => setNote(null), 3000);
+    if (prompt) {
+      setConsultPrompt(prompt); // 相談文はモーダルで確実にコピーできるように表示
+    } else {
+      setNote(message);
+      setTimeout(() => setNote(null), 3000);
+    }
   }
 
   // AIに質問する：右下AIアシスタントをこのゴールを主題に開く。
@@ -186,6 +192,14 @@ export function TaskRowMenu({
         </>
       )}
 
+      {consultPrompt && (
+        <PromptModal
+          title="Claudeへの相談文"
+          note="コピーして Claude / Claude Code / Cursor に貼り付けてください。"
+          prompt={consultPrompt}
+          onClose={() => setConsultPrompt(null)}
+        />
+      )}
       {modal === "run" && (
         <ClaudeRunModal goalId={goalId} onClose={() => { closeModal(); router.refresh(); }} />
       )}

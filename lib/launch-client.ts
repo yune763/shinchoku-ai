@@ -7,55 +7,56 @@
 //   - cursor: cursor://file/<作業フォルダ> プロトコルで Cursor を開く（この端末にCursorが必要）
 //   - claude: 指示文をクリップボードへコピーし、Claude(claude.ai)を新規タブで開く
 //
-// 戻り値: 画面に表示する通知メッセージ。
-
-const CLAUDE_WEB_URL = "https://claude.ai/new";
+// 戻り値: 画面に表示する通知メッセージ。claude の相談文は prompt にも返す
+// （環境に左右されず、呼び出し側でモーダル表示＆コピーできるようにするため）。
+export interface LaunchResult {
+  message: string;
+  prompt?: string;
+}
 
 export async function launchTool(
   goalId: string,
   tool: "claude" | "cursor",
-): Promise<string> {
+): Promise<LaunchResult> {
   let res: Response;
   try {
     res = await fetch(`/api/goals/${goalId}/open-claude?tool=${tool}`, {
       method: "POST",
     });
   } catch {
-    return "サーバーに接続できません";
+    return { message: "サーバーに接続できません" };
   }
   const d = await res.json().catch(() => ({}) as Record<string, unknown>);
 
   if (!res.ok) {
-    return (d.error as string) ?? "起動に失敗しました";
+    return { message: (d.error as string) ?? "起動に失敗しました" };
   }
 
-  // リモート(デプロイ版)：ブラウザ側で起動する。
-  if (d.remote) {
-    if (tool === "cursor") {
+  // Cursor：起動のみ（相談文なし）。
+  if (tool === "cursor") {
+    if (d.remote) {
       const repoPath = d.repoPath as string | undefined;
       if (!repoPath) {
-        return "作業フォルダが未設定です。先に作業フォルダを指定してください。";
+        return { message: "作業フォルダが未設定です。先に作業フォルダを指定してください。" };
       }
-      // cursor://file/c:/path/to/repo 形式。バックスラッシュは / に統一し、
-      // 空白や日本語は encodeURI でエスケープする。
       const uri = encodeURI(`cursor://file/${repoPath.replace(/\\/g, "/")}`);
       window.location.href = uri;
-      return "Cursor を開いています（この端末に Cursor が必要です）";
+      return { message: "Cursor を開いています（この端末に Cursor が必要です）" };
     }
-    const prompt = d.prompt as string | undefined;
-    if (!prompt) return "指示文を取得できませんでした";
+    return { message: "Cursor を開きました" };
+  }
+
+  // Claude（相談）：相談文を必ず返す。クリップボードにもコピーしておく（任意）。
+  const prompt = d.prompt as string | undefined;
+  if (prompt) {
     try {
       await navigator.clipboard.writeText(prompt);
     } catch {
-      // クリップボードが使えない環境でも Claude は開く。
+      /* コピー不可でもモーダルから手動コピーできる */
     }
-    window.open(CLAUDE_WEB_URL, "_blank", "noopener");
-    return "指示文をコピーしました。開いた Claude に貼り付けて送信してください";
   }
-
-  // ローカル(win32)：サーバーが起動済み。
-  if (tool === "cursor") return "Cursor を開きました";
-  return d.launched
-    ? "Claude を開きました（指示文を入力済み）。送信して相談を始めてください"
-    : "指示文をコピーしました（Claudeアプリが見つかりません）";
+  const message = d.launched
+    ? "Claude（デスクトップ）に入力しました。下の相談文はコピーにも使えます。"
+    : "相談文を表示しました。コピーして Claude / Claude Code / Cursor に貼り付けてください。";
+  return { message, prompt };
 }

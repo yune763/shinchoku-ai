@@ -97,7 +97,8 @@ export async function POST(req: NextRequest, { params }: Params) {
     await fs.writeFile(promptPath, prompt, "utf8");
 
     const launched = await openClaudeDesktop(promptPath);
-    return NextResponse.json({ ok: true, tool: "claude", copied: true, launched });
+    // prompt も返す（クライアント側でモーダル表示＝確実にコピーできるように）。
+    return NextResponse.json({ ok: true, tool: "claude", copied: true, launched, prompt });
   } catch (e) {
     const message = e instanceof Error ? e.message : "Claude Code の起動に失敗しました";
     return NextResponse.json({ error: message }, { status: 500 });
