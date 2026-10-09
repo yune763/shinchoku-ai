@@ -15,6 +15,10 @@ $RepoUrl    = "https://github.com/yune763/shinchoku-ai.git"
 $ZipUrl     = "https://github.com/yune763/shinchoku-ai/archive/refs/heads/main.zip"
 $InstallDir = Join-Path $HOME "shinchoku-ai"
 
+# インストールの全ログをデスクトップに保存（失敗時の原因特定用）。
+$LogFile = Join-Path ([System.Environment]::GetFolderPath("Desktop")) "shinchoku-install-log.txt"
+try { Start-Transcript -Path $LogFile -Force | Out-Null } catch {}
+
 function Say($msg)  { Write-Host "`n==> $msg" -ForegroundColor Cyan }
 function Ok($msg)   { Write-Host "    [OK] $msg" -ForegroundColor Green }
 function Warn($msg) { Write-Host "    [!] $msg"  -ForegroundColor Yellow }
@@ -119,6 +123,8 @@ if (Test-Path (Join-Path $InstallDir ".git")) {
 
 if (-not (Test-Path (Join-Path $InstallDir "package.json"))) {
   Write-Host "`n本体の取得に失敗しました。ネットワーク接続を確認して、もう一度このインストールを実行してください。" -ForegroundColor Red
+  Write-Host ("ログ: {0}" -f $LogFile) -ForegroundColor Yellow
+  try { Stop-Transcript | Out-Null } catch {}
   Read-Host "Enterキーで終了します"
   return
 }
@@ -192,4 +198,6 @@ Write-Host "  2) デスクトップの『進捗管理AIを起動』をダブル�
 Write-Host "  3) ブラウザで http://localhost:3000 を開く（自動で開かない場合は手動で）"
 Write-Host ""
 Write-Host "インストール先: $InstallDir" -ForegroundColor Green
+Write-Host ("ログ: {0}" -f $LogFile) -ForegroundColor DarkGray
+try { Stop-Transcript | Out-Null } catch {}
 Read-Host "Enterキーで閉じます"
