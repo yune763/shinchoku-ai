@@ -51,14 +51,12 @@ function startServer() {
 }
 
 async function createWindow() {
-  const iconPath = path.resolve(__dirname, "..", "public", "app-icon.png");
   const win = new BrowserWindow({
     width: 1200,
     height: 800,
     minWidth: 900,
     minHeight: 600,
     title: "進捗管理AI",
-    icon: iconPath,
     backgroundColor: "#0f172a",
     autoHideMenuBar: true,
     webPreferences: { contextIsolation: true },
@@ -87,14 +85,6 @@ async function createWindow() {
 }
 
 app.whenReady().then(async () => {
-  // Mac の Dock アイコンを独自アイコンにする。
-  if (process.platform === "darwin" && app.dock) {
-    try {
-      app.dock.setIcon(path.resolve(__dirname, "..", "public", "app-icon.png"));
-    } catch {
-      /* アイコン設定に失敗しても起動は続行 */
-    }
-  }
   startServer();
   await createWindow();
   app.on("activate", () => {

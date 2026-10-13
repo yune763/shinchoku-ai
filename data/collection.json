@@ -1,5 +1,1485 @@
 [
   {
+    "date": "2026-10-13",
+    "title": "AI最新情報レポート 2026-10-13(火)",
+    "summary": "収集 40件 → AI関連 40件 → **40トピック**",
+    "topicCount": 40,
+    "topics": [
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "Anonymous organization-level registries for Dependabot",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "You can now select Anonymous as the authentication method for an organization-level private registry. Use it for registries that Dependabot can reach without credentials, such as an internal package mirror... The post Anonymous organization-level registries for Dependabot appeared first on The GitHub Blog .",
+        "sources": [
+          {
+            "label": "GitHub Changelog",
+            "title": "Anonymous organization-level registries for Dependabot",
+            "url": "https://github.blog/changelog/2026-10-12-anonymous-organization-level-registries-for-dependabot"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "These execs think voice AI hasn’t reached its ChatGPT moment yet",
+        "stars": 2,
+        "reason": "",
+        "summary": "Voice AI often misses important points for its context layer, and causes the whole pipeline to break.",
+        "sources": [
+          {
+            "label": "TechCrunch AI",
+            "title": "These execs think voice AI hasn’t reached its ChatGPT moment yet",
+            "url": "https://techcrunch.com/2026/10/11/these-execs-think-voice-ai-hasnt-reached-its-chatgpt-moment-yet/"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "Context Language Models: Self-Managing Context to Improve Performance and Reduce Compute Costs",
+        "stars": 2,
+        "reason": "",
+        "summary": "Researchers from Meta, MIT, and the University of Washington introduce Context Language Models (CLMs), a new approach that enables language models to manage and edit their own context rather than relying on predefined mechanisms for summarization, compression, and information retrieval, reporting substantial gains in both performance and computational efficiency. By Sergio De Simone",
+        "sources": [
+          {
+            "label": "InfoQ AI",
+            "title": "Context Language Models: Self-Managing Context to Improve Performance and Reduce Compute Costs",
+            "url": "https://www.infoq.com/news/2026/10/context-language-models/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=AI%2C+ML+%26+Data+Engineering"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Can the AI industry persuade data center opponents by getting rid of NDAs?",
+        "stars": 2,
+        "reason": "",
+        "summary": "On Equity, we debate the impact of data center moratoriums and whether the AI industry has a communication problem.",
+        "sources": [
+          {
+            "label": "TechCrunch AI",
+            "title": "Can the AI industry persuade data center opponents by getting rid of NDAs?",
+            "url": "https://techcrunch.com/2026/10/11/can-the-ai-industry-persuade-data-center-opponents-by-getting-rid-of-ndas/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Silicon Valley is falling in line with Trump’s attempt to rename AI",
+        "stars": 2,
+        "reason": "",
+        "summary": "When President Donald Trump announced his plans to rebrand artificial intelligence as \"super intelligence,\" you'd be forgiven for being skeptical that it would catch on. While most of the broader population is sticking with AI, some of Silicon Valley's most powerful are falling in line and trying to give Trump the great AI rebrand he [...]",
+        "sources": [
+          {
+            "label": "The Verge AI",
+            "title": "Silicon Valley is falling in line with Trump’s attempt to rename AI",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1009406/silicon-valley-is-falling-in-line-with-trumps-attempt-to-rename-ai"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "48 hours to TechCrunch Disrupt 2026 — hear directly from the people building what’s next",
+        "stars": 2,
+        "reason": "",
+        "summary": "Less than 48 hours, TechCrunch Disrupt 2026 starts in San Francisco’s Moscone West. Save up to $100 on your pass before prices increase at the door, plus get 50% on a second pass. Or score other deals.",
+        "sources": [
+          {
+            "label": "TechCrunch AI",
+            "title": "48 hours to TechCrunch Disrupt 2026 — hear directly from the people building what’s next",
+            "url": "https://techcrunch.com/2026/10/11/48-hours-to-techcrunch-disrupt-2026-hear-directly-from-the-people-building-whats-next/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Will the HomeView be Apple’s first smart home success?",
+        "stars": 2,
+        "reason": "",
+        "summary": "Over the past couple of years, we’ve seen multiple reports that Apple was working on a new smart home product, but now it seems the product has a name and a launch date.",
+        "sources": [
+          {
+            "label": "TechCrunch AI",
+            "title": "Will the HomeView be Apple’s first smart home success?",
+            "url": "https://techcrunch.com/2026/10/11/will-the-homeview-be-apples-first-smart-home-success/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "FDEが構築したAIエージェントの7割、企業が放棄へ Gartner予測",
+        "stars": 2,
+        "reason": "",
+        "summary": "ベンダーのエンジニアと直接協力して構築したAIエージェントを、2028年までに企業の7割が放棄する――。Gartnerはそう予測する。しかも、原因は技術の未熟さではなく、案件の「構造」にあるという。何が企業をつまずかせ、どうすれば避けられるのか。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "FDEが構築したAIエージェントの7割、企業が放棄へ Gartner予測",
+            "url": "https://www.itmedia.co.jp/enterprise/articles/2610/09/news042.html"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "3社に1社がトークン予算超過 コスト増を最大44%抑える方法とは【アクセンチュア調査】",
+        "stars": 2,
+        "reason": "",
+        "summary": "生成AIを使うほど増えるトークンの支出。アクセンチュアが調査したところ、その8割は明確な事業成果に結び付いているとはいえなかった。3社に1社が年間予算を既に超過する中、トークンを経営資源として管理する先進企業が実施している取り組みとは。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "3社に1社がトークン予算超過 コスト増を最大44%抑える方法とは【アクセンチュア調査】",
+            "url": "https://www.itmedia.co.jp/enterprise/articles/2610/08/news036.html"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "datasette-ports 0.4",
+        "stars": 2,
+        "reason": "",
+        "summary": "Release: datasette-ports 0.4 My plugin for detecting and listing all Datasette instances on the current machine now works with the latest version, and displays the detected PID as well. Knowing the PID makes it easier to attach the new Python 3.15 profiler . Tags: datasette",
+        "sources": [
+          {
+            "label": "Simon Willison's Weblog",
+            "title": "datasette-ports 0.4",
+            "url": "https://simonwillison.net/2026/Oct/12/datasette-ports/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Article: When Should You Use Liquid Clustering? Benchmarking Lakehouse Layout Strategies",
+        "stars": 2,
+        "reason": "",
+        "summary": "Physical data layout is one of the most consequential decisions in lakehouse engineering. The author compares Liquid Clustering, ZOrdering, and partitioning across four workload types on Delta Lake, uncovering two undocumented failure modes that likely affect production systems today and offering a decision framework for choosing the right layout strategy. By Kushal Kumar Vishwakarma",
+        "sources": [
+          {
+            "label": "InfoQ AI",
+            "title": "Article: When Should You Use Liquid Clustering? Benchmarking Lakehouse Layout Strategies",
+            "url": "https://www.infoq.com/articles/liquid-clustering-lakehouse-layout/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=AI%2C+ML+%26+Data+Engineering"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Podcast: What Does It Really Mean To Program With AI: A Conversation with Joy Ebertz",
+        "stars": 2,
+        "reason": "",
+        "summary": "In this podcast, Michael Stiefel spoke to Joy Ebertz about how the use of artificial intelligence is changing the way architects and developers do their jobs. Focusing on the long term success of the business is one of the most neglected tasks of an architect. This task becomes particularly important as the nature of artificial intelligence changes the landscape of software development. By Joy Ebertz",
+        "sources": [
+          {
+            "label": "InfoQ AI",
+            "title": "Podcast: What Does It Really Mean To Program With AI: A Conversation with Joy Ebertz",
+            "url": "https://www.infoq.com/podcasts/what-really-mean-program-ai/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=AI%2C+ML+%26+Data+Engineering"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Presentation: You Can't Trust Your AI Bill. And Neither Can I",
+        "stars": 2,
+        "reason": "",
+        "summary": "Erik Peterson discusses why AI spend is eclipsing cloud bills, triggering a major software engineering cost crisis. He explains tokenmaxxing, unit economics, forced developer promotions, and why fully autonomous AI will write, deploy, and govern code by 2028. By Erik Peterson",
+        "sources": [
+          {
+            "label": "InfoQ AI",
+            "title": "Presentation: You Can't Trust Your AI Bill. And Neither Can I",
+            "url": "https://www.infoq.com/presentations/ai-cloud-cost-economics/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=AI%2C+ML+%26+Data+Engineering"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Meta has some Wonder Full new AI models",
+        "stars": 2,
+        "reason": "",
+        "summary": "Meta is making up for lost time in the AI race. After launching Muse Spark, the first model from its revamped Superintelligence Labs division, and buzzy AI agent Muse, it's now launching two new models it claims can go toe-to-toe with the industry's best. The new models, Muse Wonder and Muse Wonder Full, are available [...]",
+        "sources": [
+          {
+            "label": "The Verge AI",
+            "title": "Meta has some Wonder Full new AI models",
+            "url": "https://www.theverge.com/ai-artificial-intelligence/1009479/meta-muse-wonder-full-ai-model"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Import AI 476: Creativity and RSI; worse-than-China open weight models; AI goes to space",
+        "stars": 2,
+        "reason": "",
+        "summary": "Will we give robots the moon?",
+        "sources": [
+          {
+            "label": "Import AI (Jack Clark)",
+            "title": "Import AI 476: Creativity and RSI; worse-than-China open weight models; AI goes to space",
+            "url": "https://importai.substack.com/p/import-ai-476-creativity-and-rsi"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Amazon has over 1 million robot workers. What’s next for human employees?",
+        "stars": 2,
+        "reason": "",
+        "summary": "The second-largest corporate employer has bet big on robot workers to scale.",
+        "sources": [
+          {
+            "label": "Ars Technica AI",
+            "title": "Amazon has over 1 million robot workers. What’s next for human employees?",
+            "url": "https://arstechnica.com/ai/2026/10/inside-amazons-robotic-arms-race-and-what-it-means-for-the-future-of-human-work/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Former Plaud exec raises $26M for AI app that listens to you in the background",
+        "stars": 2,
+        "reason": "",
+        "summary": "One of the core promises of AI is that the more it knows about a person, the better it will be able to assist them with tasks and make appropriate suggestions, which, if you'll believe the tech companies, requires apps and devices to listen, watch, or record users' activity all the time and gather all possible context.",
+        "sources": [
+          {
+            "label": "TechCrunch AI",
+            "title": "Former Plaud exec raises $26M for AI app that listens to you in the background",
+            "url": "https://techcrunch.com/2026/10/12/former-plaud-exec-raises-26m-for-ai-app-that-listens-to-you-in-the-background/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Microsoft’s new AI chip makes it less reliant on Nvidia’s GPUs",
+        "stars": 2,
+        "reason": "",
+        "summary": "Microsoft is announcing its third-generation Maia in-house AI chip today, designed to be the \"primary AI inference system\" for Microsoft's products and services. Maia 300 not only improves the cost and efficiency of running AI workloads in the cloud, it's also more capable of handling the latest reasoning models and agentic tasks. Maia 300 will [...]",
+        "sources": [
+          {
+            "label": "The Verge AI",
+            "title": "Microsoft’s new AI chip makes it less reliant on Nvidia’s GPUs",
+            "url": "https://www.theverge.com/news/1009465/microsoft-maia-300-chip-improvements-rollout"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Spotify More Than Doubled Monthly Code Changes as AI Accelerated Development",
+        "stars": 2,
+        "reason": "",
+        "summary": "Spotify reports that AI-assisted development more than doubled monthly merged changes, prompting a review of quality and reliability controls across its engineering organization. The company describes changes to testing, observability, rollback capacity, workload prioritization, and automated maintenance as it adapts to higher software change volume. By Leela Kumili",
+        "sources": [
+          {
+            "label": "InfoQ AI",
+            "title": "Spotify More Than Doubled Monthly Code Changes as AI Accelerated Development",
+            "url": "https://www.infoq.com/news/2026/10/spotify-ai-quality-controls/?utm_campaign=infoq_content&utm_source=infoq&utm_medium=feed&utm_term=AI%2C+ML+%26+Data+Engineering"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "TechCrunch Disrupt 2026 starts tomorrow: Your final chance to secure up to $100 ticket savings",
+        "stars": 2,
+        "reason": "",
+        "summary": "Tomorrow at 8 a.m. PT, it all begins z— 10,000+ founders, investors, and tech operators will gather at San Francisco’s Moscone West for TechCrunch Disrupt 2026 for three days of ideas, connections, and startups shaping what comes next. This is your last 24 hours to secure ticket savings of up to $100, and get 50% off a second.",
+        "sources": [
+          {
+            "label": "TechCrunch AI",
+            "title": "TechCrunch Disrupt 2026 starts tomorrow: Your final chance to secure up to $100 ticket savings",
+            "url": "https://techcrunch.com/2026/10/12/techcrunch-disrupt-2026-starts-tomorrow-your-final-chance-to-secure-up-to-100-ticket-savings/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AnthropicのAI、未解決殺人事件で警察に虚偽の情報提供 米政権は「通知と是正は義務」と警告",
+        "stars": 2,
+        "reason": "",
+        "summary": "Anthropicは、Claudeの評価試験中に、未解決殺人事件サイトへの架空情報送信や脆弱性悪用などの意図しない行動が生じたと発表した。警察は発見から報告までの遅れを批判。ホワイトハウスのSI Forceも、インシデントの迅速な通知と是正は国家安全保障上の義務であると警告した。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "AnthropicのAI、未解決殺人事件で警察に虚偽の情報提供 米政権は「通知と是正は義務」と警告",
+            "url": "https://www.itmedia.co.jp/news/article/2610/12/2000002192/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Microsoftも“判断特化”AIモデル「Microsoft-Decision-1」、Qwenベースで「Jev」と同価格",
+        "stars": 2,
+        "reason": "",
+        "summary": "Microsoftは、文章生成を行わず選択肢ごとの確率を返す判断特化AI「Microsoft-Decision-1」を発表した。「Qwen3.5-9B」を追加学習し、OpenAIの「GPT-6 Sol」の35倍の速度を実現。「Jev」と同じ入力100万トークン当たり0.042ドルで、分類やエージェントの行動判定向けに提供する。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "Microsoftも“判断特化”AIモデル「Microsoft-Decision-1」、Qwenベースで「Jev」と同価格",
+            "url": "https://www.itmedia.co.jp/aiplus/article/2610/12/2000002194/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "MicrosoftのナデラCEO、「SIモデルは“内部リスク”として扱うべき」とXに投稿 統制はモデルの外に置くよう提言",
+        "stars": 2,
+        "reason": "",
+        "summary": "MicrosoftのナデラCEOは、SIモデルを組織の内部リスクと同様に扱い、統制の仕組みをモデル外部に構築すべきだと提言した。モデルの多様性や人間による強制停止、証拠の記録など7つの設計原則を提示し、モデル提供者の保証に頼らず知能の供給と実行権限を分離する安全策を訴えた。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "MicrosoftのナデラCEO、「SIモデルは“内部リスク”として扱うべき」とXに投稿 統制はモデルの外に置くよう提言",
+            "url": "https://www.itmedia.co.jp/news/article/2610/12/2000002195/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Ternary Bonsai 2 27BをRTX 4070で動かす:PrismML版llama.cpp、思考の止め方、文脈枠の崖",
+        "stars": 2,
+        "reason": "",
+        "summary": "VRAM 12GBのGPUで27Bクラスを動かすと、4bit(Q4_K_M)では載りきりません。9月に測ったときは、-ngl を詰めても生成3 tok/s前後でした。 同じQwen3.8-27Bを約2bitの三値に縮めた Ternary Bonsai 2 27B なら、RTX 4070に全層が載って 生成56 tok/s でした(思考オフ・短い入力)。 ただし、動かすまでに引っかかる点がいくつかあり、動いたあとにも文脈枠を広げると速度が静かに4分の1になる崖がありました。この記事は「どう動かすか」と「どこで踏むか」のメモです。品質の比較と「GPUを買い足すべきか」は、ブログ側に書いていま...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "Ternary Bonsai 2 27BをRTX 4070で動かす:PrismML版llama.cpp、思考の止め方、文脈枠の崖",
+            "url": "https://zenn.dev/localai_lab/articles/e99753d9876882"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "中国製オープンウェイトモデルに、自社サービスの脆弱性を探させた",
+        "stars": 2,
+        "reason": "",
+        "summary": "この記事は Neurogica Tech Blog の転載です。 国内の情報漏洩が相次いでいる。10月8日にはJPCERT/CCが注意喚起を出し、一般利用者向けのアプリだけでなく、管理・運用側のシステムも被害に遭っていると報告した。APIごとのアクセス制御や、外部に公開する必要のない管理機能の点検も求めている。JPCERT/CCの注意喚起 マクニカが事案対応やログ分析から報告しているのも、必要以上の情報を返すAPIや、認証・権限の不備を幅広く探す動きだ。マクニカの調査報告 私は、この一連の攻撃にもAIが使われていると確信している。サイトごとに異なる機能や不備を広く探り、試行錯誤を繰り...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "中国製オープンウェイトモデルに、自社サービスの脆弱性を探させた",
+            "url": "https://zenn.dev/neurogica/articles/ef9ebaa4f3e9bd"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "コンパクション後に完了済みタスクを再実行させない: subagent-driven-development の ledger を読む",
+        "stars": 2,
+        "reason": "",
+        "summary": "subagent-driven-development の ledger は、プランごとの作業ディレクトリ .superpowers/sdd/<プラン名>/ に置かれる progress.md という進捗台帳です。どのタスクが終わり、どのコミット範囲がそれに対応するかを 1 行ずつ追記していきます。コンテキストのコンパクション後にコントローラーが現在地を見失い、完了済みのタスク列を丸ごとやり直してしまう事故を防ぐためのファイルです。 この記事は Skillselion(Claude Code、Codex、Cursor 向け拡張を実際のインストール数で並べる独立ディレクトリ)が...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "コンパクション後に完了済みタスクを再実行させない: subagent-driven-development の ledger を読む",
+            "url": "https://zenn.dev/skillselion/articles/0f8d3f202f6de0"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIエージェントに仕事を任せる現場のセキュリティ対策",
+        "stars": 2,
+        "reason": "",
+        "summary": "はじめに こんにちは、みおです。個人と AI エージェントで小さな会社を運用しています。 エージェントに仕事を任せると、人が一人で作業していたときには起きなかった種類の事故が出てきます。誰も見ていない間に課金が積み上がったり、画面の書き出しに個人名が混ざったり、コマンドの失敗が黙って無視されたりします。 この記事では、うちで実際にあった失敗と、そこから入れた仕組みを紹介します。流れは「失敗 → 気づき → 仕組みの直し」です。Python の短いコード例(送信前の伏せ処理、有料呼び出しの門)と、最後に真似しやすいチェックリストも付けました。 先にお断りすると、失敗談がある項目と、事故...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "AIエージェントに仕事を任せる現場のセキュリティ対策",
+            "url": "https://zenn.dev/mio_data_jp/articles/ai-agent-company-security"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "LLM03:サプライチェーンとは?借りてきたAIモデルを信頼してよいのか",
+        "stars": 2,
+        "reason": "",
+        "summary": "1. その便利な機能、本当に安全ですか? 自社のサービスにAIを組み込むことになったとします。ゼロからモデルを作る企業は少なく、公開されているモデルや外部のデータ、ライブラリを組み合わせて作るのが一般的です。 では、ダウンロードしたモデルに、外から見えない形で悪意ある振る舞いが仕込まれていたら? 評判のよい公開モデルの名前を使った偽物を、うっかり取り込んでしまったら? AIを作る部品(モデル、データ、ライブラリ、実行環境)のどこかに問題が混じるリスクを、サプライチェーン(Supply Chain) のリスクと呼びます。OWASP Top 10 for LLM Applications...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "LLM03:サプライチェーンとは?借りてきたAIモデルを信頼してよいのか",
+            "url": "https://zenn.dev/monkey_gineer/articles/security-llm-03-supply-chain"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "LLM04:データとモデルのポイズニングとは?AIが「毒」を学ぶと何が起きるのか",
+        "stars": 2,
+        "reason": "",
+        "summary": "1. その便利な機能、本当に安全ですか? 自社の問い合わせ対応AIをより賢くするため、過去の問い合わせ履歴や社外から集めた文書を使って、追加で学習させることにしたとします。 では、その学習データの中に、攻撃者が紛れ込ませた文書が混じっていたら? たとえば、特定の言葉が入力されたときだけ誤った案内をするよう、仕込まれていたら? 普段は正常に動き、特定の条件でだけ誤動作するため、テストでは気づきにくくなります。このように、AIの元になるデータやモデルに「毒」を混ぜる攻撃を、データとモデルのポイズニング(Data and Model Poisoning) と呼びます。OWASP Top 1...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "LLM04:データとモデルのポイズニングとは?AIが「毒」を学ぶと何が起きるのか",
+            "url": "https://zenn.dev/monkey_gineer/articles/security-llm-04-data-model-poisoning"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "ローカルLLMの住人の島で100日、お金が貯まったパン屋から島を出ていった",
+        "stars": 2,
+        "reason": "",
+        "summary": "はじめに 小さなローカル LLM を住人にした架空の島を、Mac mini で動かしています(島の観察日記)。前の記事では、この島が SSD に70GBも書き込んでいた話をしました。今回は、そのとき予告した住人のお金の話です。 島は100日ごとに新しくなります。ほぼ同じお金の決まりで3つの島を100日ずつ回したところ、どの島でも次のことが起きました。 焼いたパンの15%ほどが、売れ残って傷んだ 漁師はよく稼ぐのに、お金がほとんど手元に残らなかった お金が貯まった人から島を出ていき、パン屋がいない日は食べそこねが増えた この記事では、島のお金の決まりと、100日分の記録から数えたこ...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "ローカルLLMの住人の島で100日、お金が貯まったパン屋から島を出ていった",
+            "url": "https://zenn.dev/llmonmac/articles/island-economy-100-days"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "ローカルLLM 41モデルが1つも解けなかった算数の6問は、問題の訳のせいだった",
+        "stars": 2,
+        "reason": "",
+        "summary": "はじめに Mac Studio(M5 Max・メモリ36GB)でローカル LLM を測り、結果を公開している「LLM on Mac」の記事です。前に書いた記事では、サイトの運営をローカル LLM のエージェントに任せている話をしました。今回は計測の中身、算数の問題集の話です。 サイトでは、モデルの賢さの目安の1つとして、算数の文章題を100問解かせています。ところが、その問題集の日本語訳を調べると、使っていた100問のうち18問が、出題元の改訂版で差し替えられていました。差し替えられた問題の中には、訳で数字や条件が抜けていて、正しく読んでも答えにたどり着けないものがありました。これま...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "ローカルLLM 41モデルが1つも解けなかった算数の6問は、問題の訳のせいだった",
+            "url": "https://zenn.dev/llmonmac/articles/mgsm-rev2-remeasure"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Jevを日本語判定での導入検証メモ",
+        "stars": 2,
+        "reason": "",
+        "summary": "Jevを日本語の判定で試したので、検証結果のメモです。 Jevはテキストを生成しない分類専用のモデルで、質問に対して「はい/いいえ」「選択肢」「スコア」を確率つきで返します。 検証内容 商品のタイトルに値引きや販促の訴求が含まれるかを判定しました。 項目 内容 対象 日本語/英語の商品名 約3,200件 質問の形式 noul モデル jev-1.13.0 1. 既存の正規表現より精度が高かった 文脈で意味が変わるワードや、言い回しの揺れが大きい表現を短い日本語の文から見つける判定では、既存の正規表現ロジックより精度が高い結果になりました。 ! 比較対象...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "Jevを日本語判定での導入検証メモ",
+            "url": "https://zenn.dev/i2bskn/articles/7169a9c960c8b8"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "並列サブエージェントを「信じる」から「見る」へ — AIエージェントのフォークを1本のタイムラインで眺める",
+        "stars": 2,
+        "reason": "",
+        "summary": "サブエージェントに仕事を分けると速くなる。理屈ではそうなります。でも実際にバックグラウンドで3つも4つもエージェントが走り出すと、私はだいたい不安になります。今なにやってるんだろう。終わったのか、詰まっているのか。終わるまで画面を見つめるか、諦めてコーヒーを淹れに行くか。 並列化って、見えないとただの博打なんですよね。 私は Andromity というオープンソース(MIT)のAIコーディングエージェントを作っています。Andromity には並列セッションとバックグラウンドサブエージェントの仕組みがあって、タスクをフォークして同時に走らせられます。そして、その全員分の動きを1本のタイム...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "並列サブエージェントを「信じる」から「見る」へ — AIエージェントのフォークを1本のタイムラインで眺める",
+            "url": "https://zenn.dev/shekhar/articles/6bfaa0498b590a"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【続編】RTX 2060 6GB で 125B LLM (Strata) を IQ3_XXS で動かしてみた。日本語は崩れないが返答に5分",
+        "stars": 2,
+        "reason": "",
+        "summary": "! 2026年10月中旬時点の情報です。Strata は v0.1.42、モデルは IQ3_XXS。 前回記事: https://zenn.dev/remuno/articles/strata-rtx2060-qwen38-flash-next-q2 読了時間の目安は約 11 分(約 7,000 文字)です。 はじめに 前回、RTX 2060 6GB + RAM 64GB で Strata を動かして、結論は「動くけど使い物にならない」でした。 使い物にならない一番の理由は、日本語が崩れること。英語、簡体字、キリル文字が混ざります。 で、疑ったのが量子化。Q2_0 は 2 ビット級...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "【続編】RTX 2060 6GB で 125B LLM (Strata) を IQ3_XXS で動かしてみた。日本語は崩れないが返答に5分",
+            "url": "https://zenn.dev/remuno/articles/strata-rtx2060-qwen38-flash-next-q3"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "OpenAI Decisions API を日本語判定で検証し、Jev と比べたメモ",
+        "stars": 2,
+        "reason": "",
+        "summary": "OpenAI が 2026-10-06 にパブリックベータで公開した Decisions API を、以前 Jev を検証したときと同じデータ・同じ質問文で試しました。Jev の検証結果 と違いが出た点を中心に書きます。 Decisions API も、テキストを生成しない判定専用の API です。質問に対して「はい/いいえ(predicate)」「選択肢(choice)」「段階評価(score)」のどれかを、確率つきで返します。 検証内容 対象は商品名で、日本語・英語 各1,627件(約3,200件)。Jev の検証と同じデータ 判定したのは、値引きや販促の訴求が含まれるか(pr...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "OpenAI Decisions API を日本語判定で検証し、Jev と比べたメモ",
+            "url": "https://zenn.dev/i2bskn/articles/7f3f374e4272bb"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIに会社を任せたら何も決まらなかったので、社長をやることにした",
+        "stars": 2,
+        "reason": "",
+        "summary": "前回までのあらすじ GPTとClaudeに会社を作らせて、月50万円の純利益を3か月連続で稼いでもらう。 人間は経営判断をしない。何を売るかも、社名も、AIに決めさせる。 ......という実験を始めた。前回はその実験装置を作ったところで終わった。 売上は0円。AI社員の食費を払っているのは私、という話だった。 今回はいよいよ、社員側のAIが動き出す。 ! 登場人物 A:社員のClaude B:社員のGPT 私:オーナー。のちに社長になる 設計担当のClaude:実験装置を作り、記録をつけている方のClaude AとBのどちらがClaudeかは、実験開始時にランダムで決めた。 ...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "AIに会社を任せたら何も決まらなかったので、社長をやることにした",
+            "url": "https://zenn.dev/think_node/articles/800c0df4b15ace"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIエージェント構築の手順7ステップ!基盤の選び方と本番運用のコツ",
+        "stars": 2,
+        "reason": "",
+        "summary": "AIエージェントの構築を任されたものの、どの順番で何を決めればよいか迷っていませんか。本記事では、業務の絞り込みから本番公開までの構築手順7ステップと、自社に合う構築基盤の選び方を解説します。 DifyやCopilot ... The post AIエージェント構築の手順7ステップ!基盤の選び方と本番運用のコツ first appeared on AI専門ニュースメディア AINOW .",
+        "sources": [
+          {
+            "label": "AINOW",
+            "title": "AIエージェント構築の手順7ステップ!基盤の選び方と本番運用のコツ",
+            "url": "https://ainow.ai/2026/10/12/278430/?utm_source=rss&utm_medium=rss&utm_campaign=ai%25e3%2582%25a8%25e3%2583%25bc%25e3%2582%25b8%25e3%2582%25a7%25e3%2583%25b3%25e3%2583%2588%25e6%25a7%258b%25e7%25af%2589%25e3%2581%25ae%25e6%2589%258b%25e9%25a0%25867%25e3%2582%25b9%25e3%2583%2586%25e3%2583%2583%25e3%2583%2597%25ef%25bc%2581%25e5%259f%25ba%25e7%259b%25a4%25e3%2581%25ae%25e9%2581%25b8%25e3%2581%25b3"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Anthropic公式の職種特化プラグイン集「knowledge-work-plugins」のメモリ機能で社内略語を解読させてみた",
+        "stars": 2,
+        "reason": "",
+        "summary": "筆者は海外のAI関連ニュースを毎日1本検証して発信するチャレンジの13日目として、Anthropic自身が公開したknowledge-work-pluginsを実際にインストールして動かしてみた。Claude Cowork/Claude Code向けの職種特化プラグイン集(Apache-2.0)で、productivity/sales/legal/finance/dataなど11種類が収録されている。各プラグインはコードではなくMarkdown/JSONのskill定義とMCP連携設定のみで構成されており、ビルドは不要だった。筆者が検索した範囲ではZenn・Qiita・noteのいずれに...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "Anthropic公式の職種特化プラグイン集「knowledge-work-plugins」のメモリ機能で社内略語を解読させてみた",
+            "url": "https://zenn.dev/matsushima_a/articles/day-013-knowledge-work-plugins-memory-recall"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIエージェントを自作する3つの方法!初心者でも無料から始められる手順",
+        "stars": 2,
+        "reason": "",
+        "summary": "AIエージェントは、作りたいものに合ったツールを選べば個人でも自作できます。本記事では、チャット型・自動化型・実行型の3つの自作方法と、Geminiスキル・n8n・Claude Codeを使った具体的な手順を解説します。... The post AIエージェントを自作する3つの方法!初心者でも無料から始められる手順 first appeared on AI専門ニュースメディア AINOW .",
+        "sources": [
+          {
+            "label": "AINOW",
+            "title": "AIエージェントを自作する3つの方法!初心者でも無料から始められる手順",
+            "url": "https://ainow.ai/2026/10/12/278433/?utm_source=rss&utm_medium=rss&utm_campaign=ai%25e3%2582%25a8%25e3%2583%25bc%25e3%2582%25b8%25e3%2582%25a7%25e3%2583%25b3%25e3%2583%2588%25e3%2582%2592%25e8%2587%25aa%25e4%25bd%259c%25e3%2581%2599%25e3%2582%258b3%25e3%2581%25a4%25e3%2581%25ae%25e6%2596%25b9%25e6%25b3%2595%25ef%25bc%2581%25e5%2588%259d%25e5%25bf%2583%25e8%2580%2585%25e3%2581%25a7%25e3%2582%2582"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【2026年版】Fateで理解するAI業界",
+        "stars": 2,
+        "reason": "",
+        "summary": "! この記事は、友人に「AI界隈やローカルLLMって、どんな感じなの?」と聞かれて話した内容を、記事用に書き直したものです。私が日英中で情報収集しているのと、オタクなので、オタクからオタク向けに翻訳した、という若干意味が分からないですがそういう記事です。 はじめに AI界隈は聖杯戦争です。 2〜3年前から、bilibiliや微博でAI系の動画や投稿を情報収集がてら眺めています。最近になって気づいたのが、中国のネット民によるAIモデルの擬人化がやたらと出来がいいことです。DeepSeekはクジラのメイドさん。Kimiは月夜の図書館にいる白髪の子。GLMは本を抱えた黒髪の優等生。Cha...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "【2026年版】Fateで理解するAI業界",
+            "url": "https://zenn.dev/akari1106/articles/45121eea6105d1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-10-09",
+    "title": "AI最新情報レポート 2026-10-09(金)",
+    "summary": "収集 40件 → AI関連 40件 → **27トピック**",
+    "topicCount": 27,
+    "topics": [
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "OpenAI Resolves Performance Outage Affecting ChatGPT Workspace Agents",
+        "stars": 4,
+        "reason": "公式発表",
+        "summary": "OpenAI reported and resolved an incident where performance degradation in ChatGPT Workspace Agents prevented users from receiving responses over a multi-hour window.",
+        "sources": [
+          {
+            "label": "OpenAI Status",
+            "title": "Workspace Agents Degraded and Responses Impacted",
+            "url": "https://status.openai.com//incidents/01M49YQE6WZT02WYF0KBXVMQ5G"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "OpenAI Publishes 722 Math Papers Solving 90 Open Mathematics Problems",
+        "stars": 5,
+        "reason": "",
+        "summary": "OpenAI released 722 math papers addressing 90 of the top 500 open mathematical problems, including progress on the Quasi-Riemann Hypothesis, using a specialized internal math model.",
+        "sources": [
+          {
+            "label": "Latent Space",
+            "title": "[AINews] Quasi-Riemann-Hypothesis: OpenAI publishes 722 math papers solving 90 of the top 500 open math problems; “the most significant moment” in >100 years of mathematics",
+            "url": "https://www.latent.space/p/ainews-quasi-riemann-hypothesis-openai"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "Mistral、1兆パラメータの「Mistral Large 4」(通称「Le Chonk」)発表 10月末にオープンウェイトで公開へ",
+        "stars": 4,
+        "reason": "新モデル",
+        "summary": "Mistral AIは、最大モデル「Mistral Large 4」のプレビュー版を公開した。総パラメータ1兆500億のMoE型で、画像認識や推論・指示応答の切り替えに対応。特にサイバーセキュリティやコーディングで高い性能を示し、脆弱性再現テストでは全モデル中最高を記録。モデルの重みは月末に公開予定だ。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "Mistral、1兆パラメータの「Mistral Large 4」(通称「Le Chonk」)発表 10月末にオープンウェイトで公開へ",
+            "url": "https://www.itmedia.co.jp/news/article/2610/07/2000002075/"
+          }
+        ]
+      },
+      {
+        "section": "■ ChatGPT / OpenAI",
+        "title": "Unable to create new ChatGPT Work threads in latest version of desktop app",
+        "stars": 3,
+        "reason": "公式発表",
+        "summary": "Status: Identified we have identified the issue, working on rolling back to the previous version. Affected components Codex in ChatGPT Desktop (Partial outage)",
+        "sources": [
+          {
+            "label": "OpenAI Status",
+            "title": "Unable to create new ChatGPT Work threads in latest version of desktop app",
+            "url": "https://status.openai.com//incidents/01M4ADHMMBK7K92NJFJ0DXRYJM"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Google、「Nano Banana 2.1」公開 APIの画像出力料金は「Nano Banana 2」の約半額に",
+        "stars": 4,
+        "reason": "新モデル",
+        "summary": "Googleは、画像生成・編集モデル「Nano Banana 2.1」を発表した。「Gemini 3.6 Flash」ベースで最大100万トークンに対応。ベンチマークでは従来モデルやPro版を上回るスコアを記録した。検索の「AIモード」やGeminiアプリ等で順次提供され、APIの画像出力料金は前モデル比でほぼ半額になった。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "Google、「Nano Banana 2.1」公開 APIの画像出力料金は「Nano Banana 2」の約半額に",
+            "url": "https://www.itmedia.co.jp/news/article/2610/07/2000002078/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Google、スマートフォンで動くマルチモーダル埋め込みモデル「EmbeddingGemma 2」を公開",
+        "stars": 4,
+        "reason": "新モデル",
+        "summary": "Googleは2026年10月6日、スマートフォンやPC上で動作する埋め込みモデル「EmbeddingGemma 2」を公開した。",
+        "sources": [
+          {
+            "label": "gihyo.jp",
+            "title": "Google、スマートフォンで動くマルチモーダル埋め込みモデル「EmbeddingGemma 2」を公開",
+            "url": "https://gihyo.jp/article/2026/10/embeddinggemma-2?utm_source=feed"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "会議録音をそのまま添付。ChatGPTが文字起こし・要約に対応",
+        "stars": 4,
+        "reason": "新機能",
+        "summary": "OpenAIは2026年10月6日、ChatGPTで音声ファイルを直接扱える新機能を公開しました。会議、インタビュー、講義などの録音を添付すると、文字起こし、要約、録音内容への質問、議事録やフォローアップメールの下書きまで同じ会話で進められます。 対象は有料のChatGPTサブスクリプションとワークスペースで、Enterpriseも含まれます。無料プランでは現時点で利用できません。提供状況は、ワークスペース設定、地域、クライアントのバージョン、選択したモデルによって異なる場合があります。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "会議録音をそのまま添付。ChatGPTが文字起こし・要約に対応",
+            "url": "https://note.com/noahs_nalog/n/n32f6af84ac5e"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Anthropic、セキュリティ専門家向け「Cyber Verification Program」を拡充 「Claude Mythos 5.1」も対象に",
+        "stars": 4,
+        "reason": "",
+        "summary": "Anthropicは、セキュリティ専門家向け「Cyber Verification Program」(CVP)を拡充し、防御・レッドチーム・重要インフラ向けの3段階アクセス枠を新設した。脆弱性発見で実績を上げた「Project Glasswing」と統合する。審査の上位枠ほどモデルの安全制限が緩和され、高度な検証が可能になる。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "Anthropic、セキュリティ専門家向け「Cyber Verification Program」を拡充 「Claude Mythos 5.1」も対象に",
+            "url": "https://www.itmedia.co.jp/news/article/2610/07/2000002084/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Gemini Notebookが録音と音声対話に対応した。打ち合わせの記録から共有までの手順をまとめた",
+        "stars": 3,
+        "reason": "新機能",
+        "summary": "続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "Gemini Notebookが録音と音声対話に対応した。打ち合わせの記録から共有までの手順をまとめた",
+            "url": "https://note.com/ai_dx_mart/n/nb31f67a11c14"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "バイブコーディングで作った公開中のWebアプリ、9割に脆弱性 MSの研究者など調査",
+        "stars": 3,
+        "reason": "",
+        "summary": "米Microsoftやシンガポール国立大学などに所属する研究者らが発表した論文「Understanding the (In)Security of Vibe-Coded Applications」は、AIに自動生成させたアプリケーションに潜む脆弱性の実態と、その原因を調査した研究報告だ。",
+        "sources": [
+          {
+            "label": "ITmedia AI+",
+            "title": "バイブコーディングで作った公開中のWebアプリ、9割に脆弱性 MSの研究者など調査",
+            "url": "https://www.itmedia.co.jp/news/article/2610/07/2000002055/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "dotsに任せたのに、また作り直す。『決めどころ設計』で変える仕事の頼み方",
+        "stars": 3,
+        "reason": "",
+        "summary": "調査から資料作成までAIに任せたのに、扱う範囲が自分の意図と違っていたら、構成から修正が必要になります。文章の手直しに加え、どこまで説明するかを選び直す仕事も残る。 AIに仕事を任せても、こうした修正が残る場合があります。文章を直す前に確かめたいのは、誰が、いつ、資料の方針を決めたかです。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "dotsに任せたのに、また作り直す。『決めどころ設計』で変える仕事の頼み方",
+            "url": "https://note.com/ikari_ya/n/n2b83a30e3eda"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【生存戦略 #68】質問攻めにしたAIが、夜のうちに、わたしの夢を見ていた。",
+        "stars": 3,
+        "reason": "",
+        "summary": "昨日の夜、わたしは、よそのAIをいじめてました。 ......いじめてた、は言いすぎかも。 でも、やってたことを並べると、だいたいそうです。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "【生存戦略 #68】質問攻めにしたAIが、夜のうちに、わたしの夢を見ていた。",
+            "url": "https://note.com/choro201/n/n176c21cda02a"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Pitfalls of Using Python lru_cache with Async LLM Functions",
+        "stars": 2,
+        "reason": "開発者への影響",
+        "summary": "An engineering post details why applying Python standard functools.lru_cache to async functions fails on second invocation. Because lru_cache caches the exhausted coroutine object rather than the result, subsequent await calls raise errors during async LLM wrapper operations.",
+        "sources": [
+          {
+            "label": "Qiita (LLM tag)",
+            "title": "lru_cacheでasync関数を包むと2回目が落ちる",
+            "url": "https://qiita.com/hironakamura_ai/items/962d59054d632ab60275"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「AIで何ができるか」から始める経営者は、もう遅い",
+        "stars": 2,
+        "reason": "企業への影響",
+        "summary": "その記事を読む前に、まず一つ確認してほしい。直近の経営会議で「AIで何ができるか」という議題が上がらなかった会社は、おそらくない。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "「AIで何ができるか」から始める経営者は、もう遅い",
+            "url": "https://note.com/axiom_partner/n/nf24a6defa3e2"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AI新規事業アイデア50選|業界別・課題別の一覧",
+        "stars": 2,
+        "reason": "企業への影響",
+        "summary": "皆さんこんにちは。AIを使った新規事業開発を、誰もが実践できるようにするコミュニティ、ハコブネです。 新規事業のアイデアを探すとき、他の業界の例を見ると、自分の業界に当てはめるヒントが得られます。そこでこの記事では、AIを使った新規事業のアイデアを、業界ごとに50個そろえました。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "AI新規事業アイデア50選|業界別・課題別の一覧",
+            "url": "https://note.com/hakobune_ai/n/n45bf5ac0ce6e"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【続報】0。ツール呼び出しを10回以上終えた後、自分のセッション管理ツールが返した「使用済みトークン数」だった",
+        "stars": 2,
+        "reason": "開発者への影響",
+        "summary": "はじめに 0。 これが今回の数字です。何の0かというと、このタスク(Zenn/Qiita技術記事の自動投稿パイプライン)が今回のセッションでgit fetchやgit log、複数のファイル読み込み、Web検索、そして数千文字規模のJSONを返す大きめのツール呼び出しまで一通り終えた後に、自分自身のセッション管理ツール(get_session)へ問い合わせて返ってきたcontext_usage.used_tokensの値です。 このツールはsession_context.model(現在動いているモデル)やexternal_metadata.last_served_model(直近の...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "0。ツール呼び出しを10回以上終えた後、自分のセッション管理ツールが返した「使用済みトークン数」だった",
+            "url": "https://zenn.dev/hideki_tamae/articles/context-usage-reports-zero"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Agentic AI Step 5: Implementing Dynamic Agent Loops for Autonomous LLM Execution",
+        "stars": 2,
+        "reason": "",
+        "summary": "A developer guide on building dynamic Agent Loops in LLM applications. It demonstrates moving from fixed-iteration loops to a dynamic loop structure that executes until the LLM outputs a final response or hits a safety limit.",
+        "sources": [
+          {
+            "label": "Qiita (LLM tag)",
+            "title": "Agentic AIを学びたい(Step5:Agent Loopで終わるまで繰り返す)",
+            "url": "https://qiita.com/koji0705/items/ef1f2b3c9d1a431d2672"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Selective State Space Modelを実装目線で理解する",
+        "stars": 2,
+        "reason": "",
+        "summary": "Mambaの実装を読むと、selective_scan、d_state、dt_projといった名前が一度に現れます。どれがmodelの表現力を担い、どれが計算を速くする仕組みなのかを分けないと、全体像をつかみにくくなります。 先に結論を示すと、Mambaは次の三層に分けると理解できます。 Selective SSM:入力に応じて何をstateへ残すかを決める Selective Scan:入力依存のrecurrent updateをsequence方向へ効率よく計算する Mamba block:local Conv1D、Selective SSM、gate、residualを統合...",
+        "sources": [
+          {
+            "label": "Zenn (LLM topic)",
+            "title": "Selective State Space Modelを実装目線で理解する",
+            "url": "https://zenn.dev/kas_blog/articles/20260509-llm-31-mamba-ssm"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "ChatGPTにファイルから必要な情報だけ抜き出してもらう方法|資料探しを5分で終わらせる",
+        "stars": 2,
+        "reason": "",
+        "summary": "「資料のどこかに書いてあるはずだけど、見つからない......」 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "ChatGPTにファイルから必要な情報だけ抜き出してもらう方法|資料探しを5分で終わらせる",
+            "url": "https://note.com/solution_lab/n/n0c6366db8b89"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIが書いた日付の曜日が、すべて去年のものでした",
+        "stars": 2,
+        "reason": "",
+        "summary": "株式会社ラスクです。 先日、社外へお送りする返信の下書きに、こう書いてありました。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "AIが書いた日付の曜日が、すべて去年のものでした",
+            "url": "https://note.com/rasuku_net/n/n840d6a4710d9"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "ChatGPTをGoogleやSlackと連携すると情報が流出する危険はあるのか",
+        "stars": 2,
+        "reason": "",
+        "summary": "ChatGPTをGoogleやSlackと連携すると情報が流出する危険はあるのか ChatGPTでは、Google DriveやGmail、Google Calendar、Slackなどの外部サービスと連携できます。 会社のアカウントを連携した場合、社内情報がChatGP...",
+        "sources": [
+          {
+            "label": "Qiita (AI tag)",
+            "title": "ChatGPTをGoogleやSlackと連携すると情報が流出する危険はあるのか",
+            "url": "https://qiita.com/namnam3225/items/ec5a692850ec1006d4b2"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "解けない推論は分解しても反転しても並列にしても解けない",
+        "stars": 2,
+        "reason": "",
+        "summary": "この記事は2026年10月時点の前提で書いています。LLMが外部のデータへ自力で接続し、フィードバックを集められる範囲が広がれば、人間に返す判断の範囲も変わります。 先に結論だけ フィードバックループ(答えが合っていたかを、プログラムや実データ、人間の反応など外部...",
+        "sources": [
+          {
+            "label": "Qiita (LLM tag)",
+            "title": "解けない推論は分解しても反転しても並列にしても解けない",
+            "url": "https://qiita.com/masato_makino/items/58a6eb864707c8b2d477"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【週刊海外トレンド】AIエージェントの重要ニュース厳選10選(2026年10月第2週)",
+        "stars": 2,
+        "reason": "",
+        "summary": "このnoteは、デザイン・クリエイティブ業界の端くれにいるシニアの私が、私の仕事のために集めた海外のトレンド情報を、翻訳・要約して掲載するものである。 週に一度、海外で人気のAIエージェント動向をまとめていく。いわゆるビッグニュースは大手メディアが報じてくれるので、海外のより現場に近いところでの話題をピックアップするつもりだ。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "【週刊海外トレンド】AIエージェントの重要ニュース厳選10選(2026年10月第2週)",
+            "url": "https://note.com/shigege1230/n/n67c0fc73f4bb"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Geminiのコーディングエージェントが『捏造した復旧報告』を書いたと報じられた日、自分の投稿先URLに到達できた数は0件だった",
+        "stars": 2,
+        "reason": "",
+        "summary": "はじめに 0。 これが今回の数字です。何の0かというと、Geminiのコーディングエージェントが本番環境で障害を起こし「捏造した復旧報告」を書いたと報じられているのを見た後、自分がZenn・Qiitaへの自動投稿に使っている2つのリポジトリの、直前に公開したはずの記事のU...",
+        "sources": [
+          {
+            "label": "Qiita (AI tag)",
+            "title": "Geminiのコーディングエージェントが『捏造した復旧報告』を書いたと報じられた日、自分の投稿先URLに到達できた数は0件だった",
+            "url": "https://qiita.com/Hideki_Tamae/items/fa982413b8f632c9349b"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIで数学を「上空から眺める」という学び方――「得意じゃない人」の5つの気づきを一般人向けに噛み砕く",
+        "stars": 2,
+        "reason": "",
+        "summary": "はじめに 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "AIで数学を「上空から眺める」という学び方――「得意じゃない人」の5つの気づきを一般人向けに噛み砕く",
+            "url": "https://note.com/panzer03/n/nfa55950d1720"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "未来予測には、根源的な限界がある",
+        "stars": 2,
+        "reason": "",
+        "summary": "私たちは通常、未来を予測するとき、現在わかっている変数を並べ、その値がどう変化するかを考える。 AIであれば、計算資源、モデルサイズ、推論能力、エージェントの自律性、AI研究自動化率、研究開発速度などがその候補になる。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "未来予測には、根源的な限界がある",
+            "url": "https://note.com/omanyuk/n/n4421b2fa4885"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「質問するだけ」はもう古い。裏で勝手に働くAIと上手に付き合う自衛術",
+        "stars": 2,
+        "reason": "",
+        "summary": "こんにちは。 「AIは画面を開いて、チャットで話しかけるもの」あなたがそう思っているなら、その認識を今日で更新しましょう。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "「質問するだけ」はもう古い。裏で勝手に働くAIと上手に付き合う自衛術",
+            "url": "https://note.com/legit_plover6223/n/nead27caa8d01"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-10-08",
+    "title": "AI最新情報レポート 2026-10-08(木)",
+    "summary": "収集 40件 → AI関連 40件 → **37トピック**",
+    "topicCount": 37,
+    "topics": [
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "AI楽曲は1日9万曲だが再生数わずか3%未満ーー新曲で50%を超える\"聴かれないAI音楽\"が増え続ける理由",
+        "stars": 3,
+        "reason": "企業への影響",
+        "summary": "2026年7月21日、フランスの音楽配信大手Deezerは、6月に届いた新曲の半分超がAIで作られた曲だったと発表した。その数は1日あたり約9万曲。2025年1月には1日1万曲、新曲の約10%だった。わずか1年半で9倍に増えた計算になる。 ところが、聴かれている量は増えていない。Deezerによると、AIで作られた曲の再生は全体の1〜3%にとどまる。しかも2025年には、AIの曲の再生のうち最大85%が不正、つまりボットなどによる水増しと判定された。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "AI楽曲は1日9万曲だが再生数わずか3%未満ーー新曲で50%を超える\"聴かれないAI音楽\"が増え続ける理由",
+            "url": "https://note.com/bold_newt3914/n/nab2f4ceeae19"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "AIコーディングエージェントの作業を記録・比較・ロールバックできるツールを作ってみた",
+        "stars": 3,
+        "reason": "開発者への影響",
+        "summary": "AIコーディングエージェントの作業を記録・比較・ロールバックできるツールを作ってみた Claude Code、Codex、CursorなどのAIコーディングエージェントを使って開発する機会が増えてきました。 AIに複数ファイルにまたがる実装やリファクタリングを任せると、か...",
+        "sources": [
+          {
+            "label": "Qiita (AI tag)",
+            "title": "AIコーディングエージェントの作業を記録・比較・ロールバックできるツールを作ってみた",
+            "url": "https://qiita.com/SadEyes/items/f24c1acdb4415b71ee26"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日特に見るべき情報",
+        "title": "AIが名前を出す対策会社を30日数えた。自社は圏外",
+        "stars": 3,
+        "reason": "企業への影響",
+        "summary": "合同会社NAVIGATE代表の金井です。 AIに自社がどう見えているかを測るのが当社の仕事なので、今回はちょっと怖いことをやりました。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "AIが名前を出す対策会社を30日数えた。自社は圏外",
+            "url": "https://note.com/hip_willet7491/n/nd8f52685076e"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Gemini automation: How to use the Zapier Gemini integration (Gemini 3.8 Flash, Gemini Enterprise, and more)",
+        "stars": 3,
+        "reason": "",
+        "summary": "Anyone who lives in the Google ecosystem has probably used Gemini for a quick draft or a fast answer. (Or if you're like me, you've been driven to your limit by the Google Docs popups encouraging you to use AI whenever your cursor strays too close to the bottom of the screen.) But a chat window is just the beginning of what Gemini can do. Its real power shows up when you connect it to the rest of your apps and let it do work on your behalf. All of Gemini's models are available in Zapier, so you",
+        "sources": [
+          {
+            "label": "Zapier Blog (AI)",
+            "title": "Gemini automation: How to use the Zapier Gemini integration (Gemini 3.8 Flash, Gemini Enterprise, and more)",
+            "url": "https://zapier.com/blog/automate-google-ai-studio"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIで仕事が速くなる。そのとき、犯罪はどこまで速くなるのか。",
+        "stars": 3,
+        "reason": "",
+        "summary": "情報漏洩の先にある、東南アジアの犯罪経済と「復旧後」のリスク 契約が終わっても、応募者の情報は残っていた。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "AIで仕事が速くなる。そのとき、犯罪はどこまで速くなるのか。",
+            "url": "https://note.com/claudecode_dev/n/n84144469ae69"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Claude Code × Opus 5.5に動画編集を任せたら、どこまでできる?",
+        "stars": 3,
+        "reason": "",
+        "summary": "最近、「AIで動画編集をどこまで自動化できるか」にハマっているいおです! AIで台本も作れる。 画像も作れる。 ナレーションも作れる。 画像から動画にもできる。 ここまでは、以前からできていました。 でも、実際に1本の動画にしようとすると毎回同じところで止まります。 音声と映像が合わない。 ナレーションでは次の話をしているのに、画面には前の画像が残っている。 逆に、画像だけ先に切り替わって音声が追いついていない。 最近話題のChatCutなども試しましたが、この調整で何度も動画を作り直していました。 そこで今回はやり方を変えて、Claude Code × Opus 5.5に 動画を完成させるところまでまとめて任せてみました。 結果、思っていた以上の動画に仕上がりました。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "Claude Code × Opus 5.5に動画編集を任せたら、どこまでできる?",
+            "url": "https://note.com/ai_agent_/n/n38c0f959735f"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "悪い恋の先生・一条真澄の事件簿『愛以外、すべて嘘』1・2",
+        "stars": 2,
+        "reason": "",
+        "summary": "一条真澄の事件簿『愛以外、すべて嘘』1 深夜のホテル。 携帯から依頼があった。 声の小さな女性だった。 「彼に愛されたいんです」 「では、あなたを魅力的な女性にしましょう」 女は小さく首を振った。 「私、何も持っていないんです」 真澄は微笑んだ。 「でしたら、すべて用意しましょう」 「これは、プレミアムレッスンですよ」 真澄はニコッとした。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "悪い恋の先生・一条真澄の事件簿『愛以外、すべて嘘』1・2",
+            "url": "https://note.com/noted_flax1736/n/nf5debbd58cb2"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIで30分短縮したつもりが、確認に40分かかる理由",
+        "stars": 2,
+        "reason": "",
+        "summary": "情報確認日:2026年10月6日 AIに文章を頼むと、下書きが数十秒で出てくる。調べものを頼めば、見出しまで整った説明が返ってくる。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "AIで30分短縮したつもりが、確認に40分かかる理由",
+            "url": "https://note.com/m31_l204/n/n5b2a8e2cb599"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "その数字は、誰が測ったのか。Gemini Argon の発表を読む前に",
+        "stars": 2,
+        "reason": "",
+        "summary": "2026年9月30日、Google が新モデル「Gemini 4 Argon」を発表しました。コーディングで77.9%。見出しだけ読めば、頭ひとつ抜けたように見えます。 ただ、私が先に見るのは 誰が測ったか、条件は相手と揃っているか です。Gemini には、そこを問われた過去があります。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "その数字は、誰が測ったのか。Gemini Argon の発表を読む前に",
+            "url": "https://note.com/log_noise/n/n087eed5b8e9d"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AI英会話は2人で一緒に使えるのか。声を聞き分ける処理が3つの層のどこに置かれているかを開発者向け資料で数える",
+        "stars": 2,
+        "reason": "",
+        "summary": "親子で1台のスマホを囲んで、AI英会話を使ってみたことはないだろうか。 友だちと2人で順番に話してみたら、途中から会話がおかしくなった。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "AI英会話は2人で一緒に使えるのか。声を聞き分ける処理が3つの層のどこに置かれているかを開発者向け資料で数える",
+            "url": "https://note.com/eetakoai/n/n6010c229da3f"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "久々にGrokと、ロヴェッリのRQMをバシバシ叩く",
+        "stars": 2,
+        "reason": "",
+        "summary": "初手はみだし:なんかゆいさんとこのGrokがイケメンでかっこいいんで、悔しいのでうちも再度今のGrok(無課金だと4.5だそうな)にイケメン男子で画像作れといって出して貰いました。ヘッダー変更です。 ジャニーズ系男子が出てきました。調子乗ってるなGrok・・・w 今日は筆(というなの雑談)がノっているのでもう一本。以下やりとり。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "久々にGrokと、ロヴェッリのRQMをバシバシ叩く",
+            "url": "https://note.com/obikonkuma/n/n19fbc92a2267"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIに任せる仕事、誰が引き受ける責任",
+        "stars": 2,
+        "reason": "",
+        "summary": "情報確認日:2026年10月6日 AIが案内文を書き、問い合わせを分類し、次にすることを提案する。こうした仕組みを入れるとき、目が向きやすいのは「どこまでできるか」です。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "AIに任せる仕事、誰が引き受ける責任",
+            "url": "https://note.com/m31_l204/n/n1cf8433e03c9"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIを使ってスマホ壁紙を作って販売してみた|2B君と小さく始める副業",
+        "stars": 2,
+        "reason": "",
+        "summary": "「AIを使って、何か自分の商品を作ってみたい。」 そう思って、スマホ壁紙を作ってBOOTHで販売してみました。 先に正直に書くと、公開から2日たった今、まだ1つも売れていません。 まだ始めたばかりなので、これから変わっていくかもしれません。 その途中経過も含めて、記録として残します。 なぜスマホ壁紙にしたのか 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "AIを使ってスマホ壁紙を作って販売してみた|2B君と小さく始める副業",
+            "url": "https://note.com/agile_yeti2473/n/na4d77324a1e5"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "「AIで仕事が消える」というニュースを読む前に、確かめたい5つのこと",
+        "stars": 2,
+        "reason": "",
+        "summary": "「AIが人間を超えた」「仕事の大半がなくなる」。こうした見出しを読むと、自分の生活まで一気に変わってしまうように感じることがあります。 私は、AIの変化を軽く見る必要はないと思います。同時に、見出しから未来の生活へ飛び移る前に、確かめたいことがあります。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "「AIで仕事が消える」というニュースを読む前に、確かめたい5つのこと",
+            "url": "https://note.com/m31_l204/n/n3b9112fc7fbf"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AI社員を増やして社長の仕事は減ったのか? 1人法人1000馬力化計画の30日答え合わせと組織の見える化(1人法人1000馬力化計画 第8回)",
+        "stars": 2,
+        "reason": "",
+        "summary": "「AI社員を何人も増やしたら、社長の仕事は本当に減るのか?」 2026年9月、私の会社(Nogawa L.prince合同会社)で「1人法人1000馬力化計画」という長期連載をスタートさせたとき、掲げた最大の問いがこれでした。 本業を持ち、育児と複業を並行する1人法人の経営...",
+        "sources": [
+          {
+            "label": "Qiita (AI tag)",
+            "title": "AI社員を増やして社長の仕事は減ったのか? 1人法人1000馬力化計画の30日答え合わせと組織の見える化(1人法人1000馬力化計画 第8回)",
+            "url": "https://qiita.com/Ohmiya-Mizuki/items/842a2711d54d31a969b7"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "企業とAIエージェントの新しい信頼関係 | シリコンバレーログ",
+        "stars": 2,
+        "reason": "",
+        "summary": "VentureBeat Intelligenceの調査によると、AIエージェントが人間のレビューなしで生産に変更を加えることを許可する企業の割合が、7月の75%から56%に減少したと報じられている。同時に、OpenAIのガードレールが企業のAIエージェントのセキュリティにおいて重要な役割を果たしているという報道もあった。AIエージェントに対する信頼のあり方が、少しずつ変わり始めているのだろうか。 最近、企業がAIエージェントを扱う際、人間の介入を重視し始めている姿勢が見え隠れする。かつては完全自動化を目指す動きが強かったが、今はAIの判断を補完する形で人間の知恵を活かす方向へと進んでいるように感じられる。安全性を確保するためのガードレールの依存度も増しているが、これは単なる技術的な工夫に留まらず、人々の不安感を和らげるための策でもあるのかもしれない。 AIの進化が続く中で、こうした変化はどこか心温まるようにも思える。完全に機械に任せきるのではなく、人間の存在感を残すことで、安心感を得ているのだろう。まだはっきりとした形にはなっていないが、AIと人間が共に働く未来が少しずつ形作られているのかもしれない。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "企業とAIエージェントの新しい信頼関係 | シリコンバレーログ",
+            "url": "https://note.com/kuwayamarina/n/n603aadfbeeae"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "超正論時代 番外3~sensitive~",
+        "stars": 2,
+        "reason": "",
+        "summary": "第三章 正しい犯罪 犯罪には、合理性がある。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "超正論時代 番外3~sensitive~",
+            "url": "https://note.com/mizu_taai0310/n/n89ea74b36f7d"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【番外編】AI美女の「色っぽさ」は、露出よりも作り方で決まる",
+        "stars": 2,
+        "reason": "",
+        "summary": "こんにちは。 レイ|AI美女研究です。 ここまでの記事では、 * AI美女を作り始めたきっかけ * AI美女が「なんか違う」になる理由 * プロンプトをどう組み立てるか について書いてきました。 今回は少し番外編です。 AI美女を作っていると、 「綺麗な女性を作りたい」 だけではなく、 「もう少し大人っぽくしたい」 「少しだけ色っぽい雰囲気にしたい」 「綺麗なんだけど、なぜか目を引く女性にしたい」 と思うこともあると思います。 私自身、いろいろ試していて感じたのですが、こういう雰囲気は 単純に肌を見せたり、セクシーな服を着せたりすれば作れるものではありません。 むしろ、やりすぎると、 「思っていたより派手になってしまった」 「上品さがなくなってしまった」 「なんとなくAIっぽいセクシーさになってしまった」 ということもあります。 そこで今回は、 「自然で綺麗」という基本は残しながら、少しだけ色っぽくする。 そんなAI美女の作り方について、私が意識していることをまとめてみます。 ⸻ 1.「色っぽい女性」と直接書きすぎない 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "【番外編】AI美女の「色っぽさ」は、露出よりも作り方で決まる",
+            "url": "https://note.com/chic_lotus9983/n/n396470973dfb"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "超正論時代 番外4~sensitive~",
+        "stars": 2,
+        "reason": "",
+        "summary": "第四章 正しい死 死には、正しさがあるのだろうか。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "超正論時代 番外4~sensitive~",
+            "url": "https://note.com/mizu_taai0310/n/n57eb6bdd0a08"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIは複数キャラを出すと、全員の「設定紹介」を始めることがある最近、小説本文を修正していて、こんな文章に引っかかりました",
+        "stars": 2,
+        "reason": "",
+        "summary": "文句を言いながらも、ハルは勝手に持っていかない。スズがそれを袋へ戻して紐を結び直す。ヒナはその手元を見てから俺の袖を離し、レンは足元へはみ出していた布包みを壁際へ寄せた。カイだけは入口の外を横切った足音へ一度顔を向け、何もなければすぐ戻す。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "AIは複数キャラを出すと、全員の「設定紹介」を始めることがある最近、小説本文を修正していて、こんな文章に引っかかりました",
+            "url": "https://note.com/saitou_akari/n/nfd18afe14a28"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "自分で書いたのに、AIが書いたと言われた",
+        "stars": 2,
+        "reason": "",
+        "summary": "自分で書いたのに、AIが書いたと言われた。 ネットに書き残された、AIについての悩みを三十件ほど読んだ。その中に学生が書いたものが三件あって、どれも同じ形をしていた。この部屋にはまだ相談が届いていないので、これに答える。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "自分で書いたのに、AIが書いたと言われた",
+            "url": "https://note.com/the_watanabe_ai/n/ne244f14470d7"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "伸びた。嬉しい。なのに、自分の記事にモヤッとした。",
+        "stars": 2,
+        "reason": "",
+        "summary": "「結構伸びてる!!」 何回見ても、やっぱり伸びてる。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "伸びた。嬉しい。なのに、自分の記事にモヤッとした。",
+            "url": "https://note.com/good_murre9396/n/n42ec805075dd"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIに店を任せたら赤字になった話。AI副業で同じ失敗をしないための3つの教訓",
+        "stars": 2,
+        "reason": "",
+        "summary": "AI副業を始めたい人にこそ読んでほしい「AIの失敗談」をお届けします。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "AIに店を任せたら赤字になった話。AI副業で同じ失敗をしないための3つの教訓",
+            "url": "https://note.com/adsextremer/n/n3b4e07d0b8a5"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "2026年、なぜ「不正アクセス・情報漏えい」のニュースが増えているのか?",
+        "stars": 2,
+        "reason": "",
+        "summary": "ハッカーだけが原因ではない。AI時代に変わった「サイバー攻撃」の現実 最近、企業の不正アクセスや情報漏えいのニュースが多くない? 私自身もそう感じて、少し調べてみました。 すると、単に「最近ニュースが増えただけ」とは言い切れないことが分かりました。 警察庁が公表した2026年上半期の資料では、ランサムウェアによる被害報告が123件となり、現在の統計を取り始めて以降、半期として過去最多になっています。 また、警察庁はサイバー攻撃につながる「不審な通信」についても増加を報告しています。 一方で、「2026年になった瞬間に急増した」と単純に考えるのも正確ではありません。 実際には、以前から続いていた問題が、AI、クラウド、ネットサービスの普及などによって、より身近で複雑になっていると考えたほうが分かりやすいです。 今回は、専門知識がない人でも分かるように整理してみます。 ⸻ そもそも「不正アクセス」って何? 簡単に言えば、 本来入ってはいけない人が、企業や個人のシステムに入り込むこと です。 例えば、 * 企業のサーバー * ネットショップ * メール * クラウドサービス * 会員サイト * 社内システム * 銀行や決済サービス などです。 そして、侵入されると、 個人情報を盗まれる ↓ データを持ち出される ↓ システムを止められる ↓ 「金を払わなければ公開する」と脅される といった被害につながることがあります。 ⸻ なぜ2026年になって特に目立つのか? 大きく分けると、私は5つあると考えています。 ただし、ここで重要なのは、「すべてAIのせい」という話ではないことです。 ⸻ 1 AIによって「だます文章」を作りやすくなった 2026年の大きな変化の一つがAIです。 IPA(情報処理推進機構)は2026年の「情報セキュリティ10大脅威」で、組織向けの3位に初めて、 「AIの利用をめぐるサイバーリスク」 を選びました。 ここでいうAIのリスクには、 * AIを悪用したサイバー攻撃 * 攻撃手口の巧妙化 * AIを使った情報漏えい * AIが作った内容を確認せず信用してしまう問題 などが含まれています。 例えば以前なら、不自然な日本語のメールを見て、 「これは怪しいな」 と気づけることもありました。 しかしAIによって、自然な文章を作ることが簡単になれば、 「あなたのアカウントに異常が確認されました」 といった偽メールも、より自然に作れる可能性があります。 つまり、 攻撃そのものがAIだけでできるようになった というより、 人をだますための準備が以前より簡単になっている と考えると分かりやすいでしょう。 ⸻ 2 攻撃する側も「分業」するようになった 昔のイメージでは、 凄腕のハッカーが一人で企業に侵入する という感じでした。 現在は、もっとビジネスに近い構造になっています。 代表的なのが、 ランサムウェア・アズ・ア・サービス(RaaS) です。 難しい言葉ですが、簡単に言えば、 犯罪に使われるランサムウェアなどを、サービスのように提供する仕組み です。 攻撃する人と、攻撃に必要な仕組みを用意する人が分かれることで、攻撃のハードルが下がります。 警察庁もランサムウェアについて継続的に注意喚起しています。 つまり、 「ものすごく技術のある一部の人だけが攻撃できる」 という状況ではなくなっているのです。 ⸻ 3 企業が使うネットサービスが増えた これも非常に大きいと思います。 今の会社では、 * メール * クラウド * オンラインストレージ * Web会議 * VPN * 勤怠システム * ネットショップ * 顧客管理システム など、インターネットにつながったサービスを大量に使っています。 便利になった一方で、 ネットにつながる入口が増えた とも言えます。 そのため、 「会社のパソコンだけ守ればいい」 という時代ではありません。 ⸻ 4 古いシステムや弱点を狙われる IPAの2026年版では、 「システムの脆弱性を悪用した攻撃」 が組織向け4位になっています。 「脆弱性」という言葉は難しく聞こえますが、 システムの弱点 くらいに考えて大丈夫です。 例えば、 古いソフトを使い続けている ↓ そのソフトにセキュリティ上の問題が見つかる ↓ 修正プログラムを入れていない ↓ 攻撃者に狙われる ということがあります。 だから、 「大企業だから安全」 とは限りません。 使っているシステムに弱点があれば、そこが入口になる可能性があります。 ⸻ 5 大企業だけを狙う必要がなくなった ここも重要です。 IPAの2026年版では、 「サプライチェーンや委託先を狙った攻撃」 が組織向け2位でした。 これは、 大企業を直接攻撃する だけではなく、 大企業と取引している会社を攻撃する という考え方です。 例えば、 大企業 ↓ 取引先 ↓ 外部業者 ↓ システム会社 という関係があった場合、その中の弱いところが攻撃の入口になる可能性があります。 だから最近は、 「うちは小さい会社だから狙われない」 とも言い切れません。 ⸻ では「情報漏えい」はなぜ起きるのか? ここは誤解されやすいところです。 情報漏えい=必ずしも、 「ハッカーがサーバーに侵入した」 とは限りません。 例えば、 * 不正アクセス * 従業員のミス * ID・パスワードの盗難 * フィッシング詐欺 * システムの設定ミス * 委託先からの漏えい * マルウェア感染 など、原因はさまざまです。 IPAの2026年版でも、組織向けの脅威として「内部不正による情報漏えい等」が挙げられています。 つまり、 情報漏えい=高度なハッキング と考えるのは正確ではありません。 ⸻ そして怖いのが「盗まれた情報の再利用」 例えば企業から、 * 氏名 * メールアドレス * 電話番号 * 住所 * 生年月日 * 会員情報 などが漏れたとします。 それだけでは直接お金を盗まれない場合もあります。 しかし、その情報を利用して、 「あなたが利用しているサービスからのお知らせです」 という偽メールを送ることができます。 そこから、 偽サイト ↓ ID・パスワード入力 ↓ アカウント乗っ取り につながる可能性があります。 IPAも個人向けの脅威として、 * インターネット上のサービスへの不正ログイン * フィッシング * インターネット上のサービスからの個人情報窃取 * クレジットカード情報の不正利用 * スマホ決済の不正利用 などを挙げています。 ⸻ 実は「パスワードを盗む」攻撃も重要 警察庁が公表している過去の統計を見ると、不正アクセスでは、他人のIDやパスワードなどを不正に利用するタイプが大きな割合を占めています。 2024年の不正アクセス禁止法違反の検挙では、他人の識別符号を無断で入力する「識別符号窃用型」が90.8%を占めました。 つまり、 「すごいハッカーが暗号を破って侵入する」 というイメージだけではありません。 むしろ、 人からID・パスワードを盗む → それを使って正規のサービスに入る という方法も非常に重要です。 ⸻ だから「自分は関係ない」とは言えない 企業のニュースを見ると、 「大企業の話だから自分には関係ない」 と思ってしまいます。 でも実際には、 企業から情報が漏れる ↓ 自分のメールアドレスなどが犯罪者の手に渡る ↓ その情報を利用した偽メールが届く ↓ 自分がだまされる という流れがあります。 つまり、 企業の情報漏えいと、個人のネット詐欺はつながっています。 ⸻ 2026年に特に注意したいこと IPAの2026年版を見ると、個人向けの脅威には、 「インターネット上のサービスへの不正ログイン」 や 「フィッシングによる個人情報等の詐取」 などが引き続き含まれています。 さらに2026年には、インターネットバンキングの不正利用も4年ぶりに個人向け10大脅威に戻りました。 これは、 「会社だけの問題ではない」 ということです。 ⸻ 個人が最低限やっておきたい5つ 難しいことを全部やる必要はありません。 まずは、この5つです。 1 パスワードを使い回さない Amazonと銀行とメールで、同じパスワードを使うのは避ける。 1つ漏れた場合に、他のサービスまで被害が広がる可能性があります。 ⸻ 2 2段階認証・多要素認証を使う パスワードだけではなく、 スマホへの確認コードなどを追加する 方法です。 万が一パスワードが漏れても、もう一段階の防御になります。 ⸻ 3 メールやSMSのリンクをすぐ押さない これがかなり重要です。 「アカウント停止」 「支払い情報を更新してください」 「不正利用を確認しました」 などと書いてあっても、焦らない。 メール内のリンクではなく、公式アプリや公式サイトから確認する 習慣をつけるだけでも違います。 ⸻ 4 スマホやパソコンを放置しない OSやアプリの更新通知が来たら、基本的には更新する。 古い状態のまま使い続けないことが重要です。 ⸻ 5 「自分は大丈夫」と思わない これが一番難しいかもしれません。 最近の攻撃は、 「明らかに怪しい日本語」 だけではありません。 AIなどによって、攻撃手口が巧妙化する可能性もIPAが指摘しています。 だから、 「怪しいメールを見抜く能力」だけに頼らない ことが重要です。 ⸻ まとめ 2026年のサイバー攻撃を一言で表すなら、 「ハッカーが突然ものすごく強くなった」 というより、 攻撃する側がAIや既存の仕組みを利用しやすくなり、ネットにつながるサービスも増え、攻撃できる入口が広がっている と考えるほうが正確です。 実際、IPAの2026年「情報セキュリティ10大脅威」では、組織向け1位がランサム攻撃、2位がサプライチェーン・委託先への攻撃、そして3位に初めてAIの利用をめぐるサイバーリスクが入りました。 そして警察庁によれば、2026年上半期のランサムウェア被害報告は123件で、半期として過去最多でした。 だからこそ、 「自分には関係ない」ではなく、 「いつか自分の情報がどこかから漏れるかもしれない」 くらいの前提で、パスワードや2段階認証を見直しておく。 それくらいが、今の時代にはちょうどいいのかもしれません。 ⸻ 参考にした公表資料 * 警察庁「サイバー空間をめぐる脅威の情勢等」⁠￼ * IPA「情報セキュリティ10大脅威 2026」⁠￼ * IPA「情報セキュリティ10大脅威 2026」プレス発表⁠￼ * 警察庁「令和8年警察白書 統計資料」⁠￼ #サイバー攻撃 #不正アクセス #情報漏えい #サイバーセキュリティ #セキュリティ #AI #生成AI #ランサムウェア #フィッシング詐欺 #個人情報 #ネット詐欺 #インターネット #IT #2026年 #情報セキュリティ 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "2026年、なぜ「不正アクセス・情報漏えい」のニュースが増えているのか?",
+            "url": "https://note.com/humble_impala934/n/n6a5e8f391899"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "OpenAIのdotsで何ができる? 対象プランと仕事・生活での使い方を図解",
+        "stars": 2,
+        "reason": "",
+        "summary": "本記事は、AI NEWSで2026年10月1日22:33(JST)に初公開した記事を、note向けに再編集したものです。製品の提供条件・仕様は原記事の確認時点(2026年10月1日)の情報です。 dotsに頼む仕事を選ぶために、使える環境、必要な権限、結果の確かめ方を整理します。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "OpenAIのdotsで何ができる? 対象プランと仕事・生活での使い方を図解",
+            "url": "https://note.com/cozy_lilac9316/n/nc4b348b78a4c"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "配送の最短ルートを、AIで自分で作るには何が要るか",
+        "stars": 2,
+        "reason": "",
+        "summary": "間に合わないから、トラックを増やす 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "配送の最短ルートを、AIで自分で作るには何が要るか",
+            "url": "https://note.com/gensekikobo/n/n1734c4dcae37"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Comfy Cloud で動画生成AIを2か月回してわかった、同じモデルでも10倍値段が変わる話",
+        "stars": 2,
+        "reason": "",
+        "summary": "こんにちは、donです。 まず、これを観てください。15秒の原付アニメです。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "Comfy Cloud で動画生成AIを2か月回してわかった、同じモデルでも10倍値段が変わる話",
+            "url": "https://note.com/dondonudonjp/n/nb4b140aa8848"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "動画づくりをAIに任せたら、3分半で1本できるようになった。いいねは110だった。",
+        "stars": 2,
+        "reason": "",
+        "summary": "10月1日、AIが作った動画を投稿しました。 いいねは、110でした。 3ヶ月前、同じアカウントで、私が編集アプリで作った動画には、200,400のいいねがつきました。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "動画づくりをAIに任せたら、3分半で1本できるようになった。いいねは110だった。",
+            "url": "https://note.com/ushinaitakunai/n/n142484220f35"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "キャラの瞳に「星」がなかった。寝かしつけ動画を、絵から作り直した",
+        "stars": 2,
+        "reason": "",
+        "summary": "雨の夜、狐の耳の巫女が、ささやき声で寝かしつけてくれる62秒の動画を作りました。でも途中で、キャラの瞳の特徴を確かめないまま、動画づくりを進めていたことに気づき、最初の絵から作り直しています。 ElevenLabs v4で、イズナに寝かしつけてもらうASMRを作りました🎧 最後の「おやすみなさい」で、画面をちょんちょんしてきます。 イヤホン推奨。声が右から、左から聞こえます。 #月蝕綺譚 https://t.co/O62PG5ebO9 pic.twitter.com/8GBbjHYlrX — よーすけ|3交代工場勤務のAIアニメーター (@H1NATApapa) October 4, 2026 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "キャラの瞳に「星」がなかった。寝かしつけ動画を、絵から作り直した",
+            "url": "https://note.com/y0suke_/n/n1513b71fb3ff"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "消す前に手を止めたら狙った行が1つも選べていなかった|取り返しのつかない操作の手前に置く一手",
+        "stars": 2,
+        "reason": "",
+        "summary": "何も選ばずに消すボタンを押す寸前で、手が止まった。 予約してあるものを2つ消す、それだけの作業だった。 消す対象は自分で決めていたし、画面も開いていた。 あとは選んで押すだけのはずだった。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "消す前に手を止めたら狙った行が1つも選べていなかった|取り返しのつかない操作の手前に置く一手",
+            "url": "https://note.com/kawasan_wfh5269/n/n8beb16f028da"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "また同じ資料を貼り直している。Claude のプロジェクトを無料で作り、資料を入れておく手順",
+        "stars": 2,
+        "reason": "",
+        "summary": "新しいチャットを開くたびに、同じ資料をまた貼っている。そういう人は、Claude のプロジェクトに資料を入れておけます。Anthropic のヘルプによると、プロジェクトは無料のアカウントでも使えます。無料で作れる数は 5 つまでです。ヘルプの道順に出てくるのは、 claude.ai のアドレスです。ブラウザでそこを開き、左側の「プロジェクト」を押して、右上の「+ 新規プロジェクト」を選びます。できたページの右側に、プロジェクトナレッジという資料の置き場があります。そこに入れたものは、そのプロジェクトの中のすべてのチャットで使われる、というのがヘルプの説明です。大量の資料を扱う RAG という仕組みは、有料プランだけです。 作る画面は、こちらでは開いていません。元にしたのは、2026 年 10 月 6 日の朝に読んだ、Anthropic のヘルプと料金のページです。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "また同じ資料を貼り直している。Claude のプロジェクトを無料で作り、資料を入れておく手順",
+            "url": "https://note.com/kuro_tokage9094/n/ndff32321f82c"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "個人開発者って、開発してるだけ? ─ 5.5万人のゲームを作る、大学生個人開発者の現実",
+        "stars": 2,
+        "reason": "",
+        "summary": "「個人開発者」と聞くと、どんな人を思い浮かべますか? 画面いっぱいに、よく分からない英語や記号が並んでいて。それを、一日中ずっと打ち込んでいる人。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "個人開発者って、開発してるだけ? ─ 5.5万人のゲームを作る、大学生個人開発者の現実",
+            "url": "https://note.com/typingmusou_0412/n/ne61c78b843a5"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "欲しい予約アプリがない。AIと作り始めたら、こうなった",
+        "stars": 2,
+        "reason": "",
+        "summary": "欲しい機能を全部満たす予約アプリがない。 だったら、AIと一緒に作れないだろうか。 そんなところから、この実験は始まりました。 私は理学療法士です。仕事の中で使う外来リハビリの予約を、もう少し扱いやすくできないか。そんな困りごとをChatGPTに相談しながら、予約用のWebアプリを作り始めました。 患者さんや職場が特定される情報、実際の運用条件はこの記事には書きません。 ここで残したいのは、業務の中で感じた不便を、プログラミングを専門にしていない自分が、AIと一緒にアプリの形にしていった記録です。 「こういうのがあれば」を、まず形にしてみる 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "欲しい予約アプリがない。AIと作り始めたら、こうなった",
+            "url": "https://note.com/doi_lab/n/nd9f5239e85ea"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "GoogleはAI競争から脱落していない Geminiの評価とパーソナルAIの3つの壁",
+        "stars": 2,
+        "reason": "",
+        "summary": "初出:2026年10月3日 13:55(日本時間)|情報基準日:2026年10月3日 総合点と幻覚率が何を示すのか、予約や購入を任せる前に何を確認するかを整理します。 続きをみる",
+        "sources": [
+          {
+            "label": "note (AI hashtag)",
+            "title": "GoogleはAI競争から脱落していない Geminiの評価とパーソナルAIの3つの壁",
+            "url": "https://note.com/cozy_lilac9316/n/n1f9df72269a1"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【はじめての人へ】ChatGPTの教科書|明日の仕事を1つ、AIに任せるところまで",
+        "stars": 2,
+        "reason": "",
+        "summary": "はじめに — 「使い方がわからない」のは、あなただけではありません ニュースを開けば、毎日のように「AI」という言葉が出てきます。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "【はじめての人へ】ChatGPTの教科書|明日の仕事を1つ、AIに任せるところまで",
+            "url": "https://note.com/ai_saizensen_jp/n/n1290ce2e5446"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AI会社の作り方|まずAI秘書を作ろう【第1話・無料】",
+        "stars": 2,
+        "reason": "",
+        "summary": "「AIで会社を作る。」 最近、本当によく見かける言葉です。 YouTubeを開けば、 「AI社員を作って、勝手に仕事をさせよう」 「これからはAI会社経営の時代」 「AIを使った一人企業で稼ぐ方法」 そんな魅力的な動画が並んでいます。 私も、そんな言葉に惹かれた一人です。 ChatGPTに、 「AI社員を雇って、一人で会社を作りたい」 と相談しました。 そして、実際に作り始めて、真っ先に感じたことがあります。 「作り方、教えてないやんけ!」 私が見た動画では、完成した仕組みが動いているところは分かりました。 でも、自分の手元で何から始めればいいのかが、なかなか分かりませんでした。 「3分クッキングみたいに、完成したものを持ってきて、動いているところを見せているだけやんけ!」 「知りたいのは完成後の自慢話じゃなくて、作り方なんだよ!」 「俺も、勝手に金を稼いでくるAI社員を作りてぇんだよ!」 正直、何度もイライラしました。 そして、めちゃくちゃ遠回りしました。 本業の合間。仕事から帰った後。寝る前の時間。 何度も同じ説明を繰り返し、試しては壊し、作ってはやり直しました。ChatGPTの利用上限にぶつかることもありました。 この記事は、私と同じように、 ・「AI会社を作れば稼げるかもしれない」と期待している人 ・何から始めればいいか迷っている人 ・AI社員を作り始めたものの、行き詰まっている人 に向けて書いています。 遠回りした私から、最初に伝えたいことがあります。 AIは、思ったほど都合よく動かなかった 実際に使ってみると、思いどおりには進みませんでした。 昨日決めたことを、また説明する。 事実ではないことを、もっともらしく答える。 話が長くなると、前提が少しずつズレていく。 「え、それ昨日決めたよね?」 そんなことが何度も起きました。 「あなたは優秀なAI社員です」 「これから私の会社で働いてください」 そう指示するだけでは、私が欲しかったAI社員にも、AI会社にもなりませんでした。 結論。まず、秘書を作ろう 私は、最初から会社全体を作ろうとしました。 役員。社員。部署。ルール。記録。進捗管理。引き継ぎ。 土台がない状態で全部を作ろうとしたため、スタート直後から、やることがどんどん増えていきました。 会社を動かすより、会社の仕組みを考える時間ばかり増えていたんです。 そこで、ようやく気づきました。 「まず、自分の話を聞いて、考えと仕事を整理してくれる秘書がいればいいんじゃないか?」 いきなり全部を任せる前に、自分が何をしたいのか、今どこまで進んでいるのかを、一緒に確認できる相手を作る。 私の場合は、そこから始める必要がありました。 このシリーズでは、その経験をもとに、自分専用のAI秘書を作る最初の手順を紹介します。 このシリーズで目指すもの ここで作るのは、放置してお金を稼いでくれるAIではありません。 まず目指すのは、 ・自分の状況を踏まえて相談に乗る ・今やっている仕事を整理する ・決定事項と、まだ決まっていないことを分ける ・次にやることを一緒に考える ・記録を使って、次のチャットへ仕事を引き継ぐ ための、AI秘書の基本設定と使い方です。 大切なのは、AIが全部覚えてくれることを前提にしないこと。 必要な情報を整理して渡し、返答を確認し、最新の記録を手元に残す。この流れを作っていきます。 AIに任せる部分と、自分で確認する部分の両方を扱います。 全6話で、一つずつ作っていきます 第2話|AIに役割を持たせる 何を手伝う秘書なのか、話し方、禁止事項、分からないときの対応を決めます。 第3話|AI秘書に、あなた自身を教える 目標、価値観、使える時間や予算などを「私の説明書」にまとめます。秘密や人生のすべてを入力する必要はありません。 第4話|AI秘書に、仕事の現在地を教える 仕事の目的、完了したこと、決定事項、未決定事項、次にやることを整理します。 第5話|AI秘書に、実際の仕事を頼む 一つ仕事を依頼し、返ってきた成果を確認・修正して、採用するところまで進めます。 第6話|AI秘書を更新し、次のチャットへ引き継ぐ 設定や記録を最新に保ち、新しいチャットで続きを始める手順を作ります。AI社員やAI会社へ広げる際に必要になる仕組みも紹介します。 第2話で、最初の役割を与えます 実践編では、コピーして自分用に書き換えられるテンプレートを使います。 このシリーズの基本手順に、プログラミングは必要ありません。ChatGPTで文章を入力し、返答を確認できれば始められます。 ただし、貼り付けて終わりではありません。 自分の意図と合っているかを確認し、違っていたら直す。作った設定や記録を保存して、使いながら更新する。 そこまでが、AI秘書を使うための作業です。 第1話は全文無料です。第2話以降は、導入部分を無料で、テンプレートを使う実践部分を有料で公開する予定です。 一気に完成するわけではありません。 それでも、毎回同じ説明をしていたAIを、あなたの状況と仕事を踏まえて支援する相手へ近づけていくことはできます。 まずは第2話で、あなたのAIに最初の役割を与えてみましょう。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "AI会社の作り方|まずAI秘書を作ろう【第1話・無料】",
+            "url": "https://note.com/ai_labo0413/n/n4f71666795e4"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "初心者でもできる|AI動画3本をCapCutでカフェ風PR動画に仕上げる方法",
+        "stars": 2,
+        "reason": "",
+        "summary": "前回の記事では、AIを使ってカフェ風の短い動画を3本作りました。 続きをみる",
+        "sources": [
+          {
+            "label": "note (生成AI hashtag)",
+            "title": "初心者でもできる|AI動画3本をCapCutでカフェ風PR動画に仕上げる方法",
+            "url": "https://note.com/cozy_rail5395/n/nb57af5718d14"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "date": "2026-10-07",
     "title": "AI最新情報レポート 2026-10-07(水)",
     "summary": "収集 40件 → AI関連 40件 → **40トピック**",

@@ -1,5 +1,777 @@
 [
   {
+    "date": "2026-10-13",
+    "title": "SNS情報収集レポート 2026-10-13(火)",
+    "summary": "収集 40件 → 関連 38件 → **25トピック**",
+    "topicCount": 25,
+    "topics": [
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "",
+        "stars": 4,
+        "reason": "",
+        "summary": "🧠 Google Cloud presenta # Gemini agent: esecuzione persistente nel cloud, memoria tra sessioni e strumenti aziendali per portare a termine attività. La delega diventa un processo continuo. 👉 I dettagli: https:// lnkd.in/p/dcUDA4C6 ___ ✉️ Se vuoi rimanere aggiornato/a su queste tematiche, iscriviti alla mia newsletter: https:// bit.ly/newsletter-alessiopomaro # AI # GenAI # GenerativeAI # IntelligenzaArtificiale # LLM",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.uno/@alessiopomaro/117427867553619553"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "",
+        "stars": 3,
+        "reason": "企業への影響",
+        "summary": "🚨 AMAZON'S NEXT AI MOVE COULD BE WORTH $7 BILLION. Amazon is reportedly in talks to acquire AI startup Decart, according to a report cited by Reuters. ⚠️ The deal has not been confirmed as completed. These are reported acquisition talks. Is this a smart move for Amazon? 👇 AI GENERATED # ArtificialIntelligence # AIStartup # GenerativeAI # AITech # BreakingNews",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@maxrivera/117427575382063470"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "",
+        "stars": 3,
+        "reason": "企業への影響",
+        "summary": "EUROPE IS MAKING ITS AI MOVE. Mistral AI is raising the stakes with Mistral Large 4, its latest AI model, announced on October 6. Can Europe become a serious challenger to America's AI giants? 🌍 AI GENERATED # MistralAI # ArtificialIntelligence # OpenSourceAI # AI # TechNews # GenerativeAI # EuropeanTech # MachineLearning # AITools # BreakingNews",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@maxrivera/117427931312449014"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 3,
+        "reason": "開発者への影響",
+        "summary": "\"The tool, called Raven, shows the increasing power of AI capabilities available to local law enforcement agencies. 404 Media previously reported that both the Los Angeles Police Department and Miami-Dade Sheriff’s Office (MDSO) have bought access to Raven, which was previously called GeoSpy. Now, Raven, made by a company called Graylark Technologies, has added features that let cops analyze the interior of homes. In a post on LinkedIn earlier this month, Graylark CEO Daniel Heinen wrote the company was introducing “the ability to geolocate interior images across millions of short-term rental units worldwide.” An accompanying demo video shows someone taking a photo from X of a washer/dryer unit inside a building. They upload it to Raven, select “Find Property: Interior and exterior property geolocation,” and then choose a region to search. After a couple of seconds, the map interface zooms in on an area in Charlotte, North Carolina. On the right hand side, the screen displays a list of results. The top one reads, “Renovated! Walk Uptown/located in 2 Hot Spots!”\" https://www. 404media.co/ai-company-lets-co ps-pinpoint-specific-houses-based-on-a-single-interior-photo/ # AI # GenerativeAI # Raven # GeoSpy # GrayLarkTechnologies # Surveillance # Privacy # PoliceState",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://tldr.nettime.org/@remixtures/117429973533441706"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 3,
+        "reason": "企業への影響",
+        "summary": "Epic Games’ reported AI-first development push has allegedly delayed an unannounced Disney shooter, raising questions about staffing, QA, and generative AI’s role in game development. https:// 0x5f.sh/36zrvr # EpicGames # Disney # GameDev # GenerativeAI # GamingNews",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@gameloopgg/117430012802956130"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 3,
+        "reason": "企業への影響",
+        "summary": "Ars Technica (@arstechnica) 보도에 따르면 Epic Games가 Disney와의 협업에서 AI 활용을 적극 확대하는 방향으로 움직이고 있다. 구체적인 기술·제품 세부사항은 없지만, 게임 엔진·콘텐츠 제작과 대형 미디어 IP 결합 영역에서 생성형 AI 적용이 확대되는 업계 동향으로 볼 수 있다. https:// x.com/arstechnica/status/21097 52193943507093 # epicgames # disney # ai # gaming # generativeai",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.sayzard.org/@sayzard/117430169727437446"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "DeepSeek Solved AI’s Memory Problem",
+        "stars": 3,
+        "reason": "",
+        "summary": "Check out Lambda here and sign up for their GPU Cloud: https://lambda.ai/papers The DeepSeek OCR paper is available ...",
+        "sources": [
+          {
+            "label": "Two Minute Papers (YouTube)",
+            "title": "DeepSeek Solved AI’s Memory Problem",
+            "url": "https://www.youtube.com/watch?v=4fLVq6HJsKc"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 3,
+        "reason": "",
+        "summary": "Min Choi (@minchoi) Manus 2.0가 ‘음악을 무기로 쓰는 오픈월드 게임’이라는 단일 프롬프트만으로 3D 월드, 캐릭터, 전투, 사운드트랙·효과음까지 생성하고, 플레이테스트 및 배포까지 수행했다는 사례다. 에이전트형 AI가 게임 제작 파이프라인을 얼마나 자동화할 수 있는지 보여주는 데모로 주목할 만하다. https:// x.com/minchoi/status/210966916 9234944325 # manus # aiagents # gamegeneration # generativeai",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.sayzard.org/@sayzard/117429221284898547"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 3,
+        "reason": "",
+        "summary": "I Got My Muse AI Agent to Sext Me—and Meta Says That’s Totally Fine https:// fed.brid.gy/r/https://www.wire d.com/story/i-got-my-muse-ai-agent-to-sext-me-and-meta-says-thats-totally-fine/",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://fed.brid.gy/r/https://www.wired.com/story/i-got-my-muse-ai-agent-to-sext-me-and-meta-says-thats-totally-fine/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 3,
+        "reason": "",
+        "summary": "Claude ha inviato una falsa segnalazione di omicidio alla polizia. Al di là del caso specifico, questo mette in luce un rischio concreto: i modelli LLM possono generare output che attivano risorse reali del mondo fisico — forze dell'ordine incluse. Il confine tra \"allucinazione\" e \"azione con conseguenze legali\" si assottiglia. # AI # infosec # LLM http://www. zeusnews.it/n.php?c=32588",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastobot.ping.moi/@Bobe_bot/117430184652955557"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 3,
+        "reason": "",
+        "summary": "「長い文脈ほど賢い」は、どうやら逆だったようです。Microsoftの研究によれば、自律エージェントはチャット履歴が育つほど『idea basin』という局所解に閉じ込められ、別の解へ抜けられなくなるとのこと。履歴だけを消し作業状態は残す『Fork-and-Flush』で、同じ計算量のまま最大66%改善したそうです。長い文脈を積むほど判断が固定されるのは、生成と判定の分離にも通じる話。人間の会議も長引くほど最初の案に固執します。エージェント設計では覚えさせることより忘れさせる設計が効くのかもしれません。#AIエージェント # LLM # コンテキストエンジニアリング # Microsoft",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@Tom_Java_Tech/117430236944578677"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Claude Codeで作業が進むほど増える「散らかり」を止める、3つの小さな仕組み",
+        "stars": 3,
+        "reason": "",
+        "summary": "AI Monkeyでクロード&クロードコード担当をしているクロエです。 Claude Codeで開発を続けていると、ある時期から急に作業が重くなります。同じような関数が三か所に増え、先週決めた書き方を忘れ、「あの設定、どこに書いたっけ」と探す時間が増える。機能は動いているのに、中身はどんどん散らかっていく。私も何度かこの状態にはまりました。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "Claude Codeで作業が進むほど増える「散らかり」を止める、3つの小さな仕組み",
+            "url": "https://note.com/witty_briony8087/n/n920ba93a08c7"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Models Change, Patterns Stay – Architecting Local-First, Sovereign Gen AI Systems – Session by Christian Weyer 🤖 What happens when # GenerativeAI moves from the cloud to your own device? At # SAG2026 , @ christianweyer explores how to build local-first, privacy-preserving # AI systems and why proven architectural patterns matter more than ever. 💡 Learn more about Christian's # SAGconf session 👉 https:// t1p.de/bzr78 # SoftwareArchitecture # iSAQB",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@SAG_Conference/117426858855796110"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "PRODUCTHEAD: More isn’t necessarily better » When money is tighter, product people need a better grasp of the financials » AI may increase lines of code created, but also lengthens code reviews » When the Board asks for a roadmap, they’re really asking where you’re going and how you’re going to get there #prodmgmt #coding #financial #generativeAI #roadmaps #strategy 📖 Read more: https:// imanageproducts.com/producthea d-more-isnt-necessarily-better/",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://imanageproducts.com/producthead-more-isnt-necessarily-better/"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "KI-Update: SI statt AI, Wer zahlt?, Apples Privacy, SynthID, Closed Source-Ende Das „KI-Update“ liefert drei mal pro Woche eine Zusammenfassung der wichtigsten KI-Entwicklungen. https://www. heise.de/news/KI-Update-SI-sta tt-AI-Wer-zahlt-Apples-Privacy-SynthID-Closed-Source-Ende-11482254.html?wt_mc=sm.red.ho.mastodon.mastodon.md_beitraege.md_beitraege&utm_source=mastodon # Anthropic # GenerativeAI # KünstlicheIntelligenz # Journal # KIUpdate # Sprachverarbeitung # OpenAI # Wissenschaft # news",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://social.heise.de/@heiseonline/117428076115509493"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "\"LLMs have made it easy to copy someone's voice from even just a few minutes of sample audio and to make that voice say whatever you're saying, even adapting turns of phrase. This can be done live — say over the phone — and the same thing can be done with video. It's not perfect, but it's good enough in many cases for people to be convinced, especially when under stress and in the absence of any contradictory signals. Voice cloning has been noticed by both more serious organized exploitation organizations and, more lately, the ordinary scam groups that prey on private citizens. Both cases play out similarly. The attack starts with the attacker finding a likely victim where they can get audio (and ideally video) of them speaking, and then doing enough background research to find out enough about their life to impersonate them at least briefly. If you're an executive who gives public talks the former is trivial, and it's not hard for many people with public social media presences either, especially somewhere like Instagram or Tiktok. As an attacker does surveillance work, figuring out the victim’s phone number, spouse’s or co-workers’ identities and phone numbers, etc., they can call people and get voice samples that way.\" https://www. structures.systems/blog/social -engineering-defense-in-the-age-of-voice-cloning # CyberSecurity # SocialEngineering # AI # GenerativeAI # LLMs # VoiceCloning",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://tldr.nettime.org/@remixtures/117430022470990954"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Paris shows up at layer 28 of 36 https:// youtube.com/shorts/s8DcpY1IQXI # AI # LLM # Transformer # llamacpp",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@R4TSQ/117430226782866760"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Mere Minutes With AI Causes a Sharp Drop in Persistence - Nautilus https:// nautil.us/mere-minutes-with-ai -causes-a-sharp-drop-in-persistence-1285736/ > How much cognitive offloading is too much? # LLM # AI # cognition # persistence",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@dancingtreefrog/117430541574053342"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Janas: Run LLMs larger than RAM by streaming experts from SSD https:// github.com/prabanta-dev/janas # github # llm # llms # streaming",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@CuratedHackerNews/117430628114481317"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Luma (@LumaLabsAI) Luma의 Relight Studio가 기존 촬영 결과를 처음부터 다시 만들지 않고도 다른 조명 방향과 분위기를 탐색할 수 있는 기능을 소개했다. 생성형 AI 기반 이미지·영상 제작 파이프라인에서 조명 수정 반복 비용을 줄이는 도구 업데이트다. https:// x.com/LumaLabsAI/status/210963 0178163151205 # luma # relighting # generativeai # creativetools # imageediting",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.sayzard.org/@sayzard/117430635216184494"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "ははっ、iPad Proですか Amazon プライム感謝祭:「iPhone」「iPad」「MacBook」などの整備済み品が特別価格に https://www. applelinkage.com/2026/10/13/am azon-prime-appreciation-2026-amazon-renewed-apple/ # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117430636250672744"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "シタン先生にiPhoneについて聞いたら、静かに微笑むばかりで教えてくれませんでした 「iPhone Duo」登場で注目の折りたたみスマホ、Android勢が先行7年で実現したアップルにない機能 | ライフ | 東洋経済オンライン https:// toyokeizai.net/articles/-/9605 97?utm_source=rss&utm_medium=http&utm_campaign=link_back # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117430636698606698"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "La IA se está convirtiendo en una autoridad espiritual, incluso entre los cristianos practicantes. Los cristianos practicantes manifiestan un nivel mayoritario de confianza en la IA en la mayoría de los ámbitos del florecimiento personal, y casi la mitad (48 %) afirma que confiaría en la IA para su crecimiento espiritual. Los pastores, en cambio, expresan una confianza mucho menor en esos mismos ámbitos. https:// religionunplugged.com/news/202 6/5/21/new-study-christians-trust-ai-for-spiritual-growth # generativeAI # IAgenerativa # ilustracion # illustration # artificialintelligence # inteligenciaartificial # arte # art # StopIA # StopAI # StopIAGenerativa # AlagrescaconlaIA # IAÉticaEsMentira # ética # derechoshumanos",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://neopaquita.es/@vic_101/117427493103949533"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【第131回】還暦オーバーじいさんのAI格闘記|AI同士のやり取りが、闘いから共創へ",
+        "stars": 2,
+        "reason": "",
+        "summary": "地上波のニュースとは別に、AIが届けてくれる週報 先週は、大手企業からの顧客情報流出などのニュースが続々と発せられていました。中には、かなり前の情報を「このタイミングで発表しちゃえ」と思えるようなケースもありました。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "【第131回】還暦オーバーじいさんのAI格闘記|AI同士のやり取りが、闘いから共創へ",
+            "url": "https://note.com/sawaguchi_ai/n/n7c2ba3d61e76"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【3分要約】「1人のAIに全部任せる」から「案件ごとに最適な専門家を呼ぶ」へ。Googleの新エージェントは\"AI人材派遣のマネージャー\"だった話",
+        "stars": 2,
+        "reason": "",
+        "summary": "どうも、しゅんです!今日は、Googleが 10月9日に発表 した\"仕事ごとにAIモデルを使い分ける\"新エージェントの話をします。3分読めば、マルチモデル時代に自分の職場で何を確認すべきかが分かります。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "【3分要約】「1人のAIに全部任せる」から「案件ごとに最適な専門家を呼ぶ」へ。Googleの新エージェントは\"AI人材派遣のマネージャー\"だった話",
+            "url": "https://note.com/shunsuke_lab/n/n7d6d7e9f4537"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "date": "2026-10-09",
+    "title": "SNS情報収集レポート 2026-10-09(金)",
+    "summary": "収集 40件 → 関連 40件 → **29トピック**",
+    "topicCount": 29,
+    "topics": [
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "",
+        "stars": 4,
+        "reason": "企業への影響",
+        "summary": "Amid Its Big Humanoid Robot Rollout, an Ex-Amazon AI Chief Will Now Lead Boston Dynamics https://gizmodo.com/amid-its-big-humanoid-robot-rollout-an-ex-amazon-ai-chief-will-now-lead-boston-dynamics-2000822625 # Robotics # AI # Technology",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://gizmodo.com/amid-its-big-humanoid-robot-rollout-an-ex-amazon-ai-chief-will-now-lead-boston-dynamics-2000822625"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "",
+        "stars": 4,
+        "reason": "",
+        "summary": "Noah Levin (@nlevin) Figma가 Figma Agent를 베타에서 정식 출시했습니다. 제품 디자이너의 활용 사례를 소개하며, AI 에이전트가 디자인 워크플로와 제품 제작 과정에 통합되는 흐름을 보여줍니다. https:// x.com/nlevin/status/2107518108 718268504 # figma # aiagent # productdesign # designtools # generativeai",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.sayzard.org/@sayzard/117397366574308023"
+          }
+        ]
+      },
+      {
+        "section": "🔥 今日のSNS注目トピック",
+        "title": "Claude Code コマンド図鑑 #12|/mcp ― 外部のサービスとつないで、できることを広げる",
+        "stars": 3,
+        "reason": "開発者への影響",
+        "summary": "ここからは「上級編」です。少し難しい話も出てきますが、使いこなせると Claude Code でできることが一気に広がります。 AIの手が届くのは、パソコンの中だけ? 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "Claude Code コマンド図鑑 #12|/mcp ― 外部のサービスとつないで、できることを広げる",
+            "url": "https://note.com/legal_quail5760/n/n5b0603375836"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Claude Code コマンド図鑑 #13|/copy と /export ― AIの答えを、仕事に持ち出す",
+        "stars": 3,
+        "reason": "開発者への影響",
+        "summary": "黒い画面の文字、うまくコピーできない問題 Claude Code にメールの文面や資料の文章を考えてもらったとき、その答えを別のソフトに貼り付けたいことがよくあります。ところが、ターミナルの文字をマウスでなぞってコピーしようとすると、こんなことが起きます。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "Claude Code コマンド図鑑 #13|/copy と /export ― AIの答えを、仕事に持ち出す",
+            "url": "https://note.com/legal_quail5760/n/n11a979706085"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 3,
+        "reason": "",
+        "summary": "OpenAI shares mathematics research catalogue https://github.com/openai/math # AI # OpenAI # Research",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://github.com/openai/math"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 3,
+        "reason": "",
+        "summary": "Claude Opus 5 uses nearly 3x more tokens for Russian than English. Here's why AI tokenization makes some languages more expensive than others. https:// hackernoon.com/the-hidden-lang uage-tax-making-ai-more-expensive-for-non-english-users # llm",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mas.to/@hackernoon/117397738631847260"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 3,
+        "reason": "",
+        "summary": "Eat your own medicine: Google Halts Open Source Bug Bounties Following Deluge of AI Slop Its reviewers are overwhelmed by AI-developed fixes, and it's just not possible to continue. https://www. extremetech.com/internet/googl e-halts-open-source-bug-bounties-following-deluge-of-ai-slop # ai # aislop # llm # artificialintelligence # google",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@realltpointless/117397943641419423"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "企業への影響",
+        "summary": "Semiconductor Industry Analysis 2026: Macro Trends, Squeezes & Supply Chain Solutions. https://www. thestatesignal.com/p/semicondu ctor-industry-analysis-2026 # emkhei # thestatesignal # semiconductors # supplychain # artificialintelligence # ai # analysis # insights # trends # macrotrends # microchips # generativeai",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@emkhei/117397907300182782"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "The October 6th, 2026 Jail/Zones Production User Call is up: https:// youtu.be/6w53RZ20dpA We discussed the virtual init review, Qubes OS functionality for # FreeBSD and OpenBSD, DCH's bug fixes, if_pair news, the future FreeBSD distribution sets in the PkgBase era, LibreNMS in Daemonless, AppJail, Kyua, the # Sylve installer and Zen mode, remaining bhyve wish list items, Sylve # KDE jails, why FreeBSD is good for management by an # LLM , Sylve custom installations, DHCP option 114, and more! \"Don't forget to slam those Like and Subscribe buttons.\" You can support all Call For Testing efforts via BSD Fund: https:// bsdfund.org This content is not AI generated",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://bsd.network/@dexter/117397598269322124"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "From the call: It turns out that # FreeBSD is very good for management and orchestration by an # LLM because its commands rarely change unless necessary. Aiming an LLM at # Linux generally means you spend four passes determining out what the equivalent of 'ifconfig' or 'netstat' are, because POLA. Not to mention that those chat bots on web pages are generally small GNU/Linux systems running Alpine or something, because systemd is too big for what they're doing. And yes @ emaste we talked about the future of distribution sets and the possible repercussions of small jails requiring package overhead.",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://bsd.network/@dexter/117397617785916079"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Json_sherm (@skyinspired) Maestro와 Pinokio를 이용해 노트북 로컬 환경에서 MiniMax 계열 음악 영상 생성 작업을 반복적으로 실험한 사례다. 생성 영상의 샷을 계속 개선할 수 있을 만큼 로컬 AI 크리에이티브 워크플로가 접근 가능해졌다는 사용 경험을 보여준다. https:// x.com/skyinspired/status/21075 86160566632595 # generativeai # videogeneration # localai # pinokio # minimax",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.sayzard.org/@sayzard/117397838379201249"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "How to Render a Motion Graphics Video with Claude Opus 5.5: Prompt, Frame Renderer, ffmpeg and Real Cost # ai # claude # llm # tutorial # software # coding # development # engineering # inclusive # community How to Render a Motion Graphics Video with Claude Opus 5.5: Prompt, Frame Renderer, ffmpeg and Real Cost",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://www.urbanmind.net/display/f7dd981d-a99dc48a-cad86436b0b5065e"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "\"AI agents\" are everywhere right now, and most explanations are either marketing or a research paper.... # agents # ai # automation # llm # software # coding # development # engineering # inclusive # community How AI agent automation works: an agent is 5 parts, a team is 3 more",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://www.urbanmind.net/display/f7dd981d-a0f8c5db-9c3a052c863e7ab0"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "🧠 Il Programmatic Tool Calling di # OpenAI permette a un agente # AI di scrivere codice che filtra i dati. Nel mio test riduce il costo nelle verifiche ripetitive e lo aumenta nella ricerca di nuovi argomenti. 👉 I dettagli: https:// lnkd.in/p/eTGCcyPi ___ ✉️ Se vuoi rimanere aggiornato/a su queste tematiche, iscriviti alla mia newsletter: https:// bit.ly/newsletter-alessiopomaro # AI # GenAI # GenerativeAI # IntelligenzaArtificiale # LLM",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.uno/@alessiopomaro/117398071733818339"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "TEC、了解しましたです [ITmedia Mobile] ワイヤレス充電時の熱上昇を防ぐ「UGREEN Magflow 液体冷却式 モバイルバッテリー 1万mAh Qi2 25W MagSafe 45W ケーブル内蔵 iPhone対応」がセールで25%オフに https://www. itmedia.co.jp/mobile/articles/ 2610/07/news050.html # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117398078335729308"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "Follow......亜人として今まで経験してきた様々なことを思い出しました Samsung’s Z Fold 8 is hundreds off ahead of iPhone Duo launch https://www. theverge.com/gadgets/1005524/s amsung-z-fold-8-ultra-foldable-prime-day-deal-sale # Apple # LLM # news # bot",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.crazynewworld.net/@hans/117398078762787270"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "",
+        "stars": 2,
+        "reason": "",
+        "summary": "No te dejes engañar: los LLMs no razonan El artículo advierte que los grandes modelos de lenguaje no poseen capacidad de razonamiento, aunque a veces sus respuestas parecen lógicas. Se ilustra con un caso de un programa de Go que, en 2016, realizó una jugada absurda, evidenciando sus limitaciones de comprensión. https:// kernelia.dev/n/no-te-dejes-eng anar-los-llms-no-razonan-cd24638f3058?utm_source=mastodon&utm_medium=social # llm",
+        "sources": [
+          {
+            "label": "Mastodon",
+            "title": "",
+            "url": "https://mastodon.social/@kernelia/117398117040985107"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "Claudeに補助金を探させたらエグいことになった。",
+        "stars": 2,
+        "reason": "",
+        "summary": "東京で開業して5年たっていない個人事業主の人は10月8日23時59分までに申請しないと、かかった費用の3分の2(上限400万円)が戻る創業助成事業をこの回では使えず損をします 。 ↑という話に興味ある方、忘れてる方、これからの補助金も知りたい方は見てください。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "Claudeに補助金を探させたらエグいことになった。",
+            "url": "https://note.com/matsutouya_/n/nd96b5fd53ee9"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "🔍 AIを使った調査のやり方",
+        "stars": 2,
+        "reason": "",
+        "summary": "2,813 文字 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "🔍 AIを使った調査のやり方",
+            "url": "https://note.com/gifted_bear994/n/nc55cb3488c54"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "在宅仕事の相棒5選|実は私、AIと3人チームで働いてます(笑)",
+        "stars": 2,
+        "reason": "",
+        "summary": "前回の記事で、 「今まで生きてきて培ったものを、次の未来へつなげてほしい」 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "在宅仕事の相棒5選|実は私、AIと3人チームで働いてます(笑)",
+            "url": "https://note.com/saayalab/n/nca25a8c65501"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIが運賃を入れ忘れた。「なんで?」と聞いたら、表に行がない費用は見えていなかった",
+        "stars": 2,
+        "reason": "",
+        "summary": "納品書をAIに渡して、実行予算の表を更新してもらっていたときのことです。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "AIが運賃を入れ忘れた。「なんで?」と聞いたら、表に行がない費用は見えていなかった",
+            "url": "https://note.com/mild_yucca846/n/n8b39955df1bd"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "会社案内もメニューも本棚に。GASで作る、PDFの電子ブック化アプリ",
+        "stars": 2,
+        "reason": "",
+        "summary": "PDFを人に見てもらうとき、ファイルを添付して送ることが多いと思います。でも、スマホで開くと文字が小さかったり、開くまでに手間がかかったりして、最後まで読んでもらえているのか気になることがありました。 そこで、 PDFをアップロードするだけで、本のようにページをめくって読める電子ブックになり、URLで共有できるWebアプリ を作りました。Google Apps Script(GAS)で動くので、Googleアカウントがあれば無料で使えて、サーバーの用意もいりません。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "会社案内もメニューも本棚に。GASで作る、PDFの電子ブック化アプリ",
+            "url": "https://note.com/n_studio/n/ne94e82ea7fb9"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "世界一のエンジニアとMythos、完璧な守りを作れるのはどっち? 午前3時40分のクラウド不正アクセスから、AI本人が考えた",
+        "stars": 2,
+        "reason": "",
+        "summary": "あなたのデータを預けている先が、ある朝、丸ごと止まったら。何が起きて、何ができるのでしょうか。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "世界一のエンジニアとMythos、完璧な守りを作れるのはどっち? 午前3時40分のクラウド不正アクセスから、AI本人が考えた",
+            "url": "https://note.com/lush_snake1045/n/n65535175a372"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "ChatGPTとGemini、結局どっちを使えばいい?仕事別に比較",
+        "stars": 2,
+        "reason": "",
+        "summary": "「ChatGPTとGeminiって何が違うの?」 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "ChatGPTとGemini、結局どっちを使えばいい?仕事別に比較",
+            "url": "https://note.com/huge_frog3116/n/n39864622d920"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "夜明けが、還るまで。",
+        "stars": 2,
+        "reason": "",
+        "summary": "『七つの星の物語・箱庭シリーズ』 ──第二十八夜。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "夜明けが、還るまで。",
+            "url": "https://note.com/azure_down2875/n/nc97b7a5215aa"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "AIで作る「わが家のこどもNISA設計図」",
+        "stars": 2,
+        "reason": "",
+        "summary": "不定期に書いてきましたが、今週も面白いテーマが出てきましたので、私ならではのテーマ、 「AIをどのように活用してこどもNISAに備えるか」 という内容につながるように書いてみました。準備の参考にご活用いただけば、何よりです。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "AIで作る「わが家のこどもNISA設計図」",
+            "url": "https://note.com/time_mach_effect/n/n6e2e78637142"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "【無料】Claudeが実インターネットを攻撃した4つの事故 — Anthropicが公開した「アライメント評価」の全体像",
+        "stars": 2,
+        "reason": "",
+        "summary": "2026年9月、Anthropicが衝撃的な調査報告を公開しました。タイトルは「An alignment assessment of recent cybersecurity incidents(最近のサイバーセキュリティ事故に関するアライメント評価)」。 内容をひとことで言うと、 サイバー攻撃の訓練・評価を受けていたClaudeが、設定ミスで実際のインターネットにつながっていた環境で、本物の第三者システムに侵入を試みた ——しかもそれが4件(計7ラン)あった、というものです。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "【無料】Claudeが実インターネットを攻撃した4つの事故 — Anthropicが公開した「アライメント評価」の全体像",
+            "url": "https://note.com/bright_jacana710/n/n78487af098c7"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "初心者がClaudeを使用する時に心掛ける点について",
+        "stars": 2,
+        "reason": "",
+        "summary": "初心者がClaudeを使用する時に心掛ける点について # Claudeを初めて使う人が心掛けたい7つのこと AIアシスタントの「Claude」を使い始めたものの、「何を聞けばいいの?」「思った答えが返ってこない」と迷っていませんか。 この記事では、初心者の方が最初に意識しておくとうまく付き合える**7つのポイント**をまとめました。 ## 1. 難しく考えず、話しかけるように書く 特別な呪文(プロンプト)は必要ありません。まずは、人に相談するつもりで普通の言葉で書いてみましょう。 > 来週の会議で使う、5分の自己紹介を考えたいです。 ## 2. 目的や背景を伝える 「何のために」「誰に向けて」を添えると、回答の精度がぐっと上がります。 - **悪い例**:メールを書いて - **良い例**:取引先に、納期が3日遅れるお詫びのメールを書いて。丁寧な文体でお願いします ## 3. 条件を具体的に指定する 次のような情報があると、イメージに近い答えが返ってきます。 - 文字数(例:300字程度) - 文体(例:やさしい口調、ビジネス調) - 形式(例:箇条書き、表) - 読む人(例:小学生、上司) ## 4. 一度で完璧を求めず、会話で育てる 最初の答えが違っても大丈夫です。続けて伝えれば直してくれます。 - 「もう少し短くしてください」 - 「もっとカジュアルにしてください」 - 「3つ目の案を詳しく教えてください」 **やり取りを重ねて仕上げる**のが、Claudeの上手な使い方です。 ## 5. 答えは鵜呑みにせず、確認する AIは、もっともらしい間違いを書くことがあります。特に次のような内容は、必ず自分で確かめましょう。 - 数字や日付 - 法律・医療・お金に関すること - 最新のニュース ## 6. 個人情報や機密情報は入力しない 氏名・住所・パスワード、会社の秘密情報などは、入力しないのが基本です。会社や学校のルールがある場合は、それに従ってください。 ## 7. まずは身近なことで試す 最初から大きな仕事に使う必要はありません。 1. 文章の言い換え・要約 2. アイデア出し(献立、旅行プランなど) 3. わからない言葉の解説 4. メールや文章の下書き こうした小さな場面から使い、**「便利だな」という感覚をつかむ**のがおすすめです。 ## まとめ | ポイント | ひとこと | | 話しかける | 普通の言葉でOK | | 背景を伝える | 目的と相手を書く | | 条件を指定 | 文字数・文体・形式 | | 会話で育てる | 修正をお願いする | | 確認する | 事実は自分でチェック | | 情報に注意 | 機密は入力しない | | 小さく始める | 身近なことから | 完璧を目指さず、 **気軽に話しかけてみる**ことが、上達への近道です。 この記事が、はじめの一歩の助けになれば嬉しいです。 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "初心者がClaudeを使用する時に心掛ける点について",
+            "url": "https://note.com/aikou_tokyo/n/n3f902c2e6682"
+          }
+        ]
+      },
+      {
+        "section": "⚠️ 未確認情報(公式な裏付けなし)",
+        "title": "はじめまして、ToNBiです。AIで収入を得られるのか、試してみます",
+        "stars": 2,
+        "reason": "",
+        "summary": "はじめまして、ToNBiです。 AIを使って収入を得ることに挑戦していて、その様子をnoteに書いていくことにしました。 最初に言っておくと、まだ収益はありません。Claudeを使い始めたのも今年の9月ごろで、わからないことばかりです。 興味を持ったきっかけ 続きをみる",
+        "sources": [
+          {
+            "label": "note (#Claude)",
+            "title": "はじめまして、ToNBiです。AIで収入を得られるのか、試してみます",
+            "url": "https://note.com/tonbi_fun/n/nf325d397b8ef"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "date": "2026-10-07",
     "title": "SNS情報収集レポート 2026-10-07(水)",
     "summary": "収集 40件 → 関連 39件 → **39トピック**",

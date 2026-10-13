@@ -221,14 +221,13 @@ try {
   $ws = New-Object -ComObject WScript.Shell
   $electronExe = Join-Path $InstallDir "node_modules\electron\dist\electron.exe"
   $hasElectron = Test-Path $electronExe
-  $iconIco = Join-Path $InstallDir "public\app-icon.ico"
 
   # 「進捗管理AIを起動」：electron があればアプリ版（ターミナルなし）、無ければ start.cmd(ブラウザ版)。
   $sc = $ws.CreateShortcut((Join-Path $desktop "進捗管理AIを起動.lnk"))
   if ($hasElectron) {
     $sc.TargetPath = $electronExe
     $sc.Arguments = '"electron/main.js"'
-    if (Test-Path $iconIco) { $sc.IconLocation = $iconIco } else { $sc.IconLocation = $electronExe }
+    $sc.IconLocation = $electronExe
     $sc.Description = "進捗管理AI（ターミナルなしのアプリ版）"
   } else {
     $sc.TargetPath = $startCmd
