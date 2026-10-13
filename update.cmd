@@ -28,7 +28,7 @@ REM デスクトップアプリ版（ターミナルを出さずに起動）へ�
 REM 既存の「進捗管理AIを起動」アイコン自体を electron 直接起動に差し替えるので、
 REM 同じアイコンを押すだけでアプリ版が開く（新しいアイコンを探す必要なし）。
 echo アプリ版へ切り替えています...
-powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; $root='%~dp0'.TrimEnd('\'); $exe=Join-Path $root 'node_modules\electron\dist\electron.exe'; $d=[Environment]::GetFolderPath('Desktop'); $w=New-Object -ComObject WScript.Shell; if(Test-Path $exe){ foreach($name in @('進捗管理AIを起動.lnk','進捗管理AI(アプリ).lnk')){ $s=$w.CreateShortcut((Join-Path $d $name)); $s.TargetPath=$exe; $s.Arguments='\"electron/main.js\"'; $s.WorkingDirectory=$root; $s.IconLocation=$exe; $s.Description='進捗管理AI（ターミナルなしのアプリ版）'; $s.Save() }; Write-Host '[OK] アプリ版に切り替えました（デスクトップの『進捗管理AIを起動』から開けます）' } else { Write-Host '[注意] electron 本体が見つかりません。ネットワークを確認し、もう一度この更新を実行してください。' }"
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; $root='%~dp0'.TrimEnd('\'); $exe=Join-Path $root 'node_modules\electron\dist\electron.exe'; $ico=Join-Path $root 'public\app-icon.ico'; $icon=$(if(Test-Path $ico){$ico}else{$exe}); $d=[Environment]::GetFolderPath('Desktop'); $w=New-Object -ComObject WScript.Shell; if(Test-Path $exe){ foreach($name in @('進捗管理AIを起動.lnk','進捗管理AI(アプリ).lnk')){ $s=$w.CreateShortcut((Join-Path $d $name)); $s.TargetPath=$exe; $s.Arguments='\"electron/main.js\"'; $s.WorkingDirectory=$root; $s.IconLocation=$icon; $s.Description='進捗管理AI（ターミナルなしのアプリ版）'; $s.Save() }; Write-Host '[OK] アプリ版に切り替えました（デスクトップの『進捗管理AIを起動』から開けます）' } else { Write-Host '[注意] electron 本体が見つかりません。ネットワークを確認し、もう一度この更新を実行してください。' }"
 
 echo.
 echo 更新が完了しました。デスクトップの『進捗管理AI(アプリ)』から起動してください。
