@@ -103,6 +103,22 @@ fi
 say "デスクトップにランチャーを作成します"
 START="$DESKTOP/進捗管理AIを起動.command"
 UPDATE="$DESKTOP/進捗管理AIを更新.command"
+ICON="$INSTALL_DIR/public/app-icon.png"
+
+# .command ファイルに独自のFinderアイコンを焼き付ける（Xcode不要・AppKit利用）。
+set_file_icon() {
+  [ -f "$1" ] || return 0
+  osascript - "$1" "$2" >/dev/null 2>&1 <<'OSA'
+use framework "AppKit"
+use scripting additions
+on run argv
+  set iconPath to item 1 of argv
+  set target to item 2 of argv
+  set img to (current application's NSImage's alloc()'s initWithContentsOfFile:iconPath)
+  (current application's NSWorkspace's sharedWorkspace()'s setIcon:img forFile:target options:0)
+end run
+OSA
+}
 
 # 起動：Electron アプリ（ターミナルを出さない）。open で起動して即終了するので
 # ターミナルは一瞬で閉じ、以後はアプリのウィンドウだけが残る。
@@ -139,10 +155,27 @@ else
 fi
 LAUNCH
 chmod +x "\$START"
+ICON="$ICON"
+for TGT in "\$START" "$UPDATE"; do
+  osascript - "\$ICON" "\$TGT" >/dev/null 2>&1 <<'OSA'
+use framework "AppKit"
+use scripting additions
+on run argv
+  set iconPath to item 1 of argv
+  set target to item 2 of argv
+  set img to (current application's NSImage's alloc()'s initWithContentsOfFile:iconPath)
+  (current application's NSWorkspace's sharedWorkspace()'s setIcon:img forFile:target options:0)
+end run
+OSA
+done
 echo "更新が完了しました（アプリ版に切り替えました）。ウィンドウを閉じ、『進捗管理AIを起動』を押してください。"
 read -r -p "Enterで閉じる..." _
 EOF
 chmod +x "$UPDATE"
+
+# 両ランチャーに独自アイコンを設定する。
+set_file_icon "$ICON" "$START"
+set_file_icon "$ICON" "$UPDATE"
 ok "デスクトップに『進捗管理AIを起動』『進捗管理AIを更新』を作成しました"
 
 echo ""
