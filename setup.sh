@@ -104,20 +104,42 @@ say "デスクトップにランチャーを作成します"
 START="$DESKTOP/進捗管理AIを起動.command"
 UPDATE="$DESKTOP/進捗管理AIを更新.command"
 
+# 起動：Electron アプリ（ターミナルを出さない）。open で起動して即終了するので
+# ターミナルは一瞬で閉じ、以後はアプリのウィンドウだけが残る。
+# Electron.app が無い場合のみブラウザ版(npm run dev)にフォールバック。
 cat > "$START" <<EOF
 #!/bin/bash
 cd "$INSTALL_DIR"
-( sleep 6; open http://localhost:3000 ) &
-npm run dev
+APP="$INSTALL_DIR/node_modules/electron/dist/Electron.app"
+if [ -d "\$APP" ]; then
+  open -a "\$APP" --args "$INSTALL_DIR/electron/main.js"
+else
+  ( sleep 6; open http://localhost:3000 ) &
+  npm run dev
+fi
 EOF
 chmod +x "$START"
 
+# 更新：コード取得＋依存導入のあと、起動ランチャーをアプリ版に作り直す（自己更新）。
 cat > "$UPDATE" <<EOF
 #!/bin/bash
 cd "$INSTALL_DIR"
 echo "進捗管理AI を更新しています..."
-git pull --ff-only && npm install
-echo "更新が完了しました。ウィンドウを閉じて、起動し直してください。"
+git pull --ff-only && npm install --include=dev
+START="$START"
+cat > "\$START" <<'LAUNCH'
+#!/bin/bash
+cd "$INSTALL_DIR"
+APP="$INSTALL_DIR/node_modules/electron/dist/Electron.app"
+if [ -d "\$APP" ]; then
+  open -a "\$APP" --args "$INSTALL_DIR/electron/main.js"
+else
+  ( sleep 6; open http://localhost:3000 ) &
+  npm run dev
+fi
+LAUNCH
+chmod +x "\$START"
+echo "更新が完了しました（アプリ版に切り替えました）。ウィンドウを閉じ、『進捗管理AIを起動』を押してください。"
 read -r -p "Enterで閉じる..." _
 EOF
 chmod +x "$UPDATE"
