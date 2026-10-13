@@ -232,6 +232,19 @@ try {
   $sc2.Description = "進捗管理AI を最新版に更新する"
   $sc2.Save()
   Ok "デスクトップに『進捗管理AIを更新』を作成しました"
+
+  # アプリ版（ターミナルを出さずにElectronウィンドウで起動）のショートカット。
+  $electronExe = Join-Path $InstallDir "node_modules\electron\dist\electron.exe"
+  if (Test-Path $electronExe) {
+    $sc3 = $ws.CreateShortcut((Join-Path $desktop "進捗管理AI(アプリ).lnk"))
+    $sc3.TargetPath = $electronExe
+    $sc3.Arguments = '"electron/main.js"'
+    $sc3.WorkingDirectory = $InstallDir
+    $sc3.IconLocation = $electronExe
+    $sc3.Description = "進捗管理AI（ターミナルなしのアプリ版）"
+    $sc3.Save()
+    Ok "デスクトップに『進捗管理AI(アプリ)』を作成しました（ターミナルなし）"
+  }
 } catch {
   Warn "ショートカット作成に失敗しました。$startCmd を直接ダブルクリックしても起動できます。"
 }

@@ -4,6 +4,7 @@ const { app, BrowserWindow, shell } = require("electron");
 const { spawn } = require("node:child_process");
 const http = require("node:http");
 const path = require("node:path");
+const fs = require("node:fs");
 
 const PORT = process.env.PORT || 3000;
 const URL = `http://localhost:${PORT}`;
@@ -12,7 +13,7 @@ const isDev = process.env.ELECTRON_DEV === "1";
 let serverProcess = null;
 
 // 指定URLが応答するまで待つ。
-function waitForServer(url, timeoutMs = 60000) {
+function waitForServer(url, timeoutMs = 120000) {
   const start = Date.now();
   return new Promise((resolve, reject) => {
     const tryOnce = () => {
@@ -31,14 +32,17 @@ function waitForServer(url, timeoutMs = 60000) {
 }
 
 function startServer() {
-  // 既に起動済みなら再利用。
   const projectRoot = path.resolve(__dirname, "..");
   const npm = process.platform === "win32" ? "npm.cmd" : "npm";
-  const script = isDev ? "dev" : "start";
+  // 本番ビルド(.next)があれば start(高速)、無ければ dev(ビルド不要)で起動する。
+  const hasBuild = fs.existsSync(path.join(projectRoot, ".next", "BUILD_ID"));
+  const script = isDev ? "dev" : hasBuild ? "start" : "dev";
   serverProcess = spawn(npm, ["run", script], {
     cwd: projectRoot,
     env: { ...process.env, PORT: String(PORT) },
-    stdio: "inherit",
+    // コンソールを出さない（アプリとして起動するため）。
+    stdio: "ignore",
+    windowsHide: true,
     shell: process.platform === "win32",
   });
   serverProcess.on("exit", (code) => {
