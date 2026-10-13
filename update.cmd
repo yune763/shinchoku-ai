@@ -21,7 +21,13 @@ if exist ".git" (
 )
 
 echo 依存パッケージを確認しています...
-call "%NPM%" install
+REM --include=dev で electron(アプリ版に必要) も確実に入れる。
+call "%NPM%" install --include=dev
+
+REM デスクトップアプリ版（ターミナルを出さずに起動）のショートカットを作成/更新する。
+echo アプリ版ショートカットを設定しています...
+powershell -NoProfile -ExecutionPolicy Bypass -Command "$ErrorActionPreference='SilentlyContinue'; $root='%~dp0'.TrimEnd('\'); $exe=Join-Path $root 'node_modules\electron\dist\electron.exe'; if(Test-Path $exe){ $d=[Environment]::GetFolderPath('Desktop'); $w=New-Object -ComObject WScript.Shell; $s=$w.CreateShortcut((Join-Path $d '進捗管理AI(アプリ).lnk')); $s.TargetPath=$exe; $s.Arguments='\"electron/main.js\"'; $s.WorkingDirectory=$root; $s.IconLocation=$exe; $s.Description='進捗管理AI（ターミナルなしのアプリ版）'; $s.Save(); Write-Host 'デスクトップに『進捗管理AI(アプリ)』を作成しました' } else { Write-Host 'electron がまだ入っていません。もう一度この更新を実行してください。' }"
+
 echo.
-echo 更新が完了しました。アプリを起動し直してください。
+echo 更新が完了しました。デスクトップの『進捗管理AI(アプリ)』から起動してください。
 pause
