@@ -5,6 +5,34 @@ const { spawn } = require("node:child_process");
 const http = require("node:http");
 const path = require("node:path");
 const fs = require("node:fs");
+const os = require("node:os");
+
+// macOS/Linux で Finder などGUIから起動すると、シェルのPATHを引き継がず node/npm が
+// 見つからないことがある（サーバーが起動せずタイムアウトする原因）。代表的な場所を補う。
+if (process.platform !== "win32") {
+  const extra = [
+    "/opt/homebrew/bin", // Homebrew (Apple Silicon)
+    "/usr/local/bin", // Homebrew (Intel) / Node公式pkg
+    path.join(os.homedir(), ".volta", "bin"),
+    path.join(os.homedir(), ".npm-global", "bin"),
+    path.join(os.homedir(), ".asdf", "shims"), // asdf
+    "/opt/local/bin", // MacPorts
+  ];
+  // nvm 利用時の現行バージョン(~/.nvm/versions/node/*/bin)も拾う。
+  try {
+    const nvmBase = path.join(os.homedir(), ".nvm", "versions", "node");
+    if (fs.existsSync(nvmBase)) {
+      for (const v of fs.readdirSync(nvmBase)) {
+        extra.push(path.join(nvmBase, v, "bin"));
+      }
+    }
+  } catch {
+    /* noop */
+  }
+  const parts = (process.env.PATH || "").split(":");
+  for (const p of extra) if (p && !parts.includes(p)) parts.push(p);
+  process.env.PATH = parts.filter(Boolean).join(":");
+}
 
 const PORT = process.env.PORT || 3000;
 const URL = `http://localhost:${PORT}`;
@@ -76,7 +104,7 @@ async function createWindow() {
     await win.loadURL(`${URL}/goals`);
   } catch {
     win.loadURL(
-      "data:text/html," +
+      "data:text/html;charset=utf-8," +
         encodeURIComponent(
           "<h2 style='font-family:sans-serif'>サーバーの起動に失敗しました。ターミナルのログを確認してください。</h2>",
         ),

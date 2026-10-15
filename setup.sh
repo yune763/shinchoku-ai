@@ -91,6 +91,9 @@ else
     echo "# 共有データベース(Firestore)。全メンバーで同じ値にすると情報が共有されます。"
     echo "FIREBASE_SERVICE_ACCOUNT=$FB"
     echo "FIRESTORE_COLLECTION=shinchoku"
+    echo "# メンバーPCでは開発ツール（Cursor/Claude Code/Codexで開く・AI実装・指示文コピー等）を無効化し、"
+    echo "# プログラムの編集をできないようにする。開発するPCでは 0 にするか、この行を削除する。"
+    echo "MEMBER_MODE=1"
   } > "$ENV_FILE"
   if [ -z "$FB" ]; then
     warn ".env を作成しました（Firebaseキーは未設定）。後で設定してください: $ENV_FILE"
@@ -110,9 +113,11 @@ UPDATE="$DESKTOP/進捗管理AIを更新.command"
 cat > "$START" <<EOF
 #!/bin/bash
 cd "$INSTALL_DIR"
-APP="$INSTALL_DIR/node_modules/electron/dist/Electron.app"
-if [ -d "\$APP" ]; then
-  open -a "\$APP" --args "$INSTALL_DIR/electron/main.js"
+# Electron バイナリを直接起動する（open -a --args は Electron に app のパスを
+# 確実に渡せず、既定のウェルカム画面になってしまうため使わない）。
+ELECTRON="$INSTALL_DIR/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron"
+if [ -x "\$ELECTRON" ]; then
+  nohup "\$ELECTRON" "$INSTALL_DIR/electron/main.js" >/dev/null 2>&1 &
 else
   ( sleep 6; open http://localhost:3000 ) &
   npm run dev
@@ -130,9 +135,9 @@ START="$START"
 cat > "\$START" <<'LAUNCH'
 #!/bin/bash
 cd "$INSTALL_DIR"
-APP="$INSTALL_DIR/node_modules/electron/dist/Electron.app"
-if [ -d "\$APP" ]; then
-  open -a "\$APP" --args "$INSTALL_DIR/electron/main.js"
+ELECTRON="$INSTALL_DIR/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron"
+if [ -x "\$ELECTRON" ]; then
+  nohup "\$ELECTRON" "$INSTALL_DIR/electron/main.js" >/dev/null 2>&1 &
 else
   ( sleep 6; open http://localhost:3000 ) &
   npm run dev
