@@ -113,11 +113,13 @@ UPDATE="$DESKTOP/進捗管理AIを更新.command"
 cat > "$START" <<EOF
 #!/bin/bash
 cd "$INSTALL_DIR"
-# Electron バイナリを直接起動する（open -a --args は Electron に app のパスを
-# 確実に渡せず、既定のウェルカム画面になってしまうため使わない）。
-ELECTRON="$INSTALL_DIR/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron"
-if [ -x "\$ELECTRON" ]; then
-  nohup "\$ELECTRON" "$INSTALL_DIR/electron/main.js" >/dev/null 2>&1 &
+# Electron を open(LaunchServices)経由で起動し、ターミナルから完全に切り離す。
+# これでこの .command を閉じてもアプリは動き続ける（バックグラウンド常駐）。
+# -n で新規インスタンスを起動し --args で main.js を確実に渡す。
+# node/npm のPATHは main.js 側で補完するので open 起動でもサーバーは立ち上がる。
+APP="$INSTALL_DIR/node_modules/electron/dist/Electron.app"
+if [ -d "\$APP" ]; then
+  open -n -a "\$APP" --args "$INSTALL_DIR/electron/main.js"
 else
   ( sleep 6; open http://localhost:3000 ) &
   npm run dev
@@ -135,9 +137,9 @@ START="$START"
 cat > "\$START" <<'LAUNCH'
 #!/bin/bash
 cd "$INSTALL_DIR"
-ELECTRON="$INSTALL_DIR/node_modules/electron/dist/Electron.app/Contents/MacOS/Electron"
-if [ -x "\$ELECTRON" ]; then
-  nohup "\$ELECTRON" "$INSTALL_DIR/electron/main.js" >/dev/null 2>&1 &
+APP="$INSTALL_DIR/node_modules/electron/dist/Electron.app"
+if [ -d "\$APP" ]; then
+  open -n -a "\$APP" --args "$INSTALL_DIR/electron/main.js"
 else
   ( sleep 6; open http://localhost:3000 ) &
   npm run dev
