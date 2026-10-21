@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   listGoals,
   childrenOf,
@@ -8,7 +7,7 @@ import {
 import { listUsers } from "@/lib/accounts";
 import { getCurrentUser } from "@/lib/session";
 import { GOAL_STATUS, type Goal } from "@/lib/types";
-import { StatusBadge, ProgressBar, PageHeader } from "@/components/ui";
+import { ProgressBar, PageHeader } from "@/components/ui";
 import { GoalTree, type TreeNode } from "@/components/GoalTree";
 
 export const dynamic = "force-dynamic";
@@ -37,17 +36,6 @@ export default async function TeamPage() {
   }
 
   const byId = new Map(goals.map((g) => [g.id, g] as const));
-  // child の祖先に ancestorId があるか。
-  function isDescendant(child: Goal, ancestorId: string): boolean {
-    let pid = child.parentId;
-    while (pid) {
-      if (pid === ancestorId) return true;
-      const p = byId.get(pid);
-      if (!p) break;
-      pid = p.parentId;
-    }
-    return false;
-  }
   // そのメンバーの担当のうち、祖先に同メンバー担当がない＝メイン（最上位）ゴール。
   function mainGoalsOf(assigned: Goal[]): Goal[] {
     const ids = new Set(assigned.map((g) => g.id));
@@ -88,10 +76,6 @@ export default async function TeamPage() {
       children: childrenOf(g.id, goals).map(buildNode),
     };
   };
-  const allTree: TreeNode[] = childrenOf(null, goals)
-    .filter((g) => !g.todoOnly)
-    .map(buildNode);
-
   return (
     <div className="mx-auto max-w-4xl p-6 md:p-10">
       <PageHeader
@@ -107,6 +91,8 @@ export default async function TeamPage() {
         <div className="space-y-6">
           {members.map((u) => {
             const assigned = goalsOf(u.displayName);
+            // メンバーのメインゴールを「すべてのゴール」と同じツリー表示で描画する。
+            const memberTree: TreeNode[] = mainGoalsOf(assigned).map(buildNode);
             const done = assigned.filter(
               (g) => g.status === GOAL_STATUS.done,
             ).length;
@@ -165,79 +151,20 @@ export default async function TeamPage() {
                   </div>
                 </div>
 
-                {assigned.length === 0 ? (
+                {memberTree.length === 0 ? (
                   <p className="mt-3 text-sm text-ink-muted">
                     担当ゴールはありません。
                   </p>
                 ) : (
-                  <ul className="mt-3 space-y-1.5">
-                    {mainGoalsOf(assigned).map((g) => {
-                      // このメイン配下の、同メンバー担当の子ゴール（収納対象）。
-                      const kids = assigned.filter(
-                        (c) => c.id !== g.id && isDescendant(c, g.id),
-                      );
-                      return (
-                        <li key={g.id}>
-                          <GoalRow g={g} goals={goals} />
-                          {kids.length > 0 && (
-                            <details className="ml-4 mt-1">
-                              <summary className="cursor-pointer select-none text-xs text-ink-muted hover:text-brand">
-                                子ゴール {kids.length} 件を表示
-                              </summary>
-                              <ul className="mt-1 space-y-1.5">
-                                {kids.map((c) => (
-                                  <li key={c.id}>
-                                    <GoalRow g={c} goals={goals} />
-                                  </li>
-                                ))}
-                              </ul>
-                            </details>
-                          )}
-                        </li>
-                      );
-                    })}
-                  </ul>
+                  <div className="mt-3 rounded-card border border-slate-200 bg-white divide-y divide-slate-100">
+                    <GoalTree nodes={memberTree} />
+                  </div>
                 )}
               </section>
             );
           })}
         </div>
       )}
-
-      {/* すべてのゴール（担当に関係なく全件） */}
-      <div className="mt-8">
-        <h2 className="mb-3 font-semibold text-ink">すべてのゴール</h2>
-        <div className="rounded-card border border-slate-200 bg-white divide-y divide-slate-100">
-          {allTree.length === 0 ? (
-            <div className="p-8 text-center text-ink-muted">
-              まだゴールがありません。
-            </div>
-          ) : (
-            <GoalTree nodes={allTree} />
-          )}
-        </div>
-      </div>
     </div>
-  );
-}
-
-// ゴール1行（タイトル・進捗・状態）。メンバーのメイン／子ゴール共通で使う。
-function GoalRow({ g, goals }: { g: Goal; goals: Goal[] }) {
-  const leaf = childrenOf(g.id, goals).length === 0;
-  const prog = computeProgress(g.id, goals);
-  return (
-    <Link
-      href={`/goals/${g.id}`}
-      className="flex items-center gap-3 rounded-lg border border-slate-200 px-3 py-2 hover:border-brand"
-    >
-      <span className="min-w-0 flex-1 truncate text-sm text-ink">
-        {g.title}
-        {!leaf && <span className="ml-1 text-xs text-ink-muted">（まとめ）</span>}
-      </span>
-      <span className="w-24 shrink-0">
-        <ProgressBar value={prog} />
-      </span>
-      <StatusBadge status={g.status} />
-    </Link>
   );
 }

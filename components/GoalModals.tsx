@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { GOAL_STATUS, GOAL_STATUS_LABEL, type GoalStatus } from "@/lib/types";
 
 // 3点メニューの各項目を MSGBOX（モーダル）で設定するための共通コンポーネント群。
 
@@ -76,6 +77,7 @@ interface GoalData {
   assignee: string;
   dueDate: string | null;
   kpi?: string;
+  status?: GoalStatus;
 }
 
 function useGoal(goalId: string) {
@@ -367,6 +369,95 @@ export function KpiModal({ goalId, onClose }: { goalId: string; onClose: () => v
         <>
           <label className="block text-xs text-ink-muted">KPI</label>
           <textarea className={input} rows={3} value={kpi} onChange={(e) => setKpi(e.target.value)} placeholder="例: 照合精度95%以上 / 処理1000件をエラーなく完了" autoFocus />
+        </>
+      )}
+    </Shell>
+  );
+}
+
+// ── ステータス・作業中 ──
+// ステータス（未着手/進行中/ブロック/完了）の手動変更と、「作業中(active)」の
+// 設定/解除をまとめて行う。作業中はシステム全体で1つだけ（別ゴールを作業中に
+// すると自動的に付け替わる）。
+export function StatusModal({ goalId, onClose }: { goalId: string; onClose: () => void }) {
+  const router = useRouter();
+  const goal = useGoal(goalId);
+  const [status, setStatus] = useState<GoalStatus | null>(null);
+  const [active, setActive] = useState<boolean | null>(null);
+  const [saving, setSaving] = useState(false);
+
+  useEffect(() => {
+    if (goal && status === null) setStatus((goal.status as GoalStatus) ?? GOAL_STATUS.notStarted);
+  }, [goal, status]);
+  useEffect(() => {
+    fetch("/api/active")
+      .then((r) => r.json())
+      .then((d) => setActive(d.activeGoalId === goalId))
+      .catch(() => setActive(false));
+  }, [goalId]);
+
+  async function save() {
+    if (status === null) return;
+    setSaving(true);
+    try {
+      await patchGoal(goalId, { status });
+      // 作業中の設定/解除（変更があったときのみ）。
+      if (active !== null) {
+        await fetch("/api/active", {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ activeGoalId: active ? goalId : null }),
+        }).catch(() => {});
+      }
+      router.refresh();
+      onClose();
+    } catch (e) {
+      alert(e instanceof Error ? e.message : "保存に失敗しました");
+      setSaving(false);
+    }
+  }
+
+  const loading = status === null || active === null;
+  return (
+    <Shell
+      title="ステータス・作業中"
+      desc="状態の変更と、作業中（コミット自動記録先）の設定"
+      onClose={onClose}
+      footer={<SaveButtons onSave={save} onClose={onClose} saving={saving} />}
+    >
+      {loading ? (
+        <p className="text-sm text-ink-muted">読み込み中…</p>
+      ) : (
+        <>
+          <label className="block text-xs text-ink-muted">ステータス</label>
+          <div className="flex flex-wrap gap-2">
+            {(Object.values(GOAL_STATUS) as GoalStatus[]).map((s) => (
+              <button
+                key={s}
+                type="button"
+                onClick={() => setStatus(s)}
+                className={[
+                  "rounded-full px-3 py-1 text-xs font-medium border",
+                  status === s
+                    ? "bg-brand text-white border-brand"
+                    : "border-slate-300 dark:border-slate-700 text-ink-muted dark:text-slate-400 hover:border-brand",
+                ].join(" ")}
+              >
+                {GOAL_STATUS_LABEL[s]}
+              </button>
+            ))}
+          </div>
+          <label className="mt-2 flex items-center gap-2 text-sm dark:text-slate-200">
+            <input
+              type="checkbox"
+              checked={active}
+              onChange={(e) => setActive(e.target.checked)}
+            />
+            このゴールを「作業中」にする（コミットを自動記録）
+          </label>
+          <p className="text-[11px] text-ink-muted dark:text-slate-500">
+            ※「作業中」は全体で1つだけです。ここでONにすると、他のゴールの作業中は解除されます。
+          </p>
         </>
       )}
     </Shell>

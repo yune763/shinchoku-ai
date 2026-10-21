@@ -21,6 +21,7 @@ import { Roadmap } from "@/components/Roadmap";
 import { launchTool } from "@/lib/launch-client";
 import { PromptModal } from "@/components/PromptModal";
 import { ActiveToggle } from "@/components/ActiveToggle";
+import { useMemberMode } from "@/components/MemberMode";
 
 const LOG_KIND_LABEL: Record<string, string> = {
   [LOG_KIND.comment]: "コメント",
@@ -46,16 +47,40 @@ export function GoalDetail({
   estimatedHours: number;
 }) {
   const router = useRouter();
+  const memberMode = useMemberMode(); // メンバーPCでは開発ツールを隠す
   const [editing, setEditing] = useState(false);
   const [showAi, setShowAi] = useState(false);
   const [showPlan, setShowPlan] = useState(false);
   const [showRun, setShowRun] = useState(false);
   const [openingClaude, setOpeningClaude] = useState(false);
+  const [organizing, setOrganizing] = useState(false);
+
+  // 子ゴールをAIが入れ子に整理する（下位のものを他の子の配下へ）。
+  async function organizeChildren() {
+    if (organizing) return;
+    setOrganizing(true);
+    try {
+      const res = await fetch(`/api/goals/${goal.id}/organize-children`, {
+        method: "POST",
+      });
+      const d = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        alert(d.error ?? "整理に失敗しました");
+      } else if ((d.moved ?? 0) === 0) {
+        alert(d.note ?? "入れ子にできる子ゴールはありませんでした。");
+      }
+      router.refresh();
+    } catch {
+      alert("サーバーに接続できません");
+    } finally {
+      setOrganizing(false);
+    }
+  }
   const [consultPrompt, setConsultPrompt] = useState<string | null>(null);
   const isLeaf = children.length === 0;
 
-  // 作業フォルダで開発ツール（Claude Code CLI / Cursor）を開く。
-  async function openTool(tool: "claude" | "cursor") {
+  // 相談/実装ツール（ChatGPT＝相談 / Cursor＝実装）を開く。
+  async function openTool(tool: "chatgpt" | "cursor") {
     if (openingClaude) return;
     setOpeningClaude(true);
     try {
@@ -118,35 +143,40 @@ export function GoalDetail({
           </div>
         </div>
         <div className="flex flex-col gap-2 shrink-0 items-stretch">
-          <button
-            onClick={() => setShowRun(true)}
-            className="rounded-lg bg-brand text-white px-4 py-2 text-sm font-medium hover:opacity-90"
-            title={goal.repoPath ? `作業フォルダ: ${goal.repoPath}` : "作業フォルダ未設定（文脈を編集で設定）"}
-          >
-            Claude Codeで実装
-          </button>
-          <button
-            onClick={() => openTool("claude")}
-            disabled={openingClaude}
-            className="rounded-lg border border-brand text-brand px-4 py-2 text-sm font-medium hover:bg-brand/10 disabled:opacity-50"
-            title="Claude デスクトップアプリを開き、ゴールを明確にする相談を始める（指示文は自動でコピー）"
-          >
-            {openingClaude ? "起動中…" : "Claude Code を開く"}
-          </button>
-          <button
-            onClick={() => openTool("cursor")}
-            disabled={openingClaude}
-            className="rounded-lg border border-slate-300 dark:border-slate-700 text-ink dark:text-slate-200 px-4 py-2 text-sm font-medium hover:border-brand disabled:opacity-50"
-            title="このタスクの作業フォルダを Cursor で開く（指示文は『指示文をコピー』で貼り付け）"
-          >
-            Cursor で開く
-          </button>
-          <button
-            onClick={() => setShowAi(true)}
-            className="rounded-lg bg-ink text-white px-4 py-2 text-sm font-medium hover:opacity-90"
-          >
-            指示文をコピー
-          </button>
+          {/* 開発ツール：メンバーPC（MEMBER_MODE）では非表示＝プログラムを編集できない */}
+          {!memberMode && (
+            <>
+              <button
+                onClick={() => setShowRun(true)}
+                className="rounded-lg bg-brand text-white px-4 py-2 text-sm font-medium hover:opacity-90"
+                title={goal.repoPath ? `作業フォルダ: ${goal.repoPath}` : "作業フォルダ未設定（文脈を編集で設定）"}
+              >
+                Claude Codeで実装
+              </button>
+              <button
+                onClick={() => openTool("chatgpt")}
+                disabled={openingClaude}
+                className="rounded-lg border border-brand text-brand px-4 py-2 text-sm font-medium hover:bg-brand/10 disabled:opacity-50"
+                title="ChatGPT（アプリ/ブラウザ）を開き、新規チャットに相談文を入れて“送るだけ”にする"
+              >
+                {openingClaude ? "起動中…" : "ChatGPT で相談する"}
+              </button>
+              <button
+                onClick={() => openTool("cursor")}
+                disabled={openingClaude}
+                className="rounded-lg border border-slate-300 dark:border-slate-700 text-ink dark:text-slate-200 px-4 py-2 text-sm font-medium hover:border-brand disabled:opacity-50"
+                title="このタスクの作業フォルダを Cursor で開く（指示文は『指示文をコピー』で貼り付け）"
+              >
+                Cursor で開く
+              </button>
+              <button
+                onClick={() => setShowAi(true)}
+                className="rounded-lg bg-ink text-white px-4 py-2 text-sm font-medium hover:opacity-90"
+              >
+                指示文をコピー
+              </button>
+            </>
+          )}
           <PreviewButton goalId={goal.id} />
           <ActiveToggle goalId={goal.id} />
         </div>
@@ -239,7 +269,19 @@ export function GoalDetail({
 
       {/* 子ゴール */}
       <div className="rounded-card border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-5 space-y-3">
-        <h2 className="font-semibold dark:text-white">子ゴール / ToDo</h2>
+        <div className="flex items-center justify-between gap-3">
+          <h2 className="font-semibold dark:text-white">子ゴール / ToDo</h2>
+          {children.length >= 2 && (
+            <button
+              onClick={organizeChildren}
+              disabled={organizing}
+              className="text-sm text-brand hover:underline disabled:opacity-50"
+              title="AIが子ゴールの包含関係を見て、下位のものを他の子ゴールの配下に入れ子化します"
+            >
+              {organizing ? "整理中…" : "子ゴールを入れ子に整理"}
+            </button>
+          )}
+        </div>
         {children.length === 0 ? (
           <p className="text-sm text-ink-muted dark:text-slate-400">
             子ゴールはありません（これは実行するToDoです）。

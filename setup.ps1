@@ -202,7 +202,10 @@ if (Test-Path $envPath) {
   $lines = @(
     "# 共有データベース(Firestore)。全メンバーで同じ値にすると情報が共有されます。",
     "FIREBASE_SERVICE_ACCOUNT=$fb",
-    "FIRESTORE_COLLECTION=shinchoku"
+    "FIRESTORE_COLLECTION=shinchoku",
+    "# メンバーPCでは開発ツール（Cursor/Claude Code/Codexで開く・AI実装・指示文コピー等）を無効化し、",
+    "# プログラムの編集をできないようにする。開発するPCでは 0 にするか、この行を削除する。",
+    "MEMBER_MODE=1"
   )
   Set-Content -Path $envPath -Value $lines -Encoding utf8
   if ([string]::IsNullOrWhiteSpace($fb)) {

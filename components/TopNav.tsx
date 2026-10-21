@@ -5,7 +5,10 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 
 // サイドバーの未読・承認待ちバッジの更新間隔。
-const BADGE_POLL_MS = 15000;
+// バッジ（承認待ち・未読トーク）の定期更新間隔。
+// フォーカス時/ページ遷移時にも更新するため、定期ポーリングは長めで十分
+// （保存先の読み取り回数を抑える）。
+const BADGE_POLL_MS = 60000;
 
 type IconName =
   | "goals"
@@ -22,7 +25,8 @@ type IconName =
   | "account"
   | "tools"
   | "download"
-  | "systems";
+  | "systems"
+  | "apps";
 
 const MENU: { href: string; label: string; icon: IconName }[] = [
   { href: "/goals", label: "ゴール一覧", icon: "goals" },
@@ -30,6 +34,7 @@ const MENU: { href: string; label: string; icon: IconName }[] = [
   { href: "/chat", label: "チャット", icon: "chat" },
   { href: "/today", label: "今日のToDo", icon: "today" },
   { href: "/systems", label: "システム一覧", icon: "systems" },
+  { href: "/apps", label: "自主制作アプリ", icon: "apps" },
   { href: "/proposals", label: "開発提案", icon: "idea" },
   { href: "/collection", label: "情報収集", icon: "news" },
   { href: "/sns-collection", label: "SNS情報収集", icon: "sns" },
@@ -146,6 +151,16 @@ function Icon({ name }: { name: IconName }) {
           <rect x="14" y="3" width="7" height="7" rx="1" />
           <rect x="3" y="14" width="7" height="7" rx="1" />
           <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg>
+      );
+    case "apps": // アプリウィンドウ（自主制作アプリ）
+      return (
+        <svg {...common}>
+          <rect x="3" y="4" width="18" height="16" rx="2" />
+          <path d="M3 9h18" />
+          <circle cx="6.2" cy="6.5" r="0.5" fill="currentColor" />
+          <circle cx="8.6" cy="6.5" r="0.5" fill="currentColor" />
+          <path d="M8 13.5l2 2 4-4" />
         </svg>
       );
     case "download": // ダウンロード（アプリ導入）

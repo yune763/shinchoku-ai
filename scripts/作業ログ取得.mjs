@@ -68,30 +68,13 @@ async function saveState(state) {
   await writeFile(STATE_FILE, JSON.stringify(state, null, 2), "utf8");
 }
 
-// 対象ゴールIDと repoPath を解決する。
-async function resolveGoal() {
-  let goalId = arg("goal", process.env.GOAL_ID);
-  if (!goalId) {
-    // 作業中(active)ゴールを使う。
-    try {
-      const ctx = await getJson(`${BASE}/api/context`);
-      goalId = ctx?.activeGoalId || ctx?.active?.id || null;
-    } catch {
-      /* noop */
-    }
-  }
-  if (!goalId) throw new Error("ゴールIDが不明です（--goal で指定、または作業中ゴールを設定してください）");
-  const goal = await getJson(`${BASE}/api/goals/${goalId}`).then((d) => d.goal ?? d);
-  if (!goal) throw new Error("ゴールが取得できません");
-  return goal;
-}
-
-// ~/.claude/projects 配下の jsonl から、cwd が repoPath に一致する最新ファイルを探す。
-async function findSessionFile(repoPath) {
+// ~/.claude/projects 配下の全 jsonl を1回だけ走査し、
+// 「作業フォルダ(cwd) → そのフォルダで最後に更新されたセッションファイル」の索引を作る。
+// これで『作業中(active)ゴール』の手動設定なしに、repoPath 一致だけで宛先を決められる。
+async function buildSessionIndex() {
   const root = path.join(os.homedir(), ".claude", "projects");
-  if (!existsSync(root)) return null;
-  const want = path.resolve(repoPath).toLowerCase();
-  const candidates = [];
+  const index = new Map(); // key: 正規化した作業フォルダ(小文字) → { fp, mtime }
+  if (!existsSync(root)) return index;
   for (const dir of await readdir(root)) {
     const full = path.join(root, dir);
     let files = [];
@@ -103,20 +86,38 @@ async function findSessionFile(repoPath) {
     for (const f of files) {
       const fp = path.join(full, f);
       try {
-        const head = (await readFile(fp, "utf8")).split("\n").find((l) => l.trim());
-        if (!head) continue;
-        const cwd = JSON.parse(head)?.cwd;
-        if (cwd && path.resolve(cwd).toLowerCase() === want) {
-          const s = await stat(fp);
-          candidates.push({ fp, mtime: s.mtimeMs });
-        }
+        // cwd は先頭行とは限らない（新しい形式では last-prompt / mode 等のメタ行が先頭に来て
+        // cwd を持たない）。cwd が現れる最初の行まで走査して取得する。
+        const cwd = readCwd(await readFile(fp, "utf8"));
+        if (!cwd) continue;
+        const key = path.resolve(cwd).toLowerCase();
+        const s = await stat(fp);
+        const prev = index.get(key);
+        if (!prev || s.mtimeMs > prev.mtime) index.set(key, { fp, mtime: s.mtimeMs });
       } catch {
-        /* 壊れた行はスキップ */
+        /* 壊れた行/ファイルはスキップ */
       }
     }
   }
-  candidates.sort((a, b) => b.mtime - a.mtime);
-  return candidates[0]?.fp ?? null;
+  return index;
+}
+
+// jsonl 本文から、最初に cwd を持つ行の cwd を返す（無ければ null）。
+// 先頭数十行だけ見れば十分（最初のユーザーメッセージに入っている）。
+function readCwd(raw) {
+  const lines = raw.split("\n");
+  const limit = Math.min(lines.length, 60);
+  for (let i = 0; i < limit; i++) {
+    const line = lines[i];
+    if (!line.trim()) continue;
+    try {
+      const cwd = JSON.parse(line)?.cwd;
+      if (cwd) return cwd;
+    } catch {
+      /* 壊れた行はスキップ */
+    }
+  }
+  return null;
 }
 
 // jsonl から、前回取得時刻以降のアシスタント発言・ツール使用を抽出して作業ログ化する。
@@ -143,40 +144,84 @@ async function extractWorklog(file, sinceISO) {
         if (b.type === "text" && b.text?.trim()) parts.push(b.text.trim());
         else if (b.type === "tool_use") parts.push(`[ツール: ${b.name}]`);
       }
+    } else if (ev.type === "user") {
+      // 人間の指示・やり取りも拾う（子ゴールや完了基準の変更など、
+      // 作業中の人との合意をAIが反映できるようにするため）。
+      // tool_result（ツールの実行結果）はノイズになりやすいので除外する。
+      if (typeof content === "string" && content.trim()) {
+        parts.push(`[人] ${content.trim()}`);
+      } else if (Array.isArray(content)) {
+        for (const b of content) {
+          if (b.type === "text" && b.text?.trim()) parts.push(`[人] ${b.text.trim()}`);
+        }
+      }
     }
   }
   return { text: parts.join("\n").slice(0, 8000), last };
 }
 
-async function main() {
-  const goal = await resolveGoal();
-  const repoPath = goal.repoPath;
-  if (!repoPath) throw new Error(`ゴール「${goal.title}」に作業フォルダ(repoPath)が未設定です`);
-
-  const file = await findSessionFile(repoPath);
-  if (!file) {
-    console.log(`[作業ログ取得] ${repoPath} に対応するClaude Codeセッションが見つかりません`);
-    return;
+// 送信対象のゴール群を決める。
+//   --goal 指定時: そのゴールのみ（手動・従来互換）。
+//   省略時     : repoPath が設定され、未完了のゴール全部（＝フォルダ一致で自動判定）。
+async function resolveTargetGoals() {
+  const goalArg = arg("goal", process.env.GOAL_ID);
+  if (goalArg) {
+    const g = await getJson(`${BASE}/api/goals/${goalArg}`)
+      .then((d) => d.goal ?? d)
+      .catch(() => null);
+    return g ? [g] : [];
   }
-
-  const state = await loadState();
-  const sinceISO = state[goal.id]?.lastTimestamp || null;
-  const { text, last } = await extractWorklog(file, sinceISO);
-  if (!text.trim()) {
-    console.log("[作業ログ取得] 新しい作業ログはありません");
-    return;
-  }
-
-  const r = await postJson(`${BASE}/api/goals/${goal.id}/worklog`, {
-    log: text,
-    source: "Claude Code",
-  });
-  console.log(
-    `[作業ログ取得] 送信完了: ${goal.title} → 進捗${r.progress ?? "—"}% / 完了見込み: ${r.forecast || "—"}`,
+  const all = await getJson(`${BASE}/api/goals`)
+    .then((d) => d.goals ?? [])
+    .catch(() => []);
+  return all.filter(
+    (g) => g.repoPath && String(g.repoPath).trim() && g.status !== "done",
   );
+}
 
-  state[goal.id] = { lastTimestamp: last || new Date(await latestMtime(file)).toISOString() };
+async function main() {
+  const [goals, index, state] = await Promise.all([
+    resolveTargetGoals(),
+    buildSessionIndex(),
+    loadState(),
+  ]);
+
+  if (goals.length === 0) {
+    console.log("[作業ログ取得] 対象ゴールがありません（repoPath未設定 等）");
+    return;
+  }
+
+  let sent = 0;
+  for (const goal of goals) {
+    if (!goal.repoPath) continue;
+    // 作業フォルダ(repoPath)に一致する最新セッションを索引から引く＝このゴールが「作業中」。
+    const hit = index.get(path.resolve(goal.repoPath).toLowerCase());
+    if (!hit) continue; // このフォルダで作業したClaude Codeセッションが無い
+
+    const sinceISO = state[goal.id]?.lastTimestamp || null;
+    const { text, last } = await extractWorklog(hit.fp, sinceISO);
+    if (!text.trim()) continue; // 前回以降の新しい作業なし
+
+    try {
+      const r = await postJson(`${BASE}/api/goals/${goal.id}/worklog`, {
+        log: text,
+        source: "Claude Code",
+      });
+      console.log(
+        `[作業ログ取得] 送信: ${goal.title} → 進捗${r.progress ?? "—"}% / 見込み: ${r.forecast || "—"}` +
+          (r.appliedTo ? `（反映先: ${r.appliedTo}）` : ""),
+      );
+      state[goal.id] = {
+        lastTimestamp: last || new Date(await latestMtime(hit.fp)).toISOString(),
+      };
+      sent += 1;
+    } catch (e) {
+      console.error(`[作業ログ取得] ${goal.title} 送信失敗: ${e.message}`);
+    }
+  }
+
   await saveState(state);
+  if (sent === 0) console.log("[作業ログ取得] 新しい作業ログはありません");
 }
 
 async function latestMtime(file) {

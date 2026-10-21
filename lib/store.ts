@@ -13,10 +13,17 @@ import {
 } from "./types";
 import { seedGoals } from "./seed";
 import { exportSnapshot } from "./team";
-import { readJson, writeJson, ensureJson } from "./blob";
+import { readBlobRaw, writeJson } from "./blob";
 
-// データは blob 層に保存（ローカル=ファイル / クラウド=Upstash Redis）。
+// データは blob 層に保存（ローカル=ファイル / クラウド=Firestore/Upstash）。
 const STORE_KEY = "store.json";
+
+// 読み取りの短時間メモリキャッシュ。
+// Firestore等は読み取りに課金/クォータがあるため、短い間隔での連続読み取り
+// （自動更新・1ページ内の複数フェッチ等）で毎回DBに行かないようにする。
+// TTL内は同一スナップショットを使い回し、書き込み時は必ず無効化する。
+const READ_CACHE_TTL_MS = 30000;
+let cache: { db: DbShape; at: number } | null = null;
 
 interface DbShape {
   goals: Goal[];
@@ -27,8 +34,37 @@ interface DbShape {
 const ASSIGNEE_BOOTSTRAP = "祢次金 由貴";
 
 async function read(): Promise<DbShape> {
-  await ensureJson<DbShape>(STORE_KEY, () => ({ goals: seedGoals() }));
-  const db = await readJson<DbShape>(STORE_KEY, { goals: seedGoals() });
+  // TTL内ならキャッシュを返す（DBリードを発生させない）。
+  if (cache && Date.now() - cache.at < READ_CACHE_TTL_MS) {
+    return cache.db;
+  }
+  // 1回のリードで取得（存在しなければ seed を書き込む）。従来の
+  // ensureJson+readJson による二重リードを避ける。
+  let raw: string | null;
+  try {
+    raw = await readBlobRaw(STORE_KEY);
+  } catch (e) {
+    // 保存先の一時障害（Firestoreのクォータ超過等）。
+    // 直近に読めたスナップショットがあれば、500で落とさずそれを返して動かし続ける。
+    if (cache) {
+      console.error(
+        `[store] 読み取り失敗のためキャッシュで継続: ${(e as Error).message}`,
+      );
+      return cache.db;
+    }
+    throw e;
+  }
+  let db: DbShape;
+  if (raw == null) {
+    db = { goals: seedGoals() };
+    await writeJson(STORE_KEY, db);
+  } else {
+    try {
+      db = JSON.parse(raw) as DbShape;
+    } catch {
+      db = { goals: seedGoals() };
+    }
+  }
   if (!Array.isArray(db.goals)) db.goals = [];
   if (!db.migrations) db.migrations = {};
   // 旧データとの後方互換（新フィールドを補完）。
@@ -54,11 +90,14 @@ async function read(): Promise<DbShape> {
     await writeJson(STORE_KEY, db);
   }
 
+  cache = { db, at: Date.now() };
   return db;
 }
 
 async function write(db: DbShape): Promise<void> {
   await writeJson(STORE_KEY, db);
+  // 書き込んだ内容を即キャッシュへ反映（次の読み取りでDBに行かず最新を返す）。
+  cache = { db, at: Date.now() };
   // 書き込みのたびに自分の進捗を共有フォルダへ反映（設定時のみ）。
   await exportSnapshot(db.goals);
 }

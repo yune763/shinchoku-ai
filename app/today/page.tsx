@@ -3,6 +3,7 @@ import { listGoals, childrenOf, ancestorsOf } from "@/lib/store";
 import { getCurrentUser } from "@/lib/session";
 import { GOAL_STATUS } from "@/lib/types";
 import { StatusBadge, PageHeader } from "@/components/ui";
+import { NewTodoForm } from "@/components/NewTodoForm";
 
 export const dynamic = "force-dynamic";
 
@@ -24,6 +25,8 @@ export default async function TodayPage() {
         title="今日のToDo"
         desc="あなたが実装担当の、未完了のToDoです。何のためにやるかは親をたどれば分かります。"
       />
+
+      <NewTodoForm assignee={meName} />
 
       {leaves.length === 0 ? (
         <div className="rounded-card border border-dashed border-slate-300 dark:border-slate-700 p-10 text-center text-ink-muted dark:text-slate-400">

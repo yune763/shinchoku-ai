@@ -16,7 +16,7 @@ export interface LaunchResult {
 
 export async function launchTool(
   goalId: string,
-  tool: "claude" | "cursor",
+  tool: "claude" | "cursor" | "chatgpt",
 ): Promise<LaunchResult> {
   let res: Response;
   try {
@@ -44,6 +44,55 @@ export async function launchTool(
       return { message: "Cursor を開いています（この端末に Cursor が必要です）" };
     }
     return { message: "Cursor を開きました" };
+  }
+
+  // ChatGPT：アプリ（無ければブラウザ）を開き、相談文を入力欄へ。
+  if (tool === "chatgpt") {
+    const prompt = d.prompt as string | undefined;
+    // リモート：サーバーが開けないので、ブラウザをこちらで開き相談文をコピー＆表示。
+    if (d.remote) {
+      const url = (d.url as string) || "https://chatgpt.com/";
+      if (prompt) {
+        try {
+          await navigator.clipboard.writeText(prompt);
+        } catch {
+          /* モーダルから手動コピーできる */
+        }
+      }
+      window.open(url, "_blank", "noopener");
+      return {
+        message:
+          "ChatGPT をブラウザで開きました。相談文をコピー済みです。入力欄に貼り付けて送信してください。",
+        prompt,
+      };
+    }
+    // ローカル(Windows)：アプリに自動入力できたか、ブラウザを開いたか。
+    if (d.mode === "app") {
+      return {
+        message:
+          "ChatGPT アプリの新規チャットに相談文を入力しました。内容を確認して送信してください。",
+      };
+    }
+    if (d.mode === "browser") {
+      return {
+        message:
+          "ChatGPT をブラウザで開き、新規チャットの入力欄に相談文を入れました。内容を確認して送信してください。（入っていなければ Ctrl+V で貼り付け）",
+        prompt,
+      };
+    }
+    // Mac：アクセシビリティ未許可で自動入力できなかった。設定を開いて案内。
+    if (d.mode === "denied") {
+      return {
+        message:
+          "自動入力には『アクセシビリティ』の許可が必要です。開いた設定で、進捗管理AI（またはElectron）をオンにしてから、もう一度押してください。相談文はクリップボードにあります（⌘Vで貼り付け可）。",
+        prompt,
+      };
+    }
+    // 失敗時：相談文をモーダルで表示して手動で進められるように。
+    return {
+      message: "ChatGPT を開けませんでした。相談文を表示します。",
+      prompt,
+    };
   }
 
   // Claude（相談）：

@@ -6,9 +6,13 @@ import os from "node:os";
 import path from "node:path";
 import { getGoal, listGoals, ancestorsOf } from "@/lib/store";
 import { buildConsultPrompt } from "@/lib/prompt";
+import { isMemberMode } from "@/lib/config";
 import { Goal } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
+
+// メンバーPC（開発ツール無効）ではプログラム編集につながる起動を拒否する。
+const MEMBER_BLOCKED = { error: "このPCでは開発ツールは無効です", memberMode: true };
 
 type Params = { params: Promise<{ id: string }> };
 
@@ -29,16 +33,56 @@ function resolveRepoPath(goal: Goal, all: Goal[]): string {
 // tool=cursor: 作業フォルダを Cursor で開く（指示文はクライアント側でコピー）。
 export async function POST(req: NextRequest, { params }: Params) {
   const { id } = await params;
+  if (isMemberMode()) return NextResponse.json(MEMBER_BLOCKED, { status: 403 });
   // サーバーが利用者のPC上（＝localhost, win32）で動いている場合のみ、サーバーから直接
   // Claude/Cursor を起動できる。Render などリモート(Linux)では起動できないため、
   // 起動に必要なデータ(remote:true ＋ prompt / repoPath)を返し、ブラウザ側で起動させる。
   const isWindows = process.platform === "win32";
 
-  const tool = new URL(req.url).searchParams.get("tool") === "cursor" ? "cursor" : "claude";
+  const toolParam = new URL(req.url).searchParams.get("tool");
+  const tool =
+    toolParam === "cursor"
+      ? "cursor"
+      : toolParam === "chatgpt"
+        ? "chatgpt"
+        : "claude";
   const goal = await getGoal(id);
   if (!goal) return NextResponse.json({ error: "ゴールが見つかりません" }, { status: 404 });
 
   const all = await listGoals();
+
+  // ChatGPT（相談）: ChatGPT デスクトップアプリ（無ければブラウザ）を開き、新規チャットで
+  // 相談用の指示文を入力欄に入れて“送るだけ”の状態にする（Claude と同じ挙動）。
+  if (tool === "chatgpt") {
+    const prompt = buildConsultPrompt(goal, all);
+    // Mac：AppleScript で ChatGPT アプリ（無ければブラウザ）を開き、新規チャットの入力欄へ貼り付ける。
+    if (process.platform === "darwin") {
+      const mode = await openChatGPTMac(prompt); // "app" | "browser" | ""
+      return NextResponse.json({ ok: true, tool: "chatgpt", mode, prompt });
+    }
+    // その他のリモート(Linux/デプロイ)はアプリを起動できないので、ブラウザURL＋相談文を返して
+    // クライアント側で開く＆コピーする。
+    if (!isWindows) {
+      return NextResponse.json({
+        ok: true,
+        remote: true,
+        tool: "chatgpt",
+        url: "https://chatgpt.com/",
+        prompt,
+      });
+    }
+    try {
+      const dir = path.join(os.tmpdir(), "shinchoku-chatgpt");
+      await fs.mkdir(dir, { recursive: true });
+      const promptPath = path.join(dir, `consult-${id}.md`);
+      await fs.writeFile(promptPath, prompt, "utf8");
+      const mode = await openChatGPT(promptPath); // "app" | "browser" | ""
+      return NextResponse.json({ ok: true, tool: "chatgpt", mode, prompt });
+    } catch (e) {
+      const message = e instanceof Error ? e.message : "ChatGPT の起動に失敗しました";
+      return NextResponse.json({ error: message }, { status: 500 });
+    }
+  }
 
   // Cursor（実装用）は作業フォルダを開く。フォルダ未設定なら案内する。
   if (tool === "cursor") {
@@ -108,6 +152,115 @@ export async function POST(req: NextRequest, { params }: Params) {
     const message = e instanceof Error ? e.message : "Claude Code の起動に失敗しました";
     return NextResponse.json({ error: message }, { status: 500 });
   }
+}
+
+// ChatGPT デスクトップアプリ（無ければ既定ブラウザ）を開き、相談文を入力枠へ入れる。
+// アプリがある場合: 相談文をクリップボードへコピー → アプリ起動 → 新規チャット(Ctrl+N) →
+//   貼り付け(Ctrl+V) まで行い、“送るだけ”にする。
+// アプリが無い場合: ブラウザで chatgpt.com を開き、相談文はクリップボードへ（貼り付けて送信）。
+// 戻り値: "app"（アプリに自動入力）/ "browser"（ブラウザを開いた）/ ""（失敗）。
+function openChatGPT(promptPath: string): Promise<string> {
+  const pp = promptPath.replace(/'/g, "''");
+  const ps = `
+$ErrorActionPreference = 'SilentlyContinue'
+Add-Type -AssemblyName System.Windows.Forms
+$ws = New-Object -ComObject WScript.Shell
+$txt = Get-Content -Raw -Encoding UTF8 -LiteralPath '${pp}'
+if ($txt) { Set-Clipboard -Value $txt }
+# ChatGPT アプリを探す（Codex など他の OpenAI アプリは除外）。
+$pkg = Get-AppxPackage | Where-Object { $_.Name -match 'ChatGPT' } | Select-Object -First 1
+if ($pkg) {
+  $appId = (Get-AppxPackageManifest $pkg).Package.Applications.Application.Id | Select-Object -First 1
+  if (-not $appId) { $appId = 'App' }
+  Start-Process ('shell:AppsFolder\\' + $pkg.PackageFamilyName + '!' + $appId)
+  for ($i = 0; $i -lt 12; $i++) {
+    Start-Sleep -Milliseconds 500
+    if ($ws.AppActivate('ChatGPT')) { break }
+  }
+  Start-Sleep -Milliseconds 800
+  $ws.AppActivate('ChatGPT') | Out-Null
+  Start-Sleep -Milliseconds 250
+  [System.Windows.Forms.SendKeys]::SendWait('^n')         # 新規チャット
+  Start-Sleep -Milliseconds 900
+  $ws.AppActivate('ChatGPT') | Out-Null
+  [System.Windows.Forms.SendKeys]::SendWait('+{ESC}')     # 入力欄にフォーカス（ChatGPTのショートカット）
+  Start-Sleep -Milliseconds 300
+  [System.Windows.Forms.SendKeys]::SendWait('^v')         # 貼り付け
+  [Console]::Out.Write('app')
+} else {
+  # 既定ブラウザで新規チャットを開き、読み込みを待って入力欄へ貼り付ける。
+  Start-Process 'https://chatgpt.com/'
+  Start-Sleep -Seconds 5                                   # ページ読み込み待ち（コールド起動を考慮）
+  [System.Windows.Forms.SendKeys]::SendWait('+{ESC}')     # 入力欄にフォーカス
+  Start-Sleep -Milliseconds 400
+  [System.Windows.Forms.SendKeys]::SendWait('^v')         # 貼り付け
+  [Console]::Out.Write('browser')
+}
+`;
+  const encoded = Buffer.from(ps, "utf16le").toString("base64");
+  return new Promise((resolve) => {
+    const child = spawn(
+      "powershell.exe",
+      ["-NoProfile", "-NonInteractive", "-STA", "-ExecutionPolicy", "Bypass", "-EncodedCommand", encoded],
+      { windowsHide: true },
+    );
+    let out = "";
+    child.stdout.on("data", (b) => (out += b.toString()));
+    child.on("close", () => resolve(out.trim()));
+    child.on("error", () => resolve(""));
+  });
+}
+
+// Mac: ChatGPT アプリ（無ければ既定ブラウザで chatgpt.com）を開き、新規チャットの入力欄へ
+// 相談文を貼り付ける（コピペ不要にする）。キー入力の自動化には「アクセシビリティ」許可が必要。
+// 未許可のときは設定画面を自動で開いて案内し、"denied" を返す（相談文はクリップボードにある）。
+// 戻り値: "app" / "browser"（自動入力成功） / "denied"（許可が必要） / ""（その他失敗）。
+function openChatGPTMac(prompt: string): Promise<string> {
+  const script = `on run argv
+  set the clipboard to (item 1 of argv)
+  set mode to "browser"
+  try
+    tell application "ChatGPT" to activate
+    set mode to "app"
+  on error
+    open location "https://chatgpt.com/"
+  end try
+  if mode is "app" then
+    delay 2
+  else
+    delay 5
+  end if
+  tell application "System Events"
+    if mode is "app" then
+      keystroke "n" using command down
+      delay 0.6
+    end if
+    keystroke "v" using command down
+  end tell
+  return mode
+end run`;
+  return new Promise((resolve) => {
+    const child = spawn("osascript", ["-e", script, prompt], {
+      stdio: ["ignore", "pipe", "pipe"],
+    });
+    let out = "";
+    let err = "";
+    child.stdout.on("data", (b) => (out += b.toString()));
+    child.stderr.on("data", (b) => (err += b.toString()));
+    child.on("close", () => {
+      const e = err.trim();
+      if (!e) return resolve(out.trim());
+      // アクセシビリティ未許可（-1719 / assistive access）。設定を開いて許可を促す。
+      if (/-1719|assistive|not allowed/i.test(e)) {
+        spawn("open", [
+          "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility",
+        ]).on("error", () => {});
+        return resolve("denied");
+      }
+      resolve("");
+    });
+    child.on("error", () => resolve(""));
+  });
 }
 
 // Claude デスクトップアプリ(AppX)を起動し、相談用プロンプトをクリップボードへコピーする。

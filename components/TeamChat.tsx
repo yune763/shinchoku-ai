@@ -43,7 +43,7 @@ interface UserLite {
   email: string;
 }
 
-const POLL_MS = 3000;
+const POLL_MS = 8000;
 
 function fmtTime(iso: string): string {
   try {

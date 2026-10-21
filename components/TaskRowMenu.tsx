@@ -10,6 +10,7 @@ import {
   AssigneeModal,
   DueDateModal,
   KpiModal,
+  StatusModal,
   NotifyModal,
   DeleteModal,
   CommentModal,
@@ -17,6 +18,7 @@ import {
 } from "@/components/GoalModals";
 import { launchTool } from "@/lib/launch-client";
 import { PromptModal } from "@/components/PromptModal";
+import { useMemberMode } from "@/components/MemberMode";
 
 // メニューのおおよその高さ（画面下端での開く方向の判定に使う）。
 const MENU_HEIGHT = 470;
@@ -36,6 +38,7 @@ export function TaskRowMenu({
   isRoot?: boolean; // 最上位（最終目標）ゴールか。コメントは最上位のみ。
 }) {
   const router = useRouter();
+  const memberMode = useMemberMode(); // メンバーPCでは開発ツール（AIに依頼する）を隠す
   const [open, setOpen] = useState(false);
   const [dropUp, setDropUp] = useState(false);
   const [busy, setBusy] = useState(false);
@@ -49,6 +52,7 @@ export function TaskRowMenu({
     | "run"
     | "copy"
     | "consult"
+    | "status"
     | "edit"
     | "add"
     | "assignee"
@@ -68,8 +72,8 @@ export function TaskRowMenu({
     setOpen((v) => !v);
   }
 
-  // 開発ツール（Claude Code CLI＝対話 / Cursor＝実装）を作業フォルダで開く。
-  async function openTool(tool: "claude" | "cursor") {
+  // 相談/実装ツール（ChatGPT＝相談 / Cursor＝実装）を開く。
+  async function openTool(tool: "chatgpt" | "cursor") {
     setOpen(false);
     setBusy(true);
     const { message, prompt } = await launchTool(goalId, tool);
@@ -129,34 +133,41 @@ export function TaskRowMenu({
               dropUp ? "bottom-8" : "top-8",
             ].join(" ")}
           >
-            {/* AIに依頼する：ホバーで左側にフライアウト表示 */}
-            <div className="relative group">
-              <button className={`${item} flex items-center justify-between`}>
-                <span>AIに依頼する</span>
-                <span className="text-ink-muted">‹</span>
-              </button>
-              <div className="absolute right-full top-0 mr-0.5 hidden group-hover:block w-52 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl p-1.5">
-                <button onClick={() => openTool("claude")} disabled={busy} className={item}>
-                  claude code で開く
-                </button>
-                <button onClick={() => openTool("cursor")} disabled={busy} className={item}>
-                  cursor で開く
-                </button>
-                <button onClick={() => openModal("consult")} className={item}>
-                  相談結果を反映する
-                </button>
-                <button onClick={() => openModal("run")} className={item}>
-                  AI実装する
-                </button>
-                <button onClick={() => openModal("copy")} className={item}>
-                  指示文をコピーする
-                </button>
-              </div>
-            </div>
+            {/* AIに依頼する（開発ツール）：メンバーPC（MEMBER_MODE）では非表示 */}
+            {!memberMode && (
+              <>
+                <div className="relative group">
+                  <button className={`${item} flex items-center justify-between`}>
+                    <span>AIに依頼する</span>
+                    <span className="text-ink-muted">‹</span>
+                  </button>
+                  <div className="absolute right-full top-0 mr-0.5 hidden group-hover:block w-52 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl p-1.5">
+                    <button onClick={() => openTool("chatgpt")} disabled={busy} className={item}>
+                      ChatGPT で相談する
+                    </button>
+                    <button onClick={() => openTool("cursor")} disabled={busy} className={item}>
+                      cursor で開く
+                    </button>
+                    <button onClick={() => openModal("consult")} className={item}>
+                      相談結果を反映する
+                    </button>
+                    <button onClick={() => openModal("run")} className={item}>
+                      AI実装する
+                    </button>
+                    <button onClick={() => openModal("copy")} className={item}>
+                      指示文をコピーする
+                    </button>
+                  </div>
+                </div>
 
-            <div className="my-1 border-t border-slate-100 dark:border-slate-800" />
+                <div className="my-1 border-t border-slate-100 dark:border-slate-800" />
+              </>
+            )}
             <button onClick={askAi} className={item}>
               AIに質問する
+            </button>
+            <button onClick={() => openModal("status")} className={item}>
+              ステータス・作業中
             </button>
             <button onClick={() => openModal("edit")} className={item}>
               編集
@@ -207,6 +218,7 @@ export function TaskRowMenu({
       {modal === "consult" && (
         <ApplyConsultModal goalId={goalId} title={title} onClose={closeModal} />
       )}
+      {modal === "status" && <StatusModal goalId={goalId} onClose={closeModal} />}
       {modal === "edit" && <EditModal goalId={goalId} onClose={closeModal} />}
       {modal === "add" && (
         <AddChildModal goalId={goalId} parentTitle={title} onClose={closeModal} />

@@ -18,3 +18,11 @@ export function memberConfig(): MemberConfig {
 export function syncEnabled(): boolean {
   return memberConfig().syncDir.length > 0;
 }
+
+// メンバーPC（インストール先）では「開発ツール」（Cursor/Claude Code/Codexで開く・
+// AI実装・指示文コピー・相談反映）を無効化し、プログラムの編集をできないようにする。
+// インストーラ(setup.sh / setup.ps1)が .env に MEMBER_MODE=1 を書き込む。
+export function isMemberMode(): boolean {
+  const v = (process.env.MEMBER_MODE || "").trim().toLowerCase();
+  return v === "1" || v === "true" || v === "yes";
+}

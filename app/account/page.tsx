@@ -105,6 +105,17 @@ export default function AccountPage() {
     }
   }
 
+  // このPCで Claude CLI にログイン（未導入なら自動インストール）。ターミナルが開く。
+  async function claudeLogin() {
+    setClaudeMsg("");
+    const { ok, data } = await api("/api/account/claude-login", { method: "POST" });
+    setClaudeMsg(
+      ok
+        ? "ターミナルを開きました。表示に従って Claude にサインインしてください（未導入なら自動でインストールされます）。"
+        : data.error || "ログインを起動できませんでした。",
+    );
+  }
+
   async function onPickAvatar(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     e.target.value = ""; // 同じファイルを選び直せるようにクリア
@@ -281,7 +292,7 @@ export default function AccountPage() {
           連携しなくてもシステムは通常どおり利用できます。
         </p>
 
-        <div className="mt-3 flex gap-2">
+        <div className="mt-3 flex flex-wrap gap-2">
           {me.claudeLinked ? (
             <button
               onClick={() => setClaude(false)}
@@ -297,6 +308,13 @@ export default function AccountPage() {
               連携する
             </button>
           )}
+          <button
+            onClick={claudeLogin}
+            className="rounded-lg border border-brand px-4 py-2 text-sm font-semibold text-brand hover:bg-brand/10"
+            title="このPCのターミナルで Claude CLI にログインします（未導入なら自動インストール）"
+          >
+            Claude CLI にログイン
+          </button>
         </div>
         {claudeMsg && (
           <p className="mt-2 text-sm text-emerald-600">{claudeMsg}</p>

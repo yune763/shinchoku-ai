@@ -3,6 +3,7 @@ import { startRun, getRun, RepoPathMissingError } from "@/lib/claude-runner";
 import { getGoal } from "@/lib/store";
 import { GOAL_STATUS } from "@/lib/types";
 import { getCurrentUser } from "@/lib/session";
+import { isMemberMode } from "@/lib/config";
 
 export const dynamic = "force-dynamic";
 
@@ -19,6 +20,13 @@ export async function GET(_req: NextRequest, { params }: Params) {
 // Claude Code(headless)を起動する。実行中なら 409。
 export async function POST(req: NextRequest, { params }: Params) {
   const { id } = await params;
+  // メンバーPC（開発ツール無効）では直接実装(プログラム編集)を拒否する。
+  if (isMemberMode()) {
+    return NextResponse.json(
+      { error: "このPCでは開発ツールは無効です", memberMode: true },
+      { status: 403 },
+    );
+  }
   // Claude Code 連携済みアカウントのみ、システムからの直接実装を許可する。
   const user = await getCurrentUser();
   if (!user?.claudeLinked) {

@@ -11,9 +11,11 @@ interface Target {
 /**
  * Claude Code の実行中だけ、ゴールツリー/詳細を定期的に再取得して進捗を反映する。
  * さらに「実行中の対象ゴール」をバナー表示して、作業が進んでいることを見える化する。
- * アイドル時も軽量エンドポイントを覗くだけなので負荷は小さい。
+ * アイドル時は軽量な /api/runs を覗くだけ（ストアDBは読まない）。
+ * 実行中は router.refresh() でページを再取得するため、間隔を空けて
+ * ストア(Firestore)の読み取り回数を抑える（ストア側の短時間キャッシュと併用）。
  */
-export function TreeAutoRefresh({ intervalMs = 1500 }: { intervalMs?: number }) {
+export function TreeAutoRefresh({ intervalMs = 4000 }: { intervalMs?: number }) {
   const router = useRouter();
   const wasRunning = useRef(false);
   const [targets, setTargets] = useState<Target[]>([]);

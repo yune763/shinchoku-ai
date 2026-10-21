@@ -9,6 +9,7 @@ import {
 } from "@/lib/store";
 import { breakdownGoal, createChildTree } from "@/lib/breakdown";
 import { runClaudeText } from "@/lib/claude-text";
+import { isMemberMode } from "@/lib/config";
 import { Goal, LOG_KIND } from "@/lib/types";
 
 export const dynamic = "force-dynamic";
@@ -21,6 +22,12 @@ type Params = { params: Promise<{ id: string }> };
 // する。システムは会話を自動取得できないため、ユーザーが貼り付けた内容を使う。
 export async function POST(req: NextRequest, { params }: Params) {
   const { id } = await params;
+  if (isMemberMode()) {
+    return NextResponse.json(
+      { error: "このPCでは開発ツールは無効です", memberMode: true },
+      { status: 403 },
+    );
+  }
   const body = await req.json().catch(() => null);
   const text: string = typeof body?.text === "string" ? body.text : "";
   const generateChildren: boolean = body?.generateChildren !== false;
