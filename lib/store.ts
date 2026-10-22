@@ -22,7 +22,7 @@ const STORE_KEY = "store.json";
 // Firestore等は読み取りに課金/クォータがあるため、短い間隔での連続読み取り
 // （自動更新・1ページ内の複数フェッチ等）で毎回DBに行かないようにする。
 // TTL内は同一スナップショットを使い回し、書き込み時は必ず無効化する。
-const READ_CACHE_TTL_MS = 30000;
+const READ_CACHE_TTL_MS = 3000;
 let cache: { db: DbShape; at: number } | null = null;
 
 interface DbShape {
@@ -139,6 +139,7 @@ export async function createGoal(input: GoalInput): Promise<Goal> {
     estimatedHours: input.estimatedHours,
     progress: input.progress,
     todoOnly: input.todoOnly ?? false,
+    todoCategory: input.todoCategory,
     steps: [],
     logs: [],
     review: null,

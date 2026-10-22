@@ -32,7 +32,8 @@ const KEY_PREFIX = "shinchoku:";
 // Firestore/Upstash は読み取りに課金・クォータがあるため、短い間隔での
 // 連続読み取り（通知バッジのポーリング、1リクエスト内の複数ストア読み取り等）を
 // 同一スナップショットで吸収する。書き込み時は必ず該当キーを無効化する。
-const READ_CACHE_TTL_MS = 30000;
+// Turso は読み取り枠が大きいので短めでよい（作成直後の不整合を避けるため短い方が安全）。
+const READ_CACHE_TTL_MS = 3000;
 const readCache = new Map<string, { raw: string | null; at: number }>();
 
 function getCached(name: string): { raw: string | null } | null {

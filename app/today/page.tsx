@@ -1,67 +1,39 @@
-import Link from "next/link";
-import { listGoals, childrenOf, ancestorsOf } from "@/lib/store";
+import { listGoals } from "@/lib/store";
 import { getCurrentUser } from "@/lib/session";
-import { GOAL_STATUS } from "@/lib/types";
-import { StatusBadge, PageHeader } from "@/components/ui";
-import { NewTodoForm } from "@/components/NewTodoForm";
+import { GOAL_STATUS, TODO_CATEGORY, type TodoCategory } from "@/lib/types";
+import { PageHeader } from "@/components/ui";
+import { TodoBoard, type BoardTodo } from "@/components/TodoBoard";
 
 export const dynamic = "force-dynamic";
 
-// 末端（子を持たない）ゴール＝実際に手を動かすToDo。未完了のものを一覧。
-// ログイン中アカウント（実装担当）のToDoだけを表示する。
+// 今日のToDo：自分の未完了ToDoを4カテゴリ（今すぐ/今日中/保留/明日以降）の列で管理する。
 export default async function TodayPage() {
   const [goals, me] = await Promise.all([listGoals(), getCurrentUser()]);
   const meName = me?.displayName ?? "";
-  const leaves = goals.filter(
-    (g) =>
-      childrenOf(g.id, goals).length === 0 &&
-      g.status !== GOAL_STATUS.done &&
-      g.assignee === meName,
-  );
+
+  // 自分の「今日のToDo専用(todoOnly)」で未完了のもの（＝各列の「＋」で足す個人ToDo）。
+  const todos: BoardTodo[] = goals
+    .filter(
+      (g) =>
+        g.todoOnly &&
+        g.status !== GOAL_STATUS.done &&
+        g.assignee === meName,
+    )
+    .map((g) => ({
+      id: g.id,
+      title: g.title,
+      // 未分類は「今すぐやること」に入れる。
+      category: (g.todoCategory ?? TODO_CATEGORY.now) as TodoCategory,
+      dueDate: g.dueDate,
+    }));
 
   return (
-    <div className="p-6 md:p-10 max-w-4xl mx-auto">
+    <div className="p-6 md:p-10">
       <PageHeader
         title="今日のToDo"
-        desc="あなたが実装担当の、未完了のToDoです。何のためにやるかは親をたどれば分かります。"
+        desc="やることを「今すぐ／今日中／保留／明日以降」の4つに分けて管理します。各列の「＋」で追加できます。"
       />
-
-      <NewTodoForm assignee={meName} />
-
-      {leaves.length === 0 ? (
-        <div className="rounded-card border border-dashed border-slate-300 dark:border-slate-700 p-10 text-center text-ink-muted dark:text-slate-400">
-          未完了のToDoはありません。お疲れさまです。
-        </div>
-      ) : (
-        <div className="space-y-2">
-          {leaves.map((g) => {
-            const chain = ancestorsOf(g.id, goals);
-            const breadcrumb = chain.map((a) => a.title).join(" › ");
-            return (
-              <Link
-                key={g.id}
-                href={`/goals/${g.id}`}
-                className="flex items-center gap-3 rounded-card border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-4 py-3 hover:border-brand transition-colors"
-              >
-                <div className="flex-1 min-w-0">
-                  {breadcrumb && (
-                    <div className="text-xs text-ink-muted dark:text-slate-500 truncate">
-                      {breadcrumb}
-                    </div>
-                  )}
-                  <div className="font-medium dark:text-white truncate">
-                    {g.title}
-                  </div>
-                </div>
-                <span className="text-xs text-ink-muted dark:text-slate-500">
-                  {g.assignee || "—"}
-                </span>
-                <StatusBadge status={g.status} />
-              </Link>
-            );
-          })}
-        </div>
-      )}
+      <TodoBoard todos={todos} assignee={meName} />
     </div>
   );
 }

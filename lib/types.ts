@@ -17,6 +17,24 @@ export const GOAL_STATUS_LABEL: Record<GoalStatus, string> = {
   done: "完了",
 };
 
+// 今日のToDo（todoOnly）の分類。4カテゴリの列で表示する。
+export const TODO_CATEGORY = {
+  now: "now", // 今すぐやること
+  today: "today", // 今日中にやること
+  hold: "hold", // 考えておく（保留）
+  later: "later", // 明日以降
+} as const;
+export type TodoCategory = (typeof TODO_CATEGORY)[keyof typeof TODO_CATEGORY];
+
+export const TODO_CATEGORY_LABEL: Record<TodoCategory, string> = {
+  now: "今すぐやること",
+  today: "今日中にやること",
+  hold: "考えておく（保留）",
+  later: "明日以降",
+};
+// 表示順（左→右の列順）。
+export const TODO_CATEGORY_ORDER: TodoCategory[] = ["now", "today", "hold", "later"];
+
 // ゴールの階層レベル（会社→部署/PJ→ToDo）。表示上のラベル用。
 export const GOAL_LEVEL_LABEL = ["会社ゴール", "プロジェクト", "タスク", "サブタスク"] as const;
 
@@ -96,6 +114,7 @@ export interface Goal {
   estimatedHours: number; // 見積所要時間（0=未設定, 0.5, 1, 2 …）
   progress: number; // 0-100（ステップがあれば自動、なければ手動）
   todoOnly: boolean; // true=今日のToDo専用（ゴール一覧/メンバー進捗には出さない）
+  todoCategory?: TodoCategory; // 今日のToDoの分類（今すぐ/今日中/保留/明日以降）
   steps: Step[]; // ロードマップ
   logs: LogEntry[];
   review: Review | null;
@@ -138,6 +157,14 @@ export const goalInputSchema = z.object({
   estimatedHours: z.number().min(0).default(0),
   progress: z.number().min(0).max(100).default(0),
   todoOnly: z.boolean().optional(),
+  todoCategory: z
+    .enum([
+      TODO_CATEGORY.now,
+      TODO_CATEGORY.today,
+      TODO_CATEGORY.hold,
+      TODO_CATEGORY.later,
+    ])
+    .optional(),
 });
 
 export type GoalInput = z.infer<typeof goalInputSchema>;
