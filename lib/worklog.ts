@@ -1,4 +1,11 @@
-import { getGoal, updateGoal, addLog, listGoals, createGoal } from "@/lib/store";
+import {
+  getGoal,
+  updateGoal,
+  addLog,
+  listGoals,
+  createGoal,
+  syncAncestorStatus,
+} from "@/lib/store";
 import { runClaudeText } from "@/lib/claude-text";
 import { Goal, GOAL_STATUS, GoalStatus, LOG_KIND } from "@/lib/types";
 
@@ -67,16 +74,25 @@ export async function ingestWorklog(
     patch.progress = Math.max(0, Math.min(100, Math.round(est.progress)));
   }
 
-  // 状態の自動遷移（「完了」へは自動で切り替えない）。
-  const nextStatus = nextStatusFrom(applyTo.status, est.status);
-  if (nextStatus && nextStatus !== applyTo.status) patch.status = nextStatus;
+  // ルート（最上位の親）ゴールか。ルートの完了確定は人が行う。
+  const isRoot = !applyTo.parentId;
 
-  // 完了見込み。AIが「完了候補」と判断したら、その旨を明示して人の確認を促す。
+  // 状態の自動遷移。
+  let nextStatus = nextStatusFrom(applyTo.status, est.status);
+
+  // 完了見込み。
   let forecast = est.forecast ? est.forecast.slice(0, 200) : "";
   if (est.status === "done_candidate") {
     if (applyIsLeaf) patch.progress = 100;
-    forecast = `完了候補（確認待ち）${forecast ? ` / ${forecast}` : ""}`.slice(0, 200);
+    if (isRoot) {
+      // 最上位ゴールは自動完了させず、完了候補として人の確認を促す。
+      forecast = `完了候補（確認待ち）${forecast ? ` / ${forecast}` : ""}`.slice(0, 200);
+    } else {
+      // いずれかの子ゴール（parentIdあり）は、実装完了なら自動で「完了」にする。
+      nextStatus = GOAL_STATUS.done;
+    }
   }
+  if (nextStatus && nextStatus !== applyTo.status) patch.status = nextStatus;
   if (forecast) patch.forecast = forecast;
 
   // 人とのやり取りで更新された完了基準があれば反映。
@@ -86,6 +102,12 @@ export async function ingestWorklog(
 
   if (Object.keys(patch).length > 0) {
     await updateGoal(applyTo.id, patch);
+  }
+
+  // 子ゴールを完了にした場合は、祖先の状態を再計算して伝播させる
+  // （子が全部完了した中間の親は自動完了／最上位は人の確認待ちに留める）。
+  if (patch.status === GOAL_STATUS.done) {
+    await syncAncestorStatus(applyTo.id).catch(() => null);
   }
 
   // 親に子ゴールへ反映した場合、親も「進行中」にしておく（未着手のままにしない）。

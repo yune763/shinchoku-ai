@@ -236,11 +236,19 @@ export async function syncAncestorStatus(goalId: string): Promise<void> {
 
     const allDone = kids.every((k) => k.status === GOAL_STATUS.done);
     const anyActive = kids.some((k) => k.status !== GOAL_STATUS.notStarted);
-    const next = allDone
-      ? GOAL_STATUS.done
-      : anyActive
-        ? GOAL_STATUS.inProgress
-        : GOAL_STATUS.notStarted;
+    // 最上位ゴール（親を持たないルート）は、子が全部完了しても自動では完了にしない。
+    // 完了確定は人が行うため、進行中に留めて確認を促す。
+    const isRoot = !parent.parentId;
+    const next =
+      allDone && !isRoot
+        ? GOAL_STATUS.done
+        : allDone || anyActive
+          ? GOAL_STATUS.inProgress
+          : GOAL_STATUS.notStarted;
+
+    if (allDone && isRoot && !parent.forecast?.startsWith("完了候補")) {
+      parent.forecast = "完了候補（確認待ち）";
+    }
 
     if (parent.status !== next) {
       const prev = parent.status;
